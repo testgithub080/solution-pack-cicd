@@ -1,0 +1,25 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "app",
+    "config": {
+        "navigation": [
+            {
+                "title": "Change Management",
+                "require": {
+                    "module": "change_management",
+                    "action": "read"
+                },
+                "state": {
+                    "name": "main.modules.list",
+                    "parameters": {
+                        "module": "change_management"
+                    }
+                },
+                "icon": "fa fa-exchange",
+                "editMode": false
+            }
+        ]
+    },
+    "uuid": "navigation"
+}

@@ -1,0 +1,34 @@
+{
+    "@context": "\/api\/3\/contexts\/Role",
+    "@id": "\/api\/3\/roles\/e7441f88-71d1-4a22-9710-caa84801ea3f",
+    "@type": "Role",
+    "description": "Responsible for change request development in Continuous Integration and Continuous Delivery (CICD)",
+    "name": "Content Developer (CD)",
+    "modulePermissions": {
+        "4": {
+            "@id": "\/api\/3\/module_permissions\/4891dd32-7f52-40e0-a194-52b462a4bb24",
+            "@type": "ModulePermission",
+            "canCreate": false,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": false,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "application",
+            "uuid": "4891dd32-7f52-40e0-a194-52b462a4bb24"
+        },
+        "10": {
+            "@id": "\/api\/3\/module_permissions\/3830865b-b1ca-43c9-ab89-8145db22e566",
+            "@type": "ModulePermission",
+            "canCreate": false,
+            "canExecute": true,
+            "canRead": true,
+            "canUpdate": true,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "change_management",
+            "uuid": "3830865b-b1ca-43c9-ab89-8145db22e566"
+        }
+    },
+    "uuid": "e7441f88-71d1-4a22-9710-caa84801ea3f"
+}

@@ -1,0 +1,40 @@
+{
+    "@context": "\/api\/3\/contexts\/PicklistName",
+    "@id": "\/api\/3\/picklist_names\/a0d7ba26-61cb-468c-a76f-2fa20cfa61ea",
+    "@type": "PicklistName",
+    "name": "Task Type",
+    "system": false,
+    "picklists": [
+        {
+            "@id": "\/api\/3\/picklists\/b43deb65-1edc-482b-b20e-1fed06bbc01c",
+            "@type": "Picklist",
+            "itemValue": "Setup",
+            "orderIndex": 0,
+            "color": "#15c9f6",
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/a0d7ba26-61cb-468c-a76f-2fa20cfa61ea",
+            "uuid": "b43deb65-1edc-482b-b20e-1fed06bbc01c"
+        },
+        {
+            "@id": "\/api\/3\/picklists\/409b289f-33f5-423f-9174-24bc8628cc4a",
+            "@type": "Picklist",
+            "itemValue": "Production",
+            "orderIndex": 1,
+            "color": "#12f6ec",
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/a0d7ba26-61cb-468c-a76f-2fa20cfa61ea",
+            "uuid": "409b289f-33f5-423f-9174-24bc8628cc4a"
+        },
+        {
+            "@id": "\/api\/3\/picklists\/dc57442c-3d52-43a0-aa19-ed2898e30ff7",
+            "@type": "Picklist",
+            "itemValue": "Pre-Production",
+            "orderIndex": 2,
+            "color": "#06f185",
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/a0d7ba26-61cb-468c-a76f-2fa20cfa61ea",
+            "uuid": "dc57442c-3d52-43a0-aa19-ed2898e30ff7"
+        }
+    ],
+    "uuid": "a0d7ba26-61cb-468c-a76f-2fa20cfa61ea"
+}

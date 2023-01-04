@@ -1,0 +1,13 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "form",
+    "config": {
+        "rows": [],
+        "actionButtons": [],
+        "wid": "3582450a-0d5c-4f96-a2e4-a18d877307df",
+        "metadata": [],
+        "style": "col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1"
+    },
+    "uuid": "modules-change_management-form"
+}

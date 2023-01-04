@@ -1,0 +1,396 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Fetch Open Requests (Issues)",
+    "aliasName": null,
+    "tag": null,
+    "description": "Fetch all open GitHub requests (Issues) from Content, Production Setting and Development Setting repositories",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/e708641d-586a-40b3-accf-963845b1e829",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Refine Issue Table",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "issues": "{{vars.steps.Get_Issues}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/b027eb6e-5bde-4eb2-9abb-6c3189851147"
+            },
+            "status": null,
+            "top": "570",
+            "left": "1525",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "16f4bf38-da96-4812-bf84-b415953c944d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Convert HTML Table to Dict",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "html": "{{vars.item}}"
+                },
+                "version": "3.2.3",
+                "for_each": {
+                    "item": "{{vars.issues_html}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "connector": "cyops_utilities",
+                "operation": "html_table_to_dictionary",
+                "operationTitle": "Utils: Convert HTML Table to Dictionary",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "1ccc2bfa-26e6-4a0c-839b-b917f43c8761"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Extract HTML Info",
+            "description": null,
+            "arguments": {
+                "url": "{% set url = [] %}{% for i in vars.issues_html %}{% for item in i.split(\"<a\") %}{% if \"https\" in item %}{% set _ = url.append(\"<a \" + ((item.split(\"<\/a>\")[0])|trim)+ \"<\/a>\") %}{% endif %}{% endfor %}{% endfor %}{{url}}",
+                "issues_json": "{% set ij = [] %}{% for item in vars.steps.Convert_HTML_Table_to_Dict %}{% set _ = ij.append(item.data[0]) %}{% endfor %}{{ij}}"
+            },
+            "status": null,
+            "top": "300",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "30606214-7c3e-4b85-aa58-98e48f7154a6"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Source Control Details",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/wf\/api\/dynamic-variable\/?limit=50&name=cicd_cofig",
+                    "body": "",
+                    "method": "GET"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": {
+                    "org_list": "[]",
+                    "repo_list": "[]",
+                    "cicd_cofig": "{{vars.result.data['hydra:member'][0].value | toDict }}"
+                }
+            },
+            "status": null,
+            "top": "165",
+            "left": "1525",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "3e654cdd-a16d-42aa-b719-e1ec89676182"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Issue Headers",
+            "description": null,
+            "arguments": {
+                "config": "bce80878-9d3d-44c8-b3bb-3a294324efc3",
+                "params": {
+                    "python_function": "ini_issue_list = {{vars.issues}}\nkey_map = {\"cRNo\": \"CR-No\", \"type\": \"Type\", \"state\": \"State\", \"summary\": \"Summary\", \"pRStatus\": \"PR Status\",\n           \"repo_url\": \"Repository\", \"description\": \"Description\", \"pRReviewers\": \"PR Reviewers\",\n           \"pullRequest\": \"Pull Request\", \"repositoryType\": \"Repository Type\",\n           \"assigneeUsername\": \"Assignee Username\", \"organizationName\": \"Organization Name\",\n           \"reporterUsername\": \"Reporter Username\"}\n# jsonObj = json.loads(ini_dict)\n# {key_map.get(k, k): v for k, v in old_dict.items()}\nissue = []\nfor elem in ini_issue_list:\n    issue.append({key_map.get(k, k): v for k, v in elem.items()})\nprint(issue)"
+                },
+                "version": "2.0.1",
+                "connector": "code-snippet",
+                "operation": "python_inline_code_editor",
+                "operationTitle": "Execute Python Code",
+                "step_variables": {
+                    "tbody": "{{vars.steps.Update_Issue_Headers.data['code_output']}}",
+                    "thead": "[\"Type\", \"CR-No\", \"State\", \"Summary\", \"PR Status\", \"Repository\", \"Description\", \"PR Reviewers\", \"Pull Request\", \"Repository Type\", \"Assignee Username\", \"Organization Name\", \"Reporter Username\"]"
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
+            "group": null,
+            "uuid": "438b3d93-b8dd-4871-9cc5-210c6ce1d3cb"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Refine Issue Json",
+            "description": null,
+            "arguments": {
+                "demo": "{% for ij in vars.issues_json %}\n{% for u in vars.url %}\n{% if (ij.repo_url in u) and (ij.cRNo in u) %}{% set _ = ij.update({\"cRNo\": u}) %}{% endif %}{% endfor %}{% endfor %}\n{% for ij in vars.issues_json %}{% for u in vars.url %}{% if (ij.repo_url in u) and (ij.cRNo not in u) %}{% set _ = ij.update({\"repo_url\": u}) %}{% endif %}{% endfor %}{% endfor %}"
+            },
+            "status": null,
+            "top": "435",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "5461805e-00ea-45b7-b0c7-be1186d64fe5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Extract Issue Bodies",
+            "description": null,
+            "arguments": {
+                "_tmp": "{% for i in vars.steps.Get_Issues %}\n{% for d in i.data %}\n{% set _ = vars.issues_html.append(d.body) %}\n{% endfor %}\n{% endfor %}"
+            },
+            "status": null,
+            "top": "30",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "63097134-913c-49b8-a936-7bd9766cff5a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Issues",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "d47bdd7a-aa4e-434b-9826-515d1565b59d",
+                "params": {
+                    "org": "{{vars.org_list[0]}}",
+                    "page": "",
+                    "repo": "{{vars.item}}",
+                    "sort": "created",
+                    "since": "",
+                    "state": "open",
+                    "labels": "",
+                    "creator": "",
+                    "assignee": "",
+                    "per_page": "",
+                    "direction": "desc",
+                    "mentioned": "",
+                    "milestone": "",
+                    "repo_type": "Organization"
+                },
+                "version": "1.0.0",
+                "for_each": {
+                    "item": "{{vars.repo_list}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "connector": "github",
+                "operation": "list_repository_issue",
+                "operationTitle": "List Repository Issue",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "1525",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "65a75031-cff2-460c-81ad-53fc58a695dc"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create HTML Table",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "value": "<!DOCTYPE html>\n<html>\n<head>\n    <style>\n        table.scrolldown {\n            width: 100%;\n            \/* border-collapse: collapse; *\/\n            border-spacing: 0;\n            border: 2px solid black;\n        }\n        \/* To display the block as level element *\/\n        table.scrolldown tbody,\n        table.scrolldown thead {\n            display: table-header-group;\n        }\n        thead tr th {\n            height: 40px;\n            text-align: center;\n            \/* line-height: 40px;*\/\n        }\n        table.scrolldown tbody {\n            \/* Set the height of table body *\/\n            height: 50px;\n            \/* Set vertical scroll *\/\n            overflow-y: auto;\n            \/* Hide the horizontal scroll *\/\n            overflow-x: hidden;\n        }\n        tbody {\n            border-top: 2px solid black;\n        }\n        tbody td,\n        thead th {\n            width: 200px;\n            border-right: 2px solid black;\n        }\n        td {\n            text-align: center;\n        }\n    <\/style>\n<\/head>\n\n<body>\n    <table class=\"scrolldown\">\n        <!-- Table head content -->\n        <thead>\n            <tr>\n                <th>CR-No<\/th>\n               <th>Repository<\/th>\n               <th>Base Branch<\/th>\n                <th>Type<\/th>\n                <th>State<\/th>\n                <th>Summary<\/th>\n                <th>Description<\/th>\n                <th>Assignee Username<\/th>\n                <th>Reporter Username<\/th>\n                <th>Pull Request<\/th>\n                <th>PR Status<\/th>\n                <th>PR Reviewers<\/th>\n            <\/tr>\n        <\/thead>\n        <!-- Table body content -->\n        <tbody>\n            {% for item in vars.steps.Refine_Issue_Table.json_issue %}\n            <tr>\n                <td>{{item.cRNo}}<\/td>\n                <td>{{item.repo_url}}<\/td>\n                <td>{{item.baseBranch}}<\/td>\n                <td>{{item.type}}<\/td>\n                <td>{{item.state}}<\/td>\n                <td>{{item.summary}}<\/td>\n                <td>{{item.description}}<\/td>\n                <td>{{item.assigneeUsername}}<\/td>\n                <td>{{item.reporterUsername}}<\/td>\n                <td>{{item.pullRequest}}<\/td>\n                <td>{{item.pRStatus}}<\/td>\n                <td>{{item.pRReviewers}}<\/td>\n            <\/tr>\n            {% endfor %}\n        <\/tbody>\n    <\/table>\n    <body>\n<\/html>"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "format_richtext",
+                "operationTitle": "Utils: Format as RichText (Markdown)",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "30",
+            "left": "825",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "6ac089f2-ba60-4564-aabe-02a3cfbc18af"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update result",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "results": "<p>{{vars.table}}<\/p>",
+                    "description": "<p>Fetch all open GitHub requests (Issues) from Content, Production Setting and Development Setting repositories<\/p>"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "30",
+            "left": "1175",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "7d2d4692-2ddf-4b29-acc6-cbcdea09a111"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Return Output",
+            "description": null,
+            "arguments": {
+                "grid_data": "{{vars.steps.Refine_Issue_Table.json_issue}}",
+                "grid_columns": "{\n    \"columns\": [\n      {\n        \"field\": \"cRNo\",\n        \"displayName\": \"CR-No\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span title=\\\"{{ row.entity.cRNo }}\\\" data-ng-bind-html=\\\"row.entity.cRNo\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"repo_url\",\n        \"displayName\": \"Repository\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span title=\\\"{{ row.entity.repo_url }}\\\" data-ng-bind-html=\\\"row.entity.repo_url\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"type\",\n        \"displayName\": \"CR Type\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.type\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"state\",\n        \"displayName\": \"CR State\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.state\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"description\",\n        \"displayName\": \"CR Description\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.description\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"summary\",\n        \"displayName\": \"CR Summary\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.summary\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"organizationName\",\n        \"displayName\": \"GitHub Org Name\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.organizationName\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"repositoryType\",\n        \"displayName\": \"Repository Type\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.repositoryType\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"baseBranch\",\n        \"displayName\": \"Base Branch\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.baseBranch\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"pullRequest\",\n        \"displayName\": \"Pull Request\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.pullRequest\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"pRReviewers\",\n        \"displayName\": \"PR Reviewers\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.pRReviewers\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"pRStatus\",\n        \"displayName\": \"PR Status\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.pRStatus\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"assigneeUsername\",\n        \"displayName\": \"Assignee\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.assigneeUsername\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"reporterUsername\",\n        \"displayName\": \"Reporter\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.reporterUsername\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      }\n    ]\n  }"
+            },
+            "status": null,
+            "top": "705",
+            "left": "1525",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "95f1c8bc-e9a6-47a8-b9c3-fee9e9fd65b5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "_tmp": "{% set includedList = [\"content\", \"productionSettings\", \"developmentSettings\"] %}{% for k, v in vars.cicd_cofig.items() %}{% if k in includedList %}{% set _ = vars.repo_list.append(v.split('\/')[-1]) %}{% elif k == \"organizationName\" %}{% set _ = vars.org_list.append(v) %}{% endif %}{% endfor %}"
+            },
+            "status": null,
+            "top": "300",
+            "left": "1525",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "da950fb1-dd6f-40eb-ad58-c20cb3ed003e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "9abce25c-13a8-4e7f-86de-9540f5d778c5",
+                "title": "Refresh",
+                "resources": [
+                    "change_management"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    },
+                    "issues": "[]"
+                },
+                "displayConditions": {
+                    "change_management": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "30",
+            "left": "1525",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
+            "uuid": "e708641d-586a-40b3-accf-963845b1e829"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get Issues",
+            "targetStep": "\/api\/3\/workflow_steps\/65a75031-cff2-460c-81ad-53fc58a695dc",
+            "sourceStep": "\/api\/3\/workflow_steps\/da950fb1-dd6f-40eb-ad58-c20cb3ed003e",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "05911445-0073-4bfa-8f59-411819b5d86f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract HTML Info -> Config",
+            "targetStep": "\/api\/3\/workflow_steps\/5461805e-00ea-45b7-b0c7-be1186d64fe5",
+            "sourceStep": "\/api\/3\/workflow_steps\/30606214-7c3e-4b85-aa58-98e48f7154a6",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "0deb67f1-aea3-4349-91ca-07b16620f3cb"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Source Control Details -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/da950fb1-dd6f-40eb-ad58-c20cb3ed003e",
+            "sourceStep": "\/api\/3\/workflow_steps\/3e654cdd-a16d-42aa-b719-e1ec89676182",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "2cab46b6-d590-4100-83fc-9597f0b20cef"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Convert HTML Table to Dict -> Config",
+            "targetStep": "\/api\/3\/workflow_steps\/30606214-7c3e-4b85-aa58-98e48f7154a6",
+            "sourceStep": "\/api\/3\/workflow_steps\/1ccc2bfa-26e6-4a0c-839b-b917f43c8761",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "30db6f12-dae4-4bbb-8ef8-c0ae736bbaaf"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Refine Issue Table -> Return Output",
+            "targetStep": "\/api\/3\/workflow_steps\/95f1c8bc-e9a6-47a8-b9c3-fee9e9fd65b5",
+            "sourceStep": "\/api\/3\/workflow_steps\/16f4bf38-da96-4812-bf84-b415953c944d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "36c7ec78-325f-4f33-abcf-fbbe797818b0"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Issues -> Refine Issue Table",
+            "targetStep": "\/api\/3\/workflow_steps\/16f4bf38-da96-4812-bf84-b415953c944d",
+            "sourceStep": "\/api\/3\/workflow_steps\/65a75031-cff2-460c-81ad-53fc58a695dc",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "3e6598e2-2f07-403b-9761-76726fb85e71"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Source Control Details",
+            "targetStep": "\/api\/3\/workflow_steps\/3e654cdd-a16d-42aa-b719-e1ec89676182",
+            "sourceStep": "\/api\/3\/workflow_steps\/e708641d-586a-40b3-accf-963845b1e829",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e60fa81b-4bc8-4a25-9af0-2c33afde034e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract Issue Bodies -> Convert HTML Table to Dict",
+            "targetStep": "\/api\/3\/workflow_steps\/1ccc2bfa-26e6-4a0c-839b-b917f43c8761",
+            "sourceStep": "\/api\/3\/workflow_steps\/63097134-913c-49b8-a936-7bd9766cff5a",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "f09c8d00-8761-462c-8bbb-e9aa6b773133"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "eaf38ff8-eccc-4a38-a8a9-c17416900647",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "ManualTrigger",
+        "CICD"
+    ]
+}

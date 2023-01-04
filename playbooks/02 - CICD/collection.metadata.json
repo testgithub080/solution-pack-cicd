@@ -1,0 +1,11 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowCollection",
+    "@type": "WorkflowCollection",
+    "name": "02 - CICD",
+    "description": null,
+    "visible": true,
+    "image": null,
+    "uuid": "4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "deletedAt": null,
+    "recordTags": []
+}
