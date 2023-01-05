@@ -1,0 +1,17 @@
+[
+    {
+        "name": "recordCard",
+        "title": "Record Card",
+        "install_mode": "rpm"
+    },
+    {
+        "name": "jsonToGrid",
+        "title": "JSON to Grid",
+        "install_mode": "rpm"
+    },
+    {
+        "name": "recordCtaBlock",
+        "title": "Record CTA Block",
+        "install_mode": "rpm"
+    }
+]

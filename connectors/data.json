@@ -1,0 +1,13 @@
+[
+    {
+        "name": "github",
+        "label": "GitHub",
+        "category": "Source Code Management",
+        "description": "GitHub is a code hosting platform for collaboration and version control. This connector facilitates automated interactions with Github, such as to create and manage repositories, branches, issues, pull requests, and many more.",
+        "publisher": null,
+        "operation_roles": [],
+        "configurations": [],
+        "dataImports": [],
+        "install_mode": "rpm"
+    }
+]

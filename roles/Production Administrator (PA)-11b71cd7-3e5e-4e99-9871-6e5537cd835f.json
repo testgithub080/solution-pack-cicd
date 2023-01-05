@@ -4,9 +4,9 @@
     "@type": "Role",
     "description": "Responsible for change request administration in Continuous Integration and Continuous Delivery (CICD)",
     "name": "Production Administrator (PA)",
-    "modulePermissions": {
-        "4": {
-            "@id": "\/api\/3\/module_permissions\/f95bafc1-b221-47cf-9971-8dbc8e07dce1",
+    "modulePermissions": [
+        {
+            "@id": "\/api\/3\/module_permissions\/57a39f93-3338-4d75-ba72-1ae3c5094e19",
             "@type": "ModulePermission",
             "canCreate": false,
             "canExecute": false,
@@ -15,10 +15,10 @@
             "canDelete": false,
             "fieldPermissions": [],
             "module": "application",
-            "uuid": "f95bafc1-b221-47cf-9971-8dbc8e07dce1"
+            "uuid": "57a39f93-3338-4d75-ba72-1ae3c5094e19"
         },
-        "10": {
-            "@id": "\/api\/3\/module_permissions\/1ac4d61d-43f2-4d4f-b68d-fdda2674159a",
+        {
+            "@id": "\/api\/3\/module_permissions\/c346ab7a-6de1-4eff-adfe-7f83d94b1ccf",
             "@type": "ModulePermission",
             "canCreate": true,
             "canExecute": true,
@@ -27,8 +27,8 @@
             "canDelete": true,
             "fieldPermissions": [],
             "module": "change_management",
-            "uuid": "1ac4d61d-43f2-4d4f-b68d-fdda2674159a"
+            "uuid": "c346ab7a-6de1-4eff-adfe-7f83d94b1ccf"
         }
-    },
+    ],
     "uuid": "11b71cd7-3e5e-4e99-9871-6e5537cd835f"
 }
