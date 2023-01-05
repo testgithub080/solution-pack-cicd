@@ -1,0 +1,50 @@
+{
+    "@context": "\/api\/3\/contexts\/PicklistName",
+    "@id": "\/api\/3\/picklist_names\/6b216e0d-c167-4cfd-a772-97fe1be0f52d",
+    "@type": "PicklistName",
+    "name": "Environment",
+    "system": false,
+    "picklists": [
+        {
+            "@id": "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651",
+            "@type": "Picklist",
+            "itemValue": "Development",
+            "orderIndex": 0,
+            "color": "#11c1e5",
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/6b216e0d-c167-4cfd-a772-97fe1be0f52d",
+            "uuid": "d4ff078d-7692-4737-b45b-00990e949651"
+        },
+        {
+            "@id": "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b",
+            "@type": "Picklist",
+            "itemValue": "Production",
+            "orderIndex": 1,
+            "color": "#f75f0e",
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/6b216e0d-c167-4cfd-a772-97fe1be0f52d",
+            "uuid": "48b9f120-34bc-4884-b886-85e82321684b"
+        },
+        {
+            "@id": "\/api\/3\/picklists\/262e570e-efe0-4eb0-aee9-e6e54b4ca3ef",
+            "@type": "Picklist",
+            "itemValue": "All",
+            "orderIndex": 2,
+            "color": "#d5f212",
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/6b216e0d-c167-4cfd-a772-97fe1be0f52d",
+            "uuid": "262e570e-efe0-4eb0-aee9-e6e54b4ca3ef"
+        },
+        {
+            "@id": "\/api\/3\/picklists\/7c93c4a6-10b4-4806-aa20-1581d35d0dcb",
+            "@type": "Picklist",
+            "itemValue": "Setup",
+            "orderIndex": 3,
+            "color": "#3a34d4",
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/6b216e0d-c167-4cfd-a772-97fe1be0f52d",
+            "uuid": "7c93c4a6-10b4-4806-aa20-1581d35d0dcb"
+        }
+    ],
+    "uuid": "6b216e0d-c167-4cfd-a772-97fe1be0f52d"
+}

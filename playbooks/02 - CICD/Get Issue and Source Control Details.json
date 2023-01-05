@@ -1,0 +1,301 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Get Issue and Source Control Details",
+    "aliasName": null,
+    "tag": null,
+    "description": "Extract the issue and source control details based on the specified information",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/473acbce-2ced-416a-9417-e46ead9ad653",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Issues",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "d47bdd7a-aa4e-434b-9826-515d1565b59d",
+                "params": {
+                    "org": "{{vars.org_name}}",
+                    "page": "",
+                    "repo": "{{vars.repo_name}}",
+                    "sort": "created",
+                    "since": "",
+                    "state": "open",
+                    "labels": "",
+                    "creator": "",
+                    "assignee": "",
+                    "per_page": 100,
+                    "direction": "desc",
+                    "mentioned": "",
+                    "milestone": "",
+                    "repo_type": "Organization"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "list_repository_issue",
+                "operationTitle": "List Repository Issue",
+                "pickFromTenant": false,
+                "step_variables": {
+                    "issue_details": "{{vars.result.data | selectattr(\"number\", \"equalto\", (vars.steps.Get_Issue_Details.input.issueNumber | int)) | list | first}}"
+                }
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "2563e386-739f-4e34-8390-0c90dda5ef4b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Convert HTML To Dict",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "html": "{{vars.issue_details.body}}"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "html_table_to_dictionary",
+                "operationTitle": "Utils: Convert HTML Table to Dictionary",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "33ffee41-58a1-44a6-92c2-e7ce4262bf49"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "473acbce-2ced-416a-9417-e46ead9ad653"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Extract Source Control Details",
+            "description": null,
+            "arguments": {
+                "org_name": "{{vars.cicd_cofig. organizationName}}",
+                "repo_name": "{% for k,v in vars.steps.Get_Issue_Details.input.items() %}{% if k == \"repositoryType\" %}{% if v == \"Development Settings\" %}{{vars.cicd_cofig.developmentSettings.split('\/')[-1]}}{% endif %}{% if v == \"Production Settings\" %}{{vars.cicd_cofig.productionSettings.split('\/')[-1]}}{% endif %}{% if v == \"Content\" %}{{vars.cicd_cofig.content.split('\/')[-1]}}{% endif %}{% endif %}{% endfor %}"
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "53eba555-3dbb-44f3-89aa-49a28f19ae96"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Return Result",
+            "description": null,
+            "arguments": {
+                "issue_details": "{{vars.steps.Convert_HTML_To_Dict.data[0]}}"
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "a0bef9d7-7731-4e25-9178-59db65a5834d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Issue Details",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Issue Details",
+                        "description": "Provide the Push (Export) Details",
+                        "inputVariables": [
+                            {
+                                "name": "issueNumber",
+                                "type": "string",
+                                "label": "Issue Number",
+                                "tooltip": "",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": false,
+                                "defaultValue": null,
+                                "_previousName": "issue",
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "repositoryType",
+                                "type": "array",
+                                "label": "Repository Type",
+                                "title": "Dynamic List",
+                                "usable": true,
+                                "options": [
+                                    "Content",
+                                    "Production Settings",
+                                    "Development Settings"
+                                ],
+                                "tooltip": "",
+                                "dataType": "dynamicList",
+                                "formType": "dynamicList",
+                                "required": true,
+                                "_expanded": false,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "searchable": false,
+                                "templateUrl": "app\/components\/form\/fields\/dynamicList.html",
+                                "defaultValue": null,
+                                "_previousName": "",
+                                "playbookField": true,
+                                "lengthConstraint": true,
+                                "allowedGridColumn": false,
+                                "useRecordFieldDefault": false
+                            }
+                        ]
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_requests",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Submit",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/f82d4e6a-862e-4264-a10d-c6df13ede332"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                }
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "c117fdd5-4727-44e7-9aa0-e21fe6bffc0b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Source Control Details",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/wf\/api\/dynamic-variable\/?limit=50&name=cicd_cofig",
+                    "body": "",
+                    "method": "GET"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": {
+                    "cicd_cofig": "{{vars.result.data['hydra:member'][0].value | toDict }}"
+                }
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "f82d4e6a-862e-4264-a10d-c6df13ede332"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Issue Details -> Get Source Control Details",
+            "targetStep": "\/api\/3\/workflow_steps\/f82d4e6a-862e-4264-a10d-c6df13ede332",
+            "sourceStep": "\/api\/3\/workflow_steps\/c117fdd5-4727-44e7-9aa0-e21fe6bffc0b",
+            "label": "Submit",
+            "isExecuted": false,
+            "uuid": "19486810-302e-400a-a7b8-5c6e36940e7f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Issues -> Convert HTML To Dict",
+            "targetStep": "\/api\/3\/workflow_steps\/33ffee41-58a1-44a6-92c2-e7ce4262bf49",
+            "sourceStep": "\/api\/3\/workflow_steps\/2563e386-739f-4e34-8390-0c90dda5ef4b",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "3e4d3c77-2c8a-4827-9dfa-c51e77221b02"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Source Control Details -> Extract Source Control Details",
+            "targetStep": "\/api\/3\/workflow_steps\/53eba555-3dbb-44f3-89aa-49a28f19ae96",
+            "sourceStep": "\/api\/3\/workflow_steps\/f82d4e6a-862e-4264-a10d-c6df13ede332",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "dc2728ab-b7c4-4c5b-84eb-537295e3d1e2"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract Source Control Details -> Get Issues",
+            "targetStep": "\/api\/3\/workflow_steps\/2563e386-739f-4e34-8390-0c90dda5ef4b",
+            "sourceStep": "\/api\/3\/workflow_steps\/53eba555-3dbb-44f3-89aa-49a28f19ae96",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e05aea41-ae25-4b14-b58f-9deea26c36ab"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Issue Details",
+            "targetStep": "\/api\/3\/workflow_steps\/c117fdd5-4727-44e7-9aa0-e21fe6bffc0b",
+            "sourceStep": "\/api\/3\/workflow_steps\/473acbce-2ced-416a-9417-e46ead9ad653",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "fb9d6ac3-bd7f-434e-bc8e-dbb3fea67782"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Convert HTML To Dict -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/a0bef9d7-7731-4e25-9178-59db65a5834d",
+            "sourceStep": "\/api\/3\/workflow_steps\/33ffee41-58a1-44a6-92c2-e7ce4262bf49",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "fc6e35ee-9218-4045-89a8-6dae5be5f446"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "8c04ee86-fa48-4ac7-8c4f-e4c771b64838",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Subroutine",
+        "CICD"
+    ]
+}

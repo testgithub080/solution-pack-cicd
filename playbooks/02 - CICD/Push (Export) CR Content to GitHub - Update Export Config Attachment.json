@@ -1,0 +1,273 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Push (Export) CR Content to GitHub - Update Export Config Attachment",
+    "aliasName": null,
+    "tag": null,
+    "description": "Update the \"Export Template Configuration\" attachment",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "export_template_uud",
+        "attachment_name"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/15b3c729-832c-4471-90be-5470626c0b30",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "15b3c729-832c-4471-90be-5470626c0b30"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Delete Configuration File",
+            "description": null,
+            "arguments": {
+                "config": "4540c845-5d7d-4336-aeec-9f4f508d38d1",
+                "params": {
+                    "python_function": "\nimport pathlib\nfilename = '{{vars.filename}}'\n\nfilepath = '\/tmp\/{0}'.format(filename)\n\npath = pathlib.Path(filepath)\npath.unlink()"
+                },
+                "version": "2.0.1",
+                "connector": "code-snippet",
+                "operation": "python_inline_code_editor",
+                "operationTitle": "Execute Python Code",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "975",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
+            "group": null,
+            "uuid": "24dc8937-be18-464d-b2de-49431bd9a280"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Export Template",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/query\/export_templates?$export=true&$limit=2147483647",
+                    "body": "{\"logic\":\"AND\",\"filters\":[{\"field\":\"uuid\",\"operator\":\"in\",\"value\":\"{{vars.input.params['export_template_uud']}}\"}]}",
+                    "method": "POST"
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "2bff276f-920a-4fc8-ae9d-b4305eef0757"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Configuration File",
+            "description": null,
+            "arguments": {
+                "config": "4540c845-5d7d-4336-aeec-9f4f508d38d1",
+                "params": {
+                    "python_function": "\nimport json\n \n# Data to be written\nconfig_list = {{vars.config_info}}\n \n# Serializing json\njson_object = json.dumps(config_list, indent=4)\n\nfilename = '{{vars.filename}}'\n\nfilepath = '\/tmp\/{0}'.format(filename)\n\nwith open(filepath, \"w\") as outfile:\n    outfile.write(json_object)"
+                },
+                "version": "2.0.1",
+                "connector": "code-snippet",
+                "operation": "python_inline_code_editor",
+                "operationTitle": "Execute Python Code",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
+            "group": null,
+            "uuid": "306c84db-4825-49ff-92dc-8c6dbba5ce4f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Updated Export Config Attachment",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "{{vars.steps.Get_Export_Config_Attachment[0]['@id']}}",
+                    "body": "{\"file\":\"{{vars.steps.Upload_Export_Config.data['@id']}}\"}",
+                    "method": "PUT"
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "3a28115d-7d43-43d2-8c95-2e29ba5ebfa6"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Upload Export Config",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.steps.Get_Export_Config_Attachment | length > 0}}",
+                "params": {
+                    "filename": "{{vars.filename}}",
+                    "file_path": "\/tmp\/{{vars.filename}}",
+                    "create_attachment": false
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "upload_file_to_cyops",
+                "operationTitle": "File: Upload a file in the system and Create an Attachment",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "b85f1bc9-6e91-4df2-b60a-f800aee94d25"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Export Config Attachment",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "name",
+                            "value": "{{vars.input.params['attachment_name']}}",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ]
+                },
+                "module": "attachments?$limit=30",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "dd2c4c09-a429-4c8c-b7d2-6c99323f1e8c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Updated export Config",
+            "description": null,
+            "arguments": {
+                "filename": "{{vars.input.params['attachment_name']}}.json",
+                "config_info": "{{vars.result.data['hydra:member']}}"
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "dfbf33d3-ab3b-4eb8-a1d7-65ba36ba0919"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Updated Export Config Attachment -> Delete Configuration File",
+            "targetStep": "\/api\/3\/workflow_steps\/24dc8937-be18-464d-b2de-49431bd9a280",
+            "sourceStep": "\/api\/3\/workflow_steps\/3a28115d-7d43-43d2-8c95-2e29ba5ebfa6",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "03cf18fb-e6d5-44f6-9fa8-517d6649a038"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update export Config -> Create Configuration File",
+            "targetStep": "\/api\/3\/workflow_steps\/306c84db-4825-49ff-92dc-8c6dbba5ce4f",
+            "sourceStep": "\/api\/3\/workflow_steps\/dfbf33d3-ab3b-4eb8-a1d7-65ba36ba0919",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "3cea5b47-2470-4d00-805d-b087f1c8c2fe"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Export Config Attachment",
+            "targetStep": "\/api\/3\/workflow_steps\/dd2c4c09-a429-4c8c-b7d2-6c99323f1e8c",
+            "sourceStep": "\/api\/3\/workflow_steps\/15b3c729-832c-4471-90be-5470626c0b30",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "56d38bee-56ed-457d-acfa-4b85e790008c"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Export Template -> Update export Config",
+            "targetStep": "\/api\/3\/workflow_steps\/dfbf33d3-ab3b-4eb8-a1d7-65ba36ba0919",
+            "sourceStep": "\/api\/3\/workflow_steps\/2bff276f-920a-4fc8-ae9d-b4305eef0757",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "7acf5a1f-9642-4006-999c-ca55df5f97a3"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Export Config Attachment -> Get Export Template",
+            "targetStep": "\/api\/3\/workflow_steps\/2bff276f-920a-4fc8-ae9d-b4305eef0757",
+            "sourceStep": "\/api\/3\/workflow_steps\/dd2c4c09-a429-4c8c-b7d2-6c99323f1e8c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "a8de4aa2-8586-4e19-ae3b-120c80440355"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Configuration File -> Delete Old Export Config",
+            "targetStep": "\/api\/3\/workflow_steps\/b85f1bc9-6e91-4df2-b60a-f800aee94d25",
+            "sourceStep": "\/api\/3\/workflow_steps\/306c84db-4825-49ff-92dc-8c6dbba5ce4f",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "d55a4562-6c18-42d8-93fe-e7f0f43cab52"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Delete Old Export Config -> Create Updated Export Config Attachment",
+            "targetStep": "\/api\/3\/workflow_steps\/3a28115d-7d43-43d2-8c95-2e29ba5ebfa6",
+            "sourceStep": "\/api\/3\/workflow_steps\/b85f1bc9-6e91-4df2-b60a-f800aee94d25",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "ebaee9f9-3f8d-47ff-9254-db0f116eebf9"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "0ea1cb9c-1963-49e7-9e34-df143abc43ee",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Subroutine",
+        "CICD"
+    ]
+}

@@ -1,0 +1,119 @@
+{
+    "name": "cICD-ContinuousIntegrationAndContinuousDelivery",
+    "version": "1.0.0",
+    "fsrMinCompatibility": "7.2.0",
+    "type": "solutionpack",
+    "local": true,
+    "label": "CICD - Continuous Integration and Continuous Delivery",
+    "dependencies": [
+        {
+            "name": "sOARFramework",
+            "type": "solutionpack",
+            "label": "SOAR Framework",
+            "minVersion": null
+        }
+    ],
+    "prerequisite": null,
+    "publisher": "Fortinet",
+    "description": "Automate software development workflows and deploy better quality code, more often. Using a continuous and iterative process to build, test, and deploy helps avoid bugs and code failures.",
+    "help": null,
+    "category": [],
+    "supportInfo": null,
+    "iconLarge": null,
+    "date": "2023-01-04T15:55:23+00:00",
+    "contents": {
+        "picklistNames": [
+            {
+                "name": "AttachmentsType"
+            },
+            {
+                "name": "Environment"
+            },
+            {
+                "name": "Task Status"
+            },
+            {
+                "name": "Task Type"
+            }
+        ],
+        "modules": {
+            "attachments": {
+                "name": "Attachments",
+                "apiName": "attachments"
+            },
+            "change_management": {
+                "name": "Change Management",
+                "apiName": "change_management"
+            },
+            "": {
+                "name": "People",
+                "apiName": "people"
+            }
+        },
+        "viewTemplates": {
+            "attachments": {
+                "name": "Attachments",
+                "apiName": "attachments",
+                "views": [
+                    "list",
+                    "detail",
+                    "form"
+                ]
+            },
+            "change_management": {
+                "name": "Change Management",
+                "apiName": "change_management",
+                "views": [
+                    "list",
+                    "detail",
+                    "form"
+                ]
+            },
+            "people": {
+                "name": "People",
+                "apiName": "people",
+                "views": [
+                    "list"
+                ]
+            }
+        },
+        "views": {
+            "navigation": [
+                "Change Management"
+            ]
+        },
+        "roles": [
+            {
+                "name": "Production Administrator (PA)"
+            },
+            {
+                "name": "Content Developer (CD)"
+            }
+        ],
+        "playbooks": [
+            {
+                "name": "02 - CICD"
+            }
+        ],
+        "globalVariables": [
+            {
+                "id": 7,
+                "name": "Server_fqhn",
+                "value": "master.fortisoar.com",
+                "default_value": "master.fortisoar.in"
+            }
+        ],
+        "recordSets": [
+            {
+                "name": "Attachments",
+                "apiName": "attachments",
+                "count": 3
+            },
+            {
+                "name": "Change Management",
+                "apiName": "change_management",
+                "count": 6
+            }
+        ]
+    }
+}

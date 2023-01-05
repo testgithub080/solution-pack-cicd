@@ -1,0 +1,297 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Save FortiSOAR Settings",
+    "aliasName": null,
+    "tag": null,
+    "description": "Backup connector configurations, SSO settings, user configurations, etc, into GitHub",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "cicd_cofig"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/1456effe-d547-44a9-8cfd-0391e35cb249",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "1456effe-d547-44a9-8cfd-0391e35cb249"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Clone Repository",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "1c6ba20e-c429-469e-8b10-04d6300c8750",
+                "params": {
+                    "org": "{{vars.org_name}}",
+                    "name": "{{vars.repo_name}}",
+                    "clone_zip": false,
+                    "repo_type": "Organization"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "clone_repository",
+                "operationTitle": "Clone Repository",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "29e17b2c-7458-496a-98d8-730a3aa1eefd"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Push Export Config into GitHub",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "1c6ba20e-c429-469e-8b10-04d6300c8750",
+                "params": {
+                    "org": "{{vars.org_name}}",
+                    "name": "{{vars.repo_name}}",
+                    "branch": "{{vars.base_branch}}",
+                    "repo_type": "Organization",
+                    "clone_path": "{{vars.steps.Clone_Repository.data.path}}",
+                    "commit_message": "Initial Production Environment Content"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "push_repository",
+                "operationTitle": "Push Repository",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "3d77b653-f73d-48db-9d5b-bd67f451b246"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Result",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "results": "<p>\"{{vars.export_template_name}}\" is successfully saved (exported) into the <a href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\" target=\"_blank\" rel=\"noopener\">https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}<\/a>&nbsp;Repository.<\/p>"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "975",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "43244cde-08c6-4add-8207-90c2bc24b041"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Extract Exported Zip File from FortiSOAR",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "export_file_name": "{{vars.export_file_name}}",
+                    "export_template_name": "{{vars.export_template_name}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/d4417bac-2af8-441d-a58a-83e21abfa672"
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "503f5d5d-db69-4040-9f67-458df67f6736"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Populate Push Change Request Details",
+            "description": null,
+            "arguments": {
+                "type": "DecisionBased",
+                "input": {
+                    "schema": {
+                        "title": "Push (Export) Change Request Details",
+                        "description": "\"FortiSOAR Production Environment Settings\" is successfully pushed (exported) into the <a href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\">https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}<\/a> Repository.",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_requests",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "OK",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/43244cde-08c6-4add-8207-90c2bc24b041"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                }
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "57f0fb02-375e-4a16-9bd5-1b9ac2aa22ed"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "org_name": "{{vars.input.params['cicd_cofig'].organizationName}}",
+                "repo_name": "{% if vars.input.records[0].title == \"Save Production Settings\" %}{{vars.input.params['cicd_cofig'].productionSettings.split('\/')[-1]}}{% else %}{{vars.input.params['cicd_cofig'].developmentSettings.split('\/')[-1]}}{% endif %}",
+                "base_branch": "{{vars.input.params['cicd_cofig'].baseBranch}}",
+                "export_file_name": "{% if vars.input.records[0].title == \"Save Production Settings\" %}{{\"FortiSOAR Production Environment Settings\"}}{% else %}{{\"FortiSOAR Development Environment Settings\"}}{% endif %}",
+                "current_timestamp": "{{arrow.get((arrow.utcnow().int_timestamp  | int | abs)).format('YYYYMMDDHHmm')}}",
+                "export_template_name": "{% if vars.input.records[0].title == \"Save Production Settings\" %}{{\"FortiSOAR Production Environment Settings\"}}{% else %}{{\"FortiSOAR Development Environment Settings\"}}{% endif %}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "70a71462-d2a4-47b7-b7cd-5e0ef84bf093"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Apply Changes to Remote Repository",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "1c6ba20e-c429-469e-8b10-04d6300c8750",
+                "params": {
+                    "file_iri": "{{vars.steps.Extract_Exported_Zip_File_from_FortiSOAR.file_iri}}",
+                    "clone_path": "{{vars.steps.Clone_Repository.data.path}}"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "update_clone_repository",
+                "operationTitle": "Update Clone Repository",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "f13eab7b-0bf9-4480-8942-bd9e242f138c"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Push Export Config into GitHub -> Populate Push Change Request Details",
+            "targetStep": "\/api\/3\/workflow_steps\/57f0fb02-375e-4a16-9bd5-1b9ac2aa22ed",
+            "sourceStep": "\/api\/3\/workflow_steps\/3d77b653-f73d-48db-9d5b-bd67f451b246",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "1b629fef-3033-4b6c-867d-5500fc7a8d12"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/70a71462-d2a4-47b7-b7cd-5e0ef84bf093",
+            "sourceStep": "\/api\/3\/workflow_steps\/1456effe-d547-44a9-8cfd-0391e35cb249",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "43ae2d9b-d503-4327-94ad-e0766f5bf4e9"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Apply Changes to Remote Repository -> Push Export Config into GitHub",
+            "targetStep": "\/api\/3\/workflow_steps\/3d77b653-f73d-48db-9d5b-bd67f451b246",
+            "sourceStep": "\/api\/3\/workflow_steps\/f13eab7b-0bf9-4480-8942-bd9e242f138c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "4f752967-8bf2-4e3f-bd0f-f5a762557d29"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Populate Push Change Request Details -> Update Result",
+            "targetStep": "\/api\/3\/workflow_steps\/43244cde-08c6-4add-8207-90c2bc24b041",
+            "sourceStep": "\/api\/3\/workflow_steps\/57f0fb02-375e-4a16-9bd5-1b9ac2aa22ed",
+            "label": "OK",
+            "isExecuted": false,
+            "uuid": "6f02dfce-e51d-4364-9450-36a024aeb6d6"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Clone Repository",
+            "targetStep": "\/api\/3\/workflow_steps\/29e17b2c-7458-496a-98d8-730a3aa1eefd",
+            "sourceStep": "\/api\/3\/workflow_steps\/70a71462-d2a4-47b7-b7cd-5e0ef84bf093",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "eaa1fbf4-92ce-4892-8a80-99639146a5b8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Clone Repository -> Extract Exported Zip File from FortiSOAR",
+            "targetStep": "\/api\/3\/workflow_steps\/503f5d5d-db69-4040-9f67-458df67f6736",
+            "sourceStep": "\/api\/3\/workflow_steps\/29e17b2c-7458-496a-98d8-730a3aa1eefd",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "ed4b92ec-325d-444f-a4de-0ab17f81fd41"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract Exported Zip File from FortiSOAR -> Apply Changes to Remote Repository",
+            "targetStep": "\/api\/3\/workflow_steps\/f13eab7b-0bf9-4480-8942-bd9e242f138c",
+            "sourceStep": "\/api\/3\/workflow_steps\/503f5d5d-db69-4040-9f67-458df67f6736",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "f132a4bb-fa25-4dec-b37b-6daeadd78b94"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "69179225-e990-4112-b47b-ef9f4c877411",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": []
+}

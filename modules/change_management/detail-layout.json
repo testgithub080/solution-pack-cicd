@@ -1,0 +1,142 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "rows",
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "primaryDetail",
+                                "config": {
+                                    "wid": "2e8cfed4-7292-4d9c-b0eb-57d094517086",
+                                    "idField": "title",
+                                    "picklistFieldReadOnly": true,
+                                    "titleFieldReadOnly": false,
+                                    "featuredRelationship": {
+                                        "field": null,
+                                        "preText": "Under Investigation In",
+                                        "query": null,
+                                        "statusField": null,
+                                        "sort": []
+                                    },
+                                    "picklistField": "status"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "b7b4ea45-8a8d-4ca3-833b-6e47845673a6",
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "customPicklistMessage-1.1.0",
+                                "config": {
+                                    "wid": "1e8f3f54-b0f4-4e78-bf0c-e673ddb1c0e4",
+                                    "picklits_mapping": {
+                                        "options": [
+                                            {
+                                                "showSpinner": true,
+                                                "picklistValue": "In-progress",
+                                                "picklistLoadingTitle": "Please wait while current task result being populated"
+                                            }
+                                        ]
+                                    },
+                                    "picklistItem": "status"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "fd3e9d54-7f33-48bc-8e58-7fafce7a7474",
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "tabs",
+                                "config": {
+                                    "wid": "a9eddea4-4168-4462-b22e-05bf5694c4f6",
+                                    "tabs": [
+                                        {
+                                            "title": "Configuration",
+                                            "active": 0,
+                                            "widget": {
+                                                "type": "editableFormGroup",
+                                                "config": {
+                                                    "wid": "8466430b-92a0-44b4-bf75-035f4035294b",
+                                                    "rows": [
+                                                        {
+                                                            "columns": [
+                                                                {
+                                                                    "fields": [
+                                                                        {
+                                                                            "name": "description",
+                                                                            "highlightMode": true,
+                                                                            "readOnly": true
+                                                                        },
+                                                                        {
+                                                                            "name": "results",
+                                                                            "highlightMode": true,
+                                                                            "readOnly": true,
+                                                                            "viewRenderWidget": ""
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "icon": "fa fa-none",
+                                            "show": true,
+                                            "visible": true
+                                        },
+                                        {
+                                            "title": "Actions",
+                                            "active": 0,
+                                            "widget": {
+                                                "type": "executedPlaybooks",
+                                                "config": {
+                                                    "wid": "3e345f0b-217d-4ed1-898f-a97ebb0ca3f1"
+                                                }
+                                            },
+                                            "icon": "fa fa-none",
+                                            "show": true,
+                                            "visible": true
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "7f60e3f8-fe32-4292-a52d-9b30ecae4ed4",
+                "_collapsed": false
+            }
+        ],
+        "actionButtons": [
+            {
+                "id": "\/api\/3\/workflows\/8e709eb0-7c8b-434d-928f-e26eda75f2b1",
+                "name": "01 - Execute Change Management Task - Setup",
+                "icon": "icon icon-execute"
+            }
+        ],
+        "wid": "2cb77b51-1f1e-4729-85c6-d03a61da3323",
+        "metadata": [],
+        "allowExecuteConnectorActionButton": false,
+        "showCollabByDefault": false
+    },
+    "uuid": "modules-change_management-detail"
+}

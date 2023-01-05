@@ -1,0 +1,10 @@
+[
+    "ManualTrigger",
+    "CICD",
+    "Subroutine",
+    "Repo",
+    "GitHub",
+    "CreateIssue",
+    "apiTrigger",
+    "PostCreate"
+]
