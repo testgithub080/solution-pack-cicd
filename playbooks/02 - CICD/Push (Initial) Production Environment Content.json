@@ -6,7 +6,7 @@
     "tag": null,
     "description": "Push initial Production Environment Content into GitHub main branch",
     "isActive": true,
-    "debug": false,
+    "debug": true,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
     "parameters": [],
@@ -323,6 +323,7 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
+        "Subroutine",
         "CICD"
     ]
 }

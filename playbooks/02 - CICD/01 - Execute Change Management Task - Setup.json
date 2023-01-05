@@ -6,7 +6,7 @@
     "tag": null,
     "description": "Execute Setup Change Management Task on specified record",
     "isActive": true,
-    "debug": false,
+    "debug": true,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
     "parameters": [],
