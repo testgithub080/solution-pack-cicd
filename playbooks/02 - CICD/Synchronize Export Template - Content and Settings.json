@@ -6,7 +6,7 @@
     "tag": null,
     "description": "Synchronize Content and Settings Export Template in export wizard",
     "isActive": true,
-    "debug": false,
+    "debug": true,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
     "parameters": [

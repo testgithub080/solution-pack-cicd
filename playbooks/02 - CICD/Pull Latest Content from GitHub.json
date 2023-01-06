@@ -6,7 +6,7 @@
     "tag": null,
     "description": "Pull latest content from GitHub and apply it on production environment or development environment",
     "isActive": true,
-    "debug": false,
+    "debug": true,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
     "parameters": [],

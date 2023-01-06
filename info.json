@@ -14,18 +14,15 @@
         }
     ],
     "prerequisite": null,
-    "publisher": "Fortinet",
+    "publisher": "Community",
     "description": "Automate software development workflows and deploy better quality code, more often. Using a continuous and iterative process to build, test, and deploy helps avoid bugs and code failures.",
     "help": null,
     "category": [],
     "supportInfo": null,
     "iconLarge": null,
-    "date": "2023-01-04T15:55:23+00:00",
+    "date": "2023-01-05T21:35:11+00:00",
     "contents": {
         "picklistNames": [
-            {
-                "name": "AttachmentsType"
-            },
             {
                 "name": "Environment"
             },
@@ -51,15 +48,6 @@
             }
         },
         "viewTemplates": {
-            "attachments": {
-                "name": "Attachments",
-                "apiName": "attachments",
-                "views": [
-                    "list",
-                    "detail",
-                    "form"
-                ]
-            },
             "change_management": {
                 "name": "Change Management",
                 "apiName": "change_management",
@@ -87,6 +75,9 @@
                 "name": "Production Administrator (PA)"
             },
             {
+                "name": "Full App Permissions"
+            },
+            {
                 "name": "Content Developer (CD)"
             }
         ],
@@ -95,12 +86,25 @@
                 "name": "02 - CICD"
             }
         ],
-        "globalVariables": [
+        "globalVariables": [],
+        "connectors": [
             {
-                "id": 7,
-                "name": "Server_fqhn",
-                "value": "master.fortisoar.com",
-                "default_value": "master.fortisoar.in"
+                "name": "GitHub",
+                "apiName": "github"
+            }
+        ],
+        "widgets": [
+            {
+                "apiName": "recordCard",
+                "name": "Record Card"
+            },
+            {
+                "apiName": "jsonToGrid",
+                "name": "JSON to Grid"
+            },
+            {
+                "apiName": "recordCtaBlock",
+                "name": "Record CTA Block"
             }
         ],
         "recordSets": [
