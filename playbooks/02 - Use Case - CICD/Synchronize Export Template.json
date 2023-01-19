@@ -114,7 +114,7 @@
                         {
                             "type": "primitive",
                             "field": "name",
-                            "value": "{{[\"FortiSOAR Production Environment Content\", \"FortiSOAR Production Environment Settings\", \"FortiSOAR Development Environment Settings\"]}}",
+                            "value": "{{[\"Source Control - Prod Content\", \"Source Control - Prod Settings\", \"Source Control - Dev Settings\"]}}",
                             "operator": "in",
                             "_operator": "in"
                         }

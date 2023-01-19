@@ -1,7 +1,7 @@
 [
     {
         "@type": "Attachment",
-        "name": "FortiSOAR Development Environment Settings",
+        "name": "Source Control - Dev Settings",
         "description": null,
         "file": "\/api\/3\/files\/6a2e8eab-32c0-4b31-8979-aad9393c0036",
         "type": null,
@@ -19,7 +19,7 @@
     },
     {
         "@type": "Attachment",
-        "name": "FortiSOAR Production Environment Content",
+        "name": "Source Control - Prod Content",
         "description": "",
         "file": "\/api\/3\/files\/e9acb79e-ef9d-4d42-86c5-77e63f22978e",
         "type": null,
@@ -37,7 +37,7 @@
     },
     {
         "@type": "Attachment",
-        "name": "FortiSOAR Production Environment Settings",
+        "name": "Source Control - Prod Settings",
         "description": null,
         "file": "\/api\/3\/files\/38d0068d-4cc1-4cbb-a05e-8c9df3b521b4",
         "type": null,

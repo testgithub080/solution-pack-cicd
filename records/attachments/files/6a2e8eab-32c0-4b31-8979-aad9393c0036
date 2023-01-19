@@ -1,7 +1,7 @@
 [
     {
         "id": 18,
-        "name": "FortiSOAR Development Environment Settings",
+        "name": "Source Control - Dev Settings",
         "type": "Export Wizard",
         "uuid": "182ae65a-8bf5-4fea-968b-0c18d2832e8e",
         "@type": "ExportTemplate",

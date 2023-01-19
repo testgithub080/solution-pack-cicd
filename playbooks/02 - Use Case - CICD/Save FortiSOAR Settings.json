@@ -185,9 +185,9 @@
                 "org_name": "{{vars.input.params['cicd_config'].organizationName}}",
                 "repo_name": "{% if vars.input.records[0].title == \"Save Production Settings\" %}{{vars.input.params['cicd_config'].productionSettings.split('\/')[-1]}}{% else %}{{vars.input.params['cicd_config'].developmentSettings.split('\/')[-1]}}{% endif %}",
                 "base_branch": "{{vars.input.params['cicd_config'].baseBranch}}",
-                "export_file_name": "{% if vars.input.records[0].title == \"Save Production Settings\" %}{{\"FortiSOAR Production Environment Settings\"}}{% else %}{{\"FortiSOAR Development Environment Settings\"}}{% endif %}",
+                "export_file_name": "{% if vars.input.records[0].title == \"Save Production Settings\" %}{{\"Source Control - Prod Settings\"}}{% else %}{{\"Source Control - Dev Settings\"}}{% endif %}",
                 "current_timestamp": "{{arrow.get((arrow.utcnow().int_timestamp  | int | abs)).format('YYYYMMDDHHmm')}}",
-                "export_template_name": "{% if vars.input.records[0].title == \"Save Production Settings\" %}{{\"FortiSOAR Production Environment Settings\"}}{% else %}{{\"FortiSOAR Development Environment Settings\"}}{% endif %}"
+                "export_template_name": "{% if vars.input.records[0].title == \"Save Production Settings\" %}{{\"Source Control - Prod Settings\"}}{% else %}{{\"Source Control - Dev Settings\"}}{% endif %}"
             },
             "status": null,
             "top": "165",

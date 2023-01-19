@@ -51,7 +51,7 @@
                 "base_branch": "{{vars.input.records[0].baseBranch}}",
                 "export_file_name": "FortiSOAR Export-{{arrow.utcnow().int_timestamp}}",
                 "current_timestamp": "{{arrow.get((arrow.utcnow().int_timestamp  | int | abs)).format('YYYYMMDDHHmm')}}",
-                "export_template_name": "{% if \"fortisoar-prod-content\" in vars.input.records[0].repo_url %}FortiSOAR Production Environment Content{% elif \"fortisoar-dev-settings\" in vars.input.records[0].repo_url %}FortiSOAR Development Environment Settings{% else %}FortiSOAR Production Environment Settings{% endif %}"
+                "export_template_name": "{% if \"fortisoar-prod-content\" in vars.input.records[0].repo_url %}Source Control - Prod Content{% elif \"fortisoar-dev-settings\" in vars.input.records[0].repo_url %}Source Control - Dev Settings{% else %}Source Control - Prod Settings{% endif %}"
             },
             "status": null,
             "top": "165",

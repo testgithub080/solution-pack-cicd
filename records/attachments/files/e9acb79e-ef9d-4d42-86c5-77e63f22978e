@@ -1,7 +1,7 @@
 [
     {
         "id": 19,
-        "name": "FortiSOAR Production Environment Content",
+        "name": "Source Control - Prod Content",
         "type": "Export Wizard",
         "uuid": "80cba983-390c-4568-9b94-6eb5aa844114",
         "@type": "ExportTemplate",

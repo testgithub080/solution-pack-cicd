@@ -1,7 +1,7 @@
 [
     {
         "id": 17,
-        "name": "FortiSOAR Production Environment Settings",
+        "name": "Source Control - Prod Settings",
         "type": "Export Wizard",
         "uuid": "120ba949-3d44-45ed-9550-a260136385ee",
         "@type": "ExportTemplate",
