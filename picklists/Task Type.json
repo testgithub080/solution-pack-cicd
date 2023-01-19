@@ -28,7 +28,7 @@
         {
             "@id": "\/api\/3\/picklists\/dc57442c-3d52-43a0-aa19-ed2898e30ff7",
             "@type": "Picklist",
-            "itemValue": "Pre-Production",
+            "itemValue": "Development",
             "orderIndex": 2,
             "color": "#06f185",
             "icon": null,

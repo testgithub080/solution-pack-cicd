@@ -6,7 +6,19 @@
     "name": "Production Administrator (PA)",
     "modulePermissions": [
         {
-            "@id": "\/api\/3\/module_permissions\/57a39f93-3338-4d75-ba72-1ae3c5094e19",
+            "@id": "\/api\/3\/module_permissions\/d661f52b-19c8-43f6-9305-ab5b1d74acdf",
+            "@type": "ModulePermission",
+            "canCreate": true,
+            "canExecute": true,
+            "canRead": true,
+            "canUpdate": true,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "change_management",
+            "uuid": "d661f52b-19c8-43f6-9305-ab5b1d74acdf"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/fa78a253-8e0d-4848-b7ad-a81f9acb2875",
             "@type": "ModulePermission",
             "canCreate": false,
             "canExecute": false,
@@ -15,19 +27,7 @@
             "canDelete": false,
             "fieldPermissions": [],
             "module": "application",
-            "uuid": "57a39f93-3338-4d75-ba72-1ae3c5094e19"
-        },
-        {
-            "@id": "\/api\/3\/module_permissions\/c346ab7a-6de1-4eff-adfe-7f83d94b1ccf",
-            "@type": "ModulePermission",
-            "canCreate": true,
-            "canExecute": true,
-            "canRead": true,
-            "canUpdate": true,
-            "canDelete": true,
-            "fieldPermissions": [],
-            "module": "change_management",
-            "uuid": "c346ab7a-6de1-4eff-adfe-7f83d94b1ccf"
+            "uuid": "fa78a253-8e0d-4848-b7ad-a81f9acb2875"
         }
     ],
     "uuid": "11b71cd7-3e5e-4e99-9871-6e5537cd835f"

@@ -1,0 +1,183 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Initial Repository Configuration > Create Repository",
+    "aliasName": null,
+    "tag": null,
+    "description": "Create the Public Repository for the specified repository name and base branch name in GitHub",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "repo_name",
+        "organization_name",
+        "base_branch"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/19c05abd-09a3-4e0b-8fcc-7291663612a9",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Repository",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "1c6ba20e-c429-469e-8b10-04d6300c8750",
+                "params": {
+                    "org": "{{vars.input.params['organization_name']}}",
+                    "name": "{{vars.input.params['repo_name']}}",
+                    "private": true,
+                    "has_wiki": true,
+                    "homepage": "",
+                    "repo_type": "Organization",
+                    "has_issues": true,
+                    "description": "",
+                    "is_template": false,
+                    "has_projects": true,
+                    "other_fields": ""
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "create_repository",
+                "operationTitle": "Create Repository",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "0008ba98-e7d4-47da-b798-1a798c8023e5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Base Branch",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "8d473e16-061d-4355-9e0a-e00cec06782f",
+                "params": {
+                    "org": "{{vars.input.params['organization_name']}}",
+                    "sha": "",
+                    "name": "{{vars.input.params['repo_name']}}",
+                    "path": "README.md",
+                    "branch": "",
+                    "content": "Please add the detils here",
+                    "message": "Created README.md file",
+                    "repo_type": "Organization"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "create_update_file_contents",
+                "operationTitle": "Create or Update File Contents",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "0f29d21b-e24e-418f-ae0c-ac837c940832"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "19c05abd-09a3-4e0b-8fcc-7291663612a9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "repo_data": "[]"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "1b8cbd35-4af2-40b9-a086-039c40194785"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Return Output",
+            "description": null,
+            "arguments": {
+                "html_url": "{{vars.steps.Create_Repository.data['html_url']}}"
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "4cb4f4eb-23f4-4733-acf8-76ae56eba236"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Repository -> Create Base Branch",
+            "targetStep": "\/api\/3\/workflow_steps\/0f29d21b-e24e-418f-ae0c-ac837c940832",
+            "sourceStep": "\/api\/3\/workflow_steps\/0008ba98-e7d4-47da-b798-1a798c8023e5",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "036bae82-c4d9-44eb-b7f8-5e328c3d561f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Create Repository",
+            "targetStep": "\/api\/3\/workflow_steps\/0008ba98-e7d4-47da-b798-1a798c8023e5",
+            "sourceStep": "\/api\/3\/workflow_steps\/1b8cbd35-4af2-40b9-a086-039c40194785",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "855fa5b1-ab76-4391-8f7b-4688245b278b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Base Branch -> Return Output",
+            "targetStep": "\/api\/3\/workflow_steps\/4cb4f4eb-23f4-4733-acf8-76ae56eba236",
+            "sourceStep": "\/api\/3\/workflow_steps\/0f29d21b-e24e-418f-ae0c-ac837c940832",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "db34fc40-81d3-489e-9615-cc7543476049"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/1b8cbd35-4af2-40b9-a086-039c40194785",
+            "sourceStep": "\/api\/3\/workflow_steps\/19c05abd-09a3-4e0b-8fcc-7291663612a9",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "fb8902e7-cfbc-4c05-8f0d-4905ed983776"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "7d94d329-8d15-4d90-ba33-fb04b9f8fdc9",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Subroutine",
+        "CICD",
+        "Repo"
+    ]
+}

@@ -6,7 +6,7 @@
     "name": "Content Developer (CD)",
     "modulePermissions": [
         {
-            "@id": "\/api\/3\/module_permissions\/d4aee5d0-52af-417e-a4ab-09fc25dd5be0",
+            "@id": "\/api\/3\/module_permissions\/8824e55b-0c2b-4c16-811b-577ff92c771f",
             "@type": "ModulePermission",
             "canCreate": false,
             "canExecute": true,
@@ -15,10 +15,10 @@
             "canDelete": false,
             "fieldPermissions": [],
             "module": "change_management",
-            "uuid": "d4aee5d0-52af-417e-a4ab-09fc25dd5be0"
+            "uuid": "8824e55b-0c2b-4c16-811b-577ff92c771f"
         },
         {
-            "@id": "\/api\/3\/module_permissions\/f4340dd6-edd7-48f8-b377-0e1db0569c8d",
+            "@id": "\/api\/3\/module_permissions\/a5de74d0-1eae-4d2f-b072-dfc9863be7e3",
             "@type": "ModulePermission",
             "canCreate": false,
             "canExecute": false,
@@ -27,7 +27,7 @@
             "canDelete": false,
             "fieldPermissions": [],
             "module": "application",
-            "uuid": "f4340dd6-edd7-48f8-b377-0e1db0569c8d"
+            "uuid": "a5de74d0-1eae-4d2f-b072-dfc9863be7e3"
         }
     ],
     "uuid": "e7441f88-71d1-4a22-9710-caa84801ea3f"

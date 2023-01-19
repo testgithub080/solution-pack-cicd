@@ -1,0 +1,43 @@
+[
+    {
+        "id": 17,
+        "name": "FortiSOAR Production Environment Settings",
+        "type": "Export Wizard",
+        "uuid": "120ba949-3d44-45ed-9550-a260136385ee",
+        "@type": "ExportTemplate",
+        "options": {
+            "roles": [],
+            "rules": [],
+            "teams": [],
+            "views": [],
+            "actors": [],
+            "modules": [],
+            "reports": [],
+            "widgets": [],
+            "connectors": [],
+            "dashboards": [],
+            "recordSets": [],
+            "appSettings": [
+                "systemSettings",
+                "LDAP",
+                "RADIUS",
+                "TOKEN",
+                "HA",
+                "sso",
+                "syslog",
+                "proxy"
+            ],
+            "ruleChannels": [],
+            "picklistNames": [],
+            "viewTemplates": [],
+            "globalVariables": [],
+            "playbookCollections": []
+        },
+        "createDate": 1674067398.324308,
+        "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+        "modifyDate": 1674106629.437806,
+        "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "solutionPack": null,
+        "lastExportDate": 1672684884.845795
+    }
+]

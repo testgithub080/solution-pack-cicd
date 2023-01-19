@@ -1,0 +1,469 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Create a Request (Issue)",
+    "aliasName": null,
+    "tag": null,
+    "description": "Creates a Github Issue against the FortiSOAR Content or Settings Repository with the request content",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/48fc914f-9747-44e7-981e-bee4d91373ee",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Issue Number",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "d47bdd7a-aa4e-434b-9826-515d1565b59d",
+                "params": {
+                    "org": "{{vars.cr_info.organizationName}}",
+                    "body": "{{vars.steps.Create_Issue_HTML_Table.data}}",
+                    "repo": "{{vars.repo_name}}",
+                    "state": "",
+                    "title": "",
+                    "labels": "",
+                    "assignees": "",
+                    "milestone": "",
+                    "repo_type": "Organization",
+                    "issue_number": "{{vars.steps.Create_CR_Issue.data.number}}",
+                    "state_reason": ""
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "update_issue",
+                "operationTitle": "Update Issue",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "0f90aae2-2039-48e3-b78c-383d798495e3"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Issue HTML Table",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "data": "{{vars.cr_info}}",
+                    "display": "Horizontal",
+                    "styling": false,
+                    "template": "Stylized with row selection",
+                    "row_fields": ""
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "json_to_html",
+                "operationTitle": "Utils: Convert JSON into a HTML Table",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "10c5429a-7a3f-4b63-8333-637b13bba191"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Source Control Details",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/wf\/api\/dynamic-variable\/?limit=50&name=cicd_config",
+                    "body": "",
+                    "method": "GET"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": {
+                    "cr_info": "{}",
+                    "cicd_config": "{{vars.result.data['hydra:member'][0].value | toDict }}"
+                }
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "362f353a-d9d3-46fa-af66-54b797c87906"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "d557ffe1-1581-4785-8522-5b667057525b",
+                "title": "Create New Request",
+                "resources": [
+                    "change_management"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+            },
+            "status": null,
+            "top": "20",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
+            "uuid": "48fc914f-9747-44e7-981e-bee4d91373ee"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create CR Issue",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "e0a68b0a-511f-41ac-b61a-f8dd3c88db6f",
+                "params": {
+                    "org": "{{vars.cr_info.organizationName}}",
+                    "body": "",
+                    "repo": "{{vars.repo_name}}",
+                    "title": "{{vars.cr_info.summary}}",
+                    "labels": "",
+                    "assignees": "",
+                    "milestone": "",
+                    "repo_type": "Organization"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "create_issue",
+                "operationTitle": "Create Issue",
+                "pickFromTenant": false,
+                "step_variables": {
+                    "_tmp": "{% set url = \"<a href='\"+vars.steps.Create_CR_Issue.data.html_url+\"' target='_blank'>\"+vars.steps.Create_CR_Issue.data.html_url.split('\/')[-1]+\"<\/a>\"  %}{{vars.cr_info.update({\"cRNo\": url})}}"
+                }
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "8e1adefc-2588-4fa2-9333-7af4a7019c82"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Change Request Details",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Change Request Details",
+                        "description": "Provide the Change Request Details",
+                        "inputVariables": [
+                            {
+                                "name": "type",
+                                "type": "array",
+                                "label": "Type",
+                                "title": "Dynamic List",
+                                "usable": true,
+                                "options": [
+                                    "New Development",
+                                    "Defect"
+                                ],
+                                "tooltip": "Select the change request type",
+                                "dataType": "dynamicList",
+                                "formType": "dynamicList",
+                                "required": true,
+                                "_expanded": false,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "searchable": false,
+                                "templateUrl": "app\/components\/form\/fields\/dynamicList.html",
+                                "defaultValue": null,
+                                "_previousName": "ty",
+                                "playbookField": true,
+                                "lengthConstraint": true,
+                                "allowedGridColumn": false,
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "assigneeUsername",
+                                "type": "people",
+                                "label": "Assignee Username",
+                                "title": "Lookup (One to Many or One to One)",
+                                "usable": true,
+                                "tooltip": "Select the change request Assignee username",
+                                "dataType": "lookup",
+                                "formType": "lookup",
+                                "required": true,
+                                "_expanded": false,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "dataSource": {
+                                    "model": "people"
+                                },
+                                "searchable": false,
+                                "templateUrl": "app\/components\/form\/fields\/typeahead.html",
+                                "defaultValue": null,
+                                "_previousName": "assigneeUser",
+                                "playbookField": true,
+                                "displayTemplate": "%7B%7B%20firstname%20%7D%7D%20%7B%7B%20lastname%20%7D%7D",
+                                "visibilityQuery": {
+                                    "sort": [],
+                                    "limit": 30,
+                                    "logic": "AND",
+                                    "filters": []
+                                },
+                                "lengthConstraint": false,
+                                "allowedEncryption": false,
+                                "allowedGridColumn": true,
+                                "useRecordFieldDefault": false,
+                                "_addVisibilityConditions": true
+                            },
+                            {
+                                "name": "reporterUsername",
+                                "type": "people",
+                                "label": "Reporter Username",
+                                "title": "Lookup (One to Many or One to One)",
+                                "usable": true,
+                                "tooltip": "Select the change request Reporter username",
+                                "dataType": "lookup",
+                                "formType": "lookup",
+                                "required": false,
+                                "_expanded": false,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "dataSource": {
+                                    "model": "people"
+                                },
+                                "searchable": false,
+                                "templateUrl": "app\/components\/form\/fields\/typeahead.html",
+                                "defaultValue": null,
+                                "_previousName": "reporterUserame",
+                                "playbookField": true,
+                                "displayTemplate": "{{ firstname }} {{ lastname }}",
+                                "lengthConstraint": false,
+                                "allowedEncryption": false,
+                                "allowedGridColumn": true,
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "state",
+                                "type": "array",
+                                "label": "State",
+                                "title": "Dynamic List",
+                                "usable": true,
+                                "options": [
+                                    "Assigned",
+                                    "Closed"
+                                ],
+                                "tooltip": "Select the State of change request",
+                                "dataType": "dynamicList",
+                                "formType": "dynamicList",
+                                "required": true,
+                                "_expanded": false,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "searchable": false,
+                                "templateUrl": "app\/components\/form\/fields\/dynamicList.html",
+                                "defaultValue": null,
+                                "_previousName": "",
+                                "playbookField": true,
+                                "lengthConstraint": true,
+                                "allowedGridColumn": false,
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "repositoryType",
+                                "type": "array",
+                                "label": "Repository Type",
+                                "title": "Dynamic List",
+                                "usable": true,
+                                "options": [
+                                    "Content",
+                                    "Production Settings",
+                                    "Development Settings"
+                                ],
+                                "tooltip": "",
+                                "dataType": "dynamicList",
+                                "formType": "dynamicList",
+                                "required": true,
+                                "_expanded": false,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "searchable": false,
+                                "templateUrl": "app\/components\/form\/fields\/dynamicList.html",
+                                "defaultValue": null,
+                                "_previousName": "contentType",
+                                "playbookField": true,
+                                "lengthConstraint": true,
+                                "allowedGridColumn": false,
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "summary",
+                                "type": "string",
+                                "label": "Summary",
+                                "tooltip": "Provide the Summary of change Request",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": false,
+                                "defaultValue": null,
+                                "_previousName": "",
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "description",
+                                "type": "string",
+                                "label": "Description",
+                                "title": "Rich Text (Markdown)",
+                                "usable": true,
+                                "tooltip": "Provide the Description of change request",
+                                "dataType": "text",
+                                "formType": "richtext",
+                                "required": true,
+                                "_expanded": false,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "searchable": true,
+                                "templateUrl": "app\/components\/form\/fields\/markdownEditor.html",
+                                "defaultValue": null,
+                                "_previousName": "",
+                                "playbookField": true,
+                                "lengthConstraint": true,
+                                "allowedEncryption": true,
+                                "allowedGridColumn": true,
+                                "useRecordFieldDefault": false
+                            }
+                        ]
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_requests",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": {
+                    "assigneeUsername": "{{vars.result.input.assigneeUsername.gitUsername}}",
+                    "reporterUsername": "{{vars.result.input.reporterUsername.gitUsername}}"
+                },
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Submit",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/362f353a-d9d3-46fa-af66-54b797c87906"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                }
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "bb247814-03fd-437d-9e7b-62c68e0877fc"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "__tmp": "{% set excluded_list = [\"assigneeUsername\", \"reporterUsername\" ] %}\n{% for k,v in vars.steps.Get_Change_Request_Details.input.items() %}\n{% if k not in excluded_list %}\n{% if v == \"Development Settings\" %}\n{% set url = \"<a href='\"+vars.cicd_config.developmentSettings+\"' target='_blank'>\"+vars.cicd_config.developmentSettings.split('\/')[-1]+\"<\/a>\"  %}\n{% set _ = vars.cr_info.update({\"repo_url\": url}) %}\n{% endif %}\n{% if v == \"Production Settings\" %}\n{% set url = \"<a href='\"+vars.cicd_config.productionSettings+\"' target='_blank'>\"+vars.cicd_config.productionSettings.split('\/')[-1]+\"<\/a>\"  %}\n{% set _ = vars.cr_info.update({\"repo_url\": url}) %}\n{% endif %}\n{% if v == \"Content\" %}\n{% set url = \"<a href='\"+vars.cicd_config.content+\"' target='_blank'>\"+vars.cicd_config.content.split('\/')[-1]+\"<\/a>\"  %}\n{% set _ = vars.cr_info.update({\"repo_url\": url}) %}\n{% endif %}\n{% set _ = vars.cr_info.update({k: v}) %}\n{% else %}\n{% if k == \"assigneeUsername\" %}\n{% set _ = vars.cr_info.update({\"assigneeUsername\": v.displayName}) %}\n{% endif %}\n{% if k == \"reporterUsername\" %}\n{% set _ = vars.cr_info.update({\"reporterUsername\": v.displayName}) %}\n{% endif %}\n{% set _ = vars.cr_info.update({\"pRStatus\": None, \"pRReviewers\": None, \"pullRequest\": None, \"organizationName\": vars.cicd_config.organizationName, \"baseBranch\": vars.cicd_config.baseBranch}) %}\n{% endif %}\n{% endfor %}",
+                "repo_name": "{% for k,v in vars.steps.Get_Change_Request_Details.input.items() %}{% if k == \"repositoryType\" %}{% if v == \"Development Settings\" %}{{vars.cicd_config.developmentSettings.split('\/')[-1]}}{% endif %}{% if v == \"Production Settings\" %}{{vars.cicd_config.productionSettings.split('\/')[-1]}}{% endif %}{% if v == \"Content\" %}{{vars.cicd_config.content.split('\/')[-1]}}{% endif %}{% endif %}{% endfor %}"
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "e9b1e3c1-af41-4302-81de-72a2958cd7eb"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Create CR Issue",
+            "targetStep": "\/api\/3\/workflow_steps\/8e1adefc-2588-4fa2-9333-7af4a7019c82",
+            "sourceStep": "\/api\/3\/workflow_steps\/e9b1e3c1-af41-4302-81de-72a2958cd7eb",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "0c619282-5289-4da9-b00c-d853b4340ea0"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Change Request Details",
+            "targetStep": "\/api\/3\/workflow_steps\/bb247814-03fd-437d-9e7b-62c68e0877fc",
+            "sourceStep": "\/api\/3\/workflow_steps\/48fc914f-9747-44e7-981e-bee4d91373ee",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "72dadbbf-2689-489e-8243-0be08080f73e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Source Control Details -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/e9b1e3c1-af41-4302-81de-72a2958cd7eb",
+            "sourceStep": "\/api\/3\/workflow_steps\/362f353a-d9d3-46fa-af66-54b797c87906",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "850aacba-defe-48f6-94ab-4d86e46d6082"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create CR Issue -> Create Issue HTML Table",
+            "targetStep": "\/api\/3\/workflow_steps\/10c5429a-7a3f-4b63-8333-637b13bba191",
+            "sourceStep": "\/api\/3\/workflow_steps\/8e1adefc-2588-4fa2-9333-7af4a7019c82",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "94e9c8db-435c-4faa-81bb-61919c1365f5"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Issue HTML Table -> Update Issue Number",
+            "targetStep": "\/api\/3\/workflow_steps\/0f90aae2-2039-48e3-b78c-383d798495e3",
+            "sourceStep": "\/api\/3\/workflow_steps\/10c5429a-7a3f-4b63-8333-637b13bba191",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "af5f23ec-c9e7-4fa0-ab2f-bbdab22c5623"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Change Request Details -> Get Enrichment Playbooks List",
+            "targetStep": "\/api\/3\/workflow_steps\/362f353a-d9d3-46fa-af66-54b797c87906",
+            "sourceStep": "\/api\/3\/workflow_steps\/bb247814-03fd-437d-9e7b-62c68e0877fc",
+            "label": "Submit",
+            "isExecuted": false,
+            "uuid": "d13fcb8c-15d5-48f2-8613-9c9d8de5b1a9"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "d4448659-a2a8-4af4-8108-578caaa4f82d",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "CreateIssue"
+    ]
+}
