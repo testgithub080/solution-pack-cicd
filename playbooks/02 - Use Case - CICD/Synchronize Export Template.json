@@ -1,0 +1,200 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Synchronize Export Template",
+    "aliasName": null,
+    "tag": null,
+    "description": "Generates an initial template for exporting the content, such as playbooks, module definitions, etc to source control.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/2a7d9822-afe4-44bd-b951-fa23cd781af9",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "2a7d9822-afe4-44bd-b951-fa23cd781af9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Export Template",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.steps.Find_Export_Template_Configuration_Attachment}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "arguments": {
+                    "export_template_attachment": "{{vars.item}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/59deabc6-5410-4d63-a8eb-a383ec5cd196"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "3511761c-70b5-4435-8901-858d8c675f6d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Populate Export Template Details",
+            "description": null,
+            "arguments": {
+                "type": "DecisionBased",
+                "input": {
+                    "schema": {
+                        "title": "Export Template Details",
+                        "description": "Following \"<a href=\"{{vars.request.baseUri}}\/editor\/exporter\/templates\" target=\"_blank\">Content and Settings<\/a>\" Export Templates synchronized successfully.\n{% for item in vars.steps.Find_Export_Template_Configuration_Attachment %}\n* {{item.name}}\n{% endfor %}",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_requests",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Ok",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/da308980-0888-4fd2-9a10-853fcc737a0b"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                }
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "4c34d998-4829-4a9f-b9cc-053bdae57749"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Find Export Template Configuration Attachment",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "name",
+                            "value": "{{[\"FortiSOAR Production Environment Content\", \"FortiSOAR Production Environment Settings\", \"FortiSOAR Development Environment Settings\"]}}",
+                            "operator": "in",
+                            "_operator": "in"
+                        }
+                    ]
+                },
+                "module": "attachments?$limit=30",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "5fd82e08-6384-426f-8523-6585b2607bb3"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "No Operation",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.2.2",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "da308980-0888-4fd2-9a10-853fcc737a0b"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Find Export Template Configuration Attachment -> Create Export Template",
+            "targetStep": "\/api\/3\/workflow_steps\/3511761c-70b5-4435-8901-858d8c675f6d",
+            "sourceStep": "\/api\/3\/workflow_steps\/5fd82e08-6384-426f-8523-6585b2607bb3",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "5a27ec04-00a4-4905-939b-ffcbb202ea97"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Export Template -> Populate Export Template Details",
+            "targetStep": "\/api\/3\/workflow_steps\/4c34d998-4829-4a9f-b9cc-053bdae57749",
+            "sourceStep": "\/api\/3\/workflow_steps\/3511761c-70b5-4435-8901-858d8c675f6d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "626a18ee-9f43-4e2c-bb87-f13c832757d2"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Find Export Template Configuration Attachment",
+            "targetStep": "\/api\/3\/workflow_steps\/5fd82e08-6384-426f-8523-6585b2607bb3",
+            "sourceStep": "\/api\/3\/workflow_steps\/2a7d9822-afe4-44bd-b951-fa23cd781af9",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "6e91f7ac-a4a7-4d80-b2a7-dbf542e346d4"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Populate Export Template Details -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/da308980-0888-4fd2-9a10-853fcc737a0b",
+            "sourceStep": "\/api\/3\/workflow_steps\/4c34d998-4829-4a9f-b9cc-053bdae57749",
+            "label": "Ok",
+            "isExecuted": false,
+            "uuid": "9f7e584b-8560-40e2-afa1-b67ef12cd3e5"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "8b597275-ec12-4e3e-810f-008a3c9d662a",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD"
+    ]
+}

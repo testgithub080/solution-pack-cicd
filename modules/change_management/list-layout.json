@@ -44,7 +44,7 @@
                                                             ],
                                                             "wid": "cfe08741-110a-43cb-b43b-611041eb097a",
                                                             "_collapsed": false,
-                                                            "container": true
+                                                            "container": false
                                                         },
                                                         {
                                                             "columns": [
@@ -53,7 +53,7 @@
                                                                         {
                                                                             "type": "recordCtaBlock-1.0.0",
                                                                             "config": {
-                                                                                "wid": "c8995e47-6506-4b00-8148-db272aa124b2",
+                                                                                "wid": "a6fc276b-6b8a-4b5b-9a8b-86bd9e9689a9",
                                                                                 "mapping": {
                                                                                     "cardTitle": "title",
                                                                                     "subtitle": "description",
@@ -62,30 +62,41 @@
                                                                                 },
                                                                                 "module": "change_management",
                                                                                 "query": {
-                                                                                    "sort": [
-                                                                                        {
-                                                                                            "direction": "ASC",
-                                                                                            "field": "sequence",
-                                                                                            "_fieldTitle": "Sequence",
-                                                                                            "_fieldName": "sequence"
-                                                                                        }
-                                                                                    ],
+                                                                                    "sort": [],
                                                                                     "limit": 30,
                                                                                     "logic": "AND",
                                                                                     "filters": [
                                                                                         {
-                                                                                            "field": "environment",
+                                                                                            "field": "type",
                                                                                             "operator": "eq",
-                                                                                            "value": "\/api\/3\/picklists\/7c93c4a6-10b4-4806-aa20-1581d35d0dcb",
+                                                                                            "value": "\/api\/3\/picklists\/b43deb65-1edc-482b-b20e-1fed06bbc01c",
                                                                                             "_value": {
                                                                                                 "display": "Setup",
                                                                                                 "itemValue": "Setup",
-                                                                                                "@id": "\/api\/3\/picklists\/7c93c4a6-10b4-4806-aa20-1581d35d0dcb"
+                                                                                                "@id": "\/api\/3\/picklists\/b43deb65-1edc-482b-b20e-1fed06bbc01c"
                                                                                             },
                                                                                             "type": "object"
+                                                                                        },
+                                                                                        {
+                                                                                            "field": "environment",
+                                                                                            "value": [
+                                                                                                "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b",
+                                                                                                "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651"
+                                                                                            ],
+                                                                                            "display": "",
+                                                                                            "operator": "in",
+                                                                                            "type": "object",
+                                                                                            "OPERATOR_KEY": "$",
+                                                                                            "displayTemplate": "",
+                                                                                            "module": "environment",
+                                                                                            "template": "multiselectpicklist",
+                                                                                            "previousOperator": "in",
+                                                                                            "previousTemplate": "multiselectpicklist"
                                                                                         }
                                                                                     ]
-                                                                                }
+                                                                                },
+                                                                                "showIcon": "icon icon-FortiSOAR_setup_guide",
+                                                                                "labelCTA": "Setup Source Control"
                                                                             }
                                                                         }
                                                                     ],
@@ -93,13 +104,14 @@
                                                                 }
                                                             ],
                                                             "wid": "65d195d5-d022-4f73-aa36-fbb30849cc44",
-                                                            "_collapsed": false
+                                                            "_collapsed": false,
+                                                            "container": false
                                                         }
                                                     ]
                                                 }
                                             },
                                             "icon": "icon icon-deploy",
-                                            "show": true,
+                                            "show": false,
                                             "visible": true
                                         },
                                         {
@@ -122,7 +134,7 @@
                                                                                     "cardTitle": "title",
                                                                                     "subtitle": "description",
                                                                                     "showIcon": false,
-                                                                                    "cardLeftBorder": "environment",
+                                                                                    "cardLeftBorder": "status",
                                                                                     "recordIcon": "recordIcon"
                                                                                 },
                                                                                 "title": "Frequent Actions",
@@ -140,35 +152,23 @@
                                                                                     "logic": "AND",
                                                                                     "filters": [
                                                                                         {
-                                                                                            "field": "environment",
+                                                                                            "field": "type",
                                                                                             "operator": "eq",
-                                                                                            "value": "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b",
+                                                                                            "value": "\/api\/3\/picklists\/409b289f-33f5-423f-9174-24bc8628cc4a",
                                                                                             "_value": {
-                                                                                                "display": "Production",
                                                                                                 "itemValue": "Production",
-                                                                                                "@id": "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b"
+                                                                                                "@id": "\/api\/3\/picklists\/409b289f-33f5-423f-9174-24bc8628cc4a"
                                                                                             },
-                                                                                            "type": "object"
-                                                                                        },
-                                                                                        {
-                                                                                            "logic": "OR",
-                                                                                            "filters": [
-                                                                                                {
-                                                                                                    "field": "title",
-                                                                                                    "operator": "eq",
-                                                                                                    "_operator": "eq",
-                                                                                                    "value": "Apply Latest Content",
-                                                                                                    "type": "primitive"
-                                                                                                },
-                                                                                                {
-                                                                                                    "field": "title",
-                                                                                                    "operator": "eq",
-                                                                                                    "_operator": "eq",
-                                                                                                    "value": "Save Production Settings",
-                                                                                                    "type": "primitive"
-                                                                                                }
-                                                                                            ]
+                                                                                            "type": "object",
+                                                                                            "display": "Production"
                                                                                         }
+                                                                                    ],
+                                                                                    "__selectFields": [
+                                                                                        "title",
+                                                                                        "description",
+                                                                                        false,
+                                                                                        "status",
+                                                                                        "recordIcon"
                                                                                     ]
                                                                                 }
                                                                             }
@@ -198,7 +198,247 @@
                                                                                                     {
                                                                                                         "type": "jsonToGrid-1.0.0",
                                                                                                         "config": {
-                                                                                                            "wid": "456542fd-dfee-4df6-bf4f-42cb1a5d9cb0",
+                                                                                                            "wid": "8bf9e398-6a36-44ea-b4f9-f5c8dbba8c4f",
+                                                                                                            "actionButtons": [
+                                                                                                                {
+                                                                                                                    "@id": "\/api\/3\/workflows\/eaf38ff8-eccc-4a38-a8a9-c17416900647",
+                                                                                                                    "@type": "Workflow",
+                                                                                                                    "name": "Fetch Open Requests (Issues)",
+                                                                                                                    "description": "Fetch all open GitHub requests (Issues) from Content, Production Setting and Development Setting repositories",
+                                                                                                                    "uuid": "eaf38ff8-eccc-4a38-a8a9-c17416900647",
+                                                                                                                    "id": 625,
+                                                                                                                    "icon": "fa fa-refresh"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "selectedPlaybooksWithoutRecord": [
+                                                                                                                {
+                                                                                                                    "@id": "\/api\/3\/workflows\/d4448659-a2a8-4af4-8108-578caaa4f82d",
+                                                                                                                    "@type": "Workflow",
+                                                                                                                    "name": "Create a Request (Issue)",
+                                                                                                                    "description": "Creates a Github Issue against the FortiSOAR Content or Settings Repository with the request content",
+                                                                                                                    "uuid": "d4448659-a2a8-4af4-8108-578caaa4f82d",
+                                                                                                                    "id": 624,
+                                                                                                                    "icon": "fa fa-plus"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "selectedPlaybooksWithRecord": [
+                                                                                                                {
+                                                                                                                    "@id": "\/api\/3\/workflows\/ce29b3d9-06c5-4157-b1d1-52368c74c527",
+                                                                                                                    "@type": "Workflow",
+                                                                                                                    "name": "Close Change Request",
+                                                                                                                    "description": "Closed the change Request and and Delete the specified change request branch",
+                                                                                                                    "uuid": "ce29b3d9-06c5-4157-b1d1-52368c74c527",
+                                                                                                                    "id": 622,
+                                                                                                                    "icon": "icon icon-close"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "@id": "\/api\/3\/workflows\/73dd86f5-2dfc-445a-9191-d3073e75fdc2",
+                                                                                                                    "@type": "Workflow",
+                                                                                                                    "name": "Pull Request > Merge",
+                                                                                                                    "description": "Marge the specified Pull Request if Pull Request is Approved.",
+                                                                                                                    "uuid": "73dd86f5-2dfc-445a-9191-d3073e75fdc2",
+                                                                                                                    "id": 632,
+                                                                                                                    "icon": "icon icon-approval"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "selectedPlaybooks": [],
+                                                                                                            "playbookCollection": {
+                                                                                                                "@id": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+                                                                                                                "@type": "WorkflowCollection",
+                                                                                                                "name": "02 - CICD",
+                                                                                                                "description": null,
+                                                                                                                "visible": true,
+                                                                                                                "image": null,
+                                                                                                                "uuid": "4c58fed3-9e16-451a-9528-0be2b71acda4",
+                                                                                                                "id": 41,
+                                                                                                                "createUser": {
+                                                                                                                    "@id": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+                                                                                                                    "@type": "Person",
+                                                                                                                    "firstname": "CS",
+                                                                                                                    "gitUsername": "sujit-ahirrao",
+                                                                                                                    "lastname": "Admin",
+                                                                                                                    "title": "Admin",
+                                                                                                                    "department": null,
+                                                                                                                    "email": "admin@example.com",
+                                                                                                                    "description": null,
+                                                                                                                    "phoneFax": null,
+                                                                                                                    "phoneHome": null,
+                                                                                                                    "phoneMobile": null,
+                                                                                                                    "phoneWork": "+16462759691",
+                                                                                                                    "csActive": true,
+                                                                                                                    "accessType": "Named",
+                                                                                                                    "companyId": null,
+                                                                                                                    "type": null,
+                                                                                                                    "userType": null,
+                                                                                                                    "avatar": null,
+                                                                                                                    "uuid": "3451141c-bac6-467c-8d72-85e0fab569ce",
+                                                                                                                    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+                                                                                                                    "createDate": 1670581163.208367,
+                                                                                                                    "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
+                                                                                                                    "modifyDate": 1672985432.630897,
+                                                                                                                    "id": 3,
+                                                                                                                    "userId": "646a8123-344d-4bb2-b499-8132be16f08b",
+                                                                                                                    "@settings": "\/api\/3\/user_settings\/3451141c-bac6-467c-8d72-85e0fab569ce"
+                                                                                                                },
+                                                                                                                "createDate": 1672982827.118974,
+                                                                                                                "modifyUser": {
+                                                                                                                    "@id": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+                                                                                                                    "@type": "Person",
+                                                                                                                    "firstname": "CS",
+                                                                                                                    "gitUsername": "sujit-ahirrao",
+                                                                                                                    "lastname": "Admin",
+                                                                                                                    "title": "Admin",
+                                                                                                                    "department": null,
+                                                                                                                    "email": "admin@example.com",
+                                                                                                                    "description": null,
+                                                                                                                    "phoneFax": null,
+                                                                                                                    "phoneHome": null,
+                                                                                                                    "phoneMobile": null,
+                                                                                                                    "phoneWork": "+16462759691",
+                                                                                                                    "csActive": true,
+                                                                                                                    "accessType": "Named",
+                                                                                                                    "companyId": null,
+                                                                                                                    "type": null,
+                                                                                                                    "userType": null,
+                                                                                                                    "avatar": null,
+                                                                                                                    "uuid": "3451141c-bac6-467c-8d72-85e0fab569ce",
+                                                                                                                    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+                                                                                                                    "createDate": 1670581163.208367,
+                                                                                                                    "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
+                                                                                                                    "modifyDate": 1672985432.630897,
+                                                                                                                    "id": 3,
+                                                                                                                    "userId": "646a8123-344d-4bb2-b499-8132be16f08b",
+                                                                                                                    "@settings": "\/api\/3\/user_settings\/3451141c-bac6-467c-8d72-85e0fab569ce"
+                                                                                                                },
+                                                                                                                "modifyDate": 1672982827.118974,
+                                                                                                                "deletedAt": null,
+                                                                                                                "importedBy": [
+                                                                                                                    {
+                                                                                                                        "apiName": "cICD-ContinuousIntegrationAndContinuousDelivery",
+                                                                                                                        "name": "CICD - Continuous Integration and Continuous Delivery",
+                                                                                                                        "version": "1.0.0"
+                                                                                                                    }
+                                                                                                                ],
+                                                                                                                "recordTags": [],
+                                                                                                                "display": "02 - CICD"
+                                                                                                            },
+                                                                                                            "showButton": true
+                                                                                                        }
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-12"
+                                                                                            }
+                                                                                        ],
+                                                                                        "wid": "6610744d-6c3f-43ab-8387-3b071e938e23",
+                                                                                        "_collapsed": false,
+                                                                                        "container": false
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "style": "col-lg-12"
+                                                                }
+                                                            ],
+                                                            "wid": "4d45a5a3-10d3-4bb3-aa64-e565d7f62eba",
+                                                            "_collapsed": false,
+                                                            "widgetAlwaysExpanded": true,
+                                                            "container": true
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "icon": "icon icon-queue_rules",
+                                            "show": true,
+                                            "visible": true
+                                        },
+                                        {
+                                            "title": "Development",
+                                            "active": 0,
+                                            "icon": "icon icon-decrease-indent",
+                                            "show": true,
+                                            "visible": true,
+                                            "widget": {
+                                                "type": "rows",
+                                                "config": {
+                                                    "wid": "14635a26-d5b8-43dd-8695-73189c097b0b",
+                                                    "widgetAlwaysExpanded": true,
+                                                    "rows": [
+                                                        {
+                                                            "columns": [
+                                                                {
+                                                                    "widgets": [
+                                                                        {
+                                                                            "type": "recordCard-1.0.0",
+                                                                            "config": {
+                                                                                "wid": "dbeabe25-4820-4e73-ae40-9a382c8187dd",
+                                                                                "mapping": {
+                                                                                    "cardTitle": "title",
+                                                                                    "subtitle": "description",
+                                                                                    "showIcon": false,
+                                                                                    "cardLeftBorder": "status",
+                                                                                    "recordIcon": "recordIcon"
+                                                                                },
+                                                                                "title": "Frequent Actions",
+                                                                                "module": "change_management",
+                                                                                "query": {
+                                                                                    "sort": [
+                                                                                        {
+                                                                                            "direction": "ASC",
+                                                                                            "field": "sequence",
+                                                                                            "_fieldTitle": "Sequence",
+                                                                                            "_fieldName": "sequence"
+                                                                                        }
+                                                                                    ],
+                                                                                    "limit": 30,
+                                                                                    "logic": "AND",
+                                                                                    "filters": [
+                                                                                        {
+                                                                                            "field": "type",
+                                                                                            "operator": "eq",
+                                                                                            "value": "\/api\/3\/picklists\/dc57442c-3d52-43a0-aa19-ed2898e30ff7",
+                                                                                            "_value": {
+                                                                                                "itemValue": "Development",
+                                                                                                "@id": "\/api\/3\/picklists\/dc57442c-3d52-43a0-aa19-ed2898e30ff7"
+                                                                                            },
+                                                                                            "type": "object"
+                                                                                        }
+                                                                                    ],
+                                                                                    "__selectFields": [
+                                                                                        "title",
+                                                                                        "description",
+                                                                                        false,
+                                                                                        "environment",
+                                                                                        "recordIcon"
+                                                                                    ]
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "style": "col-lg-12"
+                                                                }
+                                                            ],
+                                                            "wid": "76368e28-a68b-42f0-ad26-97efb6908244",
+                                                            "_collapsed": false,
+                                                            "widgetAlwaysExpanded": true
+                                                        },
+                                                        {
+                                                            "columns": [
+                                                                {
+                                                                    "widgets": [
+                                                                        {
+                                                                            "type": "rows",
+                                                                            "config": {
+                                                                                "wid": "15db4ffa-c209-4421-a5af-620910f33aa0",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "widgets": [
+                                                                                                    {
+                                                                                                        "type": "jsonToGrid-1.0.0",
+                                                                                                        "config": {
+                                                                                                            "wid": "8b034467-2bc9-4825-8e9e-ca45525a7049",
                                                                                                             "actionButtons": [
                                                                                                                 {
                                                                                                                     "@id": "\/api\/3\/workflows\/eaf38ff8-eccc-4a38-a8a9-c17416900647",
@@ -291,253 +531,6 @@
                                                                                                                 "recordTags": [],
                                                                                                                 "display": "02 - CICD"
                                                                                                             },
-                                                                                                            "selectedPlaybooksWithoutRecord": [
-                                                                                                                {
-                                                                                                                    "@id": "\/api\/3\/workflows\/d4448659-a2a8-4af4-8108-578caaa4f82d",
-                                                                                                                    "@type": "Workflow",
-                                                                                                                    "name": "Create a Request (Issue)",
-                                                                                                                    "description": "Creates a Github Issue against the FortiSOAR Content or Settings Repository with the request content",
-                                                                                                                    "uuid": "d4448659-a2a8-4af4-8108-578caaa4f82d",
-                                                                                                                    "id": 628
-                                                                                                                }
-                                                                                                            ],
-                                                                                                            "selectedPlaybooksWithRecord": [
-                                                                                                                {
-                                                                                                                    "@id": "\/api\/3\/workflows\/73dd86f5-2dfc-445a-9191-d3073e75fdc2",
-                                                                                                                    "@type": "Workflow",
-                                                                                                                    "name": "Pull Request > Merge",
-                                                                                                                    "description": "Marge the specified Pull Request if Pull Request is Approved.",
-                                                                                                                    "uuid": "73dd86f5-2dfc-445a-9191-d3073e75fdc2",
-                                                                                                                    "id": 618
-                                                                                                                },
-                                                                                                                {
-                                                                                                                    "@id": "\/api\/3\/workflows\/ce29b3d9-06c5-4157-b1d1-52368c74c527",
-                                                                                                                    "@type": "Workflow",
-                                                                                                                    "name": "Close Change Request",
-                                                                                                                    "description": "Closed the change Request and and Delete the specified change request branch",
-                                                                                                                    "uuid": "ce29b3d9-06c5-4157-b1d1-52368c74c527",
-                                                                                                                    "id": 693
-                                                                                                                }
-                                                                                                            ]
-                                                                                                        }
-                                                                                                    }
-                                                                                                ],
-                                                                                                "style": "col-lg-12"
-                                                                                            }
-                                                                                        ],
-                                                                                        "wid": "6610744d-6c3f-43ab-8387-3b071e938e23",
-                                                                                        "_collapsed": false
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        }
-                                                                    ],
-                                                                    "style": "col-lg-12"
-                                                                }
-                                                            ],
-                                                            "wid": "4d45a5a3-10d3-4bb3-aa64-e565d7f62eba",
-                                                            "_collapsed": false,
-                                                            "widgetAlwaysExpanded": true
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            "icon": "icon icon-queue_rules",
-                                            "show": false,
-                                            "visible": true
-                                        },
-                                        {
-                                            "title": "Development",
-                                            "active": 0,
-                                            "icon": "icon icon-decrease-indent",
-                                            "show": false,
-                                            "visible": true,
-                                            "widget": {
-                                                "type": "rows",
-                                                "config": {
-                                                    "wid": "14635a26-d5b8-43dd-8695-73189c097b0b",
-                                                    "widgetAlwaysExpanded": true,
-                                                    "rows": [
-                                                        {
-                                                            "columns": [
-                                                                {
-                                                                    "widgets": [
-                                                                        {
-                                                                            "type": "recordCard-1.0.0",
-                                                                            "config": {
-                                                                                "wid": "dbeabe25-4820-4e73-ae40-9a382c8187dd",
-                                                                                "mapping": {
-                                                                                    "cardTitle": "title",
-                                                                                    "subtitle": "description",
-                                                                                    "showIcon": false,
-                                                                                    "cardLeftBorder": "environment",
-                                                                                    "recordIcon": "recordIcon"
-                                                                                },
-                                                                                "title": "Frequent Actions",
-                                                                                "module": "change_management",
-                                                                                "query": {
-                                                                                    "sort": [
-                                                                                        {
-                                                                                            "direction": "ASC",
-                                                                                            "field": "sequence",
-                                                                                            "_fieldTitle": "Sequence",
-                                                                                            "_fieldName": "sequence"
-                                                                                        }
-                                                                                    ],
-                                                                                    "limit": 30,
-                                                                                    "logic": "AND",
-                                                                                    "filters": [
-                                                                                        {
-                                                                                            "field": "environment",
-                                                                                            "operator": "eq",
-                                                                                            "value": "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651",
-                                                                                            "_value": {
-                                                                                                "display": "Development",
-                                                                                                "itemValue": "Development",
-                                                                                                "@id": "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651"
-                                                                                            },
-                                                                                            "type": "object"
-                                                                                        },
-                                                                                        {
-                                                                                            "logic": "OR",
-                                                                                            "filters": [
-                                                                                                {
-                                                                                                    "field": "title",
-                                                                                                    "operator": "eq",
-                                                                                                    "_operator": "eq",
-                                                                                                    "value": "Save Dev Settings",
-                                                                                                    "type": "primitive"
-                                                                                                },
-                                                                                                {
-                                                                                                    "field": "title",
-                                                                                                    "operator": "eq",
-                                                                                                    "_operator": "eq",
-                                                                                                    "value": "Apply Latest Content",
-                                                                                                    "type": "primitive"
-                                                                                                }
-                                                                                            ]
-                                                                                        }
-                                                                                    ]
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    ],
-                                                                    "style": "col-lg-12"
-                                                                }
-                                                            ],
-                                                            "wid": "76368e28-a68b-42f0-ad26-97efb6908244",
-                                                            "_collapsed": false,
-                                                            "widgetAlwaysExpanded": true
-                                                        },
-                                                        {
-                                                            "columns": [
-                                                                {
-                                                                    "widgets": [
-                                                                        {
-                                                                            "type": "rows",
-                                                                            "config": {
-                                                                                "wid": "15db4ffa-c209-4421-a5af-620910f33aa0",
-                                                                                "rows": [
-                                                                                    {
-                                                                                        "columns": [
-                                                                                            {
-                                                                                                "widgets": [
-                                                                                                    {
-                                                                                                        "type": "jsonToGrid-1.0.0",
-                                                                                                        "config": {
-                                                                                                            "wid": "8b034467-2bc9-4825-8e9e-ca45525a7049",
-                                                                                                            "actionButtons": [
-                                                                                                                {
-                                                                                                                    "@id": "\/api\/3\/workflows\/eaf38ff8-eccc-4a38-a8a9-c17416900647",
-                                                                                                                    "@type": "Workflow",
-                                                                                                                    "name": "Fetch Open Requests (Issues)",
-                                                                                                                    "description": "Fetch all open GitHub requests (Issues) from Content, Production Setting and Development Setting repositories",
-                                                                                                                    "uuid": "eaf38ff8-eccc-4a38-a8a9-c17416900647",
-                                                                                                                    "id": 609,
-                                                                                                                    "icon": "fa fa-none"
-                                                                                                                }
-                                                                                                            ],
-                                                                                                            "selectedPlaybooks": [],
-                                                                                                            "playbookCollection": {
-                                                                                                                "@id": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
-                                                                                                                "@type": "WorkflowCollection",
-                                                                                                                "name": "02 - CICD",
-                                                                                                                "description": null,
-                                                                                                                "visible": true,
-                                                                                                                "image": null,
-                                                                                                                "uuid": "4c58fed3-9e16-451a-9528-0be2b71acda4",
-                                                                                                                "id": 41,
-                                                                                                                "createUser": {
-                                                                                                                    "@id": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-                                                                                                                    "@type": "Person",
-                                                                                                                    "firstname": "CS",
-                                                                                                                    "gitUsername": "None",
-                                                                                                                    "lastname": "Admin",
-                                                                                                                    "title": "Admin",
-                                                                                                                    "department": null,
-                                                                                                                    "email": "admin@example.com",
-                                                                                                                    "description": null,
-                                                                                                                    "phoneFax": null,
-                                                                                                                    "phoneHome": null,
-                                                                                                                    "phoneMobile": null,
-                                                                                                                    "phoneWork": "+16462759691",
-                                                                                                                    "csActive": true,
-                                                                                                                    "accessType": "Named",
-                                                                                                                    "companyId": null,
-                                                                                                                    "type": null,
-                                                                                                                    "userType": null,
-                                                                                                                    "avatar": null,
-                                                                                                                    "uuid": "3451141c-bac6-467c-8d72-85e0fab569ce",
-                                                                                                                    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-                                                                                                                    "createDate": 1671731538.333134,
-                                                                                                                    "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
-                                                                                                                    "modifyDate": 1672854663.393129,
-                                                                                                                    "id": 3,
-                                                                                                                    "userId": "2c515b4c-503e-4377-9921-6fe61ff80980",
-                                                                                                                    "@settings": "\/api\/3\/user_settings\/3451141c-bac6-467c-8d72-85e0fab569ce"
-                                                                                                                },
-                                                                                                                "createDate": 1671775452.862249,
-                                                                                                                "modifyUser": {
-                                                                                                                    "@id": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-                                                                                                                    "@type": "Person",
-                                                                                                                    "firstname": "CS",
-                                                                                                                    "gitUsername": "None",
-                                                                                                                    "lastname": "Admin",
-                                                                                                                    "title": "Admin",
-                                                                                                                    "department": null,
-                                                                                                                    "email": "admin@example.com",
-                                                                                                                    "description": null,
-                                                                                                                    "phoneFax": null,
-                                                                                                                    "phoneHome": null,
-                                                                                                                    "phoneMobile": null,
-                                                                                                                    "phoneWork": "+16462759691",
-                                                                                                                    "csActive": true,
-                                                                                                                    "accessType": "Named",
-                                                                                                                    "companyId": null,
-                                                                                                                    "type": null,
-                                                                                                                    "userType": null,
-                                                                                                                    "avatar": null,
-                                                                                                                    "uuid": "3451141c-bac6-467c-8d72-85e0fab569ce",
-                                                                                                                    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-                                                                                                                    "createDate": 1671731538.333134,
-                                                                                                                    "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
-                                                                                                                    "modifyDate": 1672854663.393129,
-                                                                                                                    "id": 3,
-                                                                                                                    "userId": "2c515b4c-503e-4377-9921-6fe61ff80980",
-                                                                                                                    "@settings": "\/api\/3\/user_settings\/3451141c-bac6-467c-8d72-85e0fab569ce"
-                                                                                                                },
-                                                                                                                "modifyDate": 1671775452.862249,
-                                                                                                                "deletedAt": null,
-                                                                                                                "importedBy": [
-                                                                                                                    {
-                                                                                                                        "apiName": "cICD-ContinuousIntegrationAndContinuousDelivery",
-                                                                                                                        "name": "CICD - Continuous Integration and Continuous Delivery",
-                                                                                                                        "version": "1.0.0"
-                                                                                                                    }
-                                                                                                                ],
-                                                                                                                "recordTags": [],
-                                                                                                                "display": "02 - CICD"
-                                                                                                            },
                                                                                                             "selectedPlaybooksWithoutRecord": [],
                                                                                                             "selectedPlaybooksWithRecord": [
                                                                                                                 {
@@ -546,7 +539,8 @@
                                                                                                                     "name": "Push Change to Source Control",
                                                                                                                     "description": "Push (Export) specified change request content into the GitHub content repository",
                                                                                                                     "uuid": "2a7701aa-eba3-415a-b125-7908114e7d5a",
-                                                                                                                    "id": 621
+                                                                                                                    "id": 636,
+                                                                                                                    "icon": "icon icon-source-data"
                                                                                                                 },
                                                                                                                 {
                                                                                                                     "@id": "\/api\/3\/workflows\/8731fb31-4fb5-4f03-80f5-e8920740a492",
@@ -554,9 +548,11 @@
                                                                                                                     "name": "Pull Request > Create",
                                                                                                                     "description": "Create the pull request",
                                                                                                                     "uuid": "8731fb31-4fb5-4f03-80f5-e8920740a492",
-                                                                                                                    "id": 625
+                                                                                                                    "id": 631,
+                                                                                                                    "icon": "icon icon-create-record"
                                                                                                                 }
-                                                                                                            ]
+                                                                                                            ],
+                                                                                                            "showButton": true
                                                                                                         }
                                                                                                     }
                                                                                                 ],
@@ -589,7 +585,8 @@
                 ],
                 "wid": "f7edbae7-48dc-4893-97af-439f1ede0e03",
                 "_collapsed": false,
-                "widgetAlwaysExpanded": true
+                "widgetAlwaysExpanded": true,
+                "container": false
             }
         ],
         "wid": "77f9a995-f102-4c07-a8bd-86267d42ef1e",

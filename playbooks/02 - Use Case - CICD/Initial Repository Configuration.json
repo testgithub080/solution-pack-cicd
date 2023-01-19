@@ -1,0 +1,501 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Initial Repository Configuration",
+    "aliasName": null,
+    "tag": null,
+    "description": "Create Content, Production Settings and Development Settings Repository in GitHub",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/1fa83340-33e4-4d27-99e3-bbab6f5cc3b4",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Provide Repositories Detail",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Repository Details",
+                        "description": "Did you created following three Source Control Repositories manually: \n\n* FortiSOAR Prod Content\n* FortiSOAR Prod Settings\n* FortiSOAR Dev Settings ",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Yes",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/224c1621-c33a-4720-ade0-46573ea34ce8"
+                        },
+                        {
+                            "option": "No",
+                            "step_iri": "\/api\/3\/workflow_steps\/655bfe6b-e43e-48ba-9254-7a98450d4e80"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "435",
+            "left": "485",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "18b86c22-2d44-45ae-83c3-560dcf651a44"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "310",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "1fa83340-33e4-4d27-99e3-bbab6f5cc3b4"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Repository Details",
+            "description": null,
+            "arguments": {
+                "base_branch": "{{vars.steps.Get_Repositories_Detail.input.baseBranchName}}",
+                "content_repo": "https:\/\/github.com\/{{vars.steps.Get_Repositories_Detail.input.orgName}}\/{{vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}",
+                "dev_settings": "https:\/\/github.com\/{{vars.steps.Get_Repositories_Detail.input.orgName}}\/{{vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}}",
+                "prod_settings": "https:\/\/github.com\/{{vars.steps.Get_Repositories_Detail.input.orgName}}\/{{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}",
+                "organization_name": "{{vars.steps.Get_Repositories_Detail.input.orgName}}"
+            },
+            "status": null,
+            "top": "570",
+            "left": "135",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "224c1621-c33a-4720-ade0-46573ea34ce8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Repositories Created Automatically",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Create Repositories",
+                        "description": "We would need the following three Source Control Repositories: \n\n* FortiSOAR Prod Content\n* FortiSOAR Prod Settings\n* FortiSOAR Dev Settings \n\nDo you want to create the repositories through playbook or manually?",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Playbook",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/bcdcf23e-1e22-440c-90ec-7d3a521b129f"
+                        },
+                        {
+                            "option": "Manually",
+                            "primary": false,
+                            "step_iri": "\/api\/3\/workflow_steps\/18b86c22-2d44-45ae-83c3-560dcf651a44"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "300",
+            "left": "310",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "64961e22-a788-4e67-bceb-35fb39687f80"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "No Operation",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "570",
+            "left": "495",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "655bfe6b-e43e-48ba-9254-7a98450d4e80"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Show Repositories Details",
+            "description": null,
+            "arguments": {
+                "type": "DecisionBased",
+                "input": {
+                    "schema": {
+                        "title": "CICD Repositories Configuration",
+                        "description": "Following repositories are created in \"{{vars.organization_name}}\" GitHub account.\n* [FortiSOAR Prod Content]({{vars.content_repo}})\n* [FortiSOAR Prod Settings]({{vars.prod_settings}})\n* [FortiSOAR Dev Settings]({{vars.dev_settings}})\n",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_requests",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "OK",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/91e2e908-b7a9-42d4-9bed-d311560b8f6e"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                }
+            },
+            "status": null,
+            "top": "840",
+            "left": "135",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "6c1d1f69-1de6-4b81-8ff8-db80babb9bdc"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Result",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "results": "<p class=\"mp-tile-description muted-80\">View the configured Source Control Repositories<\/p>\n<ul class=\"mp-tile-description muted-80\">\n<li><a title=\"FortiSOAR Prod Content\" href=\"{{vars.content_repo}}\" target=\"_blank\" rel=\"noopener\">FortiSOAR Prod Content<\/a><\/li>\n<li><a title=\"FortiSOAR Prod Settings\" href=\"{{vars.prod_settings}}\" target=\"_blank\" rel=\"noopener\">FortiSOAR Prod Settings<\/a><\/li>\n<li><a title=\"FortiSOAR Dev Settings\" href=\"{{vars.dev_settings}}\" target=\"_blank\" rel=\"noopener\">FortiSOAR Dev Settings<\/a><\/li>\n<\/ul>"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "975",
+            "left": "135",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "91e2e908-b7a9-42d4-9bed-d311560b8f6e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Repositories Detail",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Initial Repository Configuration",
+                        "description": "Provide the following repository configuration inputs",
+                        "inputVariables": [
+                            {
+                                "name": "orgName",
+                                "type": "string",
+                                "label": "Organization Name",
+                                "tooltip": "Provide the GitHub organization name",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": true,
+                                "_nameTouched": true,
+                                "defaultValue": null,
+                                "_previousName": "organizationName",
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "contentRepositoryName",
+                                "type": "string",
+                                "label": "Content Repository Name",
+                                "tooltip": "Content Repository stores FortiSOAR configurations such as Dashboards, Reports, Playbooks, Connectors etc.",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": true,
+                                "defaultValue": "fortisoar-prod-content",
+                                "_previousName": "",
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "productionSettingsRepositoryName",
+                                "type": "string",
+                                "label": "Production Settings Repository Name",
+                                "tooltip": "Production Settings Repository stores connector configurations and any other data or content that is applicable only for production environment.",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": true,
+                                "defaultValue": "fortisoar-prod-settings",
+                                "_previousName": "",
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "developmentSettingsRepositoryName",
+                                "type": "string",
+                                "label": "Development Settings Repository Name",
+                                "tooltip": "Development Settings Repository stores connector configurations and any other data or content that is applicable only for development environment.",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": true,
+                                "defaultValue": "fortisoar-dev-settings",
+                                "_previousName": "",
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "baseBranchName",
+                                "type": "string",
+                                "label": "Base Branch Name",
+                                "tooltip": "",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": true,
+                                "defaultValue": "main",
+                                "_previousName": "",
+                                "useRecordFieldDefault": false
+                            }
+                        ]
+                    }
+                },
+                "record": "",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": {
+                    "repo_names": "[\"{{vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}\", \"{{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}\", \"{{vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}}\"]"
+                },
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Setup",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/64961e22-a788-4e67-bceb-35fb39687f80"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "165",
+            "left": "310",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "af50d35a-1f68-4c8b-9b57-1d1c1115231e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Repository Global Variable",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "macro": "{{\"cicd_config\"}}",
+                    "value": "{\"organizationName\": \"{{vars.organization_name}}\", \"content\": \"{{vars.content_repo}}\", \"productionSettings\": \"{{vars.prod_settings}}\", \"developmentSettings\": \"{{vars.dev_settings}}\",\"baseBranch\": \"{{vars.base_branch}}\"}"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "updatemacro",
+                "operationTitle": "FSR: Create\/Update Global Variables",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "135",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "b5c63b4b-7d12-4a8a-b24d-ad38aa8ee1e7"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Repositories",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.repo_names}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "arguments": {
+                    "repo_name": "{{vars.item}}",
+                    "base_branch": "{{vars.steps.Get_Repositories_Detail.input.baseBranchName}}",
+                    "organization_name": "{{vars.steps.Get_Repositories_Detail.input.orgName}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/7d94d329-8d15-4d90-ba33-fb04b9f8fdc9"
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "bcdcf23e-1e22-440c-90ec-7d3a521b129f"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Repository Global Variable -> Show Repositories Details",
+            "targetStep": "\/api\/3\/workflow_steps\/6c1d1f69-1de6-4b81-8ff8-db80babb9bdc",
+            "sourceStep": "\/api\/3\/workflow_steps\/b5c63b4b-7d12-4a8a-b24d-ad38aa8ee1e7",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "86930e05-090e-4d5e-bb92-2726cef6561f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Show Repositories Details -> Update Result",
+            "targetStep": "\/api\/3\/workflow_steps\/91e2e908-b7a9-42d4-9bed-d311560b8f6e",
+            "sourceStep": "\/api\/3\/workflow_steps\/6c1d1f69-1de6-4b81-8ff8-db80babb9bdc",
+            "label": "OK",
+            "isExecuted": false,
+            "uuid": "faacca1c-4067-4696-8c45-a8a556123218"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Repositories Created Automatically -> Provide Repositories Detail",
+            "targetStep": "\/api\/3\/workflow_steps\/18b86c22-2d44-45ae-83c3-560dcf651a44",
+            "sourceStep": "\/api\/3\/workflow_steps\/64961e22-a788-4e67-bceb-35fb39687f80",
+            "label": "Manually",
+            "isExecuted": false,
+            "uuid": "b365fc30-8898-41c0-ae4b-3c0789913403"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Repositories -> Repository Details",
+            "targetStep": "\/api\/3\/workflow_steps\/224c1621-c33a-4720-ade0-46573ea34ce8",
+            "sourceStep": "\/api\/3\/workflow_steps\/bcdcf23e-1e22-440c-90ec-7d3a521b129f",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "f47b6d21-0c2a-4b6c-88dc-69295423d0ef"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Repository Details -> Create Repository Global Variable",
+            "targetStep": "\/api\/3\/workflow_steps\/b5c63b4b-7d12-4a8a-b24d-ad38aa8ee1e7",
+            "sourceStep": "\/api\/3\/workflow_steps\/224c1621-c33a-4720-ade0-46573ea34ce8",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "0438b817-da5a-47d5-afbd-fd5a375cda93"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Repositories Detail",
+            "targetStep": "\/api\/3\/workflow_steps\/af50d35a-1f68-4c8b-9b57-1d1c1115231e",
+            "sourceStep": "\/api\/3\/workflow_steps\/1fa83340-33e4-4d27-99e3-bbab6f5cc3b4",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "08d9785f-64c5-43ee-a98f-5f65df55847b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Repositories Detail -> Is Repositories Created Automatically",
+            "targetStep": "\/api\/3\/workflow_steps\/64961e22-a788-4e67-bceb-35fb39687f80",
+            "sourceStep": "\/api\/3\/workflow_steps\/af50d35a-1f68-4c8b-9b57-1d1c1115231e",
+            "label": "Setup",
+            "isExecuted": false,
+            "uuid": "c3383051-1d3b-4a3a-a23a-213a2a882215"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Repositories Created Automatically -> Create Repositories",
+            "targetStep": "\/api\/3\/workflow_steps\/bcdcf23e-1e22-440c-90ec-7d3a521b129f",
+            "sourceStep": "\/api\/3\/workflow_steps\/64961e22-a788-4e67-bceb-35fb39687f80",
+            "label": "Playbook",
+            "isExecuted": false,
+            "uuid": "3602e904-96d9-46f1-87b7-33368e8a9380"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Provide Repositories Detail -> Repository Details",
+            "targetStep": "\/api\/3\/workflow_steps\/224c1621-c33a-4720-ade0-46573ea34ce8",
+            "sourceStep": "\/api\/3\/workflow_steps\/18b86c22-2d44-45ae-83c3-560dcf651a44",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "0016f413-cc91-479a-99dc-cf8529dfdf8b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Provide Repositories Detail -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/655bfe6b-e43e-48ba-9254-7a98450d4e80",
+            "sourceStep": "\/api\/3\/workflow_steps\/18b86c22-2d44-45ae-83c3-560dcf651a44",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "decd31e2-a50a-451b-8282-5cd88d0ab484"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "6bace12f-6629-4e0e-9c7f-3eef3e3ad1fe",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

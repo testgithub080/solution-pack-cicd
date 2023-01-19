@@ -34,16 +34,6 @@
             "icon": null,
             "listName": "\/api\/3\/picklist_names\/6b216e0d-c167-4cfd-a772-97fe1be0f52d",
             "uuid": "262e570e-efe0-4eb0-aee9-e6e54b4ca3ef"
-        },
-        {
-            "@id": "\/api\/3\/picklists\/7c93c4a6-10b4-4806-aa20-1581d35d0dcb",
-            "@type": "Picklist",
-            "itemValue": "Setup",
-            "orderIndex": 3,
-            "color": "#3a34d4",
-            "icon": null,
-            "listName": "\/api\/3\/picklist_names\/6b216e0d-c167-4cfd-a772-97fe1be0f52d",
-            "uuid": "7c93c4a6-10b4-4806-aa20-1581d35d0dcb"
         }
     ],
     "uuid": "6b216e0d-c167-4cfd-a772-97fe1be0f52d"

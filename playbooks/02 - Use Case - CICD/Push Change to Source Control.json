@@ -1,0 +1,516 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Push Change to Source Control",
+    "aliasName": null,
+    "tag": null,
+    "description": "Push (Export) specified change request content into the GitHub content repository",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/7af127bd-9fe7-467c-afe4-3bb9fdd681bb",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Checkout Branch",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "repo_name": "{{vars.repo_name}}",
+                    "new_branch": "{{vars.new_branch}}",
+                    "base_branch": "{{vars.base_branch}}",
+                    "organization_name": "{{vars.org_name}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/5f736791-1989-4306-9b54-b7d9696e13ea"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "16cabb8a-c431-4246-8f85-f26b382391b1"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "org_name": "{{vars.input.records[0].organizationName}}",
+                "repo_name": "{{(vars.input.records[0].repo_url.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
+                "new_branch": "CR-{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
+                "repo_owner": "{{vars.input.records[0].assigneeUsername}}",
+                "base_branch": "{{vars.input.records[0].baseBranch}}",
+                "export_file_name": "FortiSOAR Export-{{arrow.utcnow().int_timestamp}}",
+                "current_timestamp": "{{arrow.get((arrow.utcnow().int_timestamp  | int | abs)).format('YYYYMMDDHHmm')}}",
+                "export_template_name": "{% if \"fortisoar-prod-content\" in vars.input.records[0].repo_url %}FortiSOAR Production Environment Content{% elif \"fortisoar-dev-settings\" in vars.input.records[0].repo_url %}FortiSOAR Development Environment Settings{% else %}FortiSOAR Production Environment Settings{% endif %}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "2b5440ab-7eb7-4d3b-b9f1-034c62daa246"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Issue Details",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "issue_no": "{{vars.issue_no}}",
+                    "repo_name": "{{vars.repo_name}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/8c04ee86-fa48-4ac7-8c4f-e4c771b64838"
+            },
+            "status": null,
+            "top": "165",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "333e0548-b4c1-4ec8-bb12-d99ef5a23d2d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Push Export Config into GitHub",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "1c6ba20e-c429-469e-8b10-04d6300c8750",
+                "params": {
+                    "org": "{{vars.org_name}}",
+                    "name": "{{vars.repo_name}}",
+                    "branch": "{{vars.new_branch}}",
+                    "repo_type": "Organization",
+                    "clone_path": "{{vars.steps.Clone_Repository.data.path}}",
+                    "commit_message": "{{vars.steps.Specify_Commit_Message.input.commitMessage}}"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "push_repository",
+                "operationTitle": "Push Repository",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "975",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "518a02f1-50be-4f64-bd36-caeba09857df"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Populate Push Change Request Details",
+            "description": null,
+            "arguments": {
+                "type": "DecisionBased",
+                "input": {
+                    "schema": {
+                        "title": "Push (Export) Change Request Details",
+                        "description": "\"Change Request {{vars.steps.Get_Issue_Details.issue_details.cRNo}} | {{vars.steps.Get_Issue_Details.issue_details.summary}}\" is successfully pushed (exported) into the GitHub <a href=\"{https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}\">https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}<\/a> Repository.\n",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_requests",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "OK",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/828fca03-7702-43eb-a3d4-08fac3db35f0"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                }
+            },
+            "status": null,
+            "top": "1110",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "5540c83a-de50-4c6b-967e-f75a78173c8d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "b333b2d8-eb5c-4015-962d-c226aff386eb",
+                "title": "Push Changes to Source Control",
+                "resources": [
+                    "change_management"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "_promptexpanded": true,
+                "displayConditions": {
+                    "alerts": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    },
+                    "change_requests": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "type": "object",
+                                "field": "cRState",
+                                "value": "\/api\/3\/picklists\/b5f55ab0-ac86-468f-9700-b68bf454937c",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/b5f55ab0-ac86-468f-9700-b68bf454937c",
+                                    "itemValue": "Assigned"
+                                },
+                                "operator": "eq"
+                            },
+                            {
+                                "type": "array",
+                                "field": "sourceControlState",
+                                "value": [
+                                    "\/api\/3\/picklists\/f5ba27dd-d1fe-4bba-b703-4066788f1c6e",
+                                    "\/api\/3\/picklists\/f643019c-83b4-4d40-afee-cfa429799715"
+                                ],
+                                "module": "sourceControlState",
+                                "display": "",
+                                "operator": "nin",
+                                "template": "multiselectpicklist",
+                                "OPERATOR_KEY": "$",
+                                "previousOperator": "nin",
+                                "previousTemplate": "multiselectpicklist"
+                            }
+                        ]
+                    },
+                    "change_management": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "type": "object",
+                                "field": "environment",
+                                "value": [
+                                    "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651",
+                                    "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b",
+                                    "\/api\/3\/picklists\/7c93c4a6-10b4-4806-aa20-1581d35d0dcb"
+                                ],
+                                "module": "environment",
+                                "display": "All",
+                                "operator": "nin",
+                                "template": "multiselectpicklist",
+                                "OPERATOR_KEY": "$",
+                                "displayTemplate": "",
+                                "previousOperator": "nin",
+                                "previousTemplate": "multiselectpicklist"
+                            }
+                        ]
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
+            "uuid": "7af127bd-9fe7-467c-afe4-3bb9fdd681bb"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "No Operation",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.2.2",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1245",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "828fca03-7702-43eb-a3d4-08fac3db35f0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Apply Changes to Remote Repository",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "1c6ba20e-c429-469e-8b10-04d6300c8750",
+                "params": {
+                    "file_iri": "{{vars.steps.Extract_Exported_Zip_File_from_FortiSOAR.file_iri}}",
+                    "clone_path": "{{vars.steps.Clone_Repository.data.path}}"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "update_clone_repository",
+                "operationTitle": "Update Clone Repository",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "92287c6b-1655-45af-9ec3-eb6b8dcbb002"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Extract Exported Zip File from FortiSOAR",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "export_file_name": "{{vars.export_file_name}}",
+                    "export_template_name": "{{vars.export_template_name}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/d4417bac-2af8-441d-a58a-83e21abfa672"
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "af8bbcc3-9d2c-4531-9932-249f245db23c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Specify Commit Message",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Specify Commit Message",
+                        "description": "Please specify the commit message for the change request \"{{vars.steps.Get_Issue_Details.issue_details.summary}}\" which you want to push into the \"{{vars.repo_name}}\" Git Repository under the branch \"{{vars.new_branch}}\"",
+                        "inputVariables": [
+                            {
+                                "name": "commitMessage",
+                                "type": "string",
+                                "label": "Commit Message",
+                                "tooltip": "",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": true,
+                                "defaultValue": null,
+                                "_previousName": "commitMessa",
+                                "useRecordFieldDefault": false
+                            }
+                        ]
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_requests",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Commit",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/518a02f1-50be-4f64-bd36-caeba09857df"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                }
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "c3429296-0762-42c4-9f4b-62e251cb438e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Clone Repository",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "1c6ba20e-c429-469e-8b10-04d6300c8750",
+                "params": {
+                    "org": "{{vars.org_name}}",
+                    "name": "{{vars.repo_name}}",
+                    "clone_zip": false,
+                    "repo_type": "Organization"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "clone_repository",
+                "operationTitle": "Clone Repository",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "e5438750-57da-4447-b206-1b2eaf1e343e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Extract Grid Issue Details",
+            "description": null,
+            "arguments": {
+                "issue_no": "{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
+                "repo_name": "{{(vars.input.records[0].repo_url.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}"
+            },
+            "status": null,
+            "top": "30",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "f2109c3a-5b34-4d2b-9524-d53ac1bb72f1"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract Grid Issue Details -> Get Issue Details",
+            "targetStep": "\/api\/3\/workflow_steps\/333e0548-b4c1-4ec8-bb12-d99ef5a23d2d",
+            "sourceStep": "\/api\/3\/workflow_steps\/f2109c3a-5b34-4d2b-9524-d53ac1bb72f1",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "06657006-7fd9-4d5e-844d-249a2a539951"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Clone Repository -> Extract Exported Zip File from FortiSOAR",
+            "targetStep": "\/api\/3\/workflow_steps\/af8bbcc3-9d2c-4531-9932-249f245db23c",
+            "sourceStep": "\/api\/3\/workflow_steps\/e5438750-57da-4447-b206-1b2eaf1e343e",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "1bd94f59-030e-4f0c-b8da-5169b3d4063c"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Push Export Config into GitHub -> Populate Push Change Request Details",
+            "targetStep": "\/api\/3\/workflow_steps\/5540c83a-de50-4c6b-967e-f75a78173c8d",
+            "sourceStep": "\/api\/3\/workflow_steps\/518a02f1-50be-4f64-bd36-caeba09857df",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "40460a3f-8c96-4e0f-b9c7-aeed280ad8f6"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Create Checkout Branch",
+            "targetStep": "\/api\/3\/workflow_steps\/16cabb8a-c431-4246-8f85-f26b382391b1",
+            "sourceStep": "\/api\/3\/workflow_steps\/2b5440ab-7eb7-4d3b-b9f1-034c62daa246",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "9c711285-926e-4d42-9b8d-b969bac09676"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract Exported Zip File from FortiSOAR -> Apply Changes to Remote Repository",
+            "targetStep": "\/api\/3\/workflow_steps\/92287c6b-1655-45af-9ec3-eb6b8dcbb002",
+            "sourceStep": "\/api\/3\/workflow_steps\/af8bbcc3-9d2c-4531-9932-249f245db23c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "ab9bb733-5dc5-4188-b61c-b280b95a3454"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Specify Commit Message -> Push Export Config into GitHub",
+            "targetStep": "\/api\/3\/workflow_steps\/518a02f1-50be-4f64-bd36-caeba09857df",
+            "sourceStep": "\/api\/3\/workflow_steps\/c3429296-0762-42c4-9f4b-62e251cb438e",
+            "label": "Commit",
+            "isExecuted": false,
+            "uuid": "b537aea8-3a57-48ab-aea8-3c5470331f47"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Apply Changes to Remote Repository -> Specify Commit Message",
+            "targetStep": "\/api\/3\/workflow_steps\/c3429296-0762-42c4-9f4b-62e251cb438e",
+            "sourceStep": "\/api\/3\/workflow_steps\/92287c6b-1655-45af-9ec3-eb6b8dcbb002",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c5304536-a737-42de-b3e3-1d5288136648"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Push Change Request into Public Repository -> Clone Repository",
+            "targetStep": "\/api\/3\/workflow_steps\/e5438750-57da-4447-b206-1b2eaf1e343e",
+            "sourceStep": "\/api\/3\/workflow_steps\/16cabb8a-c431-4246-8f85-f26b382391b1",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c88be493-9152-46ed-9849-91f2178ada14"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Populate Push Change Request Details -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/828fca03-7702-43eb-a3d4-08fac3db35f0",
+            "sourceStep": "\/api\/3\/workflow_steps\/5540c83a-de50-4c6b-967e-f75a78173c8d",
+            "label": "OK",
+            "isExecuted": false,
+            "uuid": "d9ea37ba-d5ab-47a6-8907-c398b81ae162"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/2b5440ab-7eb7-4d3b-b9f1-034c62daa246",
+            "sourceStep": "\/api\/3\/workflow_steps\/7af127bd-9fe7-467c-afe4-3bb9fdd681bb",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "49560b24-ca32-4640-a6ff-75d7468f8534"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "2a7701aa-eba3-415a-b125-7908114e7d5a",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "ManualTrigger",
+        "CICD"
+    ]
+}

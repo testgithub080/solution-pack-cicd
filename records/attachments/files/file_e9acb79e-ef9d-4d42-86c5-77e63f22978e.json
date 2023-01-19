@@ -1,0 +1,13 @@
+{
+    "@context": "\/api\/3\/contexts\/File",
+    "@type": "File",
+    "uuid": "e9acb79e-ef9d-4d42-86c5-77e63f22978e",
+    "assignee": "",
+    "id": "e9acb79e-ef9d-4d42-86c5-77e63f22978e",
+    "filename": "FortiSOAR Production Environment Content.json",
+    "mimeType": "json",
+    "uploadDate": 1674111670.086479,
+    "size": 102924,
+    "thumbnail": null,
+    "metadata": []
+}
