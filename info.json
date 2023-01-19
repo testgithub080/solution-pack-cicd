@@ -14,7 +14,8 @@
         }
     ],
     "prerequisite": null,
-    "publisher": "Community",
+    "certified": "true",
+    "publisher": "Fortinet",
     "description": "Automate software development workflows and deploy better quality code, more often. Using a continuous and iterative process to build, test, and deploy helps avoid bugs and code failures.",
     "help": null,
     "category": [],
@@ -31,7 +32,6 @@
             }
         ]
     },
-    "date": "2023-01-19T09:05:26+00:00",
     "contents": {
         "picklistNames": [
             {
