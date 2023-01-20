@@ -75,60 +75,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get Issue",
-            "description": null,
-            "arguments": {
-                "name": "GitHub",
-                "config": "d47bdd7a-aa4e-434b-9826-515d1565b59d",
-                "params": {
-                    "org": "{{vars.org_name}}",
-                    "page": "",
-                    "repo": "{{vars.repo_name}}",
-                    "sort": "created",
-                    "since": "",
-                    "state": "open",
-                    "labels": "",
-                    "creator": "",
-                    "assignee": "",
-                    "per_page": 100,
-                    "direction": "desc",
-                    "mentioned": "",
-                    "milestone": "",
-                    "repo_type": "Organization"
-                },
-                "version": "1.0.0",
-                "connector": "github",
-                "operation": "list_repository_issue",
-                "operationTitle": "List Repository Issue",
-                "pickFromTenant": false,
-                "step_variables": {
-                    "extract_issue": "{{vars.result.data | selectattr(\"number\", \"equalto\", (vars.steps.Get_Issue_and_Source_Control_Details.issue_details.cRNo | int)) | list | first}}"
-                }
-            },
-            "status": null,
-            "top": "30",
-            "left": "475",
-            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "group": null,
-            "uuid": "1336b428-f8bc-478e-bb55-465bb1ede90d"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Extract Grid Issue Details",
-            "description": null,
-            "arguments": {
-                "issue_no": "{{(vars.input.records[0].split('\/')[-2]).split('_')[-1]}}",
-                "repo_name": "{{(vars.input.records[0].split('\/')[-2]).split('_')[0]}}"
-            },
-            "status": null,
-            "top": "30",
-            "left": "825",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "1654ac66-848e-4cba-a278-8e8d24e57ea5"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Update PR Reviewers",
             "description": null,
             "arguments": {
@@ -149,7 +95,7 @@
                 "issue_no": "{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
                 "org_name": "{{vars.input.records[0].organizationName}}",
                 "repo_name": "{{(vars.input.records[0].repo_url.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
-                "new_branch": "CR\/{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
+                "new_branch": "CR-{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
                 "pull_number": "{{(vars.input.records[0].pullRequest.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}"
             },
             "status": null,
@@ -220,47 +166,6 @@
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "77bfd50f-41ac-496e-b435-4efbc482a2f7"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Refine Issue Table",
-            "description": null,
-            "arguments": {
-                "arguments": {
-                    "issues": "[{\"data\":[{{vars.extract_issue}}]}]"
-                },
-                "apply_async": false,
-                "step_variables": [],
-                "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/b027eb6e-5bde-4eb2-9abb-6c3189851147"
-            },
-            "status": null,
-            "top": "165",
-            "left": "475",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "7fda8ab0-dc08-4216-a882-e6f24acf3241"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Get Issue and Source Control Details",
-            "description": null,
-            "arguments": {
-                "arguments": {
-                    "issue_no": "{{vars.issue_no}}",
-                    "repo_name": "{{vars.repo_name}}"
-                },
-                "apply_async": false,
-                "step_variables": [],
-                "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/8c04ee86-fa48-4ac7-8c4f-e4c771b64838"
-            },
-            "status": null,
-            "top": "165",
-            "left": "825",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "d51aafa9-ab29-4e44-a097-133d8e22dd3e"
         },
         {
             "@type": "WorkflowStep",
@@ -398,30 +303,12 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Extract Grid Issue Details -> Get Issue and Source Control Details",
-            "targetStep": "\/api\/3\/workflow_steps\/d51aafa9-ab29-4e44-a097-133d8e22dd3e",
-            "sourceStep": "\/api\/3\/workflow_steps\/1654ac66-848e-4cba-a278-8e8d24e57ea5",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "508e2a71-b839-45e9-8c2a-2abe006d05d7"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Populate PR Merged Details -> No Operation",
             "targetStep": "\/api\/3\/workflow_steps\/5a4b6f68-9834-4ee6-8f58-ace971764d37",
             "sourceStep": "\/api\/3\/workflow_steps\/77bfd50f-41ac-496e-b435-4efbc482a2f7",
             "label": "OK",
             "isExecuted": false,
             "uuid": "64b0f0a6-dbb7-4115-bf72-baacc78458dd"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Get Issue -> Refine Issue Table",
-            "targetStep": "\/api\/3\/workflow_steps\/7fda8ab0-dc08-4216-a882-e6f24acf3241",
-            "sourceStep": "\/api\/3\/workflow_steps\/1336b428-f8bc-478e-bb55-465bb1ede90d",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "46a732b6-cdff-411a-8606-b5af5ef8c29a"
         },
         {
             "@type": "WorkflowRoute",

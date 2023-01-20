@@ -32,6 +32,7 @@
             }
         ]
     },
+    "date": "2023-01-20T07:41:28+00:00",
     "contents": {
         "picklistNames": [
             {
@@ -99,20 +100,20 @@
         ],
         "widgets": [
             {
-                "apiName": "recordCard",
-                "name": "Record Card"
-            },
-            {
-                "apiName": "recordCtaBlock",
-                "name": "Record CTA Block"
+                "apiName": "jsonToGrid",
+                "name": "JSON to Grid"
             },
             {
                 "apiName": "cicdConfiguration",
                 "name": "CICD Configuration"
             },
             {
-                "apiName": "jsonToGrid",
-                "name": "JSON to Grid"
+                "apiName": "recordCtaBlock",
+                "name": "Record CTA Block"
+            },
+            {
+                "apiName": "recordCard",
+                "name": "Record Card"
             }
         ],
         "recordSets": [
@@ -124,7 +125,7 @@
             {
                 "name": "Change Management",
                 "apiName": "change_management",
-                "count": 6
+                "count": 8
             }
         ]
     }

@@ -122,11 +122,35 @@
                 "singleRecordExecution": false
             },
             "status": null,
-            "top": "20",
-            "left": "120",
+            "top": "30",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
             "group": null,
             "uuid": "48fc914f-9747-44e7-981e-bee4d91373ee"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Checkout Branch",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "repo_name": "{{(vars.cr_info.repo_url.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
+                    "new_branch": "CR-{{(vars.cr_info.cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
+                    "base_branch": "{{vars.cr_info.baseBranch}}",
+                    "organization_name": "{{vars.cr_info.organizationName}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/5f736791-1989-4306-9b54-b7d9696e13ea"
+            },
+            "status": null,
+            "top": "975",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "6a647c44-67c5-46aa-9255-aa2787992849"
         },
         {
             "@type": "WorkflowStep",
@@ -260,59 +284,6 @@
                                 "useRecordFieldDefault": false
                             },
                             {
-                                "name": "state",
-                                "type": "array",
-                                "label": "State",
-                                "title": "Dynamic List",
-                                "usable": true,
-                                "options": [
-                                    "Assigned",
-                                    "Closed"
-                                ],
-                                "tooltip": "Select the State of change request",
-                                "dataType": "dynamicList",
-                                "formType": "dynamicList",
-                                "required": true,
-                                "_expanded": false,
-                                "mmdUpdate": true,
-                                "collection": false,
-                                "searchable": false,
-                                "templateUrl": "app\/components\/form\/fields\/dynamicList.html",
-                                "defaultValue": null,
-                                "_previousName": "",
-                                "playbookField": true,
-                                "lengthConstraint": true,
-                                "allowedGridColumn": false,
-                                "useRecordFieldDefault": false
-                            },
-                            {
-                                "name": "repositoryType",
-                                "type": "array",
-                                "label": "Repository Type",
-                                "title": "Dynamic List",
-                                "usable": true,
-                                "options": [
-                                    "Content",
-                                    "Production Settings",
-                                    "Development Settings"
-                                ],
-                                "tooltip": "",
-                                "dataType": "dynamicList",
-                                "formType": "dynamicList",
-                                "required": true,
-                                "_expanded": false,
-                                "mmdUpdate": true,
-                                "collection": false,
-                                "searchable": false,
-                                "templateUrl": "app\/components\/form\/fields\/dynamicList.html",
-                                "defaultValue": null,
-                                "_previousName": "contentType",
-                                "playbookField": true,
-                                "lengthConstraint": true,
-                                "allowedGridColumn": false,
-                                "useRecordFieldDefault": false
-                            },
-                            {
                                 "name": "summary",
                                 "type": "string",
                                 "label": "Summary",
@@ -375,7 +346,10 @@
                 "email_notification": {
                     "enabled": false,
                     "smtpParameters": []
-                }
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
             },
             "status": null,
             "top": "165",
@@ -389,8 +363,8 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
-                "__tmp": "{% set excluded_list = [\"assigneeUsername\", \"reporterUsername\" ] %}\n{% for k,v in vars.steps.Get_Change_Request_Details.input.items() %}\n{% if k not in excluded_list %}\n{% if v == \"Development Settings\" %}\n{% set url = \"<a href='\"+vars.cicd_config.developmentSettings+\"' target='_blank'>\"+vars.cicd_config.developmentSettings.split('\/')[-1]+\"<\/a>\"  %}\n{% set _ = vars.cr_info.update({\"repo_url\": url}) %}\n{% endif %}\n{% if v == \"Production Settings\" %}\n{% set url = \"<a href='\"+vars.cicd_config.productionSettings+\"' target='_blank'>\"+vars.cicd_config.productionSettings.split('\/')[-1]+\"<\/a>\"  %}\n{% set _ = vars.cr_info.update({\"repo_url\": url}) %}\n{% endif %}\n{% if v == \"Content\" %}\n{% set url = \"<a href='\"+vars.cicd_config.content+\"' target='_blank'>\"+vars.cicd_config.content.split('\/')[-1]+\"<\/a>\"  %}\n{% set _ = vars.cr_info.update({\"repo_url\": url}) %}\n{% endif %}\n{% set _ = vars.cr_info.update({k: v}) %}\n{% else %}\n{% if k == \"assigneeUsername\" %}\n{% set _ = vars.cr_info.update({\"assigneeUsername\": v.displayName}) %}\n{% endif %}\n{% if k == \"reporterUsername\" %}\n{% set _ = vars.cr_info.update({\"reporterUsername\": v.displayName}) %}\n{% endif %}\n{% set _ = vars.cr_info.update({\"pRStatus\": None, \"pRReviewers\": None, \"pullRequest\": None, \"organizationName\": vars.cicd_config.organizationName, \"baseBranch\": vars.cicd_config.baseBranch}) %}\n{% endif %}\n{% endfor %}",
-                "repo_name": "{% for k,v in vars.steps.Get_Change_Request_Details.input.items() %}{% if k == \"repositoryType\" %}{% if v == \"Development Settings\" %}{{vars.cicd_config.developmentSettings.split('\/')[-1]}}{% endif %}{% if v == \"Production Settings\" %}{{vars.cicd_config.productionSettings.split('\/')[-1]}}{% endif %}{% if v == \"Content\" %}{{vars.cicd_config.content.split('\/')[-1]}}{% endif %}{% endif %}{% endfor %}"
+                "__tmp": "{% set excluded_list = [\"assigneeUsername\", \"reporterUsername\" ] %}\n{% for k,v in vars.steps.Get_Change_Request_Details.input.items() %}\n{% if k not in excluded_list %}\n{% set url = \"<a href='\"+vars.cicd_config.content+\"' target='_blank'>\"+vars.cicd_config.content.split('\/')[-1]+\"<\/a>\"  %}\n{% set _ = vars.cr_info.update({\"repo_url\": url}) %}\n{% set _ = vars.cr_info.update({k: v}) %}\n{% else %}\n{% if k == \"assigneeUsername\" %}\n{% set _ = vars.cr_info.update({\"assigneeUsername\": v.displayName}) %}\n{% endif %}\n{% if k == \"reporterUsername\" %}\n{% set _ = vars.cr_info.update({\"reporterUsername\": v.displayName}) %}\n{% endif %}\n{% set _ = vars.cr_info.update({\"pRStatus\": None, \"pRReviewers\": None, \"pullRequest\": None, \"organizationName\": vars.cicd_config.organizationName, \"baseBranch\": vars.cicd_config.baseBranch}) %}\n{% endif %}\n{% endfor %}",
+                "repo_name": "{{vars.cicd_config.content.split('\/')[-1]}}"
             },
             "status": null,
             "top": "435",
@@ -408,7 +382,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/e9b1e3c1-af41-4302-81de-72a2958cd7eb",
             "label": null,
             "isExecuted": false,
-            "uuid": "0c619282-5289-4da9-b00c-d853b4340ea0"
+            "uuid": "522209e3-bdf0-4a20-a459-f03175f55caa"
         },
         {
             "@type": "WorkflowRoute",
@@ -454,6 +428,15 @@
             "label": "Submit",
             "isExecuted": false,
             "uuid": "d13fcb8c-15d5-48f2-8613-9c9d8de5b1a9"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Issue Number -> Create Checkout Branch",
+            "targetStep": "\/api\/3\/workflow_steps\/6a647c44-67c5-46aa-9255-aa2787992849",
+            "sourceStep": "\/api\/3\/workflow_steps\/0f90aae2-2039-48e3-b78c-383d798495e3",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "f78b920f-6678-481c-8550-4451b1e97e94"
         }
     ],
     "groups": [],

@@ -1,7 +1,7 @@
 [
     {
-        "id": 18,
-        "name": "Source Control - Dev Settings",
+        "id": 12,
+        "name": "Source Control - Development Settings",
         "type": "Export Wizard",
         "uuid": "182ae65a-8bf5-4fea-968b-0c18d2832e8e",
         "@type": "ExportTemplate",
@@ -9,7 +9,23 @@
             "roles": [],
             "rules": [],
             "teams": [],
-            "views": [],
+            "views": [
+                {
+                    "value": "app",
+                    "appendNavigation": [
+                        "Dashboard",
+                        "Queue & Shift Management",
+                        "Incident Response",
+                        "Automation",
+                        "Resources",
+                        "Reports",
+                        "Widget Library",
+                        "Content Hub",
+                        "Help",
+                        "User Community"
+                    ]
+                }
+            ],
             "actors": [],
             "modules": [],
             "reports": [],
@@ -33,9 +49,9 @@
             "globalVariables": [],
             "playbookCollections": []
         },
-        "createDate": 1674109768.502289,
+        "createDate": 1674183509.567556,
         "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-        "modifyDate": 1674110312.309314,
+        "modifyDate": 1674199199.9731,
         "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
         "solutionPack": null,
         "lastExportDate": 1671778968.929019

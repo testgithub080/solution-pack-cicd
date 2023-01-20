@@ -266,7 +266,7 @@
                 "cRNo": "{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
                 "org_name": "{{vars.input.records[0].organizationName}}",
                 "repo_name": "{{(vars.input.records[0].repo_url.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
-                "new_branch": "CR\/{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
+                "new_branch": "CR-{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
                 "base_branch": "{{vars.input.records[0].baseBranch}}",
                 "pull_number": "{{vars.input.params['pull_number']}}"
             },

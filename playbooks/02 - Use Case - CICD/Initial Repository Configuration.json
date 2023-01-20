@@ -28,11 +28,13 @@
                         "inputVariables": []
                     }
                 },
-                "record": "",
+                "record": "{{vars.input.records[0]['@id']}}",
+                "agent_id": null,
+                "resources": "change_management",
                 "owner_detail": {
                     "isAssigned": false
                 },
-                "isRecordLinked": false,
+                "isRecordLinked": true,
                 "step_variables": [],
                 "response_mapping": {
                     "options": [
@@ -112,11 +114,13 @@
                         "inputVariables": []
                     }
                 },
-                "record": "",
+                "record": "{{vars.input.records[0]['@id']}}",
+                "agent_id": null,
+                "resources": "change_management",
                 "owner_detail": {
                     "isAssigned": false
                 },
-                "isRecordLinked": false,
+                "isRecordLinked": true,
                 "step_variables": [],
                 "response_mapping": {
                     "options": [
@@ -312,11 +316,13 @@
                         ]
                     }
                 },
-                "record": "",
+                "record": "{{vars.input.records[0]['@id']}}",
+                "agent_id": null,
+                "resources": "change_management",
                 "owner_detail": {
                     "isAssigned": false
                 },
-                "isRecordLinked": false,
+                "isRecordLinked": true,
                 "step_variables": {
                     "repo_names": "[\"{{vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}\", \"{{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}\", \"{{vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}}\"]"
                 },

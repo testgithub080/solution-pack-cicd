@@ -2,8 +2,8 @@
     "ManualTrigger",
     "CICD",
     "Subroutine",
-    "Repo",
-    "GitHub",
     "CreateIssue",
-    "Wizard"
+    "Wizard",
+    "Repo",
+    "GitHub"
 ]

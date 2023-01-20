@@ -230,9 +230,9 @@
                 "org_name": "{{vars.cicd_config.organizationName}}",
                 "repo_name": "{{vars.cicd_config.content.split('\/')[-1]}}",
                 "base_branch": "{{vars.cicd_config.baseBranch}}",
-                "export_file_name": "FortiSOAR Production Environment Content",
+                "export_file_name": "Source Control - Production Content",
                 "current_timestamp": "{{arrow.get((arrow.utcnow().int_timestamp  | int | abs)).format('YYYYMMDDHHmm')}}",
-                "export_template_name": "FortiSOAR Production Environment Content"
+                "export_template_name": "Source Control - Production Content"
             },
             "status": null,
             "top": "300",
