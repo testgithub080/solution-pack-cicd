@@ -59,25 +59,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "No Operation",
-            "description": null,
-            "arguments": {
-                "params": [],
-                "version": "3.2.1",
-                "connector": "cyops_utilities",
-                "operation": "no_op",
-                "operationTitle": "Utils: No Operation",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "1110",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "4f5db65c-79f0-4314-a294-c839e0a71cdd"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Create Import Job",
             "description": null,
             "arguments": {
@@ -93,99 +74,11 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "705",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "50b5c01b-6050-45f9-834a-51a33c6c6944"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Get Export Templates",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "\/api\/query\/export_templates?$limit=30",
-                    "body": "{\"sort\":[{\"field\":\"modifyDate\",\"direction\":\"DESC\"}],\"limit\":30,\"logic\":\"AND\",\"filters\":[{\"field\":\"type\",\"operator\":\"neq\",\"_operator\":\"neq\",\"value\":\"SolutionPack Export\",\"type\":\"primitive\"}],\"__selectFields\":[\"name\",\"lastExportDate\",\"modifyUser\",\"portingActions\",\"@id\",\"@type\",\"id\"]}",
-                    "method": "POST"
-                },
-                "version": "3.2.1",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": []
-            },
-            "status": null,
             "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "5f2a9a0c-d6d8-433a-a921-a945e24d076c"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Populate Export Template Details",
-            "description": null,
-            "arguments": {
-                "type": "DecisionBased",
-                "input": {
-                    "schema": {
-                        "title": "Export Template Details",
-                        "description": "\"<a href=\"{{vars.request.baseUri}}\/editor\/exporter\/templates\" target=\"_blank\">{{vars.steps.Import_Export_Template.data['hydra:member'][0].name}}<\/a>\" Export Template synchronized successfully.",
-                        "inputVariables": []
-                    }
-                },
-                "record": "",
-                "resources": "change_requests",
-                "owner_detail": {
-                    "isAssigned": false
-                },
-                "isRecordLinked": false,
-                "step_variables": [],
-                "response_mapping": {
-                    "options": [
-                        {
-                            "option": "Ok",
-                            "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/4f5db65c-79f0-4314-a294-c839e0a71cdd"
-                        }
-                    ],
-                    "duplicateOption": false
-                },
-                "email_notification": {
-                    "enabled": false,
-                    "smtpParameters": []
-                }
-            },
-            "status": null,
-            "top": "975",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
-            "group": null,
-            "uuid": "6737555a-5e06-4391-8359-a56946fdf75b"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Import Export Template",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "\/api\/query\/export_templates?$limit=30",
-                    "body": "{\"sort\":[{\"field\":\"modifyDate\",\"direction\":\"DESC\"}],\"limit\":30,\"logic\":\"AND\",\"filters\":[{\"field\":\"type\",\"operator\":\"neq\",\"_operator\":\"neq\",\"value\":\"SolutionPack Export\",\"type\":\"primitive\"}],\"__selectFields\":[\"name\",\"lastExportDate\",\"modifyUser\",\"portingActions\",\"@id\",\"@type\",\"id\",\"createUser\",\"createDate\"]}",
-                    "method": "POST"
-                },
-                "version": "3.2.1",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "840",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "88f1a0cd-20b3-4c4d-adce-68f7b8719066"
+            "uuid": "50b5c01b-6050-45f9-834a-51a33c6c6944"
         },
         {
             "@type": "WorkflowStep",
@@ -227,30 +120,12 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Get Export Templates -> Create Import Job",
+            "name": "Read Template File Content -> Create Import Job",
             "targetStep": "\/api\/3\/workflow_steps\/50b5c01b-6050-45f9-834a-51a33c6c6944",
-            "sourceStep": "\/api\/3\/workflow_steps\/5f2a9a0c-d6d8-433a-a921-a945e24d076c",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "2a8831a3-4b0f-4854-8689-0634ff4f939f"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Create Import Job -> Import Export Template",
-            "targetStep": "\/api\/3\/workflow_steps\/88f1a0cd-20b3-4c4d-adce-68f7b8719066",
-            "sourceStep": "\/api\/3\/workflow_steps\/50b5c01b-6050-45f9-834a-51a33c6c6944",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "648710c8-af8f-4f95-8d60-693a181d2623"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Read Template File Content -> Get Export Templates",
-            "targetStep": "\/api\/3\/workflow_steps\/5f2a9a0c-d6d8-433a-a921-a945e24d076c",
             "sourceStep": "\/api\/3\/workflow_steps\/0e31ef60-8a82-424e-a946-9e3b5b5ff3db",
             "label": null,
             "isExecuted": false,
-            "uuid": "9deb1eb7-7040-4f88-b3d3-19a655b11584"
+            "uuid": "23c07956-7cd2-4344-a17b-7bc3b1d1985f"
         },
         {
             "@type": "WorkflowRoute",
@@ -260,15 +135,6 @@
             "label": null,
             "isExecuted": false,
             "uuid": "9e6277c4-3b0c-474c-ac3e-f4be6c281ac4"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Populate Export Template Details -> No Operation",
-            "targetStep": "\/api\/3\/workflow_steps\/4f5db65c-79f0-4314-a294-c839e0a71cdd",
-            "sourceStep": "\/api\/3\/workflow_steps\/6737555a-5e06-4391-8359-a56946fdf75b",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "d47fb2c5-bdaa-4ced-9335-36e243580a2e"
         },
         {
             "@type": "WorkflowRoute",

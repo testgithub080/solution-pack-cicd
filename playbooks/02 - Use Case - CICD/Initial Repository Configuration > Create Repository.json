@@ -65,7 +65,7 @@
                     "sha": "",
                     "name": "{{vars.input.params['repo_name']}}",
                     "path": "README.md",
-                    "branch": "",
+                    "branch": "{{vars.input.params['base_branch']}}",
                     "content": "Please add the detils here",
                     "message": "Created README.md file",
                     "repo_type": "Organization"

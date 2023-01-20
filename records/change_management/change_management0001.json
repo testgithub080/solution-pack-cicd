@@ -18,6 +18,23 @@
     },
     {
         "@type": "ChangeManagement",
+        "title": "Map GitHub Username",
+        "description": "<p>Map logged in FortiSOAR User with specified GitHub username.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<\/p>",
+        "results": "",
+        "sequence": 3,
+        "recordIcon": "<p><img src=\"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM\/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOXSURBVHgB7ZhPaBRJFMa\/VzWTxEAgMCdlD3PK3hYlENDLRnZdFJIlYf+wOW2GYQ1LDhFvgpB48ipKBEdDJhcHD5LBKIqgxouCEMnVnBoU5xSJxAwm013PVz0zMVHidHWieJgfDFRPv+r6+nXVq3qPsIXjVwu9UPSvNHvBSBOwwsAiiGfuZYfy2EMOjZw6LM89wkw\/yGW7\/JZBWGrR++aeTZ5frtvRpripG+NgntjpgWK4yJoH72WGPOyCntEzqUpQHhZhXTvZKAS3n1+5NFcbt7G4LXhtuvVQMTO4ghh0n5xoD\/TKWRikGtnWRarj04V0RHGW9Hv\/\/SnEpEJvf4kizmKg+3pGT3cpGBqHA0Q0NjA924kYKMWHXez9wBxRsAvCAVk0nRuVShqO\/PT\/2I9RvVfHMMSDslrhiNHBQTiifNoHd1LKhhK4YuDh21BWYZxzpC3R5txHU3kJjhDxK2WDsFsv5OOEmYVcriwLzEkkB\/xU1XaI+Sgdwumg+BxiktQbeVmV5Si2RHi1ePXiExVeac7I6N4XO4RzlTK72UmeTU4uG42ZRiJlrOWkrlyutavY2BYGYbsXf76y5+1L7Habq9MzOpraCJL9Ms62uGiFB6QeJMy7h3ZKbBO4FXtoIFJhMG7VLfNxt7YoQtfRmlJQqRa1\/tJfX39TF9akSZMmTZo0+T747LAwMPtIDgmSFBl9EMp4QMIrDh718BX4fWqqw5j2btvmpF69M\/z3AnYSWBXmj0kaKnkvf5JWUh5Kn9srocemCgcSkHSX0b3tBnNJjntzSawVbmWzq5sCRZx4LHgkFukvPHcFTJnin78WsQvC+g\/RuAzcsaORCE0qjNzKDr2unqgDf7aBOEun5C\/T4cvExHquoTgL0f4KqgUFNXDz\/rD4MWqe2wn2pxETbXCyobg68vlPXLveL1ldWG6LDqO3Ol\/dsN6TrK7PqROpPvuJnasECIJeONJi9H44wrXSR6xCkCuG+AAcsdNBPEgeXNHsnERRkl\/AFeKSzEHz2KkTWAL3sXk4kvDXSqyw6tKHDBakkClB2AnHUkkNG3gpQMGlT0Ihp4p\/iTcMIpYz2IMqX0BMkmqtIBOrFMmYkNsM1CJyoqFIkuqCCo4WB+Mn8daLPnhEqlZLjcTdzf6Tqza3MDB7N41AT8i\/P8utNOz2RlKeY54p\/vFbHnvIiWs3+mUR9DGhS+Zah0STEoEXCHruzn8fDw0fALKbXNy\/y\/CjAAAAAElFTkSuQmCC\"><\/p>",
+        "status": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293",
+        "type": "\/api\/3\/picklists\/409b289f-33f5-423f-9174-24bc8628cc4a",
+        "environment": "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b",
+        "uuid": "4e27fc88-a14c-4d20-bdef-2c7987eac860",
+        "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "createDate": 1674140292.351013,
+        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "modifyDate": 1674151952.467659,
+        "id": 7
+    },
+    {
+        "@type": "ChangeManagement",
         "title": "Apply Latest Content",
         "description": "<p class=\"mp-tile-description muted-80\">Pull the latest content from GitHub and apply them to the development environment<\/p>",
         "results": "",
@@ -47,7 +64,7 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1670934469.007706,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1674118499.671082,
+        "modifyDate": 1674200046.849216,
         "id": 3
     },
     {
@@ -64,8 +81,25 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1670928795.166803,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1674118555.930223,
+        "modifyDate": 1674200159.968199,
         "id": 4
+    },
+    {
+        "@type": "ChangeManagement",
+        "title": "Map GitHub Username",
+        "description": "<p>Map logged in FortiSOAR User with specified GitHub username.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<\/p>",
+        "results": "",
+        "sequence": 3,
+        "recordIcon": "<p><img src=\"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM\/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOXSURBVHgB7ZhPaBRJFMa\/VzWTxEAgMCdlD3PK3hYlENDLRnZdFJIlYf+wOW2GYQ1LDhFvgpB48ipKBEdDJhcHD5LBKIqgxouCEMnVnBoU5xSJxAwm013PVz0zMVHidHWieJgfDFRPv+r6+nXVq3qPsIXjVwu9UPSvNHvBSBOwwsAiiGfuZYfy2EMOjZw6LM89wkw\/yGW7\/JZBWGrR++aeTZ5frtvRpripG+NgntjpgWK4yJoH72WGPOyCntEzqUpQHhZhXTvZKAS3n1+5NFcbt7G4LXhtuvVQMTO4ghh0n5xoD\/TKWRikGtnWRarj04V0RHGW9Hv\/\/SnEpEJvf4kizmKg+3pGT3cpGBqHA0Q0NjA924kYKMWHXez9wBxRsAvCAVk0nRuVShqO\/PT\/2I9RvVfHMMSDslrhiNHBQTiifNoHd1LKhhK4YuDh21BWYZxzpC3R5txHU3kJjhDxK2WDsFsv5OOEmYVcriwLzEkkB\/xU1XaI+Sgdwumg+BxiktQbeVmV5Si2RHi1ePXiExVeac7I6N4XO4RzlTK72UmeTU4uG42ZRiJlrOWkrlyutavY2BYGYbsXf76y5+1L7Habq9MzOpraCJL9Ms62uGiFB6QeJMy7h3ZKbBO4FXtoIFJhMG7VLfNxt7YoQtfRmlJQqRa1\/tJfX39TF9akSZMmTZo0+T747LAwMPtIDgmSFBl9EMp4QMIrDh718BX4fWqqw5j2btvmpF69M\/z3AnYSWBXmj0kaKnkvf5JWUh5Kn9srocemCgcSkHSX0b3tBnNJjntzSawVbmWzq5sCRZx4LHgkFukvPHcFTJnin78WsQvC+g\/RuAzcsaORCE0qjNzKDr2unqgDf7aBOEun5C\/T4cvExHquoTgL0f4KqgUFNXDz\/rD4MWqe2wn2pxETbXCyobg68vlPXLveL1ldWG6LDqO3Ol\/dsN6TrK7PqROpPvuJnasECIJeONJi9H44wrXSR6xCkCuG+AAcsdNBPEgeXNHsnERRkl\/AFeKSzEHz2KkTWAL3sXk4kvDXSqyw6tKHDBakkClB2AnHUkkNG3gpQMGlT0Ihp4p\/iTcMIpYz2IMqX0BMkmqtIBOrFMmYkNsM1CJyoqFIkuqCCo4WB+Mn8daLPnhEqlZLjcTdzf6Tqza3MDB7N41AT8i\/P8utNOz2RlKeY54p\/vFbHnvIiWs3+mUR9DGhS+Zah0STEoEXCHruzn8fDw0fALKbXNy\/y\/CjAAAAAElFTkSuQmCC\"><\/p>",
+        "status": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293",
+        "type": "\/api\/3\/picklists\/dc57442c-3d52-43a0-aa19-ed2898e30ff7",
+        "environment": "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651",
+        "uuid": "d755cb9b-58d4-4aec-bedd-78f2807711d9",
+        "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "createDate": 1674151281.200185,
+        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "modifyDate": 1674152664.988091,
+        "id": 10
     },
     {
         "@type": "ChangeManagement",
@@ -81,7 +115,7 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1671461346.179837,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1674118533.472442,
+        "modifyDate": 1674200085.121166,
         "id": 5
     },
     {

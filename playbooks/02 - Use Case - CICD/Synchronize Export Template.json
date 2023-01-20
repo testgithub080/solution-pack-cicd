@@ -63,7 +63,7 @@
             "name": "Populate Export Template Details",
             "description": null,
             "arguments": {
-                "type": "DecisionBased",
+                "type": "InputBased",
                 "input": {
                     "schema": {
                         "title": "Export Template Details",
@@ -71,13 +71,13 @@
                         "inputVariables": []
                     }
                 },
-                "record": "",
+                "record": "{{vars.input.records[0]['@id']}}",
                 "agent_id": null,
-                "resources": "change_requests",
+                "resources": "change_management",
                 "owner_detail": {
                     "isAssigned": false
                 },
-                "isRecordLinked": false,
+                "isRecordLinked": true,
                 "step_variables": [],
                 "response_mapping": {
                     "options": [
@@ -92,7 +92,10 @@
                 "email_notification": {
                     "enabled": false,
                     "smtpParameters": []
-                }
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
             },
             "status": null,
             "top": "435",
@@ -114,9 +117,9 @@
                         {
                             "type": "primitive",
                             "field": "name",
-                            "value": "{{[\"Source Control - Prod Content\", \"Source Control - Prod Settings\", \"Source Control - Dev Settings\"]}}",
-                            "operator": "in",
-                            "_operator": "in"
+                            "value": "%Source Control%",
+                            "operator": "like",
+                            "_operator": "like"
                         }
                     ]
                 },
