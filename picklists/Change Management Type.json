@@ -2,7 +2,7 @@
     "@context": "\/api\/3\/contexts\/PicklistName",
     "@id": "\/api\/3\/picklist_names\/a0d7ba26-61cb-468c-a76f-2fa20cfa61ea",
     "@type": "PicklistName",
-    "name": "Task Type",
+    "name": "Change Management Type",
     "system": false,
     "picklists": [
         {

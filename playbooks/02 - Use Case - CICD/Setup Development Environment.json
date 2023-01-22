@@ -13,7 +13,7 @@
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/5d93a717-8c8e-44b1-97cf-2b4a86e2cab8",
+    "triggerStep": "\/api\/3\/workflow_steps\/92916302-9948-4fa8-b74a-f2f61776e455",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -31,7 +31,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1245",
+            "top": "1380",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -58,29 +58,11 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1380",
+            "top": "1515",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "4c47d46e-891c-4d93-a9fa-cfcaa8b94f8d"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Start",
-            "description": null,
-            "arguments": {
-                "step_variables": {
-                    "input": {
-                        "params": []
-                    }
-                }
-            },
-            "status": null,
-            "top": "30",
-            "left": "218",
-            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "group": null,
-            "uuid": "5d93a717-8c8e-44b1-97cf-2b4a86e2cab8"
         },
         {
             "@type": "WorkflowStep",
@@ -104,7 +86,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1920",
+            "top": "2055",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -127,7 +109,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1650",
+            "top": "1785",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -142,7 +124,7 @@
                 "content_repo": "{{vars.cicd_config.content.split('\/')[-1] or vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}"
             },
             "status": null,
-            "top": "840",
+            "top": "975",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -165,7 +147,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2055",
+            "top": "2190",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -188,30 +170,11 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1515",
+            "top": "1650",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "cb682b7c-fbc6-4e20-a6f9-72cf299cb4fa"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "No Operation",
-            "description": null,
-            "arguments": {
-                "params": [],
-                "version": "3.2.1",
-                "connector": "cyops_utilities",
-                "operation": "no_op",
-                "operationTitle": "Utils: No Operation",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "2325",
-            "left": "218",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "d8c9c829-e766-4d6c-8f34-646ddb4de6ef"
         },
         {
             "@type": "WorkflowStep",
@@ -230,7 +193,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1785",
+            "top": "1920",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -262,7 +225,7 @@
                         {
                             "option": "OK",
                             "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/d8c9c829-e766-4d6c-8f34-646ddb4de6ef"
+                            "step_iri": "\/api\/3\/workflow_steps\/599f239e-2f59-4dda-847d-79a661c6524c"
                         }
                     ],
                     "duplicateOption": false
@@ -276,7 +239,7 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "2190",
+            "top": "2325",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
@@ -301,7 +264,7 @@
                 }
             },
             "status": null,
-            "top": "165",
+            "top": "300",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -328,7 +291,7 @@
                 ]
             },
             "status": null,
-            "top": "300",
+            "top": "435",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
@@ -439,7 +402,7 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "440",
+            "top": "560",
             "left": "580",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
@@ -457,7 +420,7 @@
                 "prod_settings_url": "https:\/\/github.com\/{{vars.steps.Get_Repositories_Detail.input.orgName}}\/{{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}"
             },
             "status": null,
-            "top": "560",
+            "top": "700",
             "left": "580",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -479,7 +442,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "700",
+            "top": "820",
             "left": "580",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -497,8 +460,8 @@
                 "workflowReference": "\/api\/3\/workflows\/8b597275-ec12-4e3e-810f-008a3c9d662a"
             },
             "status": null,
-            "top": "980",
-            "left": "220",
+            "top": "1110",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "4f33eced-9795-4aab-9582-c72c1387d40e"
@@ -515,11 +478,119 @@
                 "workflowReference": "\/api\/3\/workflows\/2e8df3ef-5db7-4f45-b15f-9c1279acee6b"
             },
             "status": null,
-            "top": "1110",
+            "top": "1245",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "5eb5709c-56ef-4a6a-b99b-2a4a3513cbbb"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "78b2aa9f-dfa8-4aba-a092-8515025cefae",
+                "resources": [
+                    "change_management"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "displayConditions": {
+                    "change_management": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "type": "object",
+                                "field": "type",
+                                "value": "\/api\/3\/picklists\/b43deb65-1edc-482b-b20e-1fed06bbc01c",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/b43deb65-1edc-482b-b20e-1fed06bbc01c",
+                                    "itemValue": "Setup"
+                                },
+                                "operator": "eq"
+                            },
+                            {
+                                "type": "primitive",
+                                "field": "title",
+                                "value": "Setup the Development Environment",
+                                "operator": "eq",
+                                "_operator": "eq"
+                            },
+                            {
+                                "type": "object",
+                                "field": "status",
+                                "value": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293",
+                                    "display": "Pending",
+                                    "itemValue": "Pending"
+                                },
+                                "operator": "eq"
+                            }
+                        ]
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": false
+            },
+            "status": null,
+            "top": "30",
+            "left": "218",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
+            "uuid": "92916302-9948-4fa8-b74a-f2f61776e455"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Status In Progress",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "status": "\/api\/3\/picklists\/7f0263bf-29ab-4453-aefe-41d20f0fe9c3"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "218",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "b18cb44c-0425-4a09-9438-7f0f455a4c24"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Status as Complete",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "status": "\/api\/3\/picklists\/eb7e156f-f599-4cf6-a12b-5484c1bc414d"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "2460",
+            "left": "218",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "599f239e-2f59-4dda-847d-79a661c6524c"
         }
     ],
     "routes": [
@@ -588,30 +659,12 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Populate Pull Change Request Details -> No Operation",
-            "targetStep": "\/api\/3\/workflow_steps\/d8c9c829-e766-4d6c-8f34-646ddb4de6ef",
-            "sourceStep": "\/api\/3\/workflow_steps\/f7b1721f-5c87-4cb7-8c8c-9e8e95f394f2",
-            "label": "OK",
-            "isExecuted": false,
-            "uuid": "fcc43050-a8d2-4079-a15e-c01974e59bda"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Get Repositories Detail -> Copy of Repository Details",
             "targetStep": "\/api\/3\/workflow_steps\/9479bce1-f3a3-48ff-ad19-318985261934",
             "sourceStep": "\/api\/3\/workflow_steps\/e408ca41-9329-4e8b-a251-df1bb893ba4c",
             "label": "Setup",
             "isExecuted": false,
             "uuid": "05f70e03-eb85-4903-aaf6-b835ab4bd0e0"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Copy of Get Source Control Details",
-            "targetStep": "\/api\/3\/workflow_steps\/bd7e5890-acd9-4a82-8dbc-4135e2f8d5c6",
-            "sourceStep": "\/api\/3\/workflow_steps\/5d93a717-8c8e-44b1-97cf-2b4a86e2cab8",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "e51f0de8-9639-43ba-bc98-2c6c633d8167"
         },
         {
             "@type": "WorkflowRoute",
@@ -684,6 +737,33 @@
             "label": "Yes",
             "isExecuted": false,
             "uuid": "250ca52f-5c42-44ff-b01d-ea68b51f6f4d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Status In Progress -> Get Source Control Details",
+            "targetStep": "\/api\/3\/workflow_steps\/bd7e5890-acd9-4a82-8dbc-4135e2f8d5c6",
+            "sourceStep": "\/api\/3\/workflow_steps\/b18cb44c-0425-4a09-9438-7f0f455a4c24",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "572cabb3-eca3-44a3-a768-ecefe025385d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Populate Pull Change Request Details -> Update Status as Complete",
+            "targetStep": "\/api\/3\/workflow_steps\/599f239e-2f59-4dda-847d-79a661c6524c",
+            "sourceStep": "\/api\/3\/workflow_steps\/f7b1721f-5c87-4cb7-8c8c-9e8e95f394f2",
+            "label": "OK",
+            "isExecuted": false,
+            "uuid": "999a3f04-42b9-47f1-81f4-a394f2c9919c"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Update Status In Progress",
+            "targetStep": "\/api\/3\/workflow_steps\/b18cb44c-0425-4a09-9438-7f0f455a4c24",
+            "sourceStep": "\/api\/3\/workflow_steps\/92916302-9948-4fa8-b74a-f2f61776e455",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "ad08d7ad-9f51-4bca-b6c5-369cd60b32bd"
         }
     ],
     "groups": [],
