@@ -128,19 +128,34 @@
         ],
         "actionButtons": [
             {
+                "id": "\/api\/3\/workflows\/07e0f261-4211-447c-9e3b-2171a1dfe8f6",
+                "name": "Reset Tasks",
+                "icon": "icon icon-restore"
+            },
+            {
                 "id": "\/api\/3\/workflows\/8e709eb0-7c8b-434d-928f-e26eda75f2b1",
-                "name": "01 - Execute Change Management Task - Setup",
-                "icon": "icon icon-execute"
+                "name": "Setup Production Environment",
+                "icon": "icon icon-FortiSOAR_setup_guide"
             },
             {
-                "id": "\/api\/3\/workflows\/53bbab53-6fb1-4de8-b9ad-626604d2008c",
-                "name": "02 - Execute Change Management Task - Production",
-                "icon": "icon icon-execute"
+                "id": "\/api\/3\/workflows\/31191224-502c-4b84-bb9b-cd84f005bd6a",
+                "name": "Setup Development Environment",
+                "icon": "icon icon-FortiSOAR_setup_guide"
             },
             {
-                "id": "\/api\/3\/workflows\/e9e08e05-b997-4241-9104-440c9ad57380",
-                "name": "03 - Execute Change Management Task - Development",
-                "icon": "icon icon-execute"
+                "id": "\/api\/3\/workflows\/20a37bc8-6f60-469e-95f6-6e5d25e839d0",
+                "name": "Pull Latest Content from GitHub",
+                "icon": "icon icon-publish"
+            },
+            {
+                "id": "\/api\/3\/workflows\/69179225-e990-4112-b47b-ef9f4c877411",
+                "name": "Save FortiSOAR Settings",
+                "icon": "icon icon-dashboard-settings"
+            },
+            {
+                "id": "\/api\/3\/workflows\/2e8df3ef-5db7-4f45-b15f-9c1279acee6b",
+                "name": "Add GitHub Username",
+                "icon": "fa fa-sitemap"
             }
         ],
         "wid": "2cb77b51-1f1e-4729-85c6-d03a61da3323",

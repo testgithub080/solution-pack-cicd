@@ -2,7 +2,7 @@
     {
         "@type": "ChangeManagement",
         "title": "Apply Latest Content",
-        "description": "<p class=\"mp-tile-description muted-80\">Pull the latest content from GitHub and apply them to the development environment<\/p>",
+        "description": "<p class=\"mp-tile-description muted-80\">Pull the latest content from GitHub and apply them to the production environment<\/p>",
         "results": "",
         "sequence": 1,
         "recordIcon": "<p><img src=\"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM\/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATCSURBVHgBxVhNb9w2EJ2hPta7cWEjlxSFc\/GpxwIt2qTprb+q5\/6mnnrrJSf\/gx56MAoUCFAHGzshJXL6ZobaldOLi8oR1zJFkRKf3psZDsWff\/NiICLGQYI\/9vpQuPbN+6fxxKhEvLYBQnheQwuWFkcSTM32m89+BCgVM398t4Ij7wXGadyOlgQIcClUKAW\/QN4qUioitrm9D9dx6JhjvyHFiID\/2rswQEyflD+wISys8zhcFZNd8DLrsysFdwSe0FotQZ8SaOnS4uEfiAsfrE3cAh2bmGyh6g+cck90s8Eqr74E\/9sK\/j9ApkFm9jcZ\/txR5NAI5EACH12JyUfzbNySAIWivbnOYnK54UN6PszHFQ36gnM5ewepDNK991wMIOhIZkQmqRqZO4o5BbszBPE2zXiboBzGhuXtzwCCHHUSccuCfKTMGRkCZwCPgY5haJLzWKY+eQx9ySSWqG8vpZisNCmLNikr0\/UKZ9JQnXo+xsph3IIAMVHUR2OiIw1qUO6SGl10dn7x088\/PuSBf\/z6Cy1ZIDElU9aLTOfuCWVaYRZn5j8AlETV0LWEe8F2wloex8AeUNyLS40QdaUoNa4ZLgs9qxEIBoVSOYQMW4M9MVA35urVs5D4yQECSnRRzSmxrPEUluv6dozTqwCE40aEOk1XxGpHZjr79br+rgUQ6iUzNdZ4NiWixQNezUXLqgwSJ8cyJ0pPqmeDwmDJwVoARZLlL2p8BV4RVFnFlcVWGIBbjz8AhJlFqkudxhNNOqdEPhShNcEZQMSRZCvGYf04Jqw1Gq5azIvnNlaqzRV1lGLOw1NsXAUg5k\/z+Tk0U2ZjbamZ6FoFDHJq3Gl9EwRA2fWVprGtHj1OKvpAgBAwSiY3NhwZ5w08J5ea16xshK3kkqipHwOys2VbIlwy4NqlqNcCWLhNrRqhbS6VvsaAKdA8xZmwnsiQOCRV01fhYF4zcrbPMEy8dhjUOFgijaCsbVVKGXJmO189AnrhL77+7gc5pvwA2gHvaMx15F9ExpoPanv4qLZ7287vHQd69u33v9GCBTYY0j2yEAMbrh+QyDctDXgeR83IiDaKg9x3rB+mMBYPpO0jJBVtyTkKAPRUWQA3A8B0bcvDOErUPlhA5o5Y26JjMYp9TMrZ2cV55JGWLm3mMfW5p9whPA+Qsm\/gtB38OVHoN8TDYMy1fVG3JumFLfpgbEGwDL0vORm\/dmgWd6p2xycpYrXbjL1l+HFQGTNFE\/FOg6JPOuj2BALfRtpsNhiHDxIASwfSNo\/iV+1tm+NJ2fFtigZkuwUbpXAXAj59uE19iEFONrq1AvptUK5o3GXZ1odI2eALCcQvy2\/\/2jPMehdH6U41QEPw95AJ5\/TuHdHpKe1wLZ82iN11tcHl22YvT\/KWx9P6lPcj7bbEd123vMR\/xxhtPxwbOcuf8Y2d7+UsPOW3qLGrp7O4ZTonervfI+POjH0CiISrqLfc3BA9PSdBtT2nxUu7a5oU+l5KSjxuo+xQa3uEFT4xBBpW8PkGf1u1MiyF2p\/Snv\/8\/S+5eP6cnu33fPWmF3pD9NWXtGgJry4v4\/XFRXp1deV1bb+cHdevX1utfdaPttZ0fW3XL+38ItHLi0QLl38ATzGWrEbCwA8AAAAASUVORK5CYII=\"><\/p>",
@@ -13,7 +13,7 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1671453569.56218,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1674118513.268885,
+        "modifyDate": 1674217820.543993,
         "id": 1
     },
     {
@@ -22,7 +22,7 @@
         "description": "<p>Map logged in FortiSOAR User with specified GitHub username.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<\/p>",
         "results": "",
         "sequence": 3,
-        "recordIcon": "<p><img src=\"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM\/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOXSURBVHgB7ZhPaBRJFMa\/VzWTxEAgMCdlD3PK3hYlENDLRnZdFJIlYf+wOW2GYQ1LDhFvgpB48ipKBEdDJhcHD5LBKIqgxouCEMnVnBoU5xSJxAwm013PVz0zMVHidHWieJgfDFRPv+r6+nXVq3qPsIXjVwu9UPSvNHvBSBOwwsAiiGfuZYfy2EMOjZw6LM89wkw\/yGW7\/JZBWGrR++aeTZ5frtvRpripG+NgntjpgWK4yJoH72WGPOyCntEzqUpQHhZhXTvZKAS3n1+5NFcbt7G4LXhtuvVQMTO4ghh0n5xoD\/TKWRikGtnWRarj04V0RHGW9Hv\/\/SnEpEJvf4kizmKg+3pGT3cpGBqHA0Q0NjA924kYKMWHXez9wBxRsAvCAVk0nRuVShqO\/PT\/2I9RvVfHMMSDslrhiNHBQTiifNoHd1LKhhK4YuDh21BWYZxzpC3R5txHU3kJjhDxK2WDsFsv5OOEmYVcriwLzEkkB\/xU1XaI+Sgdwumg+BxiktQbeVmV5Si2RHi1ePXiExVeac7I6N4XO4RzlTK72UmeTU4uG42ZRiJlrOWkrlyutavY2BYGYbsXf76y5+1L7Habq9MzOpraCJL9Ms62uGiFB6QeJMy7h3ZKbBO4FXtoIFJhMG7VLfNxt7YoQtfRmlJQqRa1\/tJfX39TF9akSZMmTZo0+T747LAwMPtIDgmSFBl9EMp4QMIrDh718BX4fWqqw5j2btvmpF69M\/z3AnYSWBXmj0kaKnkvf5JWUh5Kn9srocemCgcSkHSX0b3tBnNJjntzSawVbmWzq5sCRZx4LHgkFukvPHcFTJnin78WsQvC+g\/RuAzcsaORCE0qjNzKDr2unqgDf7aBOEun5C\/T4cvExHquoTgL0f4KqgUFNXDz\/rD4MWqe2wn2pxETbXCyobg68vlPXLveL1ldWG6LDqO3Ol\/dsN6TrK7PqROpPvuJnasECIJeONJi9H44wrXSR6xCkCuG+AAcsdNBPEgeXNHsnERRkl\/AFeKSzEHz2KkTWAL3sXk4kvDXSqyw6tKHDBakkClB2AnHUkkNG3gpQMGlT0Ihp4p\/iTcMIpYz2IMqX0BMkmqtIBOrFMmYkNsM1CJyoqFIkuqCCo4WB+Mn8daLPnhEqlZLjcTdzf6Tqza3MDB7N41AT8i\/P8utNOz2RlKeY54p\/vFbHnvIiWs3+mUR9DGhS+Zah0STEoEXCHruzn8fDw0fALKbXNy\/y\/CjAAAAAElFTkSuQmCC\"><\/p>",
+        "recordIcon": "<p><img src=\"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAoCAYAAABjPNNTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAR4SURBVHgBzVjPThtnEJ\/51ojQSJWDkgZO3UhGNaUyyy23mFtvpU9Q8wShx5wwT0DyBDVPUHLqMc6xp3yoKrg1KD76gKKNFIkk2DuZWa\/B++\/z+q\/ykyzvemY\/z87\/GYQxUSw6dseCHSTaJAIHAfIEYPfpfN\/i+xYAaQL1unsF9VZLuzAGcBRm23byubtQAY9+4dsyjI5jAjy6ONPHozyUWcjCj6V9Zt8DgjxMCNGyl8PfL\/7JJuxQIdc2HIc8+oMvHZgyEKFmeXjQaOiWkc9EXFsvPWXzPIcZQrRqEW6bBFVphEKxtD9rAQUSbB2kN2KxNJ5ETYqAbIsqzBcuKtxu\/qt1lBATch4mNsDNEW5FTR8S0s99SG8THq6zZl\/z9yYQ7cAkQHCJ8IiDhnMmPU3IFrpzhduDOTU3SO0ivUo6lzX74uK0ly78FwHOlUj7SQIgoUtAdpzEiZ3woHmma\/3f1tYdm3l\/i7A6uW9gj7+rA88GD2w4lSDVxP9b4VbUV3xhFVS42ugF\/iRFpwSD54GNEhxXUItWnMK6w8LQYdJ\/stkf9c+81aSXoJkAVhdi5Sw4oAoGBC+m0+io2PReMq2rfHl25dpPQb4WB+ruvMACplYvtlBFyrBcqx5zzC9CuMbpVxsBIm2a6IFvghLfAkOzIA4vPgczAHl4ZGagJ\/KlutaQboaG19Zxcd7QdQSjoGUxuepLmwTRYrNxmzJmAfa9moluLUFZMZOdyoFYhxmjp01pjlNE4IBWaIhqfoETmAPIlKYQNpUp9UgegzmA\/fK9ia7gKwCXxu9NdKOQRn+dI9QQpzW+4dRgKBYewXtFmO53NGlblgGFolM2DXeiRMWtlSmC84Wf+JAZApW5JIMFWpnC30c3vTuaFFKSpZEw8XQ+sJCdRXPGZ5QLG6VDmDKk3KU12TdA0NKDWm67\/XH5wUoZTK0a4ePlhw\/z395d\/dt12x9hQvhNzQL9JZcmPnbFZ+8u2zpIQfgyQtec6g9Cke\/h3sKSP3pWgs5pZIh\/F9ZLhx1FbyDDssGS2QqC8cF2eMfzmQew2yjT3L7\/Kt0PR181cZ7p+XKLR4uDpDG0j7WiUwFFT9j3d0ZZ0SBirXmqdwNheY4Uky+vfmKRfw54Vjg17Xx3f\/Xl\/w19fO\/B6j1+m8eRc1b4tzvN05Nnpj9bvr8igsmIfAdGgCjp8rLtp8ebinP+n34ujtq\/DzYLf8p1dxGqSUnfi7tJDNLlDJ6bCRjuYVWYhrsQTu6O+FFLa\/d6EbfkYeaSGVzLmMsde6YlwpBcHOZlZZyf6mrktzAKP\/CYqUJjZmxYHxU8X9cS5utEAZOWV7EGwzc7icZu4OSW6NW4EZ0ZYkHVC9Y4KQUpUV3nJrQlF1wp8sMiu4+hmpTNByYvqwS5tOfY4atsejdi+jILdwPOAC9gQvgm9sbcTwrE9LLuMLVzk0CC7\/oqvkWLYmhnLgc0z04ecYTuTk9YzhAcILzg38sSkJnHBxlt+8JKChI\/ynWyCc3rFD0o3PmZ3vbzZ0Z8AXAc9qOoOg5PAAAAAElFTkSuQmCC\" \/><\/p>",
         "status": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293",
         "type": "\/api\/3\/picklists\/409b289f-33f5-423f-9174-24bc8628cc4a",
         "environment": "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b",
@@ -30,7 +30,7 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1674140292.351013,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1674151952.467659,
+        "modifyDate": 1674377507.111295,
         "id": 7
     },
     {
@@ -47,7 +47,7 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1671461578.863882,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1674109360.609345,
+        "modifyDate": 1674204950.154883,
         "id": 2
     },
     {
@@ -64,7 +64,7 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1670934469.007706,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1674200046.849216,
+        "modifyDate": 1674216864.480624,
         "id": 3
     },
     {
@@ -80,8 +80,8 @@
         "uuid": "d0563004-2a18-4e3d-be17-e8a2e721202d",
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1670928795.166803,
-        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1674200159.968199,
+        "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
+        "modifyDate": 1674215972.169438,
         "id": 4
     },
     {
@@ -90,7 +90,7 @@
         "description": "<p>Map logged in FortiSOAR User with specified GitHub username.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<\/p>",
         "results": "",
         "sequence": 3,
-        "recordIcon": "<p><img src=\"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM\/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOXSURBVHgB7ZhPaBRJFMa\/VzWTxEAgMCdlD3PK3hYlENDLRnZdFJIlYf+wOW2GYQ1LDhFvgpB48ipKBEdDJhcHD5LBKIqgxouCEMnVnBoU5xSJxAwm013PVz0zMVHidHWieJgfDFRPv+r6+nXVq3qPsIXjVwu9UPSvNHvBSBOwwsAiiGfuZYfy2EMOjZw6LM89wkw\/yGW7\/JZBWGrR++aeTZ5frtvRpripG+NgntjpgWK4yJoH72WGPOyCntEzqUpQHhZhXTvZKAS3n1+5NFcbt7G4LXhtuvVQMTO4ghh0n5xoD\/TKWRikGtnWRarj04V0RHGW9Hv\/\/SnEpEJvf4kizmKg+3pGT3cpGBqHA0Q0NjA924kYKMWHXez9wBxRsAvCAVk0nRuVShqO\/PT\/2I9RvVfHMMSDslrhiNHBQTiifNoHd1LKhhK4YuDh21BWYZxzpC3R5txHU3kJjhDxK2WDsFsv5OOEmYVcriwLzEkkB\/xU1XaI+Sgdwumg+BxiktQbeVmV5Si2RHi1ePXiExVeac7I6N4XO4RzlTK72UmeTU4uG42ZRiJlrOWkrlyutavY2BYGYbsXf76y5+1L7Habq9MzOpraCJL9Ms62uGiFB6QeJMy7h3ZKbBO4FXtoIFJhMG7VLfNxt7YoQtfRmlJQqRa1\/tJfX39TF9akSZMmTZo0+T747LAwMPtIDgmSFBl9EMp4QMIrDh718BX4fWqqw5j2btvmpF69M\/z3AnYSWBXmj0kaKnkvf5JWUh5Kn9srocemCgcSkHSX0b3tBnNJjntzSawVbmWzq5sCRZx4LHgkFukvPHcFTJnin78WsQvC+g\/RuAzcsaORCE0qjNzKDr2unqgDf7aBOEun5C\/T4cvExHquoTgL0f4KqgUFNXDz\/rD4MWqe2wn2pxETbXCyobg68vlPXLveL1ldWG6LDqO3Ol\/dsN6TrK7PqROpPvuJnasECIJeONJi9H44wrXSR6xCkCuG+AAcsdNBPEgeXNHsnERRkl\/AFeKSzEHz2KkTWAL3sXk4kvDXSqyw6tKHDBakkClB2AnHUkkNG3gpQMGlT0Ihp4p\/iTcMIpYz2IMqX0BMkmqtIBOrFMmYkNsM1CJyoqFIkuqCCo4WB+Mn8daLPnhEqlZLjcTdzf6Tqza3MDB7N41AT8i\/P8utNOz2RlKeY54p\/vFbHnvIiWs3+mUR9DGhS+Zah0STEoEXCHruzn8fDw0fALKbXNy\/y\/CjAAAAAElFTkSuQmCC\"><\/p>",
+        "recordIcon": "<p><img src=\"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAoCAYAAABjPNNTAAAAAXNSR0IArs4c6QAABBJJREFUWEfNmF9u2lgUxr8P0FRoXugOiBSQQjITvIKGFbRdQckKkqwgYQXDrKB0Be2sIGQFdjQNjHAlsoPyUvUh4DO6DibGvr7XQBzVj8k95\/44f+85xJbfeOzWKwu8E\/KYRFuAGoF6pE6AewL3AD0iuClXMdzbc2bbXMdNhKZTtzb\/gS5KfAvgZBPZ5dkvhHzabzlfNpHNDenf3V4Ccg6itskFurPKyqW5XOz\/mQ\/WCjn56rZZ4kcA7V3hkvIiGCxK0js4cO5Nuo2Qk9HtGSH954aL61NWXVA6JtBMSH98ewmRqyIBY7pnEkineeR4uvu0kC8MGHFlgqYgX8LFBu\/M5hQn6fo1yLD2CacaJUOI3AA4BvlupxAQzEj5JIIZwDNNtfAqVenEa+oa5GTkTeMFOYIh5H1U28IfAnQhvEzBCmZCmRFcFfV4cQel1zxwBtHfJiN3QPBDWo\/0GofOKh9WkJOvbndZatIygTjJoA5hA3RJeA+Ep8tOVb5KJdQFqFeqGCQ7jj9yzwH+pfPMnLIX6XyCzLCiUhAX2MnVCWGjYQSD5mH7VImEkKbDRUKaLKnurVTltbJ+COmPvGtTL47H5LNa8s77SKKbqVMeY5OGjA5l83SEbcH9sXsCoTJQ1jdstNod2lwtlNN4Rm4LlCWXmeFLAeVyTgwmV1Zsttp7zw0W12ezpgo1muJRRAbNQyfMsCK\/rPr8eKdc0Hag0XIKfQUtE\/czAG0nU4ZSlpQsK0kgp82jpw5RlDVNcfnLQNpCzmhJLOtUURaM9FohTTH5Uonj33nfs2YnQv6mf+e5YOb8Mmu02q+LtKStBC2zO+O5FJEtpNP4wxkWBWqq0+GdC+nQ1uQBhK2pCEhbS1Z3hh1n6rq1+St+N0IE7DeOji+eE1QtGh5+0tU9slf3CLzGYdvJ9QoKhQL2K78HvW1XJfEfuLSgKuDGWT56NywhUy9kDyL\/CPkhud9BIL1FGUPbQK+zuv+ve4Jy6S1Eunk2IdFjO4QMXf4bpzFBb055r0D8sXulnWcANSPfSyC9rHlZ6Z6M3S4CvqFqexusaOLlbzU++P+55wie5o34O\/LbyO2LmuwSX55Xkr3E6CNdO+OEjT5dM71Gq+0oSz+8Sge5KrT7LefcllCWWpwWT3S69ZFWLafI6zW3LOvkY0hAbdXeQFAjcfNA9PPEpu1hG6fUeSe1wUi6HUBqWLdZLvn\/vJBZo0rGLiiVLKtE2hQwTJ6sJcC6CWci+qWVYaumzeqhiFoxAyRqtsyOGKyQavORARjeZbKMxvXrx3P2deOjdpf9ZESjukNZeK1tXztCqupQruLK1sWs6+iVy1RRFl6uwW4NKUMQvcZBvtdVbsg4LAOcAazPS+ldorYdrhrFZnCRrv8BLfF1dAH27o0AAAAASUVORK5CYII=\" \/><\/p>",
         "status": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293",
         "type": "\/api\/3\/picklists\/dc57442c-3d52-43a0-aa19-ed2898e30ff7",
         "environment": "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651",
@@ -98,7 +98,7 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1674151281.200185,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1674152664.988091,
+        "modifyDate": 1674377628.896071,
         "id": 10
     },
     {
@@ -114,8 +114,8 @@
         "uuid": "d87ef9e7-efc2-4aa7-9045-c815cf5714c1",
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1671461346.179837,
-        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1674200085.121166,
+        "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
+        "modifyDate": 1674215266.415916,
         "id": 5
     },
     {
@@ -132,7 +132,7 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1671450064.070924,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1674118474.380163,
+        "modifyDate": 1674213945.558328,
         "id": 6
     }
 ]

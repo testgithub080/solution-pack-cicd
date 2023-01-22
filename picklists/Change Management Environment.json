@@ -2,7 +2,7 @@
     "@context": "\/api\/3\/contexts\/PicklistName",
     "@id": "\/api\/3\/picklist_names\/6b216e0d-c167-4cfd-a772-97fe1be0f52d",
     "@type": "PicklistName",
-    "name": "Environment",
+    "name": "Change Management Environment",
     "system": false,
     "picklists": [
         {
@@ -24,16 +24,6 @@
             "icon": null,
             "listName": "\/api\/3\/picklist_names\/6b216e0d-c167-4cfd-a772-97fe1be0f52d",
             "uuid": "48b9f120-34bc-4884-b886-85e82321684b"
-        },
-        {
-            "@id": "\/api\/3\/picklists\/262e570e-efe0-4eb0-aee9-e6e54b4ca3ef",
-            "@type": "Picklist",
-            "itemValue": "All",
-            "orderIndex": 2,
-            "color": "#d5f212",
-            "icon": null,
-            "listName": "\/api\/3\/picklist_names\/6b216e0d-c167-4cfd-a772-97fe1be0f52d",
-            "uuid": "262e570e-efe0-4eb0-aee9-e6e54b4ca3ef"
         }
     ],
     "uuid": "6b216e0d-c167-4cfd-a772-97fe1be0f52d"

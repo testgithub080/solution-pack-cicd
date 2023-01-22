@@ -1,6 +1,6 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/7282e80f-f7f5-4ad2-a49d-ee303b128a33",
+    "@id": "\/api\/3\/staging_model_metadatas\/4d977f27-2881-4a3a-948a-86b8847188db",
     "@type": "StagingModelMetadata",
     "type": "change_management",
     "parentType": null,
@@ -26,12 +26,54 @@
     "writable": true,
     "attributes": [
         {
+            "@id": "\/api\/3\/attribute_metadatas\/b4ba06b1-ec9a-40fa-a548-a23983271a02",
+            "@type": "AttributeMetadata",
+            "type": "comments",
+            "name": "comments",
+            "length": null,
+            "orderIndex": 1,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "comments"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "changeManagement",
+            "ownsRelationship": true,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": [],
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "uuid": "b4ba06b1-ec9a-40fa-a548-a23983271a02",
+            "displayName": "{{ comments }}",
+            "descriptions": {
+                "singular": "Comments"
+            }
+        },
+        {
             "@id": "\/api\/3\/attribute_metadatas\/377128e6-4a1f-4b4a-af32-5af4f22d0747",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "title",
             "length": null,
-            "orderIndex": 1,
+            "orderIndex": 2,
             "formType": "text",
             "dataSource": null,
             "searchable": false,
@@ -77,7 +119,7 @@
             "type": "string",
             "name": "description",
             "length": null,
-            "orderIndex": 2,
+            "orderIndex": 3,
             "formType": "html",
             "dataSource": null,
             "searchable": true,
@@ -123,7 +165,7 @@
             "type": "string",
             "name": "results",
             "length": null,
-            "orderIndex": 3,
+            "orderIndex": 4,
             "formType": "html",
             "dataSource": null,
             "searchable": true,
@@ -184,7 +226,7 @@
             "type": "picklists",
             "name": "status",
             "length": null,
-            "orderIndex": 4,
+            "orderIndex": 5,
             "formType": "picklist",
             "dataSource": {
                 "model": "picklists",
@@ -194,7 +236,7 @@
                         {
                             "field": "listName__name",
                             "operator": "eq",
-                            "value": "Task Status"
+                            "value": "Change Management Status"
                         }
                     ],
                     "sort": [
@@ -282,7 +324,25 @@
             "dataSourceFilters": null,
             "defaultValue": null,
             "tooltip": null,
-            "visibility": true,
+            "visibility": [
+                {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "type",
+                            "operator": "eq",
+                            "value": "\/api\/3\/picklists\/b43deb65-1edc-482b-b20e-1fed06bbc01c",
+                            "_value": {
+                                "itemValue": "Setup",
+                                "@id": "\/api\/3\/picklists\/b43deb65-1edc-482b-b20e-1fed06bbc01c"
+                            },
+                            "type": "object"
+                        }
+                    ]
+                }
+            ],
             "htmlEscape": false,
             "orphanRemoval": null,
             "readable": true,
@@ -302,7 +362,7 @@
             "type": "picklists",
             "name": "type",
             "length": null,
-            "orderIndex": 5,
+            "orderIndex": 6,
             "formType": "picklist",
             "dataSource": {
                 "model": "picklists",
@@ -312,7 +372,7 @@
                         {
                             "field": "listName__name",
                             "operator": "eq",
-                            "value": "Task Type"
+                            "value": "Change Management Type"
                         }
                     ],
                     "sort": [
@@ -324,14 +384,24 @@
                 },
                 "displayConditions": {
                     "b43deb65-1edc-482b-b20e-1fed06bbc01c": {
-                        "visibility": "visible",
-                        "conditions": null
+                        "visibility": "visible_condition",
+                        "conditions": {
+                            "sort": [],
+                            "limit": 30,
+                            "logic": "AND",
+                            "filters": []
+                        }
                     },
                     "409b289f-33f5-423f-9174-24bc8628cc4a": {
                         "visibility": "visible",
                         "conditions": null
+                    },
+                    "dc57442c-3d52-43a0-aa19-ed2898e30ff7": {
+                        "visibility": "visible",
+                        "conditions": null
                     }
-                }
+                },
+                "useDisplayConditions": false
             },
             "searchable": false,
             "peerReplicable": true,
@@ -376,7 +446,7 @@
             "type": "picklists",
             "name": "environment",
             "length": null,
-            "orderIndex": 6,
+            "orderIndex": 7,
             "formType": "picklist",
             "dataSource": {
                 "model": "picklists",
@@ -386,7 +456,7 @@
                         {
                             "field": "listName__name",
                             "operator": "eq",
-                            "value": "Environment"
+                            "value": "Change Management Environment"
                         }
                     ],
                     "sort": [
@@ -454,7 +524,7 @@
             "type": "integer",
             "name": "sequence",
             "length": null,
-            "orderIndex": 7,
+            "orderIndex": 8,
             "formType": "integer",
             "dataSource": null,
             "searchable": true,
@@ -499,7 +569,7 @@
             "type": "string",
             "name": "recordIcon",
             "length": null,
-            "orderIndex": 8,
+            "orderIndex": 9,
             "formType": "html",
             "dataSource": null,
             "searchable": true,
@@ -537,48 +607,6 @@
             "descriptions": {
                 "singular": "Record Icon"
             }
-        },
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/8f94815d-8fef-41c3-a5f1-90307b85f34d",
-            "@type": "AttributeMetadata",
-            "type": "comments",
-            "name": "comments",
-            "length": null,
-            "orderIndex": 9,
-            "formType": "manyToMany",
-            "dataSource": {
-                "model": "comments"
-            },
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": true,
-            "inversedField": "changeManagement",
-            "ownsRelationship": true,
-            "validation": {
-                "required": false,
-                "minlength": 0,
-                "maxlength": 10485761
-            },
-            "bulkAction": [],
-            "dataSourceFilters": null,
-            "defaultValue": null,
-            "tooltip": null,
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": null,
-            "readable": true,
-            "writeable": true,
-            "identifier": null,
-            "unique": false,
-            "recommend": false,
-            "uuid": "8f94815d-8fef-41c3-a5f1-90307b85f34d",
-            "displayName": "{{ comments }}",
-            "descriptions": {
-                "singular": "Comments"
-            }
         }
     ],
     "system": false,
@@ -592,7 +620,7 @@
         "delete_primary_data_after": 60
     },
     "archivalFilters": [],
-    "uuid": "7282e80f-f7f5-4ad2-a49d-ee303b128a33",
+    "uuid": "4d977f27-2881-4a3a-948a-86b8847188db",
     "displayName": "{{ title }}",
     "descriptions": {
         "singular": "Change Management",
