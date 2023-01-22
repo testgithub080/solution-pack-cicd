@@ -128,11 +128,6 @@
         ],
         "actionButtons": [
             {
-                "id": "\/api\/3\/workflows\/07e0f261-4211-447c-9e3b-2171a1dfe8f6",
-                "name": "Reset Tasks",
-                "icon": "icon icon-restore"
-            },
-            {
                 "id": "\/api\/3\/workflows\/8e709eb0-7c8b-434d-928f-e26eda75f2b1",
                 "name": "Setup Production Environment",
                 "icon": "icon icon-FortiSOAR_setup_guide"
