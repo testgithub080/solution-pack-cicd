@@ -38,7 +38,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "435",
+            "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
@@ -67,7 +67,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "840",
+            "top": "975",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
@@ -79,7 +79,8 @@
             "description": null,
             "arguments": {
                 "resource": {
-                    "results": "<p>\"{{vars.export_template_name}}\" is successfully saved (exported) into the <a href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\" target=\"_blank\" rel=\"noopener\">https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}<\/a>&nbsp;Repository.<\/p>"
+                    "status": "\/api\/3\/picklists\/eb7e156f-f599-4cf6-a12b-5484c1bc414d",
+                    "results": "<p>\"{{vars.export_template_name}}\" is successfully saved (exported) into the <a rel=\"noopener\" target=\"_blank\" href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\">https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}<\/a>&nbsp;Repository.<\/p>"
                 },
                 "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",
@@ -89,7 +90,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1110",
+            "top": "1245",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -110,7 +111,7 @@
                 "workflowReference": "\/api\/3\/workflows\/d4417bac-2af8-441d-a58a-83e21abfa672"
             },
             "status": null,
-            "top": "570",
+            "top": "705",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -153,7 +154,7 @@
                 }
             },
             "status": null,
-            "top": "975",
+            "top": "1110",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
@@ -172,11 +173,33 @@
                 "export_template_name": "{% if vars.input.records[0].title == \"Save Production Settings\" %}{{\"Source Control - Production Settings\"}}{% else %}{{\"Source Control - Development Settings\"}}{% endif %}"
             },
             "status": null,
-            "top": "300",
+            "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "70a71462-d2a4-47b7-b7cd-5e0ef84bf093"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Status In Progress",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "status": "\/api\/3\/picklists\/7f0263bf-29ab-4453-aefe-41d20f0fe9c3"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "92eaf61d-efe0-4f42-b27c-b5466a9d56b1"
         },
         {
             "@type": "WorkflowStep",
@@ -266,7 +289,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "705",
+            "top": "840",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
@@ -291,7 +314,7 @@
                 }
             },
             "status": null,
-            "top": "165",
+            "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -307,15 +330,6 @@
             "label": null,
             "isExecuted": false,
             "uuid": "1b629fef-3033-4b6c-867d-5500fc7a8d12"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Get Source Control Details",
-            "targetStep": "\/api\/3\/workflow_steps\/f4377d88-a283-4e69-8077-b90158ebd6c4",
-            "sourceStep": "\/api\/3\/workflow_steps\/95b98097-3952-4d3f-a0b2-4f9881db0566",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "2aa30af7-2b19-47d5-a3d4-de73b8ac39fa"
         },
         {
             "@type": "WorkflowRoute",
@@ -370,6 +384,24 @@
             "label": null,
             "isExecuted": false,
             "uuid": "f132a4bb-fa25-4dec-b37b-6daeadd78b94"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Update Status In Progress",
+            "targetStep": "\/api\/3\/workflow_steps\/92eaf61d-efe0-4f42-b27c-b5466a9d56b1",
+            "sourceStep": "\/api\/3\/workflow_steps\/95b98097-3952-4d3f-a0b2-4f9881db0566",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "b0db4d73-bf97-432e-899e-ee796f6feaef"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Status In Progress -> Get Source Control Details",
+            "targetStep": "\/api\/3\/workflow_steps\/f4377d88-a283-4e69-8077-b90158ebd6c4",
+            "sourceStep": "\/api\/3\/workflow_steps\/92eaf61d-efe0-4f42-b27c-b5466a9d56b1",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "91736d45-7c0d-4e20-a887-d3f1ab6a5884"
         }
     ],
     "groups": [],
