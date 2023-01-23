@@ -17,6 +17,25 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "No Push Changes",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "650",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "1ad736d3-d621-4b94-bbb6-d17a6e2099d9"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Configuration",
             "description": null,
             "arguments": {
@@ -36,6 +55,56 @@
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "2b5440ab-7eb7-4d3b-b9f1-034c62daa246"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get User Conformation",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Confirmation",
+                        "description": "Do you want to Push the Change Request \"[{{vars.issue_no}}](https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}})\" to the branch \"{{vars.new_branch}}\" in \"{{vars.repo_name}}\" repository?",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_management",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Yes",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/c3429296-0762-42c4-9f4b-62e251cb438e"
+                        },
+                        {
+                            "option": "No",
+                            "step_iri": "\/api\/3\/workflow_steps\/1ad736d3-d621-4b94-bbb6-d17a6e2099d9"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "300",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "3a9dc279-0cdf-4f0d-8842-c0304fa944d0"
         },
         {
             "@type": "WorkflowStep",
@@ -356,75 +425,6 @@
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "e5438750-57da-4447-b206-1b2eaf1e343e"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Get User Conformation",
-            "description": null,
-            "arguments": {
-                "type": "InputBased",
-                "input": {
-                    "schema": {
-                        "title": "Confirmation",
-                        "description": "Do you want to Push the Change Request \"[{{vars.issue_no}}](https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}})\" to the branch \"{{vars.new_branch}}\" in \"{{vars.repo_name}}\" repository?",
-                        "inputVariables": []
-                    }
-                },
-                "record": "",
-                "agent_id": null,
-                "resources": "change_management",
-                "owner_detail": {
-                    "isAssigned": false
-                },
-                "isRecordLinked": false,
-                "step_variables": [],
-                "response_mapping": {
-                    "options": [
-                        {
-                            "option": "Yes",
-                            "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/c3429296-0762-42c4-9f4b-62e251cb438e"
-                        },
-                        {
-                            "option": "No",
-                            "step_iri": "\/api\/3\/workflow_steps\/1ad736d3-d621-4b94-bbb6-d17a6e2099d9"
-                        }
-                    ],
-                    "duplicateOption": false
-                },
-                "email_notification": {
-                    "enabled": false,
-                    "smtpParameters": []
-                },
-                "inline_channel_list": [],
-                "external_channel_list": [],
-                "unauthenticated_input": false
-            },
-            "status": null,
-            "top": "300",
-            "left": "475",
-            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
-            "group": null,
-            "uuid": "3a9dc279-0cdf-4f0d-8842-c0304fa944d0"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "No Push Changes",
-            "description": null,
-            "arguments": {
-                "params": [],
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "no_op",
-                "operationTitle": "Utils: No Operation",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "435",
-            "left": "650",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "1ad736d3-d621-4b94-bbb6-d17a6e2099d9"
         }
     ],
     "routes": [

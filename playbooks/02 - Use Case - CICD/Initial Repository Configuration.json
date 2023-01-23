@@ -24,7 +24,7 @@
                 "input": {
                     "schema": {
                         "title": "Repository Details",
-                        "description": "Did you created following three Source Control Repositories manually: \n\n* FortiSOAR Prod Content\n* FortiSOAR Prod Settings\n* FortiSOAR Dev Settings ",
+                        "description": "Did you created following three Source Control Repositories manually: \n* {{vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}\n* {{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}\n* {{vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}} ",
                         "inputVariables": []
                     }
                 },
@@ -110,7 +110,7 @@
                 "input": {
                     "schema": {
                         "title": "Create Repositories",
-                        "description": "We would need the following three Source Control Repositories: \n\n* FortiSOAR Prod Content\n* FortiSOAR Prod Settings\n* FortiSOAR Dev Settings \n\nDo you want to create the repositories through playbook or manually?",
+                        "description": "We would need the following three Source Control Repositories: \n\n* {{vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}\n* {{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}\n* {{vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}} \n\nDo you want to create the repositories through playbook or manually?",
                         "inputVariables": []
                     }
                 },
@@ -173,54 +173,19 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Show Repositories Details",
-            "description": null,
-            "arguments": {
-                "type": "DecisionBased",
-                "input": {
-                    "schema": {
-                        "title": "CICD Repositories Configuration",
-                        "description": "Following repositories are created in \"{{vars.organization_name}}\" GitHub account.\n* [FortiSOAR Prod Content]({{vars.content_repo}})\n* [FortiSOAR Prod Settings]({{vars.prod_settings}})\n* [FortiSOAR Dev Settings]({{vars.dev_settings}})\n",
-                        "inputVariables": []
-                    }
-                },
-                "record": "",
-                "agent_id": null,
-                "resources": "change_requests",
-                "owner_detail": {
-                    "isAssigned": false
-                },
-                "isRecordLinked": false,
-                "step_variables": [],
-                "response_mapping": {
-                    "options": [
-                        {
-                            "option": "OK",
-                            "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/91e2e908-b7a9-42d4-9bed-d311560b8f6e"
-                        }
-                    ],
-                    "duplicateOption": false
-                },
-                "email_notification": {
-                    "enabled": false,
-                    "smtpParameters": []
-                }
-            },
-            "status": null,
-            "top": "840",
-            "left": "135",
-            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
-            "group": null,
-            "uuid": "6c1d1f69-1de6-4b81-8ff8-db80babb9bdc"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Update Result",
             "description": null,
             "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p class=\"mp-tile-description muted-80\">View the configured Source Control Repositories<\/p>\n<ul>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.content_repo}}\">{{vars.content_repo}}<\/a><\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.prod_settings}}\">{{vars.prod_settings}}<\/a><\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.dev_settings}}\">{{vars.dev_settings}}<\/a><\/p>\n<\/li>\n<\/ul>",
+                    "records": "{{vars.input.records[0]['@id']}}"
+                },
                 "resource": {
-                    "results": "<p class=\"mp-tile-description muted-80\">View the configured Source Control Repositories<\/p>\n<ul class=\"mp-tile-description muted-80\">\n<li><a title=\"FortiSOAR Prod Content\" href=\"{{vars.content_repo}}\" target=\"_blank\" rel=\"noopener\">FortiSOAR Prod Content<\/a><\/li>\n<li><a title=\"FortiSOAR Prod Settings\" href=\"{{vars.prod_settings}}\" target=\"_blank\" rel=\"noopener\">FortiSOAR Prod Settings<\/a><\/li>\n<li><a title=\"FortiSOAR Dev Settings\" href=\"{{vars.dev_settings}}\" target=\"_blank\" rel=\"noopener\">FortiSOAR Dev Settings<\/a><\/li>\n<\/ul>"
+                    "results": "<p class=\"mp-tile-description muted-80\">- View the configured Source Control Repositories<\/p>\n<ul>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.content_repo}}\">{{vars.content_repo}}<\/a><\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.prod_settings}}\">{{vars.prod_settings}}<\/a><\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.dev_settings}}\">{{vars.dev_settings}}<\/a><\/p>\n<\/li>\n<\/ul>"
                 },
                 "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",
@@ -230,7 +195,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "975",
+            "top": "840",
             "left": "135",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -405,24 +370,6 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Create Repository Global Variable -> Show Repositories Details",
-            "targetStep": "\/api\/3\/workflow_steps\/6c1d1f69-1de6-4b81-8ff8-db80babb9bdc",
-            "sourceStep": "\/api\/3\/workflow_steps\/b5c63b4b-7d12-4a8a-b24d-ad38aa8ee1e7",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "86930e05-090e-4d5e-bb92-2726cef6561f"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Show Repositories Details -> Update Result",
-            "targetStep": "\/api\/3\/workflow_steps\/91e2e908-b7a9-42d4-9bed-d311560b8f6e",
-            "sourceStep": "\/api\/3\/workflow_steps\/6c1d1f69-1de6-4b81-8ff8-db80babb9bdc",
-            "label": "OK",
-            "isExecuted": false,
-            "uuid": "faacca1c-4067-4696-8c45-a8a556123218"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Is Repositories Created Automatically -> Provide Repositories Detail",
             "targetStep": "\/api\/3\/workflow_steps\/18b86c22-2d44-45ae-83c3-560dcf651a44",
             "sourceStep": "\/api\/3\/workflow_steps\/64961e22-a788-4e67-bceb-35fb39687f80",
@@ -492,6 +439,15 @@
             "label": "No",
             "isExecuted": false,
             "uuid": "decd31e2-a50a-451b-8282-5cd88d0ab484"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Repository Global Variable -> Update Result",
+            "targetStep": "\/api\/3\/workflow_steps\/91e2e908-b7a9-42d4-9bed-d311560b8f6e",
+            "sourceStep": "\/api\/3\/workflow_steps\/b5c63b4b-7d12-4a8a-b24d-ad38aa8ee1e7",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "a00e7697-8a59-49dc-b0e2-0953da63b362"
         }
     ],
     "groups": [],

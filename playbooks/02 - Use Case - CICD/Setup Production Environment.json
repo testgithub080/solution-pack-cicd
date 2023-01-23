@@ -27,7 +27,7 @@
                 "workflowReference": "\/api\/3\/workflows\/2e8df3ef-5db7-4f45-b15f-9c1279acee6b"
             },
             "status": null,
-            "top": "570",
+            "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -45,7 +45,7 @@
                 "workflowReference": "\/api\/3\/workflows\/8b597275-ec12-4e3e-810f-008a3c9d662a"
             },
             "status": null,
-            "top": "435",
+            "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -90,6 +90,16 @@
                                 "value": "Setup the Source Control for Production Environment",
                                 "operator": "eq",
                                 "_operator": "eq"
+                            },
+                            {
+                                "type": "object",
+                                "field": "status",
+                                "value": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293",
+                                    "itemValue": "Pending"
+                                },
+                                "operator": "eq"
                             }
                         ]
                     }
@@ -152,6 +162,7 @@
             "arguments": {
                 "arguments": [],
                 "apply_async": false,
+                "ignore_errors": false,
                 "step_variables": [],
                 "pass_input_record": true,
                 "workflowReference": "\/api\/3\/workflows\/6bace12f-6629-4e0e-9c7f-3eef3e3ad1fe"
@@ -189,30 +200,30 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Synchronize Export Template -> Add GitHub Username",
-            "targetStep": "\/api\/3\/workflow_steps\/233482ca-d542-45e4-8007-b28eb2d1d9b3",
-            "sourceStep": "\/api\/3\/workflow_steps\/24934266-09fb-4188-ad1c-ff98d9c8b37d",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "105058e3-890f-4848-913d-372343f3fdc9"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Add GitHub Username -> Push Production Environment Content",
-            "targetStep": "\/api\/3\/workflow_steps\/ca3b12c9-49f1-4065-b941-fd107f53f5b5",
+            "name": "Add GitHub Username -> Synchronize Export Template",
+            "targetStep": "\/api\/3\/workflow_steps\/24934266-09fb-4188-ad1c-ff98d9c8b37d",
             "sourceStep": "\/api\/3\/workflow_steps\/233482ca-d542-45e4-8007-b28eb2d1d9b3",
             "label": null,
             "isExecuted": false,
-            "uuid": "6d1b20d3-5c95-49af-9677-30d71c1ee976"
+            "uuid": "3d94701c-0f46-4f0a-b002-736ef2cf409d"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Initial Repository Configuration -> Synchronize Export Template",
-            "targetStep": "\/api\/3\/workflow_steps\/24934266-09fb-4188-ad1c-ff98d9c8b37d",
+            "name": "Initial Repository Configuration -> Add GitHub Username",
+            "targetStep": "\/api\/3\/workflow_steps\/233482ca-d542-45e4-8007-b28eb2d1d9b3",
             "sourceStep": "\/api\/3\/workflow_steps\/d2d0671f-3254-4e8a-b62b-030e9d2d964a",
             "label": null,
             "isExecuted": false,
-            "uuid": "d400bcdb-64b9-4713-980e-5da413567abd"
+            "uuid": "5ec387e6-b83b-440f-b348-6b90450fa53d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Status as In Progress -> Initial Repository Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/d2d0671f-3254-4e8a-b62b-030e9d2d964a",
+            "sourceStep": "\/api\/3\/workflow_steps\/beef8dfb-3f25-40f3-90fb-48a0fcfc0b2d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "6ec0e3a0-dbc1-4c58-930f-097203c1caa8"
         },
         {
             "@type": "WorkflowRoute",
@@ -225,21 +236,21 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Synchronize Export Template -> Push Initial Production Environment Content",
+            "targetStep": "\/api\/3\/workflow_steps\/ca3b12c9-49f1-4065-b941-fd107f53f5b5",
+            "sourceStep": "\/api\/3\/workflow_steps\/24934266-09fb-4188-ad1c-ff98d9c8b37d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "be6714f5-6a07-49ba-b83c-627387ab9e0a"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Start -> Update Status as In Progress",
             "targetStep": "\/api\/3\/workflow_steps\/beef8dfb-3f25-40f3-90fb-48a0fcfc0b2d",
             "sourceStep": "\/api\/3\/workflow_steps\/91c2353c-af5a-4c31-89a1-f7a9f8a00ee4",
             "label": null,
             "isExecuted": false,
             "uuid": "e08636a1-f815-4d3c-9c8e-39d32e7009f8"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Update Status as In Progress -> Initial Repository Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/d2d0671f-3254-4e8a-b62b-030e9d2d964a",
-            "sourceStep": "\/api\/3\/workflow_steps\/beef8dfb-3f25-40f3-90fb-48a0fcfc0b2d",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "7617d4f4-4578-4e95-b1f8-1578a66465be"
         }
     ],
     "groups": [],
