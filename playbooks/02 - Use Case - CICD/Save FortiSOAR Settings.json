@@ -30,6 +30,14 @@
                     "clone_zip": false,
                     "repo_type": "Organization"
                 },
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": true,
+                    "content": "<div class=\"comment-content-container\" data-ng-class=\"{'comment-highlight':comment._highlight}\" data-ng-mouseenter=\"comment._mouseEntered=true\" data-ng-mouseleave=\"comment._mouseEntered=false\">\n<div id=\"comment-content-3\" class=\"ng-scope\" data-ng-if=\"!comment._editMode &amp;&amp; !comment.isDeleted\">\n<div class=\"comment break-word comment-content ng-pristine ng-untouched ng-valid ng-scope ng-isolate-scope ng-not-empty\" data-ng-if=\"!comment.contentProcessed &amp;&amp; !comment.actionLogs\" data-cs-markdown-editor=\"\" data-mode=\"'view'\" data-ng-model=\"comment.content\" data-form-name=\"'commentFeedForm-' + $index\" data-on-img-click=\"showCommentImage\" aria-invalid=\"false\">\n<div class=\"position-relative\">\n<div class=\"view-content richtext-view-content ng-scope\" data-ng-if=\"mode === 'view'\">\n<div class=\"break-word custom-markdown-editor ng-binding ng-scope\" tabindex=\"0\" role=\"button\" data-ng-if=\"params.htmlText &amp;&amp; viewRenderWidget !== 'iframe' &amp;&amp; viewRenderWidget !== 'iframe-sandbox'\" data-ng-bind-html=\"params.htmlText | transformSVGLink | csSanitizeHTML \" data-ng-click=\"showMoreShowLess($event)\">\n<p data-tomark-pass=\"\">Repository is cloned at the path: \/tmp\/{{vars.repo_name}} location&nbsp;<\/p>\n<\/div>\n<\/div>\n<\/div>\n<\/div>\n<\/div>\n<\/div>",
+                    "records": ""
+                },
                 "version": "1.0.0",
                 "connector": "github",
                 "operation": "clone_repository",
@@ -58,6 +66,15 @@
                     "repo_type": "Organization",
                     "clone_path": "{{vars.steps.Clone_Repository.data.path}}",
                     "commit_message": "Initial Production Environment Content"
+                },
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": true,
+                    "content": "<p>Pushed remote changes on {{vars.repo_name}} repository<\/p>",
+                    "records": "",
+                    "parentstepid": "\/api\/3\/workflow_steps\/29e17b2c-7458-496a-98d8-730a3aa1eefd"
                 },
                 "version": "1.0.0",
                 "connector": "github",
@@ -280,6 +297,15 @@
                 "params": {
                     "file_iri": "{{vars.steps.Extract_Exported_Zip_File_from_FortiSOAR.file_iri}}",
                     "clone_path": "{{vars.steps.Clone_Repository.data.path}}"
+                },
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": true,
+                    "content": "<p>Apply settings to remote repository<\/p>",
+                    "records": "",
+                    "parentstepid": "\/api\/3\/workflow_steps\/29e17b2c-7458-496a-98d8-730a3aa1eefd"
                 },
                 "version": "1.0.0",
                 "connector": "github",

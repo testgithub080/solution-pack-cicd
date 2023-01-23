@@ -1,6 +1,6 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/4d977f27-2881-4a3a-948a-86b8847188db",
+    "@id": "\/api\/3\/staging_model_metadatas\/7f73f70b-50e2-402e-b612-a8cd4993c5d6",
     "@type": "StagingModelMetadata",
     "type": "change_management",
     "parentType": null,
@@ -620,7 +620,7 @@
         "delete_primary_data_after": 60
     },
     "archivalFilters": [],
-    "uuid": "4d977f27-2881-4a3a-948a-86b8847188db",
+    "uuid": "7f73f70b-50e2-402e-b612-a8cd4993c5d6",
     "displayName": "{{ title }}",
     "descriptions": {
         "singular": "Change Management",

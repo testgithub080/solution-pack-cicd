@@ -60,52 +60,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Populate Export Template Details",
-            "description": null,
-            "arguments": {
-                "type": "InputBased",
-                "input": {
-                    "schema": {
-                        "title": "Export Template Details",
-                        "description": "Following \"<a href=\"{{vars.request.baseUri}}\/editor\/exporter\/templates\" target=\"_blank\">Content and Settings<\/a>\" Export Templates synchronized successfully.\n{% for item in vars.steps.Find_Export_Template_Configuration_Attachment %}\n* {{item.name}}\n{% endfor %}",
-                        "inputVariables": []
-                    }
-                },
-                "record": "{{vars.input.records[0]['@id']}}",
-                "agent_id": null,
-                "resources": "change_management",
-                "owner_detail": {
-                    "isAssigned": false
-                },
-                "isRecordLinked": true,
-                "step_variables": [],
-                "response_mapping": {
-                    "options": [
-                        {
-                            "option": "Ok",
-                            "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/da308980-0888-4fd2-9a10-853fcc737a0b"
-                        }
-                    ],
-                    "duplicateOption": false
-                },
-                "email_notification": {
-                    "enabled": false,
-                    "smtpParameters": []
-                },
-                "inline_channel_list": [],
-                "external_channel_list": [],
-                "unauthenticated_input": false
-            },
-            "status": null,
-            "top": "435",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
-            "group": null,
-            "uuid": "4c34d998-4829-4a9f-b9cc-053bdae57749"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Find Export Template Configuration Attachment",
             "description": null,
             "arguments": {
@@ -135,25 +89,78 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "No Operation",
+            "name": "Find Previous Result",
             "description": null,
             "arguments": {
-                "params": [],
-                "version": "3.2.2",
-                "connector": "cyops_utilities",
-                "operation": "no_op",
-                "operationTitle": "Utils: No Operation",
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "id",
+                            "value": "{{vars.input.records[0].id}}",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ],
+                    "__selectFields": [
+                        "results"
+                    ]
+                },
+                "module": "change_management?$limit=30",
+                "checkboxFields": true,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "dd5f9f7a-2f46-4cbc-a682-73f5db1cf124"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Record",
+            "description": null,
+            "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p class=\"mp-tile-description muted-80\">Following \"<a href=\"{{vars.request.baseUri}}\/editor\/exporter\/templates\" target=\"_blank\" rel=\"noopener\">Content and Settings<\/a> Export Templates synchronized successfully.<\/p>\n<ul>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Production Content<\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Production Settings<\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Development Settings<\/p>\n<\/li>\n<\/ul>",
+                    "records": "{{vars.input.records[0]['@id']}}"
+                },
+                "resource": {
+                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p>&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\">Following \"<a href=\"{{vars.request.baseUri}}\/editor\/exporter\/templates\" target=\"_blank\" rel=\"noopener\">Content and Settings<\/a> Export Templates synchronized successfully.<\/p>\n<ul>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Production Content<\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Production Settings<\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Development Settings<\/p>\n<\/li>\n<\/ul>"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
                 "step_variables": []
             },
             "status": null,
             "top": "570",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
-            "uuid": "da308980-0888-4fd2-9a10-853fcc737a0b"
+            "uuid": "de410190-53a7-46b1-8094-d60137f35a2c"
         }
     ],
     "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Export Template -> Find Previous Result",
+            "targetStep": "\/api\/3\/workflow_steps\/dd5f9f7a-2f46-4cbc-a682-73f5db1cf124",
+            "sourceStep": "\/api\/3\/workflow_steps\/3511761c-70b5-4435-8901-858d8c675f6d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "04500e04-5cdc-4cce-8636-c38968809673"
+        },
         {
             "@type": "WorkflowRoute",
             "name": "Find Export Template Configuration Attachment -> Create Export Template",
@@ -162,15 +169,6 @@
             "label": null,
             "isExecuted": false,
             "uuid": "5a27ec04-00a4-4905-939b-ffcbb202ea97"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Create Export Template -> Populate Export Template Details",
-            "targetStep": "\/api\/3\/workflow_steps\/4c34d998-4829-4a9f-b9cc-053bdae57749",
-            "sourceStep": "\/api\/3\/workflow_steps\/3511761c-70b5-4435-8901-858d8c675f6d",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "626a18ee-9f43-4e2c-bb87-f13c832757d2"
         },
         {
             "@type": "WorkflowRoute",
@@ -183,12 +181,12 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Populate Export Template Details -> No Operation",
-            "targetStep": "\/api\/3\/workflow_steps\/da308980-0888-4fd2-9a10-853fcc737a0b",
-            "sourceStep": "\/api\/3\/workflow_steps\/4c34d998-4829-4a9f-b9cc-053bdae57749",
-            "label": "Ok",
+            "name": "Find Previous Result -> Update Record",
+            "targetStep": "\/api\/3\/workflow_steps\/de410190-53a7-46b1-8094-d60137f35a2c",
+            "sourceStep": "\/api\/3\/workflow_steps\/dd5f9f7a-2f46-4cbc-a682-73f5db1cf124",
+            "label": null,
             "isExecuted": false,
-            "uuid": "9f7e584b-8560-40e2-afa1-b67ef12cd3e5"
+            "uuid": "b894c5e9-3937-4f64-aa0c-3a98d40e2f96"
         }
     ],
     "groups": [],
