@@ -1,7 +1,7 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "Synchronize Export Template",
+    "name": "Setup Export Templates",
     "aliasName": null,
     "tag": null,
     "description": "Generates an initial template for exporting the content, such as playbooks, module definitions, etc to source control.",
