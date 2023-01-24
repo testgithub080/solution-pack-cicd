@@ -254,7 +254,7 @@
                 "input": {
                     "schema": {
                         "title": "Apply Latest Content",
-                        "description": "Select the repository type using which you want to apply the Production Content or Development Settings?",
+                        "description": "Select the repository you want to apply the chnages from.",
                         "inputVariables": [
                             {
                                 "name": "selectRepositoryType",
@@ -469,7 +469,7 @@
                 "input": {
                     "schema": {
                         "title": "Apply Latest Content",
-                        "description": "Select the repository type using which you want to apply the Production Content or Production Settings?",
+                        "description": "Select the repository you want to apply the chnages from.",
                         "inputVariables": [
                             {
                                 "name": "selectRepositoryType",
