@@ -60,7 +60,7 @@
             },
             "status": null,
             "top": "435",
-            "left": "485",
+            "left": "568",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "18b86c22-2d44-45ae-83c3-560dcf651a44"
@@ -78,7 +78,7 @@
             },
             "status": null,
             "top": "30",
-            "left": "310",
+            "left": "393",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
             "group": null,
             "uuid": "1fa83340-33e4-4d27-99e3-bbab6f5cc3b4"
@@ -96,7 +96,7 @@
             },
             "status": null,
             "top": "570",
-            "left": "135",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "224c1621-c33a-4720-ade0-46573ea34ce8"
@@ -147,7 +147,7 @@
             },
             "status": null,
             "top": "300",
-            "left": "310",
+            "left": "393",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "64961e22-a788-4e67-bceb-35fb39687f80"
@@ -166,7 +166,7 @@
             },
             "status": null,
             "top": "570",
-            "left": "495",
+            "left": "578",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "655bfe6b-e43e-48ba-9254-7a98450d4e80"
@@ -195,8 +195,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "840",
-            "left": "135",
+            "top": "1110",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "91e2e908-b7a9-42d4-9bed-d311560b8f6e"
@@ -311,7 +311,7 @@
             },
             "status": null,
             "top": "165",
-            "left": "310",
+            "left": "393",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "af50d35a-1f68-4c8b-9b57-1d1c1115231e"
@@ -332,11 +332,36 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "705",
-            "left": "135",
+            "top": "980",
+            "left": "520",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "b5c63b4b-7d12-4a8a-b24d-ad38aa8ee1e7"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Source Control Details",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/wf\/api\/dynamic-variable\/?name=cicd_config",
+                    "body": "",
+                    "method": "GET"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": {
+                    "cicd_config": "{% if vars.result.data['hydra:member'] | length %}{{vars.result.data['hydra:member'][0].value | toDict }}{% else %}\"\"{% endif %}"
+                }
+            },
+            "status": null,
+            "top": "705",
+            "left": "218",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "b6f1a342-ad92-48a2-878c-76a4dec59ae9"
         },
         {
             "@type": "WorkflowStep",
@@ -361,10 +386,37 @@
             },
             "status": null,
             "top": "435",
-            "left": "125",
+            "left": "208",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "bcdcf23e-1e22-440c-90ec-7d3a521b129f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Has Global Variable Created",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/91e2e908-b7a9-42d4-9bed-d311560b8f6e",
+                        "condition": "{{ vars.cicd_config | length > 0 }}",
+                        "step_name": "Update Result"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/b5c63b4b-7d12-4a8a-b24d-ad38aa8ee1e7",
+                        "step_name": "Create Repository Global Variable"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "840",
+            "left": "218",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "e23f9fbe-545f-46ba-8f02-b003e737554d"
         }
     ],
     "routes": [
@@ -385,15 +437,6 @@
             "label": null,
             "isExecuted": false,
             "uuid": "f47b6d21-0c2a-4b6c-88dc-69295423d0ef"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Repository Details -> Create Repository Global Variable",
-            "targetStep": "\/api\/3\/workflow_steps\/b5c63b4b-7d12-4a8a-b24d-ad38aa8ee1e7",
-            "sourceStep": "\/api\/3\/workflow_steps\/224c1621-c33a-4720-ade0-46573ea34ce8",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "0438b817-da5a-47d5-afbd-fd5a375cda93"
         },
         {
             "@type": "WorkflowRoute",
@@ -448,6 +491,42 @@
             "label": null,
             "isExecuted": false,
             "uuid": "a00e7697-8a59-49dc-b0e2-0953da63b362"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Source Control Details -> Has Repositories Created",
+            "targetStep": "\/api\/3\/workflow_steps\/e23f9fbe-545f-46ba-8f02-b003e737554d",
+            "sourceStep": "\/api\/3\/workflow_steps\/b6f1a342-ad92-48a2-878c-76a4dec59ae9",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "ab6f041d-8f7e-4619-9599-1c8e8c956351"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Repository Details -> Get Source Control Details",
+            "targetStep": "\/api\/3\/workflow_steps\/b6f1a342-ad92-48a2-878c-76a4dec59ae9",
+            "sourceStep": "\/api\/3\/workflow_steps\/224c1621-c33a-4720-ade0-46573ea34ce8",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "82f405f9-ad7d-40c5-85ec-077eec96a8cd"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Has Repositories Created -> Create Repository Global Variable",
+            "targetStep": "\/api\/3\/workflow_steps\/b5c63b4b-7d12-4a8a-b24d-ad38aa8ee1e7",
+            "sourceStep": "\/api\/3\/workflow_steps\/e23f9fbe-545f-46ba-8f02-b003e737554d",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "554dae11-d964-40f6-a7fe-1db471e75ffb"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Has Repositories Created -> Update Result",
+            "targetStep": "\/api\/3\/workflow_steps\/91e2e908-b7a9-42d4-9bed-d311560b8f6e",
+            "sourceStep": "\/api\/3\/workflow_steps\/e23f9fbe-545f-46ba-8f02-b003e737554d",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "f4f4d358-78eb-4fed-8fd5-9e3de0907ea0"
         }
     ],
     "groups": [],

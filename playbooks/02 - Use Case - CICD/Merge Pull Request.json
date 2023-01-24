@@ -1,7 +1,7 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "Pull Request > Merge",
+    "name": "Merge Pull Request",
     "aliasName": null,
     "tag": null,
     "description": "Marge the specified Pull Request if Pull Request is Approved.",
@@ -42,7 +42,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "300",
+            "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
@@ -67,7 +67,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "570",
+            "top": "840",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -81,7 +81,7 @@
                 "json_issue": "{% set ij = {} %}{% for k,v in vars.input.records[0].items() %}{% if k == \"pRStatus\" %}{% set _ = ij.update({k: \"Merged\"}) %}{% elif k == \"state\" %}{% set _ = ij.update({k: \"Closed\" }) %}{% else %}{% set _ = ij.update({k: v}) %}{% endif %}{% endfor %}{{ij}}"
             },
             "status": null,
-            "top": "435",
+            "top": "705",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -99,7 +99,7 @@
                 "pull_number": "{{(vars.input.records[0].pullRequest.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}"
             },
             "status": null,
-            "top": "165",
+            "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -118,8 +118,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1110",
-            "left": "125",
+            "top": "1240",
+            "left": "440",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "5a4b6f68-9834-4ee6-8f58-ace971764d37"
@@ -161,11 +161,32 @@
                 }
             },
             "status": null,
-            "top": "975",
+            "top": "1245",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "77bfd50f-41ac-496e-b435-4efbc482a2f7"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Check Playbook Active or Awaiting",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "playbook_name": "Merge Pull Request"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/670507b8-633d-4262-8ac9-103fecdc172b"
+            },
+            "status": null,
+            "top": "165",
+            "left": "218",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "b78204dc-78da-4613-9438-8a857feeb5d6"
         },
         {
             "@type": "WorkflowStep",
@@ -195,7 +216,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "705",
+            "top": "975",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
@@ -267,10 +288,37 @@
             },
             "status": null,
             "top": "30",
-            "left": "125",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
             "group": null,
             "uuid": "e008717c-3a72-4c96-9de3-c545dce74a3d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Playbook Active or Awaiting",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Active\/Awaiting",
+                        "step_iri": "\/api\/3\/workflow_steps\/5a4b6f68-9834-4ee6-8f58-ace971764d37",
+                        "condition": "{{ vars.steps.Check_Playbook_Active_or_Awaiting.playbook_status in [\"awaiting\", \"active\"] }}",
+                        "step_name": "No Operation"
+                    },
+                    {
+                        "option": "Finished",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/49992053-ac11-45c3-9199-c438661460c8",
+                        "step_name": "Configuration"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "300",
+            "left": "140",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "eac667ae-7889-4aa5-af07-06f31a7797db"
         },
         {
             "@type": "WorkflowStep",
@@ -293,7 +341,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "840",
+            "top": "1110",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
@@ -357,21 +405,48 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/49992053-ac11-45c3-9199-c438661460c8",
-            "sourceStep": "\/api\/3\/workflow_steps\/e008717c-3a72-4c96-9de3-c545dce74a3d",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "f928e0b0-8b5c-49cf-9cc0-25716f316809"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Merge Pull Request -> Update PR Reviewers",
             "targetStep": "\/api\/3\/workflow_steps\/430bfcf4-f43d-4d03-a1cf-a6669772322e",
             "sourceStep": "\/api\/3\/workflow_steps\/08a231da-9e54-40a2-932a-8e5245a52e53",
             "label": null,
             "isExecuted": false,
             "uuid": "86454dfb-5cd4-409c-ad80-3a71d615a306"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check Playbook Active or Awaiting -> Is Playbook Active or Awaiting",
+            "targetStep": "\/api\/3\/workflow_steps\/eac667ae-7889-4aa5-af07-06f31a7797db",
+            "sourceStep": "\/api\/3\/workflow_steps\/b78204dc-78da-4613-9438-8a857feeb5d6",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "6180fbd0-dd73-4af0-8f97-d6e71894681b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Check Playbook Active or Awaiting",
+            "targetStep": "\/api\/3\/workflow_steps\/b78204dc-78da-4613-9438-8a857feeb5d6",
+            "sourceStep": "\/api\/3\/workflow_steps\/e008717c-3a72-4c96-9de3-c545dce74a3d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "ba6c68cd-c7e6-4e01-ba73-fa312fb7d0a7"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Playbook Active or Awaiting -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/49992053-ac11-45c3-9199-c438661460c8",
+            "sourceStep": "\/api\/3\/workflow_steps\/eac667ae-7889-4aa5-af07-06f31a7797db",
+            "label": "Finished",
+            "isExecuted": false,
+            "uuid": "5d1925e8-a506-402f-b4a7-da15acf92474"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Playbook Active or Awaiting -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/5a4b6f68-9834-4ee6-8f58-ace971764d37",
+            "sourceStep": "\/api\/3\/workflow_steps\/eac667ae-7889-4aa5-af07-06f31a7797db",
+            "label": "Active\/Awaiting",
+            "isExecuted": false,
+            "uuid": "22eff0d7-5543-41e4-b293-abaa6e28cc79"
         }
     ],
     "groups": [],

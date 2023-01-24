@@ -183,11 +183,11 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p class=\"mp-tile-description muted-80\">\"{{vars.steps.Get_GitHub_Username.input.gitHubUsername}}\" GitHub username assign to FortiSOAR user \"<a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a>\".<\/p>",
+                    "content": "<p class=\"mp-tile-description muted-80\">\"{{vars.steps.Get_GitHub_Username.input.gitHubUsername}}\" GitHub username assigned to FortiSOAR user \"<a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a>\".<\/p>",
                     "records": "{{vars.input.records[0]['@id']}}"
                 },
                 "resource": {
-                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p>&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\">- \"{{vars.steps.Get_GitHub_Username.input.gitHubUsername}}\" GitHub username assign to FortiSOAR user \"<a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a>\".<\/p>"
+                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p>&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\">- \"{{vars.steps.Get_GitHub_Username.input.gitHubUsername}}\" GitHub username assigned to FortiSOAR user \"<a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a>\".<\/p>"
                 },
                 "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",

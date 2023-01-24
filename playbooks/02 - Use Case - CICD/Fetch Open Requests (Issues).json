@@ -37,6 +37,31 @@
         },
         {
             "@type": "WorkflowStep",
+            "name": "Get Source Control Details",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/wf\/api\/dynamic-variable\/?name=cicd_config",
+                    "body": "",
+                    "method": "GET"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": {
+                    "cicd_config": "{% if vars.result.data['hydra:member'] | length %}{{vars.result.data['hydra:member'][0].value | toDict }}{% else %}\"\"{% endif %}"
+                }
+            },
+            "status": null,
+            "top": "160",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "54facc75-f7e1-43c9-af88-e74e2ac978d1"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Get Issues",
             "description": null,
             "arguments": {
@@ -140,31 +165,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get Source Control Details",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "\/api\/wf\/api\/dynamic-variable\/?limit=50",
-                    "body": "",
-                    "method": "GET"
-                },
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": {
-                    "cicd_config": "{% if vars.result.data['hydra:member'] | json_query(\"[?name=='cicd_config']\") | length %}{{(vars.result.data['hydra:member'] | json_query(\"[?name=='cicd_config']\"))[0].value | toDict}}{% else %}{{vars.result.data['hydra:member'] | json_query(\"[?name=='cicd_config']\")}}{% endif %}"
-                }
-            },
-            "status": null,
-            "top": "165",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "cc3f94b7-83b4-432a-8ac7-d758e272ce03"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Configuration",
             "description": null,
             "arguments": {
@@ -254,15 +254,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Copy of Get Source Control Details",
-            "targetStep": "\/api\/3\/workflow_steps\/cc3f94b7-83b4-432a-8ac7-d758e272ce03",
-            "sourceStep": "\/api\/3\/workflow_steps\/e708641d-586a-40b3-accf-963845b1e829",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "669b1438-f1fe-4e8b-a5cb-2d607a50f8d6"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Has Repositories Created -> No Operation",
             "targetStep": "\/api\/3\/workflow_steps\/a4921965-2dba-4342-a85d-89b3842cc7b3",
             "sourceStep": "\/api\/3\/workflow_steps\/7331f40d-fe42-4a0e-b0b1-35bb9b259978",
@@ -281,6 +272,15 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Copy of Get Source Control Details -> Has Repositories Created",
+            "targetStep": "\/api\/3\/workflow_steps\/7331f40d-fe42-4a0e-b0b1-35bb9b259978",
+            "sourceStep": "\/api\/3\/workflow_steps\/54facc75-f7e1-43c9-af88-e74e2ac978d1",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c089fa89-e1cb-4e74-b9ee-36c0b0cbae6c"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Has Repositories Created -> Configuration",
             "targetStep": "\/api\/3\/workflow_steps\/da950fb1-dd6f-40eb-ad58-c20cb3ed003e",
             "sourceStep": "\/api\/3\/workflow_steps\/7331f40d-fe42-4a0e-b0b1-35bb9b259978",
@@ -290,12 +290,12 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get Source Control Details -> Has Repositories Created",
-            "targetStep": "\/api\/3\/workflow_steps\/7331f40d-fe42-4a0e-b0b1-35bb9b259978",
-            "sourceStep": "\/api\/3\/workflow_steps\/cc3f94b7-83b4-432a-8ac7-d758e272ce03",
+            "name": "Start -> Copy of Get Source Control Details",
+            "targetStep": "\/api\/3\/workflow_steps\/54facc75-f7e1-43c9-af88-e74e2ac978d1",
+            "sourceStep": "\/api\/3\/workflow_steps\/e708641d-586a-40b3-accf-963845b1e829",
             "label": null,
             "isExecuted": false,
-            "uuid": "e01d1ad4-0e41-4044-8000-11b050ab125c"
+            "uuid": "e3c78f1c-9a7b-4208-a335-92c66e554479"
         }
     ],
     "groups": [],
