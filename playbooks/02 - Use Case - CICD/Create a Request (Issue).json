@@ -236,7 +236,6 @@
                                 "playbookField": true,
                                 "displayTemplate": "%7B%7B%20firstname%20%7D%7D%20%7B%7B%20lastname%20%7D%7D",
                                 "lengthConstraint": false,
-                                "ownsRelationship": false,
                                 "allowedEncryption": false,
                                 "allowedGridColumn": true,
                                 "useRecordFieldDefault": false

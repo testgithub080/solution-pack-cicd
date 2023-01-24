@@ -1,10 +1,10 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "Check Playbook is Active or Awaiting",
+    "name": "Check Playbook is Already Running",
     "aliasName": null,
     "tag": null,
-    "description": "Specify the playbook name and check whether the playbook is active or awaiting",
+    "description": "Specify the playbook name and check whether the playbook is already running",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
