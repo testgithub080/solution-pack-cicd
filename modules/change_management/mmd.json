@@ -1,6 +1,6 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/e4eaa853-c187-4cb8-8c5a-624fa56a784a",
+    "@id": "\/api\/3\/staging_model_metadatas\/7f73f70b-50e2-402e-b612-a8cd4993c5d6",
     "@type": "StagingModelMetadata",
     "type": "change_management",
     "parentType": null,
@@ -26,7 +26,7 @@
     "writable": true,
     "attributes": [
         {
-            "@id": "\/api\/3\/attribute_metadatas\/7f73f70b-50e2-402e-b612-a8cd4993c5d6",
+            "@id": "\/api\/3\/attribute_metadatas\/b4ba06b1-ec9a-40fa-a548-a23983271a02",
             "@type": "AttributeMetadata",
             "type": "comments",
             "name": "comments",
