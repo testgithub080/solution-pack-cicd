@@ -35,7 +35,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Synchronize Export Template",
+            "name": "Setup Export Template",
             "description": null,
             "arguments": {
                 "arguments": [],

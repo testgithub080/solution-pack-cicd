@@ -117,7 +117,8 @@
                         "records": "{{vars.input.records}}"
                     }
                 },
-                "executeButtonText": "Execute",
+                "_promptexpanded": true,
+                "executeButtonText": "Submit",
                 "noRecordExecution": true,
                 "singleRecordExecution": false
             },
@@ -197,29 +198,16 @@
                         "description": "Provide the Change Request Details",
                         "inputVariables": [
                             {
-                                "name": "type",
-                                "type": "array",
-                                "label": "Type",
-                                "title": "Dynamic List",
-                                "usable": true,
-                                "options": [
-                                    "New Development",
-                                    "Defect"
-                                ],
-                                "tooltip": "Select the change request type",
-                                "dataType": "dynamicList",
-                                "formType": "dynamicList",
+                                "name": "summary",
+                                "type": "string",
+                                "label": "Summary",
+                                "tooltip": "Provide the Summary",
+                                "dataType": "text",
+                                "formType": "text",
                                 "required": true,
                                 "_expanded": false,
-                                "mmdUpdate": true,
-                                "collection": false,
-                                "searchable": false,
-                                "templateUrl": "app\/components\/form\/fields\/dynamicList.html",
                                 "defaultValue": null,
-                                "_previousName": "ty",
-                                "playbookField": true,
-                                "lengthConstraint": true,
-                                "allowedGridColumn": false,
+                                "_previousName": "",
                                 "useRecordFieldDefault": false
                             },
                             {
@@ -231,7 +219,7 @@
                                 "tooltip": "Select the change request Assignee username",
                                 "dataType": "lookup",
                                 "formType": "lookup",
-                                "required": true,
+                                "required": false,
                                 "_expanded": false,
                                 "mmdUpdate": true,
                                 "collection": false,
@@ -241,20 +229,13 @@
                                 "searchable": false,
                                 "templateUrl": "app\/components\/form\/fields\/typeahead.html",
                                 "defaultValue": null,
-                                "_previousName": "assigneeUser",
+                                "_previousName": "",
                                 "playbookField": true,
-                                "displayTemplate": "%7B%7B%20firstname%20%7D%7D%20%7B%7B%20lastname%20%7D%7D",
-                                "visibilityQuery": {
-                                    "sort": [],
-                                    "limit": 30,
-                                    "logic": "AND",
-                                    "filters": []
-                                },
+                                "displayTemplate": "{{ firstname }} {{ lastname }}",
                                 "lengthConstraint": false,
                                 "allowedEncryption": false,
                                 "allowedGridColumn": true,
-                                "useRecordFieldDefault": false,
-                                "_addVisibilityConditions": true
+                                "useRecordFieldDefault": false
                             },
                             {
                                 "name": "reporterUsername",
@@ -275,25 +256,12 @@
                                 "searchable": false,
                                 "templateUrl": "app\/components\/form\/fields\/typeahead.html",
                                 "defaultValue": null,
-                                "_previousName": "reporterUserame",
+                                "_previousName": "",
                                 "playbookField": true,
                                 "displayTemplate": "{{ firstname }} {{ lastname }}",
                                 "lengthConstraint": false,
                                 "allowedEncryption": false,
                                 "allowedGridColumn": true,
-                                "useRecordFieldDefault": false
-                            },
-                            {
-                                "name": "summary",
-                                "type": "string",
-                                "label": "Summary",
-                                "tooltip": "Provide the Summary of change Request",
-                                "dataType": "text",
-                                "formType": "text",
-                                "required": true,
-                                "_expanded": false,
-                                "defaultValue": null,
-                                "_previousName": "",
                                 "useRecordFieldDefault": false
                             },
                             {
@@ -386,12 +354,21 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Get Change Request Details -> Get Source Control Details",
+            "targetStep": "\/api\/3\/workflow_steps\/362f353a-d9d3-46fa-af66-54b797c87906",
+            "sourceStep": "\/api\/3\/workflow_steps\/bb247814-03fd-437d-9e7b-62c68e0877fc",
+            "label": "Submit",
+            "isExecuted": false,
+            "uuid": "6f8b6faa-9c90-4ea4-9f02-6921e8d56571"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Start -> Get Change Request Details",
             "targetStep": "\/api\/3\/workflow_steps\/bb247814-03fd-437d-9e7b-62c68e0877fc",
             "sourceStep": "\/api\/3\/workflow_steps\/48fc914f-9747-44e7-981e-bee4d91373ee",
             "label": null,
             "isExecuted": false,
-            "uuid": "72dadbbf-2689-489e-8243-0be08080f73e"
+            "uuid": "7067918d-985a-4a77-b484-8cc0d0e253df"
         },
         {
             "@type": "WorkflowRoute",
@@ -419,15 +396,6 @@
             "label": null,
             "isExecuted": false,
             "uuid": "af5f23ec-c9e7-4fa0-ab2f-bbdab22c5623"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Get Change Request Details -> Get Enrichment Playbooks List",
-            "targetStep": "\/api\/3\/workflow_steps\/362f353a-d9d3-46fa-af66-54b797c87906",
-            "sourceStep": "\/api\/3\/workflow_steps\/bb247814-03fd-437d-9e7b-62c68e0877fc",
-            "label": "Submit",
-            "isExecuted": false,
-            "uuid": "d13fcb8c-15d5-48f2-8613-9c9d8de5b1a9"
         },
         {
             "@type": "WorkflowRoute",

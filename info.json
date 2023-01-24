@@ -4,7 +4,7 @@
     "fsrMinCompatibility": "7.3.1",
     "type": "solutionpack",
     "local": true,
-    "label": "CICD - Continuous Integration and Continuous Delivery",
+    "label": "CICD - Change Management",
     "dependencies": [
         {
             "name": "sOARFramework",
@@ -16,7 +16,7 @@
     "prerequisite": null,
     "certified": "true",
     "publisher": "Fortinet",
-    "description": "Automate software development workflows and deploy better quality code, more often. Using a continuous and iterative process to build, test, and deploy helps avoid bugs and code failures.",
+    "description": "Setup Source Control (GitHub based) and mange/orchestrate/streamline Content Development Lifecycle across multiple FortiSOAR environments designated as Development, Staging and Production.",
     "help": null,
     "category": [],
     "supportInfo": null,

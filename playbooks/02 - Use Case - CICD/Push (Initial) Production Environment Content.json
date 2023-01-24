@@ -25,11 +25,11 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": true,
-                    "content": "<p class=\"mp-tile-description muted-80\">\"FortiSOAR Production Environment Content\" is successfully pushed (exported) into the <a rel=\"noopener\" target=\"_blank\" href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\">https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}<\/a> Repository.<\/p>",
+                    "content": "<p class=\"mp-tile-description muted-80\">\"FortiSOAR Production Environment Content\" is successfully pushed (exported) into the <a href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\" target=\"_blank\" rel=\"noopener\">https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}<\/a> Repository.<\/p>",
                     "records": ""
                 },
                 "resource": {
-                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p>&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\">\"FortiSOAR Production Environment Content\" is successfully pushed (exported) into the <a rel=\"noopener\" target=\"_blank\" href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\">https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}<\/a> Repository.<\/p>"
+                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p>&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\">- \"FortiSOAR Production Environment Content\" is successfully pushed (exported) into the <a href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\" target=\"_blank\" rel=\"noopener\">https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}<\/a> Repository.<\/p>\n<p class=\"mp-tile-description muted-80\">&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\">&nbsp;<\/p>"
                 },
                 "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",

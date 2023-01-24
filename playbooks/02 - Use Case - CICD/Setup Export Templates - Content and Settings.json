@@ -1,7 +1,7 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "Synchronize Export Template - Content and Settings",
+    "name": "Setup Export Templates - Content and Settings",
     "aliasName": null,
     "tag": null,
     "description": "Synchronize Content and Settings Export Template in export wizard",
