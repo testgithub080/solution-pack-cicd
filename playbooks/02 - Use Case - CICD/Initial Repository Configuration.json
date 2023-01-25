@@ -365,7 +365,7 @@
             "arguments": {
                 "params": {
                     "macro": "{{\"cicd_config\"}}",
-                    "value": "{\"organizationName\": \"{{vars.organization_name}}\", \"content\": \"{{vars.content_repo}}\", \"productionSettings\": \"{{vars.prod_settings}}\", \"developmentSettings\": \"{{vars.dev_settings}}\",\"baseBranch\": \"{{vars.base_branch}}\"}"
+                    "value": "{\"organizationName\": \"{{vars.organization_name}}\", \"content\": \"{{vars.content_repo}}\", \"productionSettings\": \"{{vars.prod_settings}}\", \"developmentSettings\": \"{{vars.dev_settings}}\",\"baseBranch\": \"{{vars.base_branch}}\",\"contentRepoName\": \"{{vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}\", \"prodSettingsRepoName\": \"{{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}\", \"devSettingsRepoName\": \"{{vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}}\" }"
                 },
                 "version": "3.2.3",
                 "connector": "cyops_utilities",
