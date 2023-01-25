@@ -17,6 +17,20 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "Return Playbook Status",
+            "description": null,
+            "arguments": {
+                "is_status_failed": "{{vars.steps.Create_Repositories[0].is_status_failed}}"
+            },
+            "status": null,
+            "top": "705",
+            "left": "928",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "0aa7db43-d395-4a12-9d4b-6bbe857f776e"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Provide Repositories Detail",
             "description": null,
             "arguments": {
@@ -59,8 +73,8 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "435",
-            "left": "568",
+            "top": "570",
+            "left": "393",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "18b86c22-2d44-45ae-83c3-560dcf651a44"
@@ -78,7 +92,7 @@
             },
             "status": null,
             "top": "30",
-            "left": "393",
+            "left": "568",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
             "group": null,
             "uuid": "1fa83340-33e4-4d27-99e3-bbab6f5cc3b4"
@@ -95,7 +109,7 @@
                 "organization_name": "{{vars.steps.Get_Repositories_Detail.input.orgName}}"
             },
             "status": null,
-            "top": "570",
+            "top": "705",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -147,7 +161,7 @@
             },
             "status": null,
             "top": "300",
-            "left": "393",
+            "left": "568",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "64961e22-a788-4e67-bceb-35fb39687f80"
@@ -165,8 +179,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "570",
-            "left": "578",
+            "top": "440",
+            "left": "100",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "655bfe6b-e43e-48ba-9254-7a98450d4e80"
@@ -182,7 +196,8 @@
                     "tenant": "",
                     "thread": false,
                     "content": "<p class=\"mp-tile-description muted-80\">View the configured Source Control Repositories<\/p>\n<ul>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.content_repo}}\">{{vars.content_repo}}<\/a><\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.prod_settings}}\">{{vars.prod_settings}}<\/a><\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.dev_settings}}\">{{vars.dev_settings}}<\/a><\/p>\n<\/li>\n<\/ul>",
-                    "records": "{{vars.input.records[0]['@id']}}"
+                    "records": "{{vars.input.records[0]['@id']}}",
+                    "parentstepid": "\/api\/3\/workflow_steps\/91e2e908-b7a9-42d4-9bed-d311560b8f6e"
                 },
                 "resource": {
                     "results": "<p class=\"mp-tile-description muted-80\">- View the configured Source Control Repositories<\/p>\n<ul>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.content_repo}}\">{{vars.content_repo}}<\/a><\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.prod_settings}}\">{{vars.prod_settings}}<\/a><\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.dev_settings}}\">{{vars.dev_settings}}<\/a><\/p>\n<\/li>\n<\/ul>"
@@ -195,11 +210,38 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1110",
+            "top": "1245",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "91e2e908-b7a9-42d4-9bed-d311560b8f6e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Has Repo Created",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "No",
+                        "step_iri": "\/api\/3\/workflow_steps\/0aa7db43-d395-4a12-9d4b-6bbe857f776e",
+                        "condition": "{{ not vars.steps.Create_Repositories[0].is_status_failed }}",
+                        "step_name": "Return Playbook Status"
+                    },
+                    {
+                        "option": "Yes",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/224c1621-c33a-4720-ade0-46573ea34ce8",
+                        "step_name": "Repository Details"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "660",
+            "left": "580",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "a2077fd4-6417-4867-a36f-a802bdbc703b"
         },
         {
             "@type": "WorkflowStep",
@@ -311,7 +353,7 @@
             },
             "status": null,
             "top": "165",
-            "left": "393",
+            "left": "568",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "af50d35a-1f68-4c8b-9b57-1d1c1115231e"
@@ -332,8 +374,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "980",
-            "left": "520",
+            "top": "1100",
+            "left": "560",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "b5c63b4b-7d12-4a8a-b24d-ad38aa8ee1e7"
@@ -357,7 +399,7 @@
                 }
             },
             "status": null,
-            "top": "705",
+            "top": "840",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -379,14 +421,15 @@
                     "organization_name": "{{vars.steps.Get_Repositories_Detail.input.orgName}}"
                 },
                 "apply_async": false,
+                "ignore_errors": false,
                 "step_variables": [],
                 "pass_parent_env": false,
                 "pass_input_record": true,
                 "workflowReference": "\/api\/3\/workflows\/7d94d329-8d15-4d90-ba33-fb04b9f8fdc9"
             },
             "status": null,
-            "top": "435",
-            "left": "208",
+            "top": "440",
+            "left": "740",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "bcdcf23e-1e22-440c-90ec-7d3a521b129f"
@@ -412,7 +455,7 @@
                 ]
             },
             "status": null,
-            "top": "840",
+            "top": "975",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
@@ -428,15 +471,6 @@
             "label": "Manually",
             "isExecuted": false,
             "uuid": "b365fc30-8898-41c0-ae4b-3c0789913403"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Create Repositories -> Repository Details",
-            "targetStep": "\/api\/3\/workflow_steps\/224c1621-c33a-4720-ade0-46573ea34ce8",
-            "sourceStep": "\/api\/3\/workflow_steps\/bcdcf23e-1e22-440c-90ec-7d3a521b129f",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "f47b6d21-0c2a-4b6c-88dc-69295423d0ef"
         },
         {
             "@type": "WorkflowRoute",
@@ -527,6 +561,33 @@
             "label": "Yes",
             "isExecuted": false,
             "uuid": "f4f4d358-78eb-4fed-8fd5-9e3de0907ea0"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Repositories -> Has Repo Created",
+            "targetStep": "\/api\/3\/workflow_steps\/a2077fd4-6417-4867-a36f-a802bdbc703b",
+            "sourceStep": "\/api\/3\/workflow_steps\/bcdcf23e-1e22-440c-90ec-7d3a521b129f",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "f4073b6a-4eac-4b19-843f-d79130940790"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Has Repo Created -> Repository Details",
+            "targetStep": "\/api\/3\/workflow_steps\/224c1621-c33a-4720-ade0-46573ea34ce8",
+            "sourceStep": "\/api\/3\/workflow_steps\/a2077fd4-6417-4867-a36f-a802bdbc703b",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "379489aa-1f0c-402b-9cb2-c8cfc4435a06"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Has Repo Created -> Return Playbook Status",
+            "targetStep": "\/api\/3\/workflow_steps\/0aa7db43-d395-4a12-9d4b-6bbe857f776e",
+            "sourceStep": "\/api\/3\/workflow_steps\/a2077fd4-6417-4867-a36f-a802bdbc703b",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "dd17c17d-b63c-403f-bbd2-813ff811dafc"
         }
     ],
     "groups": [],

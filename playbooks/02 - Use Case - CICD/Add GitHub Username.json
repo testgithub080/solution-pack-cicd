@@ -32,7 +32,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "570",
+            "top": "705",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -122,11 +122,34 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "300",
+            "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "38afc1e5-53a5-4127-bec8-239dbeabd065"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Status as In Progress",
+            "description": null,
+            "arguments": {
+                "when": "{{not vars.is_ref_playbook}}",
+                "resource": {
+                    "status": "\/api\/3\/picklists\/7f0263bf-29ab-4453-aefe-41d20f0fe9c3"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "4e4d74de-956b-4461-918a-18f6cb115b71"
         },
         {
             "@type": "WorkflowStep",
@@ -143,7 +166,8 @@
                         "params": [],
                         "records": "{{vars.input.records}}"
                     },
-                    "logged_in_user": "{{(vars.currentUser | fromIRI).firstname}} {{(vars.currentUser | fromIRI).lastname}}"
+                    "logged_in_user": "{{(vars.currentUser | fromIRI).firstname}} {{(vars.currentUser | fromIRI).lastname}}",
+                    "is_ref_playbook": "{% if vars.input.records[0].title == \"Map GitHub Username\" %}{{false}}{% else %}{{true}}{% endif %}"
                 },
                 "displayConditions": {
                     "change_management": {
@@ -197,7 +221,7 @@
                 "fsr_user_uuid": "{% for user in vars.steps.Get_FortiSOAR_User.data['hydra:member'] %}{% if user.firstname in vars.steps.Get_Usernames.input.fortiSOARUsername %}{{user.uuid}}{% endif %}{% endfor %}"
             },
             "status": null,
-            "top": "435",
+            "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -227,7 +251,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "840",
+            "top": "975",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -252,11 +276,34 @@
                 }
             },
             "status": null,
-            "top": "165",
+            "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "aab60b8d-1ea8-4504-a5c5-673b974cfc73"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Status as Pending",
+            "description": null,
+            "arguments": {
+                "when": "{{not vars.is_ref_playbook}}",
+                "resource": {
+                    "status": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1110",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "dd585596-04c4-4b1d-a98d-8d5f5a8d27ef"
         },
         {
             "@type": "WorkflowStep",
@@ -285,7 +332,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "705",
+            "top": "840",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
@@ -313,15 +360,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Configuration -> Update GitHub Username",
-            "targetStep": "\/api\/3\/workflow_steps\/05bcfc1c-3b6a-4fbb-a4de-a5b5c662366d",
-            "sourceStep": "\/api\/3\/workflow_steps\/7c370e60-e44e-41f1-b3b2-5f8bb1b11da3",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "41fc6ee6-91d5-4bb6-a234-2901d620d4dc"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Get FortiSOAR User -> Get GitHub Username",
             "targetStep": "\/api\/3\/workflow_steps\/38afc1e5-53a5-4127-bec8-239dbeabd065",
             "sourceStep": "\/api\/3\/workflow_steps\/aab60b8d-1ea8-4504-a5c5-673b974cfc73",
@@ -331,12 +369,21 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Get FortiSOAR User",
-            "targetStep": "\/api\/3\/workflow_steps\/aab60b8d-1ea8-4504-a5c5-673b974cfc73",
+            "name": "Update Record -> Copy of Update Status as In Progress",
+            "targetStep": "\/api\/3\/workflow_steps\/dd585596-04c4-4b1d-a98d-8d5f5a8d27ef",
+            "sourceStep": "\/api\/3\/workflow_steps\/a3a81895-7a83-4ef7-a0a1-989279d50bd8",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "9c603a1e-6d9a-46cd-a1d7-b963589eb482"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Update Status as In Progress",
+            "targetStep": "\/api\/3\/workflow_steps\/4e4d74de-956b-4461-918a-18f6cb115b71",
             "sourceStep": "\/api\/3\/workflow_steps\/62dc4d31-01cc-40a5-94ae-e5de097cc27f",
             "label": null,
             "isExecuted": false,
-            "uuid": "b4e26a1c-07e0-4290-b581-2476c9796502"
+            "uuid": "c64a7510-7a57-4aad-847f-943f9879485e"
         },
         {
             "@type": "WorkflowRoute",
@@ -346,6 +393,24 @@
             "label": null,
             "isExecuted": false,
             "uuid": "e0d6a5eb-400e-4253-b369-2061039fbdb3"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Update GitHub Username",
+            "targetStep": "\/api\/3\/workflow_steps\/05bcfc1c-3b6a-4fbb-a4de-a5b5c662366d",
+            "sourceStep": "\/api\/3\/workflow_steps\/7c370e60-e44e-41f1-b3b2-5f8bb1b11da3",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "f29c9237-27d3-47ab-a84c-dee8f170a43b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Status as In Progress -> Get FortiSOAR User",
+            "targetStep": "\/api\/3\/workflow_steps\/aab60b8d-1ea8-4504-a5c5-673b974cfc73",
+            "sourceStep": "\/api\/3\/workflow_steps\/4e4d74de-956b-4461-918a-18f6cb115b71",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "fedf92cc-77b2-4b64-9b09-7e45ac503977"
         }
     ],
     "groups": [],
