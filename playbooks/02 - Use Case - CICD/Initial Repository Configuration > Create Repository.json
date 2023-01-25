@@ -42,9 +42,12 @@
                 "version": "1.0.0",
                 "connector": "github",
                 "operation": "create_repository",
+                "ignore_errors": true,
                 "operationTitle": "Create Repository",
                 "pickFromTenant": false,
-                "step_variables": []
+                "step_variables": {
+                    "is_status_failed": "{% if vars.steps.Create_Repository.status == 'failed' %}{{true}}{% else %}{{false}}{% endif %}"
+                }
             },
             "status": null,
             "top": "300",
@@ -73,6 +76,7 @@
                 "version": "1.0.0",
                 "connector": "github",
                 "operation": "create_update_file_contents",
+                "ignore_errors": true,
                 "operationTitle": "Create or Update File Contents",
                 "pickFromTenant": false,
                 "step_variables": []
@@ -121,7 +125,8 @@
             "name": "Return Output",
             "description": null,
             "arguments": {
-                "html_url": "{{vars.steps.Create_Repository.data['html_url']}}"
+                "html_url": "{{vars.steps.Create_Repository.data['html_url']}}",
+                "is_status_failed": "{{vars.is_status_failed}}"
             },
             "status": null,
             "top": "570",
