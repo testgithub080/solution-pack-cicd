@@ -32,7 +32,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "435",
+            "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -40,26 +40,56 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get GitHub Username",
+            "name": "Get Usernames",
             "description": null,
             "arguments": {
                 "type": "InputBased",
                 "input": {
                     "schema": {
-                        "title": "Enter the GitHub Username",
-                        "description": "Please Enter the GitHub Username for the logged in FortiSOAR User \"{{vars.logged_in_user}}\".",
+                        "title": "Map FortiSOAR User",
+                        "description": "Map FortiSOAR User with specified GitHub username.       ",
                         "inputVariables": [
+                            {
+                                "name": "fortiSOARUsername",
+                                "type": "array",
+                                "label": "FortiSOAR Username",
+                                "title": "Dynamic List",
+                                "usable": true,
+                                "options": "{{vars.user_list}}",
+                                "tooltip": "Select the FotiSOAR user which you want to map with GitHub username",
+                                "dataType": "dynamicList",
+                                "formType": "dynamicList",
+                                "required": true,
+                                "_expanded": true,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "searchable": false,
+                                "templateUrl": "app\/components\/form\/fields\/dynamicList.html",
+                                "defaultValue": null,
+                                "_previousName": "fortiUsername",
+                                "playbookField": true,
+                                "visibilityQuery": {
+                                    "sort": [],
+                                    "limit": 30,
+                                    "logic": "AND",
+                                    "filters": []
+                                },
+                                "lengthConstraint": true,
+                                "allowedGridColumn": false,
+                                "useRecordFieldDefault": false,
+                                "_addVisibilityConditions": true
+                            },
                             {
                                 "name": "gitHubUsername",
                                 "type": "string",
                                 "label": "GitHub Username",
-                                "tooltip": "",
+                                "tooltip": "Enter the GitHub username which you want to map with FortiSOAR user",
                                 "dataType": "text",
                                 "formType": "text",
-                                "required": false,
+                                "required": true,
                                 "_expanded": true,
                                 "defaultValue": null,
-                                "_previousName": "gitHubU",
+                                "_previousName": "gitHub",
                                 "useRecordFieldDefault": false
                             }
                         ]
@@ -92,7 +122,7 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "165",
+            "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
@@ -163,11 +193,11 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
-                "git_username": "{{vars.steps.Get_GitHub_Username.input.gitHubUsername}}",
-                "fsr_user_uuid": "{{(vars.currentUser | fromIRI).uuid}}"
+                "git_username": "{{vars.steps.Get_Usernames.input.gitHubUsername}}",
+                "fsr_user_uuid": "{% for user in vars.steps.Get_FortiSOAR_User.data['hydra:member'] %}{% if user.firstname in vars.steps.Get_Usernames.input.fortiSOARUsername %}{{user.uuid}}{% endif %}{% endfor %}"
             },
             "status": null,
-            "top": "300",
+            "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -183,11 +213,11 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p class=\"mp-tile-description muted-80\">\"{{vars.steps.Get_GitHub_Username.input.gitHubUsername}}\" GitHub username assign to FortiSOAR user \"<a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a>\".<\/p>",
+                    "content": "<p class=\"mp-tile-description muted-80\">\"{{vars.steps.Get_Usernames.input.gitHubUsername}}\" GitHub username assigned to FortiSOAR user \"<a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a>\".<\/p>",
                     "records": "{{vars.input.records[0]['@id']}}"
                 },
                 "resource": {
-                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p>&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\">- \"{{vars.steps.Get_GitHub_Username.input.gitHubUsername}}\" GitHub username assign to FortiSOAR user \"<a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a>\".<\/p>"
+                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p>&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\">- \"{{vars.steps.Get_Usernames.input.gitHubUsername}}\" GitHub username assigned to FortiSOAR user \"<a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a>\".<\/p>"
                 },
                 "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",
@@ -197,11 +227,36 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "705",
+            "top": "840",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "a3a81895-7a83-4ef7-a0a1-989279d50bd8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get FortiSOAR User",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/3\/people?$limit=30&$orderby=%2Bfirstname,%2Blastname,-modifyDate",
+                    "body": "",
+                    "method": "GET"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": {
+                    "user_list": "{% set ul = [] %}\n{% for user in vars.steps.Get_FortiSOAR_User.data['hydra:member'] | json_query(\"[?firstname != 'Tenant']\") %}\n{% set un= user.firstname+\" \"+user.lastname %}\n{% set _ =ul.append(un) %}\n{% endfor %}\n{{ul}}"
+                }
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "aab60b8d-1ea8-4504-a5c5-673b974cfc73"
         },
         {
             "@type": "WorkflowStep",
@@ -230,7 +285,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "570",
+            "top": "705",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
@@ -238,15 +293,6 @@
         }
     ],
     "routes": [
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Get GitHub Username",
-            "targetStep": "\/api\/3\/workflow_steps\/38afc1e5-53a5-4127-bec8-239dbeabd065",
-            "sourceStep": "\/api\/3\/workflow_steps\/62dc4d31-01cc-40a5-94ae-e5de097cc27f",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "04a1821e-363d-40aa-ba44-efc9a78c0530"
-        },
         {
             "@type": "WorkflowRoute",
             "name": "Get GitHub Username -> Configuration",
@@ -272,7 +318,25 @@
             "sourceStep": "\/api\/3\/workflow_steps\/7c370e60-e44e-41f1-b3b2-5f8bb1b11da3",
             "label": null,
             "isExecuted": false,
-            "uuid": "4fbea756-4fcc-4f2e-a5a1-698b6d3e8092"
+            "uuid": "41fc6ee6-91d5-4bb6-a234-2901d620d4dc"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get FortiSOAR User -> Get GitHub Username",
+            "targetStep": "\/api\/3\/workflow_steps\/38afc1e5-53a5-4127-bec8-239dbeabd065",
+            "sourceStep": "\/api\/3\/workflow_steps\/aab60b8d-1ea8-4504-a5c5-673b974cfc73",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "77ef9050-a361-4707-82d6-3756bc10ed0f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get FortiSOAR User",
+            "targetStep": "\/api\/3\/workflow_steps\/aab60b8d-1ea8-4504-a5c5-673b974cfc73",
+            "sourceStep": "\/api\/3\/workflow_steps\/62dc4d31-01cc-40a5-94ae-e5de097cc27f",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "b4e26a1c-07e0-4290-b581-2476c9796502"
         },
         {
             "@type": "WorkflowRoute",

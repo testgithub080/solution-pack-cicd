@@ -307,7 +307,7 @@
             "description": null,
             "arguments": {
                 "params": {
-                    "iri": "\/api\/wf\/api\/dynamic-variable\/?limit=50",
+                    "iri": "\/api\/wf\/api\/dynamic-variable\/?name=cicd_config",
                     "body": "",
                     "method": "GET"
                 },
@@ -316,7 +316,7 @@
                 "operation": "make_cyops_request",
                 "operationTitle": "FSR: Make FortiSOAR API Call",
                 "step_variables": {
-                    "cicd_config": "{% if vars.result.data['hydra:member'] | json_query(\"[?name=='cicd_config']\") | length %}{{(vars.result.data['hydra:member'] | json_query(\"[?name=='cicd_config']\"))[0].value | toDict}}{% else %}{{vars.result.data['hydra:member'] | json_query(\"[?name=='cicd_config']\")}}{% endif %}"
+                    "cicd_config": "{% if vars.result.data['hydra:member'] | length %}{{vars.result.data['hydra:member'][0].value | toDict }}{% else %}\"\"{% endif %}"
                 }
             },
             "status": null,

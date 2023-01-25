@@ -19,7 +19,7 @@
     {
         "@type": "ChangeManagement",
         "title": "Map GitHub Username",
-        "description": "<p>Map logged in FortiSOAR User with specified GitHub username.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<\/p>",
+        "description": "<p>Map FortiSOAR User with specified GitHub username.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<\/p>",
         "results": "",
         "sequence": 3,
         "recordIcon": "<p><img src=\"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAoCAYAAABjPNNTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQxSURBVHgBzVg9VhsxEJ6RnZiSG8Q5AXCCmA5oME0CFeYR0gInwD4B0AZ4mIpAAzTBHeYEMSdgj2A6nMdqMiPvGu9aq\/X\/y1d4ZUsrf5qRRt8MwpBYOr\/M4xsWScEcEswTwiwQ5DsDEDz+7iFig5+PuczH+u3WWhOGAA4yuHh+M9t6a5WY0Cp\/LcCAQMBbflzcf\/92O9h7fWLp7OoAifYI2GKjw2PC+\/2STSW58vN6npQ+Z3LzMG4gVEFRpba14bmHObByer2rQR\/BZOFBhhZdRFVSh7h3CgQFefTxj3gsaYDVkkIQiMowRTCRJmq1+PvH14alL4opudgKIUoZWoi7PkJSYh\/4+Gx5v86WfURUcwRUhBGJ8OOCiJocQ3fj0YL7G7lMbrE7pmYjM2h8sE+Mx\/c767edhbxBCRAPbAQ4hjYjQf0dHiBV7rc3quEPS6c8F+Bm9yCJIq9vr3vcLHfNG7xwdlkCwnPL5KC0WojvlZAsW7dBGd2wnc52+KI8eyGfy+aq8Rtn+eTXHi\/q0PaffOI\/h3N2WbLXMiH0B7\/nOgsmKIMDwcIaSf28ALZ6QhTUhs+WNE0IalvR6qKJAjUm314EJbmGpdmOkxTdFz2T+Wr8t438LYsTV3+wN0GZveUWC57sOZgENF04+xG\/yEOBTlEzmH63Dovazkad7ekiWhCXs7vbbBPg1bpCxkRALDIcaPl\/C8p5YJCD+IRhrCkCOQkcvhQPyCf1o4YnmAKQ0BGmYM5pSRPHpgAC\/eLqV\/BfAD+5et0k9fQDvA3KuWmVe4XjAjpSE85EXxR\/NB0DRpJl\/WDp5LLgTO44LVasD5+S+2FWJoFJQrmvZObXUK7jb4DJ6mhUmCuZhYRrzEx2pqFE54EbheWzq0MYM4zCSRDZIUSliwZVgRCtuwaz1N8ToqF0GhViwZbfekiTh4R0LE8jevmA3LH2LISdsgImdmf2SzCREH31W0XWnhWOCfVhRIfsb1RqFXwq9VUJUW3jGVlsajx+6zl80ZDM0JoQ4YnLCfkM72X0WLhWbGloh5gIahYxEikGKtFwdaO2vf6uzI3LCSphvymp+PggbmEBUGZCx\/E5ZAyfvHkXQQNtqmslGrSGxOWXTjNscDZ4hNF8RCoLN9LgFLNsC\/o8\/g5SICoHHXmOFRTVsJFrkSsIW0Fe3B7L1pJ9JJaeUbkFeZl\/Nn8q1uUt0VcRwRWLLfDEexFe8RHxNNOWrA8Kzq+r8fw6iaCteNUjMMTtgcUMxJoSLoJcaGIQD3J+v2aLGomlv4RT3VHRfFPNpp3szlwplnQVqwSJUs2caoL92M8Fc42Z00pFjf5Yqr5SpHIt1qknjeu53OGUcyNADt9MJreQdjFkIQXBBJ+DoHwwpkqHVOkq9yalTUcqyRBBalsVsrwfd7mdp2x\/FhalxRFjMyRX65NciH80MfIn5uoJPAAAAABJRU5ErkJggg==\" \/><\/p>",
@@ -64,14 +64,14 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1670934469.007706,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1674479946.417718,
+        "modifyDate": 1674562176.849359,
         "id": 4
     },
     {
         "@type": "ChangeManagement",
         "title": "Save Dev Settings",
         "description": "<p class=\"mp-tile-description muted-80\">Backup connector configurations, SSO settings, user configurations, etc. into Github<\/p>",
-        "results": "<p>\"Source Control - Development Settings\" is successfully saved (exported) into the <a rel=\"noopener\" target=\"_blank\" href=\"https:\/\/github.com\/fortisoar-cicd\/fortisoar-dev-settings\">https:\/\/github.com\/fortisoar-cicd\/fortisoar-dev-settings<\/a>&nbsp;Repository.<\/p>",
+        "results": "",
         "sequence": 2,
         "recordIcon": "<p><img src=\"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM\/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOXSURBVHgB7ZhPaBRJFMa\/VzWTxEAgMCdlD3PK3hYlENDLRnZdFJIlYf+wOW2GYQ1LDhFvgpB48ipKBEdDJhcHD5LBKIqgxouCEMnVnBoU5xSJxAwm013PVz0zMVHidHWieJgfDFRPv+r6+nXVq3qPsIXjVwu9UPSvNHvBSBOwwsAiiGfuZYfy2EMOjZw6LM89wkw\/yGW7\/JZBWGrR++aeTZ5frtvRpripG+NgntjpgWK4yJoH72WGPOyCntEzqUpQHhZhXTvZKAS3n1+5NFcbt7G4LXhtuvVQMTO4ghh0n5xoD\/TKWRikGtnWRarj04V0RHGW9Hv\/\/SnEpEJvf4kizmKg+3pGT3cpGBqHA0Q0NjA924kYKMWHXez9wBxRsAvCAVk0nRuVShqO\/PT\/2I9RvVfHMMSDslrhiNHBQTiifNoHd1LKhhK4YuDh21BWYZxzpC3R5txHU3kJjhDxK2WDsFsv5OOEmYVcriwLzEkkB\/xU1XaI+Sgdwumg+BxiktQbeVmV5Si2RHi1ePXiExVeac7I6N4XO4RzlTK72UmeTU4uG42ZRiJlrOWkrlyutavY2BYGYbsXf76y5+1L7Habq9MzOpraCJL9Ms62uGiFB6QeJMy7h3ZKbBO4FXtoIFJhMG7VLfNxt7YoQtfRmlJQqRa1\/tJfX39TF9akSZMmTZo0+T747LAwMPtIDgmSFBl9EMp4QMIrDh718BX4fWqqw5j2btvmpF69M\/z3AnYSWBXmj0kaKnkvf5JWUh5Kn9srocemCgcSkHSX0b3tBnNJjntzSawVbmWzq5sCRZx4LHgkFukvPHcFTJnin78WsQvC+g\/RuAzcsaORCE0qjNzKDr2unqgDf7aBOEun5C\/T4cvExHquoTgL0f4KqgUFNXDz\/rD4MWqe2wn2pxETbXCyobg68vlPXLveL1ldWG6LDqO3Ol\/dsN6TrK7PqROpPvuJnasECIJeONJi9H44wrXSR6xCkCuG+AAcsdNBPEgeXNHsnERRkl\/AFeKSzEHz2KkTWAL3sXk4kvDXSqyw6tKHDBakkClB2AnHUkkNG3gpQMGlT0Ihp4p\/iTcMIpYz2IMqX0BMkmqtIBOrFMmYkNsM1CJyoqFIkuqCCo4WB+Mn8daLPnhEqlZLjcTdzf6Tqza3MDB7N41AT8i\/P8utNOz2RlKeY54p\/vFbHnvIiWs3+mUR9DGhS+Zah0STEoEXCHruzn8fDw0fALKbXNy\/y\/CjAAAAAElFTkSuQmCC\"><\/p>",
         "status": "\/api\/3\/picklists\/eb7e156f-f599-4cf6-a12b-5484c1bc414d",
@@ -80,14 +80,14 @@
         "uuid": "d0563004-2a18-4e3d-be17-e8a2e721202d",
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1670928795.166803,
-        "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
-        "modifyDate": 1674473868.94132,
+        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "modifyDate": 1674563113.892896,
         "id": 5
     },
     {
         "@type": "ChangeManagement",
         "title": "Map GitHub Username",
-        "description": "<p>Map logged in FortiSOAR User with specified GitHub username.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<\/p>",
+        "description": "<p>Map FortiSOAR User with specified GitHub username.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<\/p>",
         "results": "",
         "sequence": 3,
         "recordIcon": "<p><img src=\"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAoCAYAAABjPNNTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQxSURBVHgBzVg9VhsxEJ6RnZiSG8Q5AXCCmA5oME0CFeYR0gInwD4B0AZ4mIpAAzTBHeYEMSdgj2A6nMdqMiPvGu9aq\/X\/y1d4ZUsrf5qRRt8MwpBYOr\/M4xsWScEcEswTwiwQ5DsDEDz+7iFig5+PuczH+u3WWhOGAA4yuHh+M9t6a5WY0Cp\/LcCAQMBbflzcf\/92O9h7fWLp7OoAifYI2GKjw2PC+\/2STSW58vN6npQ+Z3LzMG4gVEFRpba14bmHObByer2rQR\/BZOFBhhZdRFVSh7h3CgQFefTxj3gsaYDVkkIQiMowRTCRJmq1+PvH14alL4opudgKIUoZWoi7PkJSYh\/4+Gx5v86WfURUcwRUhBGJ8OOCiJocQ3fj0YL7G7lMbrE7pmYjM2h8sE+Mx\/c767edhbxBCRAPbAQ4hjYjQf0dHiBV7rc3quEPS6c8F+Bm9yCJIq9vr3vcLHfNG7xwdlkCwnPL5KC0WojvlZAsW7dBGd2wnc52+KI8eyGfy+aq8Rtn+eTXHi\/q0PaffOI\/h3N2WbLXMiH0B7\/nOgsmKIMDwcIaSf28ALZ6QhTUhs+WNE0IalvR6qKJAjUm314EJbmGpdmOkxTdFz2T+Wr8t438LYsTV3+wN0GZveUWC57sOZgENF04+xG\/yEOBTlEzmH63Dovazkad7ekiWhCXs7vbbBPg1bpCxkRALDIcaPl\/C8p5YJCD+IRhrCkCOQkcvhQPyCf1o4YnmAKQ0BGmYM5pSRPHpgAC\/eLqV\/BfAD+5et0k9fQDvA3KuWmVe4XjAjpSE85EXxR\/NB0DRpJl\/WDp5LLgTO44LVasD5+S+2FWJoFJQrmvZObXUK7jb4DJ6mhUmCuZhYRrzEx2pqFE54EbheWzq0MYM4zCSRDZIUSliwZVgRCtuwaz1N8ToqF0GhViwZbfekiTh4R0LE8jevmA3LH2LISdsgImdmf2SzCREH31W0XWnhWOCfVhRIfsb1RqFXwq9VUJUW3jGVlsajx+6zl80ZDM0JoQ4YnLCfkM72X0WLhWbGloh5gIahYxEikGKtFwdaO2vf6uzI3LCSphvymp+PggbmEBUGZCx\/E5ZAyfvHkXQQNtqmslGrSGxOWXTjNscDZ4hNF8RCoLN9LgFLNsC\/o8\/g5SICoHHXmOFRTVsJFrkSsIW0Fe3B7L1pJ9JJaeUbkFeZl\/Nn8q1uUt0VcRwRWLLfDEexFe8RHxNNOWrA8Kzq+r8fw6iaCteNUjMMTtgcUMxJoSLoJcaGIQD3J+v2aLGomlv4RT3VHRfFPNpp3szlwplnQVqwSJUs2caoL92M8Fc42Z00pFjf5Yqr5SpHIt1qknjeu53OGUcyNADt9MJreQdjFkIQXBBJ+DoHwwpkqHVOkq9yalTUcqyRBBalsVsrwfd7mdp2x\/FhalxRFjMyRX65NciH80MfIn5uoJPAAAAABJRU5ErkJggg==\" \/><\/p>",
@@ -105,7 +105,7 @@
         "@type": "ChangeManagement",
         "title": "Save Production Settings",
         "description": "<p class=\"mp-tile-description muted-80\">Backup connector configurations, SSO settings, user configurations, etc. into Github<\/p>",
-        "results": "<p>\"Source Control - Production Settings\" is successfully saved (exported) into the <a rel=\"noopener\" target=\"_blank\" href=\"https:\/\/github.com\/fortisoar-cicd\/fortisoar-prod-settings\">https:\/\/github.com\/fortisoar-cicd\/fortisoar-prod-settings<\/a>&nbsp;Repository.<\/p>",
+        "results": "",
         "sequence": 2,
         "recordIcon": "<p><img src=\"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM\/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOXSURBVHgB7ZhPaBRJFMa\/VzWTxEAgMCdlD3PK3hYlENDLRnZdFJIlYf+wOW2GYQ1LDhFvgpB48ipKBEdDJhcHD5LBKIqgxouCEMnVnBoU5xSJxAwm013PVz0zMVHidHWieJgfDFRPv+r6+nXVq3qPsIXjVwu9UPSvNHvBSBOwwsAiiGfuZYfy2EMOjZw6LM89wkw\/yGW7\/JZBWGrR++aeTZ5frtvRpripG+NgntjpgWK4yJoH72WGPOyCntEzqUpQHhZhXTvZKAS3n1+5NFcbt7G4LXhtuvVQMTO4ghh0n5xoD\/TKWRikGtnWRarj04V0RHGW9Hv\/\/SnEpEJvf4kizmKg+3pGT3cpGBqHA0Q0NjA924kYKMWHXez9wBxRsAvCAVk0nRuVShqO\/PT\/2I9RvVfHMMSDslrhiNHBQTiifNoHd1LKhhK4YuDh21BWYZxzpC3R5txHU3kJjhDxK2WDsFsv5OOEmYVcriwLzEkkB\/xU1XaI+Sgdwumg+BxiktQbeVmV5Si2RHi1ePXiExVeac7I6N4XO4RzlTK72UmeTU4uG42ZRiJlrOWkrlyutavY2BYGYbsXf76y5+1L7Habq9MzOpraCJL9Ms62uGiFB6QeJMy7h3ZKbBO4FXtoIFJhMG7VLfNxt7YoQtfRmlJQqRa1\/tJfX39TF9akSZMmTZo0+T747LAwMPtIDgmSFBl9EMp4QMIrDh718BX4fWqqw5j2btvmpF69M\/z3AnYSWBXmj0kaKnkvf5JWUh5Kn9srocemCgcSkHSX0b3tBnNJjntzSawVbmWzq5sCRZx4LHgkFukvPHcFTJnin78WsQvC+g\/RuAzcsaORCE0qjNzKDr2unqgDf7aBOEun5C\/T4cvExHquoTgL0f4KqgUFNXDz\/rD4MWqe2wn2pxETbXCyobg68vlPXLveL1ldWG6LDqO3Ol\/dsN6TrK7PqROpPvuJnasECIJeONJi9H44wrXSR6xCkCuG+AAcsdNBPEgeXNHsnERRkl\/AFeKSzEHz2KkTWAL3sXk4kvDXSqyw6tKHDBakkClB2AnHUkkNG3gpQMGlT0Ihp4p\/iTcMIpYz2IMqX0BMkmqtIBOrFMmYkNsM1CJyoqFIkuqCCo4WB+Mn8daLPnhEqlZLjcTdzf6Tqza3MDB7N41AT8i\/P8utNOz2RlKeY54p\/vFbHnvIiWs3+mUR9DGhS+Zah0STEoEXCHruzn8fDw0fALKbXNy\/y\/CjAAAAAElFTkSuQmCC\"><\/p>",
         "status": "\/api\/3\/picklists\/eb7e156f-f599-4cf6-a12b-5484c1bc414d",
@@ -114,8 +114,8 @@
         "uuid": "d87ef9e7-efc2-4aa7-9045-c815cf5714c1",
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1671461346.179837,
-        "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
-        "modifyDate": 1674471640.196006,
+        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "modifyDate": 1674563073.241385,
         "id": 7
     },
     {

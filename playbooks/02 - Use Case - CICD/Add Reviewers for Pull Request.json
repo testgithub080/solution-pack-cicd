@@ -1,7 +1,7 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "Pull Request > Add Reviewers",
+    "name": "Add Reviewers for Pull Request",
     "aliasName": null,
     "tag": null,
     "description": "Assign reviewers to the specified pull request",
@@ -11,7 +11,8 @@
     "remoteExecutableFlag": false,
     "parameters": [
         "pull_number",
-        "issue_details"
+        "issue_details",
+        "reviewers_name"
     ],
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
@@ -46,7 +47,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "840",
+            "top": "705",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
@@ -57,10 +58,10 @@
             "name": "Update PR Reviewers",
             "description": null,
             "arguments": {
-                "json_issue": "{% set ij = {} %}{% for k,v in vars.input.params['issue_details'].items() %}{% if k == \"pRReviewers\" %}{% set _ = ij.update({k: vars.steps.Get_PR_Reviewers_Names.input.reviewersName}) %}{% elif k == \"pRStatus\" %}{% set _ = ij.update({k: \"Added Reviewer\"}) %}{% else %}{% set _ = ij.update({k: v}) %}{% endif %}{% endfor %}{{ij}}"
+                "json_issue": "{% set ij = {} %}{% for k,v in vars.input.params['issue_details'].items() %}{% if k == \"pRReviewers\" %}{% set _ = ij.update({k: vars.input.params['reviewers_name']}) %}{% elif k == \"pRStatus\" %}{% set _ = ij.update({k: \"Added Reviewer\"}) %}{% else %}{% set _ = ij.update({k: v}) %}{% endif %}{% endfor %}{{ij}}"
             },
             "status": null,
-            "top": "570",
+            "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -85,110 +86,11 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "705",
+            "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "625197eb-6dd5-424f-be5e-dbfbe48a64c6"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Get PR Reviewers Names",
-            "description": null,
-            "arguments": {
-                "type": "InputBased",
-                "input": {
-                    "schema": {
-                        "title": "Add PR Reviewers Name",
-                        "description": "Specify the comma-separated list of user names that you want to add as reviewers",
-                        "inputVariables": [
-                            {
-                                "name": "reviewersName",
-                                "type": "string",
-                                "label": "Reviewers Name",
-                                "tooltip": "",
-                                "dataType": "text",
-                                "formType": "text",
-                                "required": true,
-                                "_expanded": true,
-                                "defaultValue": null,
-                                "_previousName": "revieewersName",
-                                "useRecordFieldDefault": false
-                            }
-                        ]
-                    }
-                },
-                "record": "",
-                "resources": "change_requests",
-                "owner_detail": {
-                    "isAssigned": false
-                },
-                "isRecordLinked": false,
-                "step_variables": [],
-                "response_mapping": {
-                    "options": [
-                        {
-                            "option": "Add",
-                            "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/ced780ff-72e7-4b3d-9485-6648cf661412"
-                        }
-                    ],
-                    "duplicateOption": false
-                },
-                "email_notification": {
-                    "enabled": false,
-                    "smtpParameters": []
-                }
-            },
-            "status": null,
-            "top": "300",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
-            "group": null,
-            "uuid": "78d452eb-89b2-4838-bd4c-e8ad1750479e"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Populate PR Reviewers Details",
-            "description": null,
-            "arguments": {
-                "type": "DecisionBased",
-                "input": {
-                    "schema": {
-                        "title": "Pull Request Reviewer Details",
-                        "description": "Reviewer \"{{vars.steps.Get_PR_Reviewers_Names.input.reviewersName}}\" is successfully added for the pull request <a href=\"{{vars.steps.Add_Reviewers_for_PR.data['html_url']}}\">{{vars.steps.Add_Reviewers_for_PR.data['html_url']}}<\/a>.",
-                        "inputVariables": []
-                    }
-                },
-                "record": "",
-                "agent_id": null,
-                "resources": "change_requests",
-                "owner_detail": {
-                    "isAssigned": false
-                },
-                "isRecordLinked": false,
-                "step_variables": [],
-                "response_mapping": {
-                    "options": [
-                        {
-                            "option": "OK",
-                            "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/daca2377-5f73-4e7f-bee0-10377759aef4"
-                        }
-                    ],
-                    "duplicateOption": false
-                },
-                "email_notification": {
-                    "enabled": false,
-                    "smtpParameters": []
-                }
-            },
-            "status": null,
-            "top": "975",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
-            "group": null,
-            "uuid": "80cec373-ffac-4192-99cc-a4ac0d3105b8"
         },
         {
             "@type": "WorkflowStep",
@@ -220,7 +122,7 @@
                     "repo": "{{vars.repo_name}}",
                     "owner": "{{vars.org_name}}",
                     "repo_type": "Organization",
-                    "reviewers": "{{vars.steps.Get_PR_Reviewers_Names.input.reviewersName}}",
+                    "reviewers": "{{vars.input.params['reviewers_name']}}",
                     "pull_number": "{{vars.pull_number}}",
                     "team_reviewers": ""
                 },
@@ -233,30 +135,11 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "435",
+            "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "ced780ff-72e7-4b3d-9485-6648cf661412"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "No Operation",
-            "description": null,
-            "arguments": {
-                "params": [],
-                "version": "3.2.2",
-                "connector": "cyops_utilities",
-                "operation": "no_op",
-                "operationTitle": "Utils: No Operation",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "1110",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "daca2377-5f73-4e7f-bee0-10377759aef4"
         },
         {
             "@type": "WorkflowStep",
@@ -290,39 +173,12 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Populate PR Reviewers Details -> No Operation",
-            "targetStep": "\/api\/3\/workflow_steps\/daca2377-5f73-4e7f-bee0-10377759aef4",
-            "sourceStep": "\/api\/3\/workflow_steps\/80cec373-ffac-4192-99cc-a4ac0d3105b8",
-            "label": "OK",
-            "isExecuted": false,
-            "uuid": "6804acc5-c711-445c-9168-139003f5414d"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Configuration -> Get PR Reviewers Names",
-            "targetStep": "\/api\/3\/workflow_steps\/78d452eb-89b2-4838-bd4c-e8ad1750479e",
-            "sourceStep": "\/api\/3\/workflow_steps\/e0f5cc7c-c5ee-4b3c-80ec-1e40d597af97",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "a37baec6-b58b-4ea5-bc0c-5a7d72e274e1"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "JSON to HTML -> Update PR Details in Issue",
             "targetStep": "\/api\/3\/workflow_steps\/0165acbc-d881-4296-89a1-fdae35fc9f22",
             "sourceStep": "\/api\/3\/workflow_steps\/625197eb-6dd5-424f-be5e-dbfbe48a64c6",
             "label": null,
             "isExecuted": false,
             "uuid": "a3c4e3cd-d91c-42c1-98cf-efa0ba24643c"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Update PR Reviewer Details in Issue -> Populate PR Reviewers Details",
-            "targetStep": "\/api\/3\/workflow_steps\/80cec373-ffac-4192-99cc-a4ac0d3105b8",
-            "sourceStep": "\/api\/3\/workflow_steps\/0165acbc-d881-4296-89a1-fdae35fc9f22",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "ae9124ed-b31f-4606-8e5e-82cc9811ca06"
         },
         {
             "@type": "WorkflowRoute",
@@ -335,21 +191,21 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get PR Reviewers -> Add Reviewers for PR",
-            "targetStep": "\/api\/3\/workflow_steps\/ced780ff-72e7-4b3d-9485-6648cf661412",
-            "sourceStep": "\/api\/3\/workflow_steps\/78d452eb-89b2-4838-bd4c-e8ad1750479e",
-            "label": "Add",
-            "isExecuted": false,
-            "uuid": "fc89b5ec-3aef-4de9-9b20-0008a711cb32"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Add Reviewers for PR -> Update PR Reviewers",
             "targetStep": "\/api\/3\/workflow_steps\/43503f27-2dc2-4d10-a8ae-0d630f2a537b",
             "sourceStep": "\/api\/3\/workflow_steps\/ced780ff-72e7-4b3d-9485-6648cf661412",
             "label": null,
             "isExecuted": false,
             "uuid": "5ec58625-1d01-4db5-959c-169bc298a14f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Add Reviewers for PR",
+            "targetStep": "\/api\/3\/workflow_steps\/ced780ff-72e7-4b3d-9485-6648cf661412",
+            "sourceStep": "\/api\/3\/workflow_steps\/e0f5cc7c-c5ee-4b3c-80ec-1e40d597af97",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "8d06b1dd-787a-4041-aac3-6b49dfb3fff8"
         }
     ],
     "groups": [],
@@ -359,6 +215,7 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
+        "Subroutine",
         "CICD"
     ]
 }
