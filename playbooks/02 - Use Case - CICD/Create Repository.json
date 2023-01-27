@@ -44,7 +44,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Creating Repository {{vars.input.params['organization_name']}}\/{{vars.input.params['repo_name']}} and the base branch {{vars.input.params['base_branch']}}<\/p>",
+                    "content": "<p>Created Repository {{vars.input.params['organization_name']}}\/{{vars.input.params['repo_name']}} and the base branch {{vars.input.params['base_branch']}}<\/p>",
                     "records": ""
                 },
                 "version": "1.0.0",
