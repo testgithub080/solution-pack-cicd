@@ -1,7 +1,7 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "Initial Repository Configuration > Create Repository",
+    "name": "Create Repository",
     "aliasName": null,
     "tag": null,
     "description": "Create the Public Repository for the specified repository name and base branch name in GitHub",
@@ -39,15 +39,21 @@
                     "has_projects": true,
                     "other_fields": ""
                 },
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>Creating Repository {{vars.input.params['organization_name']}}\/{{vars.input.params['repo_name']}} and the base branch {{vars.input.params['base_branch']}}<\/p>",
+                    "records": ""
+                },
                 "version": "1.0.0",
                 "connector": "github",
                 "operation": "create_repository",
                 "ignore_errors": true,
                 "operationTitle": "Create Repository",
                 "pickFromTenant": false,
-                "step_variables": {
-                    "is_status_failed": "{% if vars.steps.Create_Repository.status == 'failed' %}{{true}}{% else %}{{false}}{% endif %}"
-                }
+                "step_variables": []
             },
             "status": null,
             "top": "300",
@@ -126,7 +132,7 @@
             "description": null,
             "arguments": {
                 "html_url": "{{vars.steps.Create_Repository.data['html_url']}}",
-                "is_status_failed": "{{vars.is_status_failed}}"
+                "is_status_failed": "{% if vars.steps.Create_Repository.status != \"Success\" or vars.steps.Create_Base_Branch.status != \"Success\" %}{{true}}{% else %}{{false}}{% endif %}"
             },
             "status": null,
             "top": "570",

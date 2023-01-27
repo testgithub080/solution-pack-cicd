@@ -1,7 +1,7 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "Initial Repository Configuration",
+    "name": "Configure Source Control",
     "aliasName": null,
     "tag": null,
     "description": "Create Content, Production Settings and Development Settings Repository in GitHub",
@@ -20,11 +20,11 @@
             "name": "Return Playbook Status",
             "description": null,
             "arguments": {
-                "is_status_failed": "{{vars.steps.Create_Repositories[0].is_status_failed}}"
+                "is_status_failed": "{{vars.steps.Create_all_repositories[0].is_status_failed}}"
             },
             "status": null,
             "top": "705",
-            "left": "928",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "0aa7db43-d395-4a12-9d4b-6bbe857f776e"
@@ -37,8 +37,8 @@
                 "type": "InputBased",
                 "input": {
                     "schema": {
-                        "title": "Repository Details",
-                        "description": "Did you created following three Source Control Repositories manually: \n* {{vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}\n* {{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}\n* {{vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}} ",
+                        "title": "Repositories Existence Confirmation",
+                        "description": "Confirm that the following repositories have been created:\n(You can click on the hyperlink to verify)\n\n**Production Content Repository**:\n{{vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}\n\n**Production Settings Repository**\n{{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}\n\n**Development Settings Repository**: \n{{vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}} \n\n**@sujit to update the above into hyper-links**",
                         "inputVariables": []
                     }
                 },
@@ -74,7 +74,7 @@
             },
             "status": null,
             "top": "570",
-            "left": "393",
+            "left": "815",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "18b86c22-2d44-45ae-83c3-560dcf651a44"
@@ -92,7 +92,7 @@
             },
             "status": null,
             "top": "30",
-            "left": "568",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
             "group": null,
             "uuid": "1fa83340-33e4-4d27-99e3-bbab6f5cc3b4"
@@ -110,21 +110,21 @@
             },
             "status": null,
             "top": "705",
-            "left": "218",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "224c1621-c33a-4720-ade0-46573ea34ce8"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Is Repositories Created Automatically",
+            "name": "Use Precreated Repositories",
             "description": null,
             "arguments": {
                 "type": "InputBased",
                 "input": {
                     "schema": {
                         "title": "Create Repositories",
-                        "description": "We would need the following three Source Control Repositories: \n\n* {{vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}\n* {{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}\n* {{vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}} \n\nDo you want to create the repositories through playbook or manually?",
+                        "description": "CICD Setup requires following GitHub Repositories:\n\n* {{vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}\n* {{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}\n* {{vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}} \n\n**Do you want to let FortiSOAR create these repositories?**\n\nThe API token specified in the GitHub connector must have privileges for creating the respostiries for FortiSOAR to create the repositories.\n\n",
                         "inputVariables": []
                     }
                 },
@@ -139,12 +139,12 @@
                 "response_mapping": {
                     "options": [
                         {
-                            "option": "Playbook",
+                            "option": "Create Repositories",
                             "primary": true,
                             "step_iri": "\/api\/3\/workflow_steps\/bcdcf23e-1e22-440c-90ec-7d3a521b129f"
                         },
                         {
-                            "option": "Manually",
+                            "option": "I have the repositories",
                             "primary": false,
                             "step_iri": "\/api\/3\/workflow_steps\/18b86c22-2d44-45ae-83c3-560dcf651a44"
                         }
@@ -161,7 +161,7 @@
             },
             "status": null,
             "top": "300",
-            "left": "568",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "64961e22-a788-4e67-bceb-35fb39687f80"
@@ -179,8 +179,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "440",
-            "left": "100",
+            "top": "705",
+            "left": "825",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "655bfe6b-e43e-48ba-9254-7a98450d4e80"
@@ -195,12 +195,12 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p class=\"mp-tile-description muted-80\">View the configured Source Control Repositories<\/p>\n<ul>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.content_repo}}\">{{vars.content_repo}}<\/a><\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.prod_settings}}\">{{vars.prod_settings}}<\/a><\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.dev_settings}}\">{{vars.dev_settings}}<\/a><\/p>\n<\/li>\n<\/ul>",
+                    "content": "<p class=\"mp-tile-description muted-80\">Created\/Captured following source control repositories:&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\"><br \/>Production Content:<\/p>\n<p class=\"mp-tile-description muted-80\"><a href=\"{{vars.content_repo}}\" target=\"_blank\" rel=\"noopener\">{{vars.content_repo}}<\/a><\/p>\n<p class=\"mp-tile-description muted-80\">&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\">Production Settings:<\/p>\n<p class=\"mp-tile-description muted-80\"><a href=\"{{vars.prod_settings}}\" target=\"_blank\" rel=\"noopener\">{{vars.prod_settings}}<\/a><\/p>\n<p>&nbsp;<\/p>\n<p>Development Settings:<\/p>\n<p><a href=\"{{vars.dev_settings}}\" target=\"_blank\" rel=\"noopener\">{{vars.dev_settings}}<\/a><\/p>",
                     "records": "{{vars.input.records[0]['@id']}}",
                     "parentstepid": "\/api\/3\/workflow_steps\/91e2e908-b7a9-42d4-9bed-d311560b8f6e"
                 },
                 "resource": {
-                    "results": "<p class=\"mp-tile-description muted-80\">- View the configured Source Control Repositories<\/p>\n<ul>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.content_repo}}\">{{vars.content_repo}}<\/a><\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.prod_settings}}\">{{vars.prod_settings}}<\/a><\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\"><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.dev_settings}}\">{{vars.dev_settings}}<\/a><\/p>\n<\/li>\n<\/ul>"
+                    "results": "<p class=\"mp-tile-description muted-80\"><strong>Source Control Repositories<\/strong><\/p>\n<p class=\"mp-tile-description muted-80\">&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\">Production Content:<\/p>\n<p class=\"mp-tile-description muted-80\"><a href=\"{{vars.content_repo}}\" target=\"_blank\" rel=\"noopener\">{{vars.content_repo}}<\/a><\/p>\n<p class=\"mp-tile-description muted-80\">&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\">Production Settings:<\/p>\n<p class=\"mp-tile-description muted-80\"><a href=\"{{vars.prod_settings}}\" target=\"_blank\" rel=\"noopener\">{{vars.prod_settings}}<\/a><\/p>\n<p>&nbsp;<\/p>\n<p>Development Settings:<\/p>\n<p><a href=\"{{vars.dev_settings}}\" target=\"_blank\" rel=\"noopener\">{{vars.dev_settings}}<\/a><\/p>"
                 },
                 "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",
@@ -211,21 +211,21 @@
             },
             "status": null,
             "top": "1245",
-            "left": "218",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "91e2e908-b7a9-42d4-9bed-d311560b8f6e"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Has Repo Created",
+            "name": "Are Repositories Created",
             "description": null,
             "arguments": {
                 "conditions": [
                     {
                         "option": "No",
                         "step_iri": "\/api\/3\/workflow_steps\/0aa7db43-d395-4a12-9d4b-6bbe857f776e",
-                        "condition": "{{ not vars.steps.Create_Repositories[0].is_status_failed }}",
+                        "condition": "{{ vars.steps.Create_all_repositories[0].is_status_failed }}",
                         "step_name": "Return Playbook Status"
                     },
                     {
@@ -237,8 +237,8 @@
                 ]
             },
             "status": null,
-            "top": "660",
-            "left": "580",
+            "top": "570",
+            "left": "135",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
             "uuid": "a2077fd4-6417-4867-a36f-a802bdbc703b"
@@ -251,8 +251,8 @@
                 "type": "InputBased",
                 "input": {
                     "schema": {
-                        "title": "Initial Repository Configuration",
-                        "description": "Provide the following repository configuration inputs",
+                        "title": "Source Control Details",
+                        "description": "Provide the following repository configuration inputs: ",
                         "inputVariables": [
                             {
                                 "name": "orgName",
@@ -272,7 +272,7 @@
                                 "name": "contentRepositoryName",
                                 "type": "string",
                                 "label": "Content Repository Name",
-                                "tooltip": "Content Repository stores FortiSOAR configurations such as Dashboards, Reports, Playbooks, Connectors etc.",
+                                "tooltip": "Content Repository stores FortiSOAR content such as Dashboards, Reports, Playbooks, Connectors etc.",
                                 "dataType": "text",
                                 "formType": "text",
                                 "required": true,
@@ -353,14 +353,14 @@
             },
             "status": null,
             "top": "165",
-            "left": "568",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "af50d35a-1f68-4c8b-9b57-1d1c1115231e"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Create Repository Global Variable",
+            "name": "Set CICD Config Global Variable",
             "description": null,
             "arguments": {
                 "params": {
@@ -374,15 +374,15 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1100",
-            "left": "560",
+            "top": "1140",
+            "left": "780",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "b5c63b4b-7d12-4a8a-b24d-ad38aa8ee1e7"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get Source Control Details",
+            "name": "Get CICD Config from Global Variable",
             "description": null,
             "arguments": {
                 "params": {
@@ -400,14 +400,14 @@
             },
             "status": null,
             "top": "840",
-            "left": "218",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "b6f1a342-ad92-48a2-878c-76a4dec59ae9"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Create Repositories",
+            "name": "Create all repositories",
             "description": null,
             "arguments": {
                 "for_each": {
@@ -428,15 +428,15 @@
                 "workflowReference": "\/api\/3\/workflows\/7d94d329-8d15-4d90-ba33-fb04b9f8fdc9"
             },
             "status": null,
-            "top": "440",
-            "left": "740",
+            "top": "435",
+            "left": "135",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "bcdcf23e-1e22-440c-90ec-7d3a521b129f"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Has Global Variable Created",
+            "name": "Is CICD Config Global Variable Created",
             "description": null,
             "arguments": {
                 "conditions": [
@@ -450,28 +450,19 @@
                         "option": "No",
                         "default": true,
                         "step_iri": "\/api\/3\/workflow_steps\/b5c63b4b-7d12-4a8a-b24d-ad38aa8ee1e7",
-                        "step_name": "Create Repository Global Variable"
+                        "step_name": "Set CICD Config Global Variable"
                     }
                 ]
             },
             "status": null,
             "top": "975",
-            "left": "218",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
             "uuid": "e23f9fbe-545f-46ba-8f02-b003e737554d"
         }
     ],
     "routes": [
-        {
-            "@type": "WorkflowRoute",
-            "name": "Is Repositories Created Automatically -> Provide Repositories Detail",
-            "targetStep": "\/api\/3\/workflow_steps\/18b86c22-2d44-45ae-83c3-560dcf651a44",
-            "sourceStep": "\/api\/3\/workflow_steps\/64961e22-a788-4e67-bceb-35fb39687f80",
-            "label": "Manually",
-            "isExecuted": false,
-            "uuid": "b365fc30-8898-41c0-ae4b-3c0789913403"
-        },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Get Repositories Detail",
@@ -489,15 +480,6 @@
             "label": "Setup",
             "isExecuted": false,
             "uuid": "c3383051-1d3b-4a3a-a23a-213a2a882215"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Is Repositories Created Automatically -> Create Repositories",
-            "targetStep": "\/api\/3\/workflow_steps\/bcdcf23e-1e22-440c-90ec-7d3a521b129f",
-            "sourceStep": "\/api\/3\/workflow_steps\/64961e22-a788-4e67-bceb-35fb39687f80",
-            "label": "Playbook",
-            "isExecuted": false,
-            "uuid": "3602e904-96d9-46f1-87b7-33368e8a9380"
         },
         {
             "@type": "WorkflowRoute",
@@ -588,6 +570,24 @@
             "label": "No",
             "isExecuted": false,
             "uuid": "dd17c17d-b63c-403f-bbd2-813ff811dafc"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Repositories Created Automatically -> Provide Repositories Detail",
+            "targetStep": "\/api\/3\/workflow_steps\/18b86c22-2d44-45ae-83c3-560dcf651a44",
+            "sourceStep": "\/api\/3\/workflow_steps\/64961e22-a788-4e67-bceb-35fb39687f80",
+            "label": "I have the repositories",
+            "isExecuted": false,
+            "uuid": "b365fc30-8898-41c0-ae4b-3c0789913403"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Repositories Created Automatically -> Create Repositories",
+            "targetStep": "\/api\/3\/workflow_steps\/bcdcf23e-1e22-440c-90ec-7d3a521b129f",
+            "sourceStep": "\/api\/3\/workflow_steps\/64961e22-a788-4e67-bceb-35fb39687f80",
+            "label": "Create Repositories",
+            "isExecuted": false,
+            "uuid": "3602e904-96d9-46f1-87b7-33368e8a9380"
         }
     ],
     "groups": [],
