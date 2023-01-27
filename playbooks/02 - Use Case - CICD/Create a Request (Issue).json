@@ -36,7 +36,7 @@
             },
             "status": null,
             "top": "300",
-            "left": "125",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "362f353a-d9d3-46fa-af66-54b797c87906"
@@ -65,10 +65,24 @@
             },
             "status": null,
             "top": "30",
-            "left": "125",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
             "group": null,
             "uuid": "48fc914f-9747-44e7-981e-bee4d91373ee"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Placeholder",
+            "description": null,
+            "arguments": {
+                "_temp": "_temp"
+            },
+            "status": null,
+            "top": "700",
+            "left": "220",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "8a6b6161-ee8d-4b22-800a-7403c2306740"
         },
         {
             "@type": "WorkflowStep",
@@ -95,8 +109,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "570",
-            "left": "125",
+            "top": "840",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "8e1adefc-2588-4fa2-9333-7af4a7019c82"
@@ -189,7 +203,6 @@
                 },
                 "isRecordLinked": false,
                 "step_variables": {
-                    "assigneeUsername": "{{vars.result.input.assignee.gitUsername}}",
                     "reporterUsername": "{{globalVars.Current_User.gitUsername}}"
                 },
                 "response_mapping": {
@@ -211,11 +224,25 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "165",
-            "left": "125",
+            "top": "160",
+            "left": "220",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "bb247814-03fd-437d-9e7b-62c68e0877fc"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Refresh User Version Control Details",
+            "description": null,
+            "arguments": {
+                "assigneeUsername": "{{(vars.steps.Specify_PR_Title_and_Comments.input.reviewersName[\"@id\"] | fromIRI).gitUsername}}"
+            },
+            "status": null,
+            "top": "680",
+            "left": "520",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "e213a77d-5822-4966-8a4e-587e28277f8c"
         },
         {
             "@type": "WorkflowStep",
@@ -226,7 +253,7 @@
             },
             "status": null,
             "top": "435",
-            "left": "125",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "e9b1e3c1-af41-4302-81de-72a2958cd7eb"
@@ -257,14 +284,59 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "705",
-            "left": "125",
+            "top": "975",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "eff713e2-61fd-42bf-8581-bfbed1420668"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Username Available",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "No",
+                        "step_iri": "\/api\/3\/workflow_steps\/e213a77d-5822-4966-8a4e-587e28277f8c",
+                        "condition": "{{ not vars.assigneeUsername }}",
+                        "step_name": "Refresh User Version Control Details"
+                    },
+                    {
+                        "option": "Yes",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/8a6b6161-ee8d-4b22-800a-7403c2306740",
+                        "step_name": "Placeholder"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "570",
+            "left": "218",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "f6889705-839c-42e4-8c80-9f8714ce9469"
         }
     ],
     "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Refresh User Version Control Details -> Create Issue",
+            "targetStep": "\/api\/3\/workflow_steps\/8e1adefc-2588-4fa2-9333-7af4a7019c82",
+            "sourceStep": "\/api\/3\/workflow_steps\/e213a77d-5822-4966-8a4e-587e28277f8c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "06fd0986-26e9-4dfb-93bd-91b42788b2bb"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Is Username Available",
+            "targetStep": "\/api\/3\/workflow_steps\/f6889705-839c-42e4-8c80-9f8714ce9469",
+            "sourceStep": "\/api\/3\/workflow_steps\/e9b1e3c1-af41-4302-81de-72a2958cd7eb",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "1c8928d8-ec63-475f-8caf-6d611726a335"
+        },
         {
             "@type": "WorkflowRoute",
             "name": "Create CR Issue -> Create Branch",
@@ -276,12 +348,30 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Configuration -> Create CR Issue",
+            "name": "Placeholder -> Create Issue",
             "targetStep": "\/api\/3\/workflow_steps\/8e1adefc-2588-4fa2-9333-7af4a7019c82",
-            "sourceStep": "\/api\/3\/workflow_steps\/e9b1e3c1-af41-4302-81de-72a2958cd7eb",
+            "sourceStep": "\/api\/3\/workflow_steps\/8a6b6161-ee8d-4b22-800a-7403c2306740",
             "label": null,
             "isExecuted": false,
-            "uuid": "522209e3-bdf0-4a20-a459-f03175f55caa"
+            "uuid": "32302875-95a7-4f54-8391-18a3ccf31d11"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Username Available -> Refresh User Version Control Details",
+            "targetStep": "\/api\/3\/workflow_steps\/e213a77d-5822-4966-8a4e-587e28277f8c",
+            "sourceStep": "\/api\/3\/workflow_steps\/f6889705-839c-42e4-8c80-9f8714ce9469",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "59041e93-cd84-42c5-bfec-5d765889041f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Username Available -> Placeholder",
+            "targetStep": "\/api\/3\/workflow_steps\/8a6b6161-ee8d-4b22-800a-7403c2306740",
+            "sourceStep": "\/api\/3\/workflow_steps\/f6889705-839c-42e4-8c80-9f8714ce9469",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "5c306511-49f7-46d7-8cee-49c0f4c65e6d"
         },
         {
             "@type": "WorkflowRoute",
