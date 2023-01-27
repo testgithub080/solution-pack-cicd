@@ -141,7 +141,6 @@
             "name": "Set Status to In Progress",
             "description": null,
             "arguments": {
-                "when": "{{not vars.is_ref_playbook}}",
                 "resource": {
                     "status": "\/api\/3\/picklists\/7f0263bf-29ab-4453-aefe-41d20f0fe9c3"
                 },
@@ -174,8 +173,7 @@
                         "params": [],
                         "records": "{{vars.input.records}}"
                     },
-                    "logged_in_user": "{{(vars.currentUser | fromIRI).firstname}} {{(vars.currentUser | fromIRI).lastname}}",
-                    "is_ref_playbook": "{% if vars.input.records[0].title == \"Map GitHub Username\" %}{{false}}{% else %}{{true}}{% endif %}"
+                    "logged_in_user": "{{(vars.currentUser | fromIRI).firstname}} {{(vars.currentUser | fromIRI).lastname}}"
                 },
                 "displayConditions": {
                     "change_management": {
@@ -245,11 +243,12 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p class=\"mp-tile-description muted-80\">\"{{vars.steps.Get_Usernames.input.gitHubUsername}}\" GitHub username assigned to FortiSOAR user \"<a rel=\"noopener\" target=\"_blank\" href=\"{{vars.request.baseUri}}\/security\/people\">{{vars.logged_in_user}}<\/a>\".<\/p>",
-                    "records": "{{vars.input.records[0]['@id']}}"
+                    "content": "<p class=\"mp-tile-description muted-80\">\"{{vars.steps.Get_Usernames.input.gitHubUsername}}\" GitHub username assigned to FortiSOAR user \"<a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a>\".<\/p>",
+                    "records": "{{vars.input.records[0]['@id']}}",
+                    "parentstepid": "\/api\/3\/workflow_steps\/05bcfc1c-3b6a-4fbb-a4de-a5b5c662366d"
                 },
                 "resource": {
-                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p><br \/><strong>Content Administrator User<\/strong><\/p>\n<p class=\"mp-tile-description muted-80\">FortiSOAR User: <a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a><\/p>\n<p class=\"mp-tile-description muted-80\">GitHub User: {{vars.steps.Get_Usernames.input.gitHubUsername}}<\/p>"
+                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p class=\"mp-tile-description muted-80\"><br \/><strong>- Content Administrator User<\/strong><\/p>\n<ul class=\"font-size-13 muted-80\">\n<li class=\"mp-tile-description muted-80\"><em>FortiSOAR User: <\/em><a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a><\/li>\n<li class=\"mp-tile-description muted-80\"><em>GitHub User:<\/em> {{vars.steps.Get_Usernames.input.gitHubUsername}}<\/li>\n<\/ul>"
                 },
                 "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",
@@ -295,7 +294,6 @@
             "name": "Update Status as Pending",
             "description": null,
             "arguments": {
-                "when": "{{not vars.is_ref_playbook}}",
                 "resource": {
                     "status": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293"
                 },
