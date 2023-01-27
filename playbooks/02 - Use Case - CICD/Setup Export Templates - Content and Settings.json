@@ -15,71 +15,8 @@
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/106317c0-3e58-47e5-a41a-c237e08ee4a2",
+    "triggerStep": "\/api\/3\/workflow_steps\/0c169031-47e3-4f51-842e-7442d38f55f9",
     "steps": [
-        {
-            "@type": "WorkflowStep",
-            "name": "Read Template File Content",
-            "description": null,
-            "arguments": {
-                "config": "4540c845-5d7d-4336-aeec-9f4f508d38d1",
-                "params": {
-                    "python_function": "filename = '{{vars.steps.Download_Template.data['cyops_file_path']}}'\nfilepath = '\/tmp\/{0}'.format(filename)\n\nfile = open(filepath, mode='r')\nall_of_it = file.read()\nfile.close()\n\nprint(all_of_it)"
-                },
-                "version": "2.0.1",
-                "connector": "code-snippet",
-                "operation": "python_inline_code_editor",
-                "operationTitle": "Execute Python Code",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "435",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
-            "group": null,
-            "uuid": "0e31ef60-8a82-424e-a946-9e3b5b5ff3db"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Start",
-            "description": null,
-            "arguments": {
-                "step_variables": {
-                    "input": {
-                        "params": []
-                    }
-                }
-            },
-            "status": null,
-            "top": "30",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "group": null,
-            "uuid": "106317c0-3e58-47e5-a41a-c237e08ee4a2"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Create Import Job",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "\/api\/3\/",
-                    "body": "[{{vars.steps.Read_Template_File_Content.data['code_output'][0]}}]",
-                    "method": "POST"
-                },
-                "version": "3.2.1",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "570",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "50b5c01b-6050-45f9-834a-51a33c6c6944"
-        },
         {
             "@type": "WorkflowStep",
             "name": "Download Template",
@@ -99,7 +36,48 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "d092f101-b6ea-4e81-8927-3e04d286f4ec"
+            "uuid": "06bd35a1-6715-4c48-8cfb-ca4f9b1cd84a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "0c169031-47e3-4f51-842e-7442d38f55f9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Export Template",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/3\/",
+                    "body": "{{vars.templateContent}}",
+                    "method": "POST"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "22e245aa-7f38-436c-bdbf-78789c72255a"
         },
         {
             "@type": "WorkflowStep",
@@ -114,45 +92,59 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
-            "uuid": "d194f6aa-bca8-497e-bdd5-242a2d170fc3"
+            "uuid": "3b23dd98-9a24-4c9f-ae7d-1e90caced26a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Read Template File",
+            "description": null,
+            "arguments": {
+                "templateContent": "{{vars.steps.Download_Template.data['cyops_file_path'] | readfile}}"
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "e1d83c8a-3da4-4aff-bb8e-904bc2bab8d5"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Read Template File Content -> Create Import Job",
-            "targetStep": "\/api\/3\/workflow_steps\/50b5c01b-6050-45f9-834a-51a33c6c6944",
-            "sourceStep": "\/api\/3\/workflow_steps\/0e31ef60-8a82-424e-a946-9e3b5b5ff3db",
+            "name": "Configuration -> Download Template",
+            "targetStep": "\/api\/3\/workflow_steps\/06bd35a1-6715-4c48-8cfb-ca4f9b1cd84a",
+            "sourceStep": "\/api\/3\/workflow_steps\/3b23dd98-9a24-4c9f-ae7d-1e90caced26a",
             "label": null,
             "isExecuted": false,
-            "uuid": "23c07956-7cd2-4344-a17b-7bc3b1d1985f"
+            "uuid": "2092fa1f-6f3e-4d61-9ca0-677021cd5d81"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Download Template -> Read Template File",
+            "targetStep": "\/api\/3\/workflow_steps\/e1d83c8a-3da4-4aff-bb8e-904bc2bab8d5",
+            "sourceStep": "\/api\/3\/workflow_steps\/06bd35a1-6715-4c48-8cfb-ca4f9b1cd84a",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "460aa518-7a99-4d7b-a89c-5c179fbbf3bc"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/d194f6aa-bca8-497e-bdd5-242a2d170fc3",
-            "sourceStep": "\/api\/3\/workflow_steps\/106317c0-3e58-47e5-a41a-c237e08ee4a2",
+            "targetStep": "\/api\/3\/workflow_steps\/3b23dd98-9a24-4c9f-ae7d-1e90caced26a",
+            "sourceStep": "\/api\/3\/workflow_steps\/0c169031-47e3-4f51-842e-7442d38f55f9",
             "label": null,
             "isExecuted": false,
-            "uuid": "9e6277c4-3b0c-474c-ac3e-f4be6c281ac4"
+            "uuid": "8849a15a-6011-493f-8083-54e507ae93de"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Configuration -> Download Template",
-            "targetStep": "\/api\/3\/workflow_steps\/d092f101-b6ea-4e81-8927-3e04d286f4ec",
-            "sourceStep": "\/api\/3\/workflow_steps\/d194f6aa-bca8-497e-bdd5-242a2d170fc3",
+            "name": "Read Template File -> Create Import Job",
+            "targetStep": "\/api\/3\/workflow_steps\/22e245aa-7f38-436c-bdbf-78789c72255a",
+            "sourceStep": "\/api\/3\/workflow_steps\/e1d83c8a-3da4-4aff-bb8e-904bc2bab8d5",
             "label": null,
             "isExecuted": false,
-            "uuid": "edebaee4-386c-4fbf-9dff-70946074e41b"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Download Template -> Read Template File Content",
-            "targetStep": "\/api\/3\/workflow_steps\/0e31ef60-8a82-424e-a946-9e3b5b5ff3db",
-            "sourceStep": "\/api\/3\/workflow_steps\/d092f101-b6ea-4e81-8927-3e04d286f4ec",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "ffcad797-af5c-4271-ac27-76102cf345f7"
+            "uuid": "cedf3a4c-faa4-498d-91d3-cd4905332b46"
         }
     ],
     "groups": [],
