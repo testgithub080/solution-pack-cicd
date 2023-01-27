@@ -98,7 +98,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2325",
+            "top": "2595",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -113,7 +113,7 @@
                 "apply_async": false,
                 "step_variables": [],
                 "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/2e8df3ef-5db7-4f45-b15f-9c1279acee6b"
+                "workflowReference": "\/api\/3\/workflows\/ee57abec-dcec-4256-a5b9-196909039bba"
             },
             "status": null,
             "top": "1245",
@@ -140,8 +140,8 @@
                 }
             },
             "status": null,
-            "top": "840",
-            "left": "540",
+            "top": "820",
+            "left": "600",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "647f1314-3387-4bd6-8ae8-2987cb5b6cb4"
@@ -168,7 +168,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2055",
+            "top": "2325",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -191,7 +191,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1785",
+            "top": "2055",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -273,8 +273,8 @@
                 "prod_settings_url": "https:\/\/github.com\/{{vars.steps.Get_Repositories_Detail.input.orgName}}\/{{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}"
             },
             "status": null,
-            "top": "700",
-            "left": "540",
+            "top": "680",
+            "left": "600",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "9479bce1-f3a3-48ff-ad19-318985261934"
@@ -358,7 +358,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2190",
+            "top": "2460",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -381,7 +381,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1650",
+            "top": "1920",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -494,11 +494,13 @@
                         ]
                     }
                 },
-                "record": "",
+                "record": "{{vars.input.records[0]['@id']}}",
+                "agent_id": null,
+                "resources": "change_management",
                 "owner_detail": {
                     "isAssigned": false
                 },
-                "isRecordLinked": false,
+                "isRecordLinked": true,
                 "step_variables": [],
                 "response_mapping": {
                     "options": [
@@ -519,8 +521,8 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "560",
-            "left": "540",
+            "top": "540",
+            "left": "600",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "e408ca41-9329-4e8b-a251-df1bb893ba4c"
@@ -542,11 +544,65 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1920",
+            "top": "2190",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "ede73072-2649-456b-986c-4755da524853"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Source Control Attachment",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "name",
+                            "value": "%Source Control%",
+                            "operator": "like",
+                            "_operator": "like"
+                        }
+                    ]
+                },
+                "module": "attachments?$limit=30",
+                "step_variables": {
+                    "attachment_uuid": "{{vars.steps.Get_Source_Control_Attachment | json_query(\"[].uuid\")}}"
+                }
+            },
+            "status": null,
+            "top": "1650",
+            "left": "218",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "a293517e-011f-4022-ad26-a60ad33b37c1"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Delete Attachments",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/3\/delete\/attachments",
+                    "body": "{\"ids\":{{vars.attachment_uuid}} }",
+                    "method": "DELETE"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1785",
+            "left": "218",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "c864b7b6-7e54-481b-bdd5-d733b100bf70"
         }
     ],
     "routes": [
@@ -558,15 +614,6 @@
             "label": null,
             "isExecuted": false,
             "uuid": "39764cb5-a3db-4b83-90b6-5c7ee7ecfc8e"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Clone Repository -> Get Clone Repo Zip File",
-            "targetStep": "\/api\/3\/workflow_steps\/cb682b7c-fbc6-4e20-a6f9-72cf299cb4fa",
-            "sourceStep": "\/api\/3\/workflow_steps\/4c47d46e-891c-4d93-a9fa-cfcaa8b94f8d",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "47770825-7090-4988-914a-32c4075b1dc8"
         },
         {
             "@type": "WorkflowRoute",
@@ -711,6 +758,33 @@
             "label": null,
             "isExecuted": false,
             "uuid": "aa2db810-081c-46d9-b8eb-0f55cc51786a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Source Control Attachment -> Delete Attachments",
+            "targetStep": "\/api\/3\/workflow_steps\/c864b7b6-7e54-481b-bdd5-d733b100bf70",
+            "sourceStep": "\/api\/3\/workflow_steps\/a293517e-011f-4022-ad26-a60ad33b37c1",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "15d4f124-8db0-4d8d-9bf3-bd04232b8718"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Clone Repository -> Get Source Control Attachment",
+            "targetStep": "\/api\/3\/workflow_steps\/a293517e-011f-4022-ad26-a60ad33b37c1",
+            "sourceStep": "\/api\/3\/workflow_steps\/4c47d46e-891c-4d93-a9fa-cfcaa8b94f8d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "37fad9e3-2243-4d46-9515-ad2fb67975b2"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Delete Attachments -> Get Clone Repo Zip File",
+            "targetStep": "\/api\/3\/workflow_steps\/cb682b7c-fbc6-4e20-a6f9-72cf299cb4fa",
+            "sourceStep": "\/api\/3\/workflow_steps\/c864b7b6-7e54-481b-bdd5-d733b100bf70",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "daee64b9-9fad-44ac-b91a-1629d6e648ee"
         }
     ],
     "groups": [],
