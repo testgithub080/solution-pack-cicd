@@ -13,7 +13,7 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1671453569.56218,
         "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
-        "modifyDate": 1674632431.46329,
+        "modifyDate": 1674640959.836104,
         "id": 1
     },
     {
@@ -53,7 +53,7 @@
     {
         "@type": "ChangeManagement",
         "title": "Setup the Source Control for Production Environment",
-        "description": "<p class=\"mp-tile-description muted-80\">Setting up the source control for production environment performs following actions:<\/p>\n<ol class=\"font-size-13 muted-80\">\n<li>Connects to a source control service and creates new repositories or links to an already created repository for storing 3 types of data\n<ol style=\"list-style-type: lower-alpha;\">\n<li>Production content<\/li>\n<li>Production Settings<\/li>\n<li>Development Settings<\/li>\n<\/ol>\n<\/li>\n<li>Maps a FortiSOAR user to another user, who has admin privileges, on the source control service.<\/li>\n<li>Sets up export templates that define content to be exported to the created repositories and keeps the content ready on the FortiSOAR instance.<\/li>\n<li>Initialize source control repositories with the content defined by the export templates.<\/li>\n<\/ol>",
+        "description": "<p class=\"mp-tile-description muted-80\">Setting up the source control (GitHub) for the production environment involves the following actions:<\/p>\n<ol class=\"font-size-13 muted-80\">\n<li>Connects to a source control service and creates new repositories or links to an already created repository for storing 3 types of data\n<ol style=\"list-style-type: lower-alpha;\">\n<li>Production Content<\/li>\n<li>Production Settings<\/li>\n<li>Development Settings<\/li>\n<\/ol>\n<\/li>\n<li>Maps a FortiSOAR user to a GitHub user account, who has admin privileges, on the source control service.<\/li>\n<li>Sets up export templates that define content to be saved in the created repositories.<\/li>\n<li>Pushes initial content to the respective source control repositories<\/li>\n<\/ol>\n<p>&nbsp;<\/p>\n<p>Pre-Requisities<\/p>\n<p>- TBD1<\/p>\n<p>- TBD2<\/p>",
         "results": "",
         "sequence": 1,
         "recordIcon": "",
@@ -64,7 +64,7 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1670934469.007706,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1674637130.084849,
+        "modifyDate": 1674796384.568737,
         "id": 4
     },
     {

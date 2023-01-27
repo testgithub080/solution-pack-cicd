@@ -1,7 +1,7 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "Add GitHub Username",
+    "name": "Set GitHub Username",
     "aliasName": null,
     "tag": null,
     "description": "Update the GitHub Usernames in FortiSOAR User record",
@@ -25,7 +25,15 @@
                     "body": "{\"gitUsername\": \"{{vars.git_username}}\"}",
                     "method": "PUT"
                 },
-                "version": "3.2.1",
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p><strong>Content Administrator User is mapped to:<\/strong><\/p>\n<p class=\"mp-tile-description muted-80\">FortiSOAR User: <a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a><\/p>\n<p class=\"mp-tile-description muted-80\">GitHub User: {{vars.steps.Get_Usernames.input.gitHubUsername}}<\/p>",
+                    "records": ""
+                },
+                "version": "3.2.3",
                 "connector": "cyops_utilities",
                 "operation": "make_cyops_request",
                 "operationTitle": "FSR: Make FortiSOAR API Call",
@@ -46,8 +54,8 @@
                 "type": "InputBased",
                 "input": {
                     "schema": {
-                        "title": "Map FortiSOAR User",
-                        "description": "Map FortiSOAR User with specified GitHub username.       ",
+                        "title": "Set GitHub User Account",
+                        "description": "Select FortiSOAR User and specify corresponding GitHub username.       ",
                         "inputVariables": [
                             {
                                 "name": "fortiSOARUsername",
@@ -130,7 +138,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Update Status as In Progress",
+            "name": "Set Status to In Progress",
             "description": null,
             "arguments": {
                 "when": "{{not vars.is_ref_playbook}}",
@@ -237,11 +245,11 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p class=\"mp-tile-description muted-80\">\"{{vars.steps.Get_Usernames.input.gitHubUsername}}\" GitHub username assigned to FortiSOAR user \"<a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a>\".<\/p>",
+                    "content": "<p class=\"mp-tile-description muted-80\">\"{{vars.steps.Get_Usernames.input.gitHubUsername}}\" GitHub username assigned to FortiSOAR user \"<a rel=\"noopener\" target=\"_blank\" href=\"{{vars.request.baseUri}}\/security\/people\">{{vars.logged_in_user}}<\/a>\".<\/p>",
                     "records": "{{vars.input.records[0]['@id']}}"
                 },
                 "resource": {
-                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p>&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\">- \"{{vars.steps.Get_Usernames.input.gitHubUsername}}\" GitHub username assigned to FortiSOAR user \"<a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a>\".<\/p>"
+                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p><br \/><strong>Content Administrator User<\/strong><\/p>\n<p class=\"mp-tile-description muted-80\">FortiSOAR User: <a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a><\/p>\n<p class=\"mp-tile-description muted-80\">GitHub User: {{vars.steps.Get_Usernames.input.gitHubUsername}}<\/p>"
                 },
                 "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",
