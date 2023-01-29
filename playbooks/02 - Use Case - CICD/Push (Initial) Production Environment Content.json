@@ -179,21 +179,12 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get Source Control Details -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/e582999a-4d00-4e1a-9e56-3fefec5e6d83",
-            "sourceStep": "\/api\/3\/workflow_steps\/8f7125b3-2460-4816-9f10-c127262852a4",
+            "name": "Push Export Config -> Find Previous Result",
+            "targetStep": "\/api\/3\/workflow_steps\/494467e7-7f2c-4cd9-b53b-85c4a9904e49",
+            "sourceStep": "\/api\/3\/workflow_steps\/f56d86b5-21dd-47eb-9425-0dd438f783a3",
             "label": null,
             "isExecuted": false,
-            "uuid": "a08ddeef-3cbe-4a06-a6b7-941ae668206f"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Find Previous Result -> Update Record",
-            "targetStep": "\/api\/3\/workflow_steps\/07a2af16-ac82-477e-9cfb-05e6db51fa75",
-            "sourceStep": "\/api\/3\/workflow_steps\/494467e7-7f2c-4cd9-b53b-85c4a9904e49",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "95cad38c-fd99-4794-9ed4-e337baeb9d7e"
+            "uuid": "3870c685-5ab0-42da-9b79-84f16800c11f"
         },
         {
             "@type": "WorkflowRoute",
@@ -206,12 +197,21 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Push Export Config -> Find Previous Result",
-            "targetStep": "\/api\/3\/workflow_steps\/494467e7-7f2c-4cd9-b53b-85c4a9904e49",
-            "sourceStep": "\/api\/3\/workflow_steps\/f56d86b5-21dd-47eb-9425-0dd438f783a3",
+            "name": "Find Previous Result -> Update Record",
+            "targetStep": "\/api\/3\/workflow_steps\/07a2af16-ac82-477e-9cfb-05e6db51fa75",
+            "sourceStep": "\/api\/3\/workflow_steps\/494467e7-7f2c-4cd9-b53b-85c4a9904e49",
             "label": null,
             "isExecuted": false,
-            "uuid": "3870c685-5ab0-42da-9b79-84f16800c11f"
+            "uuid": "95cad38c-fd99-4794-9ed4-e337baeb9d7e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Source Control Details -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/e582999a-4d00-4e1a-9e56-3fefec5e6d83",
+            "sourceStep": "\/api\/3\/workflow_steps\/8f7125b3-2460-4816-9f10-c127262852a4",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "a08ddeef-3cbe-4a06-a6b7-941ae668206f"
         }
     ],
     "groups": [],

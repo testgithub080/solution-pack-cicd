@@ -28,7 +28,7 @@
             },
             "status": null,
             "top": "30",
-            "left": "125",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
             "group": null,
             "uuid": "2a7d9822-afe4-44bd-b951-fa23cd781af9"
@@ -52,8 +52,8 @@
                 "workflowReference": "\/api\/3\/workflows\/59deabc6-5410-4d63-a8eb-a383ec5cd196"
             },
             "status": null,
-            "top": "300",
-            "left": "125",
+            "top": "560",
+            "left": "580",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "3511761c-70b5-4435-8901-858d8c675f6d"
@@ -82,10 +82,37 @@
             },
             "status": null,
             "top": "165",
-            "left": "125",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
             "uuid": "5fd82e08-6384-426f-8523-6585b2607bb3"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Are Source Control Export Template Exist",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/dd5f9f7a-2f46-4cbc-a682-73f5db1cf124",
+                        "condition": "{{ vars.are_export_template_exist | length == 3 }}",
+                        "step_name": "Find Previous Result"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/3511761c-70b5-4435-8901-858d8c675f6d",
+                        "step_name": "Create Export Template"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "435",
+            "left": "218",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "c9e69b0d-60c4-41cd-a59f-89536c75ca28"
         },
         {
             "@type": "WorkflowStep",
@@ -114,8 +141,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "435",
-            "left": "125",
+            "top": "705",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
             "uuid": "dd5f9f7a-2f46-4cbc-a682-73f5db1cf124"
@@ -144,11 +171,37 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "570",
-            "left": "125",
+            "top": "840",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "de410190-53a7-46b1-8094-d60137f35a2c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Source Control Export Template",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/query\/export_templates?$limit=30",
+                    "body": "{\"sort\":[{\"field\":\"modifyDate\",\"direction\":\"DESC\"}],\"limit\":30,\"logic\":\"AND\",\"filters\":[{\"field\":\"type\",\"operator\":\"neq\",\"_operator\":\"neq\",\"value\":\"SolutionPack Export\",\"type\":\"primitive\"}],\"__selectFields\":[\"name\",\"lastExportDate\",\"modifyUser\",\"portingActions\",\"@id\",\"@type\",\"id\"]}",
+                    "method": "POST"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "ignore_errors": false,
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": {
+                    "are_export_template_exist": "{{vars.steps.Get_Source_Control_Export_Template.data['hydra:member']|json_query(\"[?contains(name,'Source Control')]\")}}"
+                }
+            },
+            "status": null,
+            "top": "300",
+            "left": "218",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "f8499116-2184-4135-9d37-9e8d5be49495"
         }
     ],
     "routes": [
@@ -163,12 +216,21 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Find Export Template Configuration Attachment -> Create Export Template",
-            "targetStep": "\/api\/3\/workflow_steps\/3511761c-70b5-4435-8901-858d8c675f6d",
+            "name": "Find Export Template Configuration Attachment -> Are Export Template Exist",
+            "targetStep": "\/api\/3\/workflow_steps\/f8499116-2184-4135-9d37-9e8d5be49495",
             "sourceStep": "\/api\/3\/workflow_steps\/5fd82e08-6384-426f-8523-6585b2607bb3",
             "label": null,
             "isExecuted": false,
-            "uuid": "5a27ec04-00a4-4905-939b-ffcbb202ea97"
+            "uuid": "4381c9c1-b05e-4f44-ad45-a05312161a1e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Are Source Control Export Template Exist -> Find Previous Result",
+            "targetStep": "\/api\/3\/workflow_steps\/dd5f9f7a-2f46-4cbc-a682-73f5db1cf124",
+            "sourceStep": "\/api\/3\/workflow_steps\/c9e69b0d-60c4-41cd-a59f-89536c75ca28",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "6682fa59-a7f8-4d85-a3c9-976efe566794"
         },
         {
             "@type": "WorkflowRoute",
@@ -181,12 +243,30 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Get Source Control Export Template -> Are Source Control Export Template Exist",
+            "targetStep": "\/api\/3\/workflow_steps\/c9e69b0d-60c4-41cd-a59f-89536c75ca28",
+            "sourceStep": "\/api\/3\/workflow_steps\/f8499116-2184-4135-9d37-9e8d5be49495",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "adaf5148-b2ab-4ed3-9921-4a56e14016f4"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Find Previous Result -> Update Record",
             "targetStep": "\/api\/3\/workflow_steps\/de410190-53a7-46b1-8094-d60137f35a2c",
             "sourceStep": "\/api\/3\/workflow_steps\/dd5f9f7a-2f46-4cbc-a682-73f5db1cf124",
             "label": null,
             "isExecuted": false,
             "uuid": "b894c5e9-3937-4f64-aa0c-3a98d40e2f96"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Are Source Control Export Template Exist -> Create Export Template",
+            "targetStep": "\/api\/3\/workflow_steps\/3511761c-70b5-4435-8901-858d8c675f6d",
+            "sourceStep": "\/api\/3\/workflow_steps\/c9e69b0d-60c4-41cd-a59f-89536c75ca28",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "e7e6a90a-b3de-4bb3-8b45-bd3f27ef701f"
         }
     ],
     "groups": [],

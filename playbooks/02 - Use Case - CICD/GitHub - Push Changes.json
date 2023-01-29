@@ -1,0 +1,94 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Push Changes",
+    "aliasName": null,
+    "tag": null,
+    "description": "Commits the local repository changes to the specified repository in GitHub based on the repository name, cloned repository path, and other input parameters you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "repo_type",
+        "org_name",
+        "repo_name",
+        "cloned_repo_path",
+        "branch_name",
+        "commit_message"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/2612324d-f465-40f0-b5fa-8ca7de7b7db8",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "2612324d-f465-40f0-b5fa-8ca7de7b7db8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Push Changes",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "f2fbf706-4ce3-4748-bd71-b99457d3d53d",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "name": "{{vars.input.params['repo_name']}}",
+                    "branch": "{{vars.input.params['branch_name']}}",
+                    "repo_type": "Organization",
+                    "clone_path": "{{vars.input.params['cloned_repo_path']}}",
+                    "commit_message": "{{vars.input.params['commit_message']}}"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "push_repository",
+                "operationTitle": "Push Changes",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "b056cb5e-e012-493f-b7ca-af1a6071be95"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Push Changes",
+            "targetStep": "\/api\/3\/workflow_steps\/b056cb5e-e012-493f-b7ca-af1a6071be95",
+            "sourceStep": "\/api\/3\/workflow_steps\/2612324d-f465-40f0-b5fa-8ca7de7b7db8",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "8cae6f2d-58f3-454a-ad77-caf0c0e3765a"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "882f87d9-f532-4c19-9a60-40df99d865c8",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

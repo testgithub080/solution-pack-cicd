@@ -20,34 +20,26 @@
             "name": "Create Pull Request",
             "description": null,
             "arguments": {
-                "name": "GitHub",
-                "config": "1c6ba20e-c429-469e-8b10-04d6300c8750",
-                "params": {
-                    "org": "{{vars.cicdConfig.organizationName}}",
-                    "base": "{{vars.cicdConfig.baseBranch}}",
-                    "body": "Resolves #{{vars.issue_no}}",
-                    "head": "{{vars.cicdConfig.organizationName}}:{{vars.new_branch}}",
-                    "repo": "{{vars.repo_name}}",
-                    "draft": false,
-                    "owner": "fortisoar-cicd",
-                    "title": "{{vars.steps.Specify_PR_Title_and_Comments.input.title}}",
-                    "repo_type": "Organization",
-                    "requestType": "Create New",
-                    "maintainer_can_modify": true
+                "arguments": {
+                    "org_name": "{{vars.cicdConfig.organizationName}}",
+                    "pr_title": "{{vars.steps.Specify_PR_Title_and_Comments.input.title}}",
+                    "head_repo": "{{vars.cicdConfig.organizationName}}:{{vars.new_branch}}",
+                    "repo_name": "{{vars.repo_name}}",
+                    "base_branch": "{{vars.cicdConfig.baseBranch}}",
+                    "pr_comments": "Resolves #{{vars.issue_no}}"
                 },
-                "version": "1.0.0",
-                "connector": "github",
-                "operation": "create_pull_request",
-                "operationTitle": "Create Pull Request",
-                "pickFromTenant": false,
-                "step_variables": []
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/368b358e-4584-4b5b-9ed2-c59f5d7ff940"
             },
             "status": null,
             "top": "705",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
-            "uuid": "12cfeeb4-830c-4dee-b0cb-2d82d2e92f85"
+            "uuid": "07b1db66-5691-49ff-9144-53b0747b38f5"
         },
         {
             "@type": "WorkflowStep",
@@ -103,7 +95,7 @@
                         {
                             "option": "Submit",
                             "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/12cfeeb4-830c-4dee-b0cb-2d82d2e92f85"
+                            "step_iri": "\/api\/3\/workflow_steps\/07b1db66-5691-49ff-9144-53b0747b38f5"
                         }
                     ],
                     "duplicateOption": false
@@ -170,6 +162,30 @@
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "90e5fc86-5c0f-4c39-a998-46aa7871922f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Add PR Reviewers",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "org_name": "{{vars.cicdConfig.organizationName}}",
+                    "repo_name": "{{vars.repo_name}}",
+                    "reviewers": "{{vars.steps.Specify_PR_Title_and_Comments.input.reviewersName}}",
+                    "pull_number": "{{vars.steps.Create_Pull_Request.data.number}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/1982520c-5862-426f-aea5-2a509fe185fb"
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "ae742cf1-490f-4c78-9a8b-5804a4ae112e"
         },
         {
             "@type": "WorkflowStep",
@@ -250,35 +266,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Add PR Reviewers",
-            "description": null,
-            "arguments": {
-                "name": "GitHub",
-                "config": "7458f8c2-712d-4a14-b28a-365a02d892dc",
-                "params": {
-                    "org": "{{vars.cicdConfig.organizationName}}",
-                    "repo": "{{vars.repo_name}}",
-                    "repo_type": "Organization",
-                    "reviewers": "{{vars.steps.Specify_PR_Title_and_Comments.input.reviewersName}}",
-                    "pull_number": "{{vars.steps.Create_Pull_Request.data.number}}",
-                    "team_reviewers": ""
-                },
-                "version": "1.0.0",
-                "connector": "github",
-                "operation": "add_reviewers",
-                "operationTitle": "Add Reviewers for a Pull Request",
-                "pickFromTenant": false,
-                "step_variables": []
-            },
-            "status": null,
-            "top": "840",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "group": null,
-            "uuid": "d37a2bdb-0629-4f8d-905b-0939ad7706f3"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Playbook Is Active",
             "description": null,
             "arguments": {
@@ -317,8 +304,8 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "980",
-            "left": "740",
+            "top": "975",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "de4cac43-a9a0-431b-8d86-777e781a4a59"
@@ -332,7 +319,7 @@
                 "input": {
                     "schema": {
                         "title": "Pull Request Details",
-                        "description": "Pull Request <a href=\"{{vars.steps.Create_Pull_Request.data['html_url']}}\">{{vars.steps.Create_Pull_Request.data['html_url']}}<\/a> is successfully created.\n",
+                        "description": "Pull Request <a href=\"{{vars.steps.Create_Pull_Request1.data['html_url']}}\">{{vars.steps.Create_Pull_Request1.data['html_url']}}<\/a> is successfully created.\n",
                         "inputVariables": []
                     }
                 },
@@ -390,15 +377,6 @@
         }
     ],
     "routes": [
-        {
-            "@type": "WorkflowRoute",
-            "name": "Specify PR Title and Comments -> Create Pull Request",
-            "targetStep": "\/api\/3\/workflow_steps\/12cfeeb4-830c-4dee-b0cb-2d82d2e92f85",
-            "sourceStep": "\/api\/3\/workflow_steps\/524c224b-2d87-45ee-bd0e-d2dadaa07559",
-            "label": "Submit",
-            "isExecuted": false,
-            "uuid": "806a458b-8b23-46dd-8bc9-26d0ecbb8dfb"
-        },
         {
             "@type": "WorkflowRoute",
             "name": "Configuration -> Specify PR Title and Comments",
@@ -464,21 +442,30 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Specify PR Title and Comments -> Create Pull Request",
+            "targetStep": "\/api\/3\/workflow_steps\/07b1db66-5691-49ff-9144-53b0747b38f5",
+            "sourceStep": "\/api\/3\/workflow_steps\/524c224b-2d87-45ee-bd0e-d2dadaa07559",
+            "label": "Submit",
+            "isExecuted": false,
+            "uuid": "02fd18a7-306b-405c-956a-6690a2eb381d"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Create Pull Request -> Add PR Reviewers",
-            "targetStep": "\/api\/3\/workflow_steps\/d37a2bdb-0629-4f8d-905b-0939ad7706f3",
-            "sourceStep": "\/api\/3\/workflow_steps\/12cfeeb4-830c-4dee-b0cb-2d82d2e92f85",
+            "targetStep": "\/api\/3\/workflow_steps\/ae742cf1-490f-4c78-9a8b-5804a4ae112e",
+            "sourceStep": "\/api\/3\/workflow_steps\/07b1db66-5691-49ff-9144-53b0747b38f5",
             "label": null,
             "isExecuted": false,
-            "uuid": "35b4c77f-49db-4f2a-bb67-feeb4db892e6"
+            "uuid": "0b0f44bc-29cf-4e29-9f42-e0a502591b0d"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Add PR Reviewers -> Populate PR Details",
             "targetStep": "\/api\/3\/workflow_steps\/e2d15988-05eb-446d-b8e1-3739c0b5afb4",
-            "sourceStep": "\/api\/3\/workflow_steps\/d37a2bdb-0629-4f8d-905b-0939ad7706f3",
+            "sourceStep": "\/api\/3\/workflow_steps\/ae742cf1-490f-4c78-9a8b-5804a4ae112e",
             "label": null,
             "isExecuted": false,
-            "uuid": "ae40180a-3109-4e75-885f-81bb5de53960"
+            "uuid": "e718e9a6-654b-406f-a925-ee5dcfff13da"
         }
     ],
     "groups": [],

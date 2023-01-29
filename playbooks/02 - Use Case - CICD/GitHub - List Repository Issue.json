@@ -1,0 +1,99 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - List Repository Issue",
+    "aliasName": null,
+    "tag": null,
+    "description": "List an issues for the specified repository or user on GitHub based on the repository name, and other input parameters you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "org_name",
+        "repo_name",
+        "state"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/24b9a084-1aa2-42b9-a766-544e92a4e9be",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "24b9a084-1aa2-42b9-a766-544e92a4e9be"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "List Repository Issue",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "f2fbf706-4ce3-4748-bd71-b99457d3d53d",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "page": "",
+                    "repo": "{{vars.input.params['repo_name']}}",
+                    "sort": "created",
+                    "since": "",
+                    "state": "{{vars.input.params.state}}",
+                    "labels": "",
+                    "creator": "",
+                    "assignee": "",
+                    "per_page": 100,
+                    "direction": "desc",
+                    "mentioned": "",
+                    "milestone": "",
+                    "repo_type": "Organization"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "list_repository_issue",
+                "operationTitle": "List Repository Issue",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "8ea9389a-453b-49fe-b5f7-99be04a97fc2"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> List Repository Issue",
+            "targetStep": "\/api\/3\/workflow_steps\/8ea9389a-453b-49fe-b5f7-99be04a97fc2",
+            "sourceStep": "\/api\/3\/workflow_steps\/24b9a084-1aa2-42b9-a766-544e92a4e9be",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "37986a82-f780-4f74-a09a-49a6fc0df92c"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "7c46caf1-ac8c-4345-8582-7e726e23a9e8",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

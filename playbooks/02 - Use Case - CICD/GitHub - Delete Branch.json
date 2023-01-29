@@ -1,0 +1,89 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Delete Branch",
+    "aliasName": null,
+    "tag": null,
+    "description": "Delete a new branch in GitHub based on the repository name, branch name, repository owner, and other input parameters you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "org_name",
+        "repo_name",
+        "branch_name"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/029c9009-83c1-4fd9-b056-6ce8d560865b",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "029c9009-83c1-4fd9-b056-6ce8d560865b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Delete Branch",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "f2fbf706-4ce3-4748-bd71-b99457d3d53d",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "repo": "{{vars.input.params['repo_name']}}",
+                    "repo_type": "Organization",
+                    "branch_name": "{{vars.input.params['branch_name']}}"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "delete_branch",
+                "operationTitle": "Delete Branch",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "7d7dabda-36bc-4fb3-855a-e30b182a77b4"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Delete Branch",
+            "targetStep": "\/api\/3\/workflow_steps\/7d7dabda-36bc-4fb3-855a-e30b182a77b4",
+            "sourceStep": "\/api\/3\/workflow_steps\/029c9009-83c1-4fd9-b056-6ce8d560865b",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "984a4d95-6273-473b-ba65-383382768b49"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "8438ae35-3990-4b35-80d7-00da0f8b1d15",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

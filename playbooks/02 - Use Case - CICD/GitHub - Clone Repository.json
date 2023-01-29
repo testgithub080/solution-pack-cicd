@@ -1,0 +1,90 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Clone Repository",
+    "aliasName": null,
+    "tag": null,
+    "description": "Clone the github repository",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "repo_type",
+        "org_name",
+        "repo_name",
+        "clone_as_zip"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/fba1e0aa-eec3-4bd5-831b-1ebd250c177a",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Clone Repository",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "32b07067-f1d2-43b1-8436-c3b4b532ea5f",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "name": "{{vars.input.params['repo_name']}}",
+                    "clone_zip": "{{vars.input.params['clone_as_zip']}}",
+                    "repo_type": "Organization"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "clone_repository",
+                "operationTitle": "Clone Repository",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "5225bc61-2e50-40af-8e18-73a9b1a372df"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "fba1e0aa-eec3-4bd5-831b-1ebd250c177a"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Clone Repository",
+            "targetStep": "\/api\/3\/workflow_steps\/5225bc61-2e50-40af-8e18-73a9b1a372df",
+            "sourceStep": "\/api\/3\/workflow_steps\/fba1e0aa-eec3-4bd5-831b-1ebd250c177a",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "fc2a8e2b-d38c-4efe-aceb-0f2393012d14"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "2999d0f1-c491-460e-b9ff-2797417cb995",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

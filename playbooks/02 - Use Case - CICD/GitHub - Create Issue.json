@@ -1,0 +1,95 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Create Issue",
+    "aliasName": null,
+    "tag": null,
+    "description": "Creates an issue for the specified repository or user on GitHub based on the repository name, and other input parameters you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "org_name",
+        "repo_name",
+        "issue_title",
+        "issue_content",
+        "issue_assignee"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/5fd6d698-479f-46d4-9f13-45a31c78a179",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Issue",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "f2fbf706-4ce3-4748-bd71-b99457d3d53d",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "body": "{{vars.input.params['issue_content']}}",
+                    "repo": "{{vars.input.params['repo_name']}}",
+                    "title": "{{vars.input.params['issue_title']}}",
+                    "labels": "",
+                    "assignees": "{{vars.input.params['issue_assignee']}}",
+                    "milestone": "",
+                    "repo_type": "Organization"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "create_issue",
+                "operationTitle": "Create Issue",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "22baea61-d671-413c-9a47-f2d0aae33a39"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "5fd6d698-479f-46d4-9f13-45a31c78a179"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Create Issue",
+            "targetStep": "\/api\/3\/workflow_steps\/22baea61-d671-413c-9a47-f2d0aae33a39",
+            "sourceStep": "\/api\/3\/workflow_steps\/5fd6d698-479f-46d4-9f13-45a31c78a179",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "21868fe1-a262-4562-a7ec-3ad7d53cccde"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "9db7a543-c5e6-4f39-870e-2b5763d3ea4a",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

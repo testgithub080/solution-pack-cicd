@@ -1,0 +1,96 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Create Repository",
+    "aliasName": null,
+    "tag": null,
+    "description": "Creates a new organization or authenticated user repository based on the repository name, organization name, base branch name, and other input parameters you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "org_name",
+        "repo_name"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/6fdc651c-5027-4016-b774-d251caf02022",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "6fdc651c-5027-4016-b774-d251caf02022"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Repository",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "1c6ba20e-c429-469e-8b10-04d6300c8750",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "name": "{{vars.input.params['repo_name']}}",
+                    "private": true,
+                    "has_wiki": true,
+                    "homepage": "",
+                    "repo_type": "Organization",
+                    "has_issues": true,
+                    "description": "",
+                    "is_template": false,
+                    "has_projects": true,
+                    "other_fields": ""
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "create_repository",
+                "ignore_errors": true,
+                "operationTitle": "Create Repository",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "cb6cfbe8-edd3-4fd0-9bd9-5a951ac44f48"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Create Repository",
+            "targetStep": "\/api\/3\/workflow_steps\/cb6cfbe8-edd3-4fd0-9bd9-5a951ac44f48",
+            "sourceStep": "\/api\/3\/workflow_steps\/6fdc651c-5027-4016-b774-d251caf02022",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e941dae1-e289-4011-b8ad-de0c72a3d5a4"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "54667218-789e-4fff-b437-0c6aa79436c8",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

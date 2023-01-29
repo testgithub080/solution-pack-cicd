@@ -83,10 +83,10 @@
                     "body": "",
                     "method": "GET"
                 },
-                "version": "3.2.1",
+                "version": "3.2.3",
                 "do_until": {
                     "delay": 15,
-                    "retries": 3,
+                    "retries": 10,
                     "condition": "{{vars.result.data.status==\"Export Complete\"}}"
                 },
                 "connector": "cyops_utilities",

@@ -1,0 +1,86 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Update Remote Repository",
+    "aliasName": null,
+    "tag": null,
+    "description": "Applies changes made in a FortiSOAR file to the specified remote repository that is cloned from GitHub based on the file IRI and cloned repository path you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "fsr_file_iri",
+        "clone_repo_path"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/1eea1968-483e-4b26-a1b2-177f199cd755",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "1eea1968-483e-4b26-a1b2-177f199cd755"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Remote Repository",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "f2fbf706-4ce3-4748-bd71-b99457d3d53d",
+                "params": {
+                    "file_iri": "{{vars.input.params['fsr_file_iri']}}",
+                    "clone_path": "{{vars.input.params['clone_repo_path']}}"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "update_clone_repository",
+                "operationTitle": "Update Remote Repository",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "d9d04c67-3fe9-4537-931c-3759bda9b6b1"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Update Remote Repository",
+            "targetStep": "\/api\/3\/workflow_steps\/d9d04c67-3fe9-4537-931c-3759bda9b6b1",
+            "sourceStep": "\/api\/3\/workflow_steps\/1eea1968-483e-4b26-a1b2-177f199cd755",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "bf487431-5777-4191-b802-08fc568a8346"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "aa0d9c00-b0f2-4624-8d41-8199474c3546",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

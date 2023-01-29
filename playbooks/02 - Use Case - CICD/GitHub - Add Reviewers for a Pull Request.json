@@ -1,0 +1,92 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Add Reviewers for a Pull Request",
+    "aliasName": null,
+    "tag": null,
+    "description": "Adds reviews for the specified pull request on GitHub based on the repository name, repository owner, pull request number, and other input parameters you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "org_name",
+        "repo_name",
+        "pull_number",
+        "reviewers"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/59c0a803-a20b-489a-ac7b-ec2f8a20e37d",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Add Reviewers",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "f2fbf706-4ce3-4748-bd71-b99457d3d53d",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "repo": "{{vars.input.params['repo_name']}}",
+                    "repo_type": "Organization",
+                    "reviewers": "{{vars.input.params.reviewers}}",
+                    "pull_number": "{{vars.input.params['pull_number']}}",
+                    "team_reviewers": ""
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "add_reviewers",
+                "operationTitle": "Add Reviewers for a Pull Request",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "330aeaf0-8b2f-4e54-9a59-624990377bd5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "59c0a803-a20b-489a-ac7b-ec2f8a20e37d"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Add Reviewers",
+            "targetStep": "\/api\/3\/workflow_steps\/330aeaf0-8b2f-4e54-9a59-624990377bd5",
+            "sourceStep": "\/api\/3\/workflow_steps\/59c0a803-a20b-489a-ac7b-ec2f8a20e37d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "a7c2e6d0-28da-43a6-9267-54ff9a13e194"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "1982520c-5862-426f-aea5-2a509fe185fb",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

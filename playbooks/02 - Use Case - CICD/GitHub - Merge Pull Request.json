@@ -1,0 +1,94 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Merge Pull Request",
+    "aliasName": null,
+    "tag": null,
+    "description": "Merges the specified pull request on GitHub based on the repository name, repository owner, pull request number, and other input parameters you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "pull_number",
+        "repo_name",
+        "org_name",
+        "org_type"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/a86cea50-0b03-41cb-b651-e50006ae24c8",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Merge Pull Request",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "f2fbf706-4ce3-4748-bd71-b99457d3d53d",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "sha": "",
+                    "repo": "{{vars.input.params['repo_name']}}",
+                    "repo_type": "Organization",
+                    "pull_number": "{{vars.input.params['pull_number']}}",
+                    "commit_title": "",
+                    "merge_method": "merge",
+                    "commit_message": ""
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "merge_pull_request",
+                "operationTitle": "Merge Pull Request",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "119ffe99-e085-4d80-8cab-b99f487d13bb"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "a86cea50-0b03-41cb-b651-e50006ae24c8"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Merge Pull Request",
+            "targetStep": "\/api\/3\/workflow_steps\/119ffe99-e085-4d80-8cab-b99f487d13bb",
+            "sourceStep": "\/api\/3\/workflow_steps\/a86cea50-0b03-41cb-b651-e50006ae24c8",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "f4118950-9df8-479c-8ac0-d7c9f77a3e2e"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "4ee72908-457d-4383-9d04-140d7ba5d81e",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}
