@@ -39,7 +39,7 @@
                 "input": {
                     "schema": {
                         "title": "Set GitHub User Account",
-                        "description": "Provide the GitHub Username  which you want to map with the logged in FortiSOAR User \"{{vars.logged_in_user}}\".",
+                        "description": "Provide the GitHub Username which you want to map with the logged in FortiSOAR User \"{{vars.logged_in_user}}\".",
                         "inputVariables": [
                             {
                                 "name": "gitHubUsername",

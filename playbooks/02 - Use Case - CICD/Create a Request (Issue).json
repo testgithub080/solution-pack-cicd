@@ -255,7 +255,7 @@
             "name": "Refresh User Version Control Details",
             "description": null,
             "arguments": {
-                "assigneeUsername": "{{(vars.steps.Specify_PR_Title_and_Comments.input.reviewersName[\"@id\"] | fromIRI).gitUsername}}"
+                "assigneeUsername": "{{(vars.steps.Get_Change_Request_Details.input.assignee[\"@id\"] | fromIRI).gitUsername}}"
             },
             "status": null,
             "top": "705",
