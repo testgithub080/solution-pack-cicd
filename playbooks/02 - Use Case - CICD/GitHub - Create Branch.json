@@ -36,7 +36,7 @@
                 "operation": "make_cyops_request",
                 "operationTitle": "FSR: Make FortiSOAR API Call",
                 "step_variables": {
-                    "current_user_github_connector_config_id": "{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.request.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}"
+                    "current_user_github_connector_config_id": "{% if vars.request.currentUser is defined %}{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.request.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}{% else %}{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}{% endif %}"
                 }
             },
             "status": null,

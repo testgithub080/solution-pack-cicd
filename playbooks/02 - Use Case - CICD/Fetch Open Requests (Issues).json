@@ -214,19 +214,17 @@
                         "logic": "AND",
                         "filters": [
                             {
-                                "type": "object",
+                                "type": "array",
                                 "field": "environment",
                                 "value": [
                                     "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651",
-                                    "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b",
-                                    "\/api\/3\/picklists\/7c93c4a6-10b4-4806-aa20-1581d35d0dcb"
+                                    "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b"
                                 ],
                                 "module": "environment",
                                 "display": "",
                                 "operator": "nin",
                                 "template": "multiselectpicklist",
                                 "OPERATOR_KEY": "$",
-                                "displayTemplate": "",
                                 "previousOperator": "nin",
                                 "previousTemplate": "multiselectpicklist"
                             }
@@ -234,8 +232,8 @@
                     }
                 },
                 "executeButtonText": "Execute",
-                "noRecordExecution": false,
-                "singleRecordExecution": true
+                "noRecordExecution": true,
+                "singleRecordExecution": false
             },
             "status": null,
             "top": "30",
@@ -293,15 +291,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Copy of Get Source Control Details",
-            "targetStep": "\/api\/3\/workflow_steps\/54facc75-f7e1-43c9-af88-e74e2ac978d1",
-            "sourceStep": "\/api\/3\/workflow_steps\/e708641d-586a-40b3-accf-963845b1e829",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "e3c78f1c-9a7b-4208-a335-92c66e554479"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Configuration -> Get Issues",
             "targetStep": "\/api\/3\/workflow_steps\/a9f50e1b-eb11-4cef-a055-4f6472d642b2",
             "sourceStep": "\/api\/3\/workflow_steps\/da950fb1-dd6f-40eb-ad58-c20cb3ed003e",
@@ -326,6 +315,15 @@
             "label": null,
             "isExecuted": false,
             "uuid": "289bf128-0ff3-4f4a-a38b-4c93d8ecd1b5"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Copy of Get Source Control Details",
+            "targetStep": "\/api\/3\/workflow_steps\/54facc75-f7e1-43c9-af88-e74e2ac978d1",
+            "sourceStep": "\/api\/3\/workflow_steps\/e708641d-586a-40b3-accf-963845b1e829",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e3c78f1c-9a7b-4208-a335-92c66e554479"
         }
     ],
     "groups": [],

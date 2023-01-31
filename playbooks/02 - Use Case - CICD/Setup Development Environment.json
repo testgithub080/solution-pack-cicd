@@ -39,33 +39,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Clone Repository1",
-            "description": null,
-            "arguments": {
-                "name": "GitHub",
-                "config": "32b07067-f1d2-43b1-8436-c3b4b532ea5f",
-                "params": {
-                    "org": "{{vars.org_name}}",
-                    "name": "{{vars.content_repo}}",
-                    "clone_zip": true,
-                    "repo_type": "Organization"
-                },
-                "version": "1.0.0",
-                "connector": "github",
-                "operation": "clone_repository",
-                "operationTitle": "Clone Repository",
-                "pickFromTenant": false,
-                "step_variables": []
-            },
-            "status": null,
-            "top": "30",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "group": null,
-            "uuid": "4c47d46e-891c-4d93-a9fa-cfcaa8b94f8d"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Synchronize Export Template",
             "description": null,
             "arguments": {

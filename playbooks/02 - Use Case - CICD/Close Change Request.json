@@ -31,7 +31,7 @@
                 "apply_async": false,
                 "step_variables": [],
                 "pass_parent_env": false,
-                "pass_input_record": false,
+                "pass_input_record": true,
                 "workflowReference": "\/api\/3\/workflows\/57bfd9b5-7df7-4eef-bcb2-c71977cd7f0e"
             },
             "status": null,
