@@ -1,0 +1,120 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Update Remote Repository",
+    "aliasName": null,
+    "tag": null,
+    "description": "Applies changes made in a FortiSOAR file to the specified remote repository that is cloned from GitHub based on the file IRI and cloned repository path you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "fsr_file_iri",
+        "clone_repo_path"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/1eea1968-483e-4b26-a1b2-177f199cd755",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "1eea1968-483e-4b26-a1b2-177f199cd755"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get GitHub Connector Configurations",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/integration\/connectors\/github\/1.0.0\/?format=json",
+                    "body": "",
+                    "method": "POST"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": {
+                    "current_user_github_connector_config_id": "{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.request.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}"
+                }
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "be105473-631b-432d-8ffa-7d76a2ddd68a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Remote Repository",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "{{vars.current_user_github_connector_config_id}}",
+                "params": {
+                    "file_iri": "{{vars.input.params['fsr_file_iri']}}",
+                    "clone_path": "{{vars.input.params['clone_repo_path']}}"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "update_clone_repository",
+                "operationTitle": "Update Remote Repository",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "d9d04c67-3fe9-4537-931c-3759bda9b6b1"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get GitHub Connector Configurations -> Update Remote Repository",
+            "targetStep": "\/api\/3\/workflow_steps\/d9d04c67-3fe9-4537-931c-3759bda9b6b1",
+            "sourceStep": "\/api\/3\/workflow_steps\/be105473-631b-432d-8ffa-7d76a2ddd68a",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "85c6e6ba-350f-43ea-80f5-fff023626e0b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get GitHub Connector Configurations",
+            "targetStep": "\/api\/3\/workflow_steps\/be105473-631b-432d-8ffa-7d76a2ddd68a",
+            "sourceStep": "\/api\/3\/workflow_steps\/1eea1968-483e-4b26-a1b2-177f199cd755",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e25be6d2-f145-4d84-8a30-4b53461dda74"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "aa0d9c00-b0f2-4624-8d41-8199474c3546",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

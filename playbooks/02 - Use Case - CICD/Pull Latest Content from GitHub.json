@@ -42,7 +42,7 @@
             },
             "status": null,
             "top": "2190",
-            "left": "290",
+            "left": "578",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "002070a1-165d-445a-a3f5-fa297d6564cc"
@@ -73,7 +73,7 @@
             },
             "status": null,
             "top": "1380",
-            "left": "290",
+            "left": "578",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
             "uuid": "0c03b901-9cc4-45ac-a330-b9ffa6d4cd00"
@@ -100,7 +100,7 @@
             },
             "status": null,
             "top": "705",
-            "left": "300",
+            "left": "568",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
             "uuid": "13cfee84-eecc-4fb4-98ca-1f5ccb4a438d"
@@ -126,7 +126,7 @@
             },
             "status": null,
             "top": "435",
-            "left": "475",
+            "left": "393",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "2bda8e16-704f-420e-aa8a-ea4dc00d4ca3"
@@ -153,8 +153,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2055",
-            "left": "290",
+            "top": "2060",
+            "left": "580",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "36714dcd-1ab4-400a-b41c-ab9d635a38a5"
@@ -177,7 +177,7 @@
             },
             "status": null,
             "top": "1785",
-            "left": "290",
+            "left": "578",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "3c9d6743-147d-4ff2-b13c-4bc81f72a035"
@@ -191,7 +191,7 @@
             },
             "status": null,
             "top": "975",
-            "left": "300",
+            "left": "568",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "8a4d3ebc-8204-43cf-acbe-2d65bb6012f4"
@@ -222,7 +222,7 @@
                         {
                             "option": "Yes",
                             "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/a5c3262e-440b-4950-82bc-ad5f39e9bb93"
+                            "step_iri": "\/api\/3\/workflow_steps\/c0b41243-68bd-498d-8ffc-f9c6bd571694"
                         },
                         {
                             "option": "No",
@@ -241,7 +241,7 @@
             },
             "status": null,
             "top": "1110",
-            "left": "300",
+            "left": "568",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "8ab39c8c-8aeb-4aa1-b4aa-db172a382ba3"
@@ -316,7 +316,7 @@
             },
             "status": null,
             "top": "840",
-            "left": "125",
+            "left": "743",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "9566f6ac-49ea-4073-b412-a2a5cd658d30"
@@ -339,7 +339,7 @@
             },
             "status": null,
             "top": "1515",
-            "left": "290",
+            "left": "578",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "95cba225-03cc-472b-ab3a-775bcd1c901c"
@@ -361,7 +361,7 @@
             },
             "status": null,
             "top": "300",
-            "left": "475",
+            "left": "393",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "9a4840cc-c86d-4eb6-9a08-7b77f9b1ef3c"
@@ -421,45 +421,10 @@
             },
             "status": null,
             "top": "30",
-            "left": "650",
+            "left": "568",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
             "group": null,
             "uuid": "9c013279-76d9-41bf-a80d-be525c0d9a43"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Clone Repository",
-            "description": null,
-            "arguments": {
-                "name": "GitHub",
-                "config": "32b07067-f1d2-43b1-8436-c3b4b532ea5f",
-                "params": {
-                    "org": "{{vars.org_name}}",
-                    "name": "{{vars.repo_name}}",
-                    "clone_zip": true,
-                    "repo_type": "Organization"
-                },
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "thread": true,
-                    "content": "<p>Repository is cloned at the path: \/tmp\/cicd\/{{vars.repo_name}}.zip location&nbsp;<\/p>",
-                    "records": ""
-                },
-                "version": "1.0.0",
-                "connector": "github",
-                "operation": "clone_repository",
-                "operationTitle": "Clone Repository",
-                "pickFromTenant": false,
-                "step_variables": []
-            },
-            "status": null,
-            "top": "1245",
-            "left": "290",
-            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "group": null,
-            "uuid": "a5c3262e-440b-4950-82bc-ad5f39e9bb93"
         },
         {
             "@type": "WorkflowStep",
@@ -531,7 +496,7 @@
             },
             "status": null,
             "top": "840",
-            "left": "475",
+            "left": "393",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "a8de61e9-b13f-4319-932d-61792f89b7f8"
@@ -546,7 +511,7 @@
                     "file_path": "{{vars.steps.Clone_Repository.data.path}}",
                     "create_attachment": false
                 },
-                "version": "3.2.1",
+                "version": "3.2.3",
                 "connector": "cyops_utilities",
                 "operation": "upload_file_to_cyops",
                 "operationTitle": "File: Upload a file in the system and Create an Attachment",
@@ -554,7 +519,7 @@
             },
             "status": null,
             "top": "1650",
-            "left": "290",
+            "left": "578",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "b251bc24-c4a4-4373-8ca5-44d1a44b9370"
@@ -586,7 +551,7 @@
             },
             "status": null,
             "top": "2325",
-            "left": "290",
+            "left": "578",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "caa717a2-7a9b-4300-8334-078084ed6742"
@@ -608,7 +573,7 @@
             },
             "status": null,
             "top": "1245",
-            "left": "733",
+            "left": "135",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "e08df4d0-61f9-477a-b0eb-df525d626706"
@@ -631,7 +596,7 @@
             },
             "status": null,
             "top": "1920",
-            "left": "290",
+            "left": "578",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "fbbe3045-febc-429f-b72e-bfe6856ea13b"
@@ -658,7 +623,7 @@
             },
             "status": null,
             "top": "165",
-            "left": "650",
+            "left": "568",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
             "uuid": "40f2c261-ea90-43e7-b7be-9e9a00685c7d"
@@ -704,7 +669,7 @@
             },
             "status": null,
             "top": "300",
-            "left": "825",
+            "left": "743",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "c11509fe-9a1d-4c26-bdb7-4547604991d1"
@@ -723,7 +688,7 @@
             },
             "status": null,
             "top": "435",
-            "left": "825",
+            "left": "743",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "3b954110-19a7-4346-a10d-4cc75dde19ae"
@@ -750,7 +715,7 @@
             },
             "status": null,
             "top": "570",
-            "left": "475",
+            "left": "393",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
             "uuid": "c9b242a1-7246-43b5-9dd5-2afbc550ed2c"
@@ -796,10 +761,42 @@
             },
             "status": null,
             "top": "1110",
-            "left": "743",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "5e09b8f4-3a92-4165-8d35-a21738a4166e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Clone Repository",
+            "description": null,
+            "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>Repository is cloned at the path: \/tmp\/cicd\/{{vars.repo_name}}.zip location&nbsp;<\/p>",
+                    "records": ""
+                },
+                "arguments": {
+                    "org_name": "{{vars.org_name}}",
+                    "repo_name": "{{vars.repo_name}}",
+                    "repo_type": "Organization",
+                    "clone_as_zip": "true"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/2999d0f1-c491-460e-b9ff-2797417cb995"
+            },
+            "status": null,
+            "top": "1245",
+            "left": "578",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "c0b41243-68bd-498d-8ffc-f9c6bd571694"
         }
     ],
     "routes": [
@@ -859,15 +856,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get User Conformation -> Clone Repository",
-            "targetStep": "\/api\/3\/workflow_steps\/a5c3262e-440b-4950-82bc-ad5f39e9bb93",
-            "sourceStep": "\/api\/3\/workflow_steps\/8ab39c8c-8aeb-4aa1-b4aa-db172a382ba3",
-            "label": "Yes",
-            "isExecuted": false,
-            "uuid": "c4e75a92-6756-462f-85a1-437eb50f938b"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Import Zip File -> Update Status as Complete",
             "targetStep": "\/api\/3\/workflow_steps\/caa717a2-7a9b-4300-8334-078084ed6742",
             "sourceStep": "\/api\/3\/workflow_steps\/002070a1-165d-445a-a3f5-fa297d6564cc",
@@ -892,15 +880,6 @@
             "label": null,
             "isExecuted": false,
             "uuid": "47eae31b-ea82-441b-a1d9-44d1eac473bf"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Clone Repository -> Get Source Control Attachment",
-            "targetStep": "\/api\/3\/workflow_steps\/0c03b901-9cc4-45ac-a330-b9ffa6d4cd00",
-            "sourceStep": "\/api\/3\/workflow_steps\/a5c3262e-440b-4950-82bc-ad5f39e9bb93",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "645e4df0-2b32-4682-9551-3cf941aec95b"
         },
         {
             "@type": "WorkflowRoute",
@@ -1018,6 +997,24 @@
             "label": "Ok",
             "isExecuted": false,
             "uuid": "e5329702-470a-4425-8e6d-aac0af3e9aa7"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get User Conformation -> Clone Repository",
+            "targetStep": "\/api\/3\/workflow_steps\/c0b41243-68bd-498d-8ffc-f9c6bd571694",
+            "sourceStep": "\/api\/3\/workflow_steps\/8ab39c8c-8aeb-4aa1-b4aa-db172a382ba3",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "ea8de4a8-fb39-406a-b400-45d8637d2803"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Clone Repository -> Get Source Control Attachment",
+            "targetStep": "\/api\/3\/workflow_steps\/0c03b901-9cc4-45ac-a330-b9ffa6d4cd00",
+            "sourceStep": "\/api\/3\/workflow_steps\/c0b41243-68bd-498d-8ffc-f9c6bd571694",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "67263074-ba9d-4fce-a504-5489c8364423"
         }
     ],
     "groups": [],

@@ -1,0 +1,133 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Update Issue",
+    "aliasName": null,
+    "tag": null,
+    "description": "Update an issues for the specified repository or user on GitHub based on the repository name, and other input parameters you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "org_name",
+        "repo_name",
+        "issue_no",
+        "contents",
+        "state",
+        "state_reason"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/7ab71592-e0d5-45c0-bc9e-1d4cb4c0f0d6",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "7ab71592-e0d5-45c0-bc9e-1d4cb4c0f0d6"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get GitHub Connector Configurations",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/integration\/connectors\/github\/1.0.0\/?format=json",
+                    "body": "",
+                    "method": "POST"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": {
+                    "current_user_github_connector_config_id": "{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.request.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}"
+                }
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "db42216f-0328-4cfe-bde5-7c2f5e85e17e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Issue",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "{{vars.current_user_github_connector_config_id}}",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "body": "{{vars.input.params.contents}}",
+                    "repo": "{{vars.input.params['repo_name']}}",
+                    "state": "{{vars.input.params.state}}",
+                    "title": "",
+                    "labels": "",
+                    "assignees": "",
+                    "milestone": "",
+                    "repo_type": "Organization",
+                    "issue_number": "{{vars.input.params['issue_no']}}",
+                    "state_reason": "{{vars.input.params['state_reason']}}"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "update_issue",
+                "operationTitle": "Update Issue",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "e6c52e29-5933-4e95-acf6-b4aa6b72620a"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get GitHub Connector Configurations",
+            "targetStep": "\/api\/3\/workflow_steps\/db42216f-0328-4cfe-bde5-7c2f5e85e17e",
+            "sourceStep": "\/api\/3\/workflow_steps\/7ab71592-e0d5-45c0-bc9e-1d4cb4c0f0d6",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "537d2256-cd52-477d-be9b-99f4dadd1564"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get GitHub Connector Configurations -> Update Issue",
+            "targetStep": "\/api\/3\/workflow_steps\/e6c52e29-5933-4e95-acf6-b4aa6b72620a",
+            "sourceStep": "\/api\/3\/workflow_steps\/db42216f-0328-4cfe-bde5-7c2f5e85e17e",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "87b213bc-c9b0-45e6-9c55-d3f43fe5d9b2"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "57bfd9b5-7df7-4eef-bcb2-c71977cd7f0e",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

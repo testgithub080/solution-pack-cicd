@@ -57,43 +57,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get Issues",
-            "description": null,
-            "arguments": {
-                "name": "GitHub",
-                "config": "d47bdd7a-aa4e-434b-9826-515d1565b59d",
-                "params": {
-                    "org": "{{vars.cicd_config.organizationName}}",
-                    "page": "",
-                    "repo": "{{vars.cicd_config.contentRepoName}}",
-                    "sort": "created",
-                    "since": "",
-                    "state": "open",
-                    "labels": "",
-                    "creator": "",
-                    "assignee": "",
-                    "per_page": "",
-                    "direction": "desc",
-                    "mentioned": "",
-                    "milestone": "",
-                    "repo_type": "Organization"
-                },
-                "version": "1.0.0",
-                "connector": "github",
-                "operation": "list_repository_issue",
-                "operationTitle": "List Repository Issue",
-                "pickFromTenant": false,
-                "step_variables": []
-            },
-            "status": null,
-            "top": "570",
-            "left": "475",
-            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "group": null,
-            "uuid": "65a75031-cff2-460c-81ad-53fc58a695dc"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Are Repositories Created",
             "description": null,
             "arguments": {
@@ -135,39 +98,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get Open Pull Requests",
-            "description": null,
-            "arguments": {
-                "name": "GitHub",
-                "config": "7458f8c2-712d-4a14-b28a-365a02d892dc",
-                "params": {
-                    "org": "{{vars.cicd_config.organizationName}}",
-                    "base": "",
-                    "head": "",
-                    "page": "",
-                    "repo": "{{vars.cicd_config.contentRepoName}}",
-                    "sort": "created",
-                    "state": "open",
-                    "per_page": "",
-                    "direction": "desc",
-                    "repo_type": "Organization"
-                },
-                "version": "1.0.0",
-                "connector": "github",
-                "operation": "list_pull_request",
-                "operationTitle": "List Pull Request",
-                "pickFromTenant": false,
-                "step_variables": []
-            },
-            "status": null,
-            "top": "705",
-            "left": "475",
-            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "group": null,
-            "uuid": "9839e2fb-7b48-42df-9421-00eeb43d98eb"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "No Operation",
             "description": null,
             "arguments": {
@@ -184,6 +114,52 @@
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "a4921965-2dba-4342-a85d-89b3842cc7b3"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Open Pull Requests",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "state": "open",
+                    "org_name": "{{vars.cicd_config.organizationName}}",
+                    "repo_name": "{{vars.cicd_config.contentRepoName}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/c7ac53b5-7a4b-4c01-abd3-9ea267cd500f"
+            },
+            "status": null,
+            "top": "705",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "a6d8acdc-6a69-4463-b267-1a06a34e2234"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Issues",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "state": "open",
+                    "org_name": "{{vars.cicd_config.organizationName}}",
+                    "repo_name": "{{vars.cicd_config.contentRepoName}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/7c46caf1-ac8c-4345-8582-7e726e23a9e8"
+            },
+            "status": null,
+            "top": "570",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "a9f50e1b-eb11-4cef-a055-4f6472d642b2"
         },
         {
             "@type": "WorkflowStep",
@@ -281,15 +257,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get Open Pull Requests -> Find PRs for Issues",
-            "targetStep": "\/api\/3\/workflow_steps\/b5804a6a-39ea-4185-b994-4192f1aa876f",
-            "sourceStep": "\/api\/3\/workflow_steps\/9839e2fb-7b48-42df-9421-00eeb43d98eb",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "3e4684e3-56b0-4ed9-a82e-8b2ebdc4eba8"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Find PRs for Issues -> Prepare Issues JSON",
             "targetStep": "\/api\/3\/workflow_steps\/949351d7-9f48-473a-bbc1-b1436fe705c1",
             "sourceStep": "\/api\/3\/workflow_steps\/b5804a6a-39ea-4185-b994-4192f1aa876f",
@@ -305,24 +272,6 @@
             "label": "No",
             "isExecuted": false,
             "uuid": "86a009ca-dd92-4589-ba5a-a85e64ba1ce5"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Configuration -> Get Issues",
-            "targetStep": "\/api\/3\/workflow_steps\/65a75031-cff2-460c-81ad-53fc58a695dc",
-            "sourceStep": "\/api\/3\/workflow_steps\/da950fb1-dd6f-40eb-ad58-c20cb3ed003e",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "ac0dab43-7099-4777-b1fa-a74d5c05de94"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Get Issues -> Get Open Pull Requests",
-            "targetStep": "\/api\/3\/workflow_steps\/9839e2fb-7b48-42df-9421-00eeb43d98eb",
-            "sourceStep": "\/api\/3\/workflow_steps\/65a75031-cff2-460c-81ad-53fc58a695dc",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "bbd45d2f-ddf2-4a99-99fd-627a29f71477"
         },
         {
             "@type": "WorkflowRoute",
@@ -350,6 +299,33 @@
             "label": null,
             "isExecuted": false,
             "uuid": "e3c78f1c-9a7b-4208-a335-92c66e554479"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get Issues",
+            "targetStep": "\/api\/3\/workflow_steps\/a9f50e1b-eb11-4cef-a055-4f6472d642b2",
+            "sourceStep": "\/api\/3\/workflow_steps\/da950fb1-dd6f-40eb-ad58-c20cb3ed003e",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "4cf63478-e1b0-4c4d-b8ce-8d690c704b22"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Issues -> Get Open Pull Requests",
+            "targetStep": "\/api\/3\/workflow_steps\/a6d8acdc-6a69-4463-b267-1a06a34e2234",
+            "sourceStep": "\/api\/3\/workflow_steps\/a9f50e1b-eb11-4cef-a055-4f6472d642b2",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "4cb3bb71-978a-457f-a63c-a35d15b02729"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Open Pull Requests -> Find PRs for Issues",
+            "targetStep": "\/api\/3\/workflow_steps\/b5804a6a-39ea-4185-b994-4192f1aa876f",
+            "sourceStep": "\/api\/3\/workflow_steps\/a6d8acdc-6a69-4463-b267-1a06a34e2234",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "289bf128-0ff3-4f4a-a38b-4c93d8ecd1b5"
         }
     ],
     "groups": [],

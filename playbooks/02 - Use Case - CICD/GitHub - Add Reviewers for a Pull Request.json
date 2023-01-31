@@ -1,0 +1,126 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Add Reviewers for a Pull Request",
+    "aliasName": null,
+    "tag": null,
+    "description": "Adds reviews for the specified pull request on GitHub based on the repository name, repository owner, pull request number, and other input parameters you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "org_name",
+        "repo_name",
+        "pull_number",
+        "reviewers"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/59c0a803-a20b-489a-ac7b-ec2f8a20e37d",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Add Reviewers",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "{{vars.current_user_github_connector_config_id}}",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "repo": "{{vars.input.params['repo_name']}}",
+                    "repo_type": "Organization",
+                    "reviewers": "{{vars.input.params.reviewers}}",
+                    "pull_number": "{{vars.input.params['pull_number']}}",
+                    "team_reviewers": ""
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "add_reviewers",
+                "operationTitle": "Add Reviewers for a Pull Request",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "330aeaf0-8b2f-4e54-9a59-624990377bd5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "59c0a803-a20b-489a-ac7b-ec2f8a20e37d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get GitHub Connector Configurations",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/integration\/connectors\/github\/1.0.0\/?format=json",
+                    "body": "",
+                    "method": "POST"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": {
+                    "current_user_github_connector_config_id": "{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.request.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}"
+                }
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "ff650232-ef86-4d52-94d7-66ea69b6ee8d"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get GitHub Connector Configurations",
+            "targetStep": "\/api\/3\/workflow_steps\/ff650232-ef86-4d52-94d7-66ea69b6ee8d",
+            "sourceStep": "\/api\/3\/workflow_steps\/59c0a803-a20b-489a-ac7b-ec2f8a20e37d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "39013e70-aef1-48d4-b050-ac9c7a6f89f5"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get GitHub Connector Configurations -> Add Reviewers",
+            "targetStep": "\/api\/3\/workflow_steps\/330aeaf0-8b2f-4e54-9a59-624990377bd5",
+            "sourceStep": "\/api\/3\/workflow_steps\/ff650232-ef86-4d52-94d7-66ea69b6ee8d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c64e8e43-ae30-4066-ac31-40f39038badd"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "1982520c-5862-426f-aea5-2a509fe185fb",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

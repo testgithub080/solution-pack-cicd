@@ -1,0 +1,128 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Push Changes",
+    "aliasName": null,
+    "tag": null,
+    "description": "Commits the local repository changes to the specified repository in GitHub based on the repository name, cloned repository path, and other input parameters you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "repo_type",
+        "org_name",
+        "repo_name",
+        "cloned_repo_path",
+        "branch_name",
+        "commit_message"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/2612324d-f465-40f0-b5fa-8ca7de7b7db8",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Get GitHub Connector Configurations",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/integration\/connectors\/github\/1.0.0\/?format=json",
+                    "body": "",
+                    "method": "POST"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": {
+                    "current_user_github_connector_config_id": "{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.request.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}"
+                }
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "0e48e285-43ba-45ac-bb62-8177a336cd89"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "2612324d-f465-40f0-b5fa-8ca7de7b7db8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Push Changes",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "{{vars.current_user_github_connector_config_id}}",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "name": "{{vars.input.params['repo_name']}}",
+                    "branch": "{{vars.input.params['branch_name']}}",
+                    "repo_type": "Organization",
+                    "clone_path": "{{vars.input.params['cloned_repo_path']}}",
+                    "commit_message": "{{vars.input.params['commit_message']}}"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "push_repository",
+                "operationTitle": "Push Changes",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "b056cb5e-e012-493f-b7ca-af1a6071be95"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get GitHub Connector Configurations -> Push Changes",
+            "targetStep": "\/api\/3\/workflow_steps\/b056cb5e-e012-493f-b7ca-af1a6071be95",
+            "sourceStep": "\/api\/3\/workflow_steps\/0e48e285-43ba-45ac-bb62-8177a336cd89",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "cccd5e31-68ee-47b9-8737-372c4a4e83b0"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get GitHub Connector Configurations",
+            "targetStep": "\/api\/3\/workflow_steps\/0e48e285-43ba-45ac-bb62-8177a336cd89",
+            "sourceStep": "\/api\/3\/workflow_steps\/2612324d-f465-40f0-b5fa-8ca7de7b7db8",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "ebfdf49b-add2-4611-bee2-37d5658a34f7"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "882f87d9-f532-4c19-9a60-40df99d865c8",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

@@ -20,45 +20,6 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Get Issues",
-            "description": null,
-            "arguments": {
-                "name": "GitHub",
-                "config": "d47bdd7a-aa4e-434b-9826-515d1565b59d",
-                "params": {
-                    "org": "{{vars.org_name}}",
-                    "page": "",
-                    "repo": "{{vars.repo_name}}",
-                    "sort": "created",
-                    "since": "",
-                    "state": "open",
-                    "labels": "",
-                    "creator": "",
-                    "assignee": "",
-                    "per_page": 100,
-                    "direction": "desc",
-                    "mentioned": "",
-                    "milestone": "",
-                    "repo_type": "Organization"
-                },
-                "version": "1.0.0",
-                "connector": "github",
-                "operation": "list_repository_issue",
-                "operationTitle": "List Repository Issue",
-                "pickFromTenant": false,
-                "step_variables": {
-                    "issue_details": "{% if (vars.input.params | length > 0) %}{{vars.result.data | selectattr(\"number\", \"equalto\", (vars.issue_no | int)) | list | first}}{% else %}{{vars.result.data | selectattr(\"number\", \"equalto\", (vars.steps.Get_Issue_Details.input.issueNumber | int)) | list | first}}{% endif %}"
-                }
-            },
-            "status": null,
-            "top": "570",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "group": null,
-            "uuid": "2563e386-739f-4e34-8390-0c90dda5ef4b"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Convert HTML To Dict",
             "description": null,
             "arguments": {
@@ -95,6 +56,31 @@
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
             "group": null,
             "uuid": "473acbce-2ced-416a-9417-e46ead9ad653"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Issues",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "state": "open",
+                    "org_name": "{{vars.org_name}}",
+                    "repo_name": "{{vars.repo_name}}"
+                },
+                "apply_async": false,
+                "step_variables": {
+                    "issue_details": "{% if (vars.input.params | length > 0) %}{{vars.result.data | selectattr(\"number\", \"equalto\", (vars.issue_no | int)) | list | first}}{% else %}{{vars.result.data | selectattr(\"number\", \"equalto\", (vars.steps.Get_Issue_Details.input.issueNumber | int)) | list | first}}{% endif %}"
+                },
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/7c46caf1-ac8c-4345-8582-7e726e23a9e8"
+            },
+            "status": null,
+            "top": "570",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "57fbe283-063e-451b-9a3f-dc35473f328d"
         },
         {
             "@type": "WorkflowStep",
@@ -223,7 +209,7 @@
                         {
                             "option": "Submit",
                             "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/f82d4e6a-862e-4264-a10d-c6df13ede332"
+                            "step_iri": "\/api\/3\/workflow_steps\/57fbe283-063e-451b-9a3f-dc35473f328d"
                         }
                     ],
                     "duplicateOption": false
@@ -231,7 +217,10 @@
                 "email_notification": {
                     "enabled": false,
                     "smtpParameters": []
-                }
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
             },
             "status": null,
             "top": "435",
@@ -278,21 +267,30 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get Issues -> Convert HTML To Dict",
-            "targetStep": "\/api\/3\/workflow_steps\/33ffee41-58a1-44a6-92c2-e7ce4262bf49",
-            "sourceStep": "\/api\/3\/workflow_steps\/2563e386-739f-4e34-8390-0c90dda5ef4b",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "3e4d3c77-2c8a-4827-9dfa-c51e77221b02"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Start -> Get Source Control Details",
             "targetStep": "\/api\/3\/workflow_steps\/f82d4e6a-862e-4264-a10d-c6df13ede332",
             "sourceStep": "\/api\/3\/workflow_steps\/473acbce-2ced-416a-9417-e46ead9ad653",
             "label": null,
             "isExecuted": false,
             "uuid": "60777b4c-cd6b-451f-a02d-6ae38d891d3b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract Source Control Details -> Lis",
+            "targetStep": "\/api\/3\/workflow_steps\/57fbe283-063e-451b-9a3f-dc35473f328d",
+            "sourceStep": "\/api\/3\/workflow_steps\/6a1a345a-11dd-459d-ba61-451acee0c0e0",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "65414146-45a5-4981-ad45-6331fc1e69ce"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Issue Details -> Get Issues",
+            "targetStep": "\/api\/3\/workflow_steps\/57fbe283-063e-451b-9a3f-dc35473f328d",
+            "sourceStep": "\/api\/3\/workflow_steps\/c117fdd5-4727-44e7-9aa0-e21fe6bffc0b",
+            "label": "Submit",
+            "isExecuted": false,
+            "uuid": "6e4539eb-b19b-4f3b-9d14-05ff07b63dc0"
         },
         {
             "@type": "WorkflowRoute",
@@ -305,30 +303,21 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Extract Source Control Details -> Get Issues",
-            "targetStep": "\/api\/3\/workflow_steps\/2563e386-739f-4e34-8390-0c90dda5ef4b",
-            "sourceStep": "\/api\/3\/workflow_steps\/6a1a345a-11dd-459d-ba61-451acee0c0e0",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "b3635aeb-d364-4e5c-9628-a6dc08805d84"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Get Issue Details -> Get Issues",
-            "targetStep": "\/api\/3\/workflow_steps\/2563e386-739f-4e34-8390-0c90dda5ef4b",
-            "sourceStep": "\/api\/3\/workflow_steps\/c117fdd5-4727-44e7-9aa0-e21fe6bffc0b",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "b79640a7-ce08-4c47-a5d0-a4932e08f4c3"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Get Source Control Details -> Is Executed Using Grid Data",
             "targetStep": "\/api\/3\/workflow_steps\/b2afb372-97f5-49ab-a0a3-6829fa6fb77f",
             "sourceStep": "\/api\/3\/workflow_steps\/f82d4e6a-862e-4264-a10d-c6df13ede332",
             "label": null,
             "isExecuted": false,
             "uuid": "f0e205bd-40c3-49bc-a178-fd7026ea8cdf"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Issues -> Convert HTML To Dict",
+            "targetStep": "\/api\/3\/workflow_steps\/33ffee41-58a1-44a6-92c2-e7ce4262bf49",
+            "sourceStep": "\/api\/3\/workflow_steps\/57fbe283-063e-451b-9a3f-dc35473f328d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "f3098b93-d08f-47df-a79e-f91fc23baa21"
         },
         {
             "@type": "WorkflowRoute",
