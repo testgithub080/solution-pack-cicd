@@ -24,49 +24,28 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Get Source Control Connector Configuration",
+            "name": "Get GitHub Connector Configurations",
             "description": null,
             "arguments": {
-                "arguments": [],
-                "apply_async": false,
-                "step_variables": [],
-                "pass_parent_env": false,
-                "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/3fab13c8-12f6-47f0-89b2-e1de3c24d91d"
+                "params": {
+                    "iri": "\/api\/integration\/connectors\/github\/1.0.0\/?format=json",
+                    "body": "",
+                    "method": "POST"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": {
+                    "current_user_github_connector_config_id": "{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.request.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}"
+                }
             },
             "status": null,
             "top": "165",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "05f33619-64b4-41ea-8b43-4916abc73f29"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Is GitHub User Mapped",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/a3d5e47d-8e40-40b7-bc7c-a4f42784c050",
-                        "condition": "{{ vars.steps.Get_Source_Control_Connector_Configuration.is_username_map }}",
-                        "step_name": "Create or Update File Content"
-                    },
-                    {
-                        "option": "No",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/ef952dae-0f52-4ce4-9439-ffa0fa623d39",
-                        "step_name": "Return Output"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "300",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "group": null,
-            "uuid": "274d72f1-c87a-4a67-af60-b6ee12121b80"
+            "uuid": "4ee0b7ce-e77c-4d1d-9685-db38cc3d30c3"
         },
         {
             "@type": "WorkflowStep",
@@ -74,7 +53,7 @@
             "description": null,
             "arguments": {
                 "name": "GitHub",
-                "config": "{{vars.steps.Get_Source_Control_Connector_Configuration.github_connector_config[0].config_id}}",
+                "config": "{{vars.current_user_github_connector_config_id}}",
                 "params": {
                     "org": "{{vars.input.params['org_name']}}",
                     "sha": "",
@@ -94,8 +73,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "435",
-            "left": "475",
+            "top": "300",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "a3d5e47d-8e40-40b7-bc7c-a4f42784c050"
@@ -113,62 +92,30 @@
             },
             "status": null,
             "top": "30",
-            "left": "300",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
             "group": null,
             "uuid": "aee8ede1-e968-4fb8-a188-3f09e6258342"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Return Output",
-            "description": null,
-            "arguments": {
-                "is_username_map": "{{vars.steps.Get_Source_Control_Connector_Configuration.is_username_map}}"
-            },
-            "status": null,
-            "top": "435",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "ef952dae-0f52-4ce4-9439-ffa0fa623d39"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Is GitHub User Mapped -> Return Output",
-            "targetStep": "\/api\/3\/workflow_steps\/ef952dae-0f52-4ce4-9439-ffa0fa623d39",
-            "sourceStep": "\/api\/3\/workflow_steps\/274d72f1-c87a-4a67-af60-b6ee12121b80",
-            "label": "No",
-            "isExecuted": false,
-            "uuid": "503ea24f-31b8-405b-a201-6ce59ea93a71"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Is GitHub User Mapped -> Create or Update File Content",
-            "targetStep": "\/api\/3\/workflow_steps\/a3d5e47d-8e40-40b7-bc7c-a4f42784c050",
-            "sourceStep": "\/api\/3\/workflow_steps\/274d72f1-c87a-4a67-af60-b6ee12121b80",
-            "label": "Yes",
-            "isExecuted": false,
-            "uuid": "56c92046-123a-4ed8-8885-1a1a404f9c62"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Get Source Control Connector Configuration -> Is GitHub User Mapped",
-            "targetStep": "\/api\/3\/workflow_steps\/274d72f1-c87a-4a67-af60-b6ee12121b80",
-            "sourceStep": "\/api\/3\/workflow_steps\/05f33619-64b4-41ea-8b43-4916abc73f29",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "aaf636f6-fe9e-4135-8ac5-52461cd26d7d"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Get Source Control Connector Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/05f33619-64b4-41ea-8b43-4916abc73f29",
+            "name": "Start -> Get GitHub Connector Configurations",
+            "targetStep": "\/api\/3\/workflow_steps\/4ee0b7ce-e77c-4d1d-9685-db38cc3d30c3",
             "sourceStep": "\/api\/3\/workflow_steps\/aee8ede1-e968-4fb8-a188-3f09e6258342",
             "label": null,
             "isExecuted": false,
-            "uuid": "df7b59d5-fbab-4763-a47f-3344257947b4"
+            "uuid": "4b67b577-e8fd-4a77-bf14-45801337517e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get GitHub Connector Configurations -> Create or Update File Content",
+            "targetStep": "\/api\/3\/workflow_steps\/a3d5e47d-8e40-40b7-bc7c-a4f42784c050",
+            "sourceStep": "\/api\/3\/workflow_steps\/4ee0b7ce-e77c-4d1d-9685-db38cc3d30c3",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e20d9f92-e322-4782-89e4-e21415dcca9c"
         }
     ],
     "groups": [],

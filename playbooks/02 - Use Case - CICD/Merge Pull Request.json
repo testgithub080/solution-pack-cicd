@@ -268,39 +268,12 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Populate PR Merged Details -> No Operation",
-            "targetStep": "\/api\/3\/workflow_steps\/5a4b6f68-9834-4ee6-8f58-ace971764d37",
-            "sourceStep": "\/api\/3\/workflow_steps\/77bfd50f-41ac-496e-b435-4efbc482a2f7",
-            "label": "OK",
-            "isExecuted": false,
-            "uuid": "64b0f0a6-dbb7-4115-bf72-baacc78458dd"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Check Playbook Active or Awaiting -> Is Playbook Active or Awaiting",
-            "targetStep": "\/api\/3\/workflow_steps\/eac667ae-7889-4aa5-af07-06f31a7797db",
-            "sourceStep": "\/api\/3\/workflow_steps\/b78204dc-78da-4613-9438-8a857feeb5d6",
+            "name": "Merge Pull Request -> Delete Branch",
+            "targetStep": "\/api\/3\/workflow_steps\/ff34d729-ad33-4f22-927f-23a2fce2b2fe",
+            "sourceStep": "\/api\/3\/workflow_steps\/49a2223d-46b5-4dbd-ab08-f5b6e34738f9",
             "label": null,
             "isExecuted": false,
-            "uuid": "6180fbd0-dd73-4af0-8f97-d6e71894681b"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Check Playbook Active or Awaiting",
-            "targetStep": "\/api\/3\/workflow_steps\/b78204dc-78da-4613-9438-8a857feeb5d6",
-            "sourceStep": "\/api\/3\/workflow_steps\/e008717c-3a72-4c96-9de3-c545dce74a3d",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "ba6c68cd-c7e6-4e01-ba73-fa312fb7d0a7"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Is Playbook Active or Awaiting -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/49992053-ac11-45c3-9199-c438661460c8",
-            "sourceStep": "\/api\/3\/workflow_steps\/eac667ae-7889-4aa5-af07-06f31a7797db",
-            "label": "Finished",
-            "isExecuted": false,
-            "uuid": "5d1925e8-a506-402f-b4a7-da15acf92474"
+            "uuid": "1a55f8ac-0f79-4f63-937b-6745a0e88076"
         },
         {
             "@type": "WorkflowRoute",
@@ -322,21 +295,48 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Is Playbook Active or Awaiting -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/49992053-ac11-45c3-9199-c438661460c8",
+            "sourceStep": "\/api\/3\/workflow_steps\/eac667ae-7889-4aa5-af07-06f31a7797db",
+            "label": "Finished",
+            "isExecuted": false,
+            "uuid": "5d1925e8-a506-402f-b4a7-da15acf92474"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check Playbook Active or Awaiting -> Is Playbook Active or Awaiting",
+            "targetStep": "\/api\/3\/workflow_steps\/eac667ae-7889-4aa5-af07-06f31a7797db",
+            "sourceStep": "\/api\/3\/workflow_steps\/b78204dc-78da-4613-9438-8a857feeb5d6",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "6180fbd0-dd73-4af0-8f97-d6e71894681b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Populate PR Merged Details -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/5a4b6f68-9834-4ee6-8f58-ace971764d37",
+            "sourceStep": "\/api\/3\/workflow_steps\/77bfd50f-41ac-496e-b435-4efbc482a2f7",
+            "label": "OK",
+            "isExecuted": false,
+            "uuid": "64b0f0a6-dbb7-4115-bf72-baacc78458dd"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Check Playbook Active or Awaiting",
+            "targetStep": "\/api\/3\/workflow_steps\/b78204dc-78da-4613-9438-8a857feeb5d6",
+            "sourceStep": "\/api\/3\/workflow_steps\/e008717c-3a72-4c96-9de3-c545dce74a3d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "ba6c68cd-c7e6-4e01-ba73-fa312fb7d0a7"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Delete Branch -> Populate PR Merged Details",
             "targetStep": "\/api\/3\/workflow_steps\/77bfd50f-41ac-496e-b435-4efbc482a2f7",
             "sourceStep": "\/api\/3\/workflow_steps\/ff34d729-ad33-4f22-927f-23a2fce2b2fe",
             "label": null,
             "isExecuted": false,
             "uuid": "c809b04f-a6f2-4112-a1fc-b42dde523850"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Merge Pull Request -> Delete Branch",
-            "targetStep": "\/api\/3\/workflow_steps\/ff34d729-ad33-4f22-927f-23a2fce2b2fe",
-            "sourceStep": "\/api\/3\/workflow_steps\/49a2223d-46b5-4dbd-ab08-f5b6e34738f9",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "1a55f8ac-0f79-4f63-937b-6745a0e88076"
         }
     ],
     "groups": [],
