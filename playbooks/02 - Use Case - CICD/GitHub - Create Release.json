@@ -1,10 +1,10 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "GitHub - List Repository Issue",
+    "name": "GitHub - Create Release",
     "aliasName": null,
     "tag": null,
-    "description": "List an issues for the specified repository or user on GitHub based on the repository name, and other input parameters you have specified",
+    "description": "Create a new release",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -12,32 +12,15 @@
     "parameters": [
         "org_name",
         "repo_name",
-        "state",
-        "since"
+        "tag_name",
+        "base_branch",
+        "release_description"
     ],
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/24b9a084-1aa2-42b9-a766-544e92a4e9be",
+    "triggerStep": "\/api\/3\/workflow_steps\/95f03f3a-4948-48bf-86ef-f546feed7306",
     "steps": [
-        {
-            "@type": "WorkflowStep",
-            "name": "Start",
-            "description": null,
-            "arguments": {
-                "step_variables": {
-                    "input": {
-                        "params": []
-                    }
-                }
-            },
-            "status": null,
-            "top": "30",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "group": null,
-            "uuid": "24b9a084-1aa2-42b9-a766-544e92a4e9be"
-        },
         {
             "@type": "WorkflowStep",
             "name": "Get GitHub Connector Configurations",
@@ -61,35 +44,29 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "478a21df-f4a7-4ff5-8e07-8a8dc1fd3c99"
+            "uuid": "3f8efafb-382a-4aa1-95af-94d1a2377ca1"
         },
         {
             "@type": "WorkflowStep",
-            "name": "List Repository Issue",
-            "description": null,
+            "name": "Create Release",
+            "description": "baseBranch",
             "arguments": {
                 "name": "GitHub",
                 "config": "{{vars.current_user_github_connector_config_id}}",
                 "params": {
                     "org": "{{vars.input.params['org_name']}}",
-                    "page": "",
+                    "body": "{{vars.input.params['release_description']}}",
+                    "name": "{{vars.input.params['tag_name']}}",
                     "repo": "{{vars.input.params['repo_name']}}",
-                    "sort": "created",
-                    "since": "{% if vars.input.params.since !=None %}{{arrow.get(vars.input.params.since).to(\"UTC\").format(\"YYYY-MM-DDTHH:MM:SSZ\")}}{%endif%}",
-                    "state": "{{vars.input.params.state}}",
-                    "labels": "",
-                    "creator": "",
-                    "assignee": "",
-                    "per_page": 100,
-                    "direction": "desc",
-                    "mentioned": "",
-                    "milestone": "",
-                    "repo_type": "Organization"
+                    "tag_name": "{{vars.input.params['tag_name']}}",
+                    "repo_type": "Organization",
+                    "target_commitish": "{{vars.input.params['base_branch']}}",
+                    "generate_release_notes": true
                 },
                 "version": "1.0.0",
                 "connector": "github",
-                "operation": "list_repository_issue",
-                "operationTitle": "List Repository Issue",
+                "operation": "create_release",
+                "operationTitle": "Create Release",
                 "pickFromTenant": false,
                 "step_variables": []
             },
@@ -98,32 +75,50 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
-            "uuid": "8ea9389a-453b-49fe-b5f7-99be04a97fc2"
+            "uuid": "67d59206-120e-4991-9574-349d95d2bc46"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "95f03f3a-4948-48bf-86ef-f546feed7306"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Get GitHub Connector Configurations -> List Repository Issue",
-            "targetStep": "\/api\/3\/workflow_steps\/8ea9389a-453b-49fe-b5f7-99be04a97fc2",
-            "sourceStep": "\/api\/3\/workflow_steps\/478a21df-f4a7-4ff5-8e07-8a8dc1fd3c99",
+            "name": "Get GitHub Connector Configurations -> Create Release",
+            "targetStep": "\/api\/3\/workflow_steps\/67d59206-120e-4991-9574-349d95d2bc46",
+            "sourceStep": "\/api\/3\/workflow_steps\/3f8efafb-382a-4aa1-95af-94d1a2377ca1",
             "label": null,
             "isExecuted": false,
-            "uuid": "a433deb2-0a87-4b9b-a8dc-477d2dce0df1"
+            "uuid": "2fb28758-f1c8-4d26-9eb7-d0b17303d72d"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Get GitHub Connector Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/478a21df-f4a7-4ff5-8e07-8a8dc1fd3c99",
-            "sourceStep": "\/api\/3\/workflow_steps\/24b9a084-1aa2-42b9-a766-544e92a4e9be",
+            "targetStep": "\/api\/3\/workflow_steps\/3f8efafb-382a-4aa1-95af-94d1a2377ca1",
+            "sourceStep": "\/api\/3\/workflow_steps\/95f03f3a-4948-48bf-86ef-f546feed7306",
             "label": null,
             "isExecuted": false,
-            "uuid": "dc7f6c40-61a3-48cd-bb8c-fcb3044fe1fc"
+            "uuid": "cc27597a-2059-48c7-8235-453c480e738c"
         }
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "7c46caf1-ac8c-4345-8582-7e726e23a9e8",
+    "uuid": "642c92c9-f9c2-4f88-95f0-c62b7b56919e",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,
