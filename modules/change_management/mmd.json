@@ -1,6 +1,6 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/7f73f70b-50e2-402e-b612-a8cd4993c5d6",
+    "@id": "\/api\/3\/staging_model_metadatas\/d21cb6f2-d1f1-40ab-adb0-ec094256e057",
     "@type": "StagingModelMetadata",
     "type": "change_management",
     "parentType": null,
@@ -26,12 +26,133 @@
     "writable": true,
     "attributes": [
         {
+            "@id": "\/api\/3\/attribute_metadatas\/abab16db-2236-4ac0-9360-49dda633d0ce",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "issues",
+            "length": null,
+            "orderIndex": 1,
+            "formType": "richtext",
+            "dataSource": null,
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": [
+                {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "title",
+                            "operator": "eq",
+                            "_operator": "eq",
+                            "value": "Apply Latest Content",
+                            "type": "primitive"
+                        }
+                    ]
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "uuid": "abab16db-2236-4ac0-9360-49dda633d0ce",
+            "displayName": "{{ issues }}",
+            "descriptions": {
+                "singular": "Issues"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/2b826061-3d0e-4782-9712-57af1dd30ca2",
+            "@type": "AttributeMetadata",
+            "type": "integer",
+            "name": "lastBuildDeployedOn",
+            "length": null,
+            "orderIndex": 2,
+            "formType": "datetime",
+            "dataSource": null,
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": [
+                {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "title",
+                            "operator": "eq",
+                            "_operator": "eq",
+                            "value": "Apply Latest Content",
+                            "type": "primitive"
+                        }
+                    ]
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "uuid": "2b826061-3d0e-4782-9712-57af1dd30ca2",
+            "displayName": "{{ lastBuildDeployedOn }}",
+            "descriptions": {
+                "singular": "Last Build Deployed On"
+            }
+        },
+        {
             "@id": "\/api\/3\/attribute_metadatas\/b4ba06b1-ec9a-40fa-a548-a23983271a02",
             "@type": "AttributeMetadata",
             "type": "comments",
             "name": "comments",
             "length": null,
-            "orderIndex": 1,
+            "orderIndex": 3,
             "formType": "manyToMany",
             "dataSource": {
                 "model": "comments"
@@ -73,7 +194,7 @@
             "type": "string",
             "name": "title",
             "length": null,
-            "orderIndex": 2,
+            "orderIndex": 4,
             "formType": "text",
             "dataSource": null,
             "searchable": false,
@@ -119,7 +240,7 @@
             "type": "string",
             "name": "description",
             "length": null,
-            "orderIndex": 3,
+            "orderIndex": 5,
             "formType": "html",
             "dataSource": null,
             "searchable": true,
@@ -165,7 +286,7 @@
             "type": "string",
             "name": "results",
             "length": null,
-            "orderIndex": 4,
+            "orderIndex": 6,
             "formType": "html",
             "dataSource": null,
             "searchable": true,
@@ -226,7 +347,7 @@
             "type": "picklists",
             "name": "status",
             "length": null,
-            "orderIndex": 5,
+            "orderIndex": 7,
             "formType": "picklist",
             "dataSource": {
                 "model": "picklists",
@@ -362,7 +483,7 @@
             "type": "picklists",
             "name": "type",
             "length": null,
-            "orderIndex": 6,
+            "orderIndex": 8,
             "formType": "picklist",
             "dataSource": {
                 "model": "picklists",
@@ -446,7 +567,7 @@
             "type": "picklists",
             "name": "environment",
             "length": null,
-            "orderIndex": 7,
+            "orderIndex": 9,
             "formType": "picklist",
             "dataSource": {
                 "model": "picklists",
@@ -524,7 +645,7 @@
             "type": "integer",
             "name": "sequence",
             "length": null,
-            "orderIndex": 8,
+            "orderIndex": 10,
             "formType": "integer",
             "dataSource": null,
             "searchable": true,
@@ -569,7 +690,7 @@
             "type": "string",
             "name": "recordIcon",
             "length": null,
-            "orderIndex": 9,
+            "orderIndex": 11,
             "formType": "html",
             "dataSource": null,
             "searchable": true,
@@ -620,7 +741,7 @@
         "delete_primary_data_after": 60
     },
     "archivalFilters": [],
-    "uuid": "7f73f70b-50e2-402e-b612-a8cd4993c5d6",
+    "uuid": "d21cb6f2-d1f1-40ab-adb0-ec094256e057",
     "displayName": "{{ title }}",
     "descriptions": {
         "singular": "Change Management",
