@@ -109,9 +109,9 @@
             "name": "Compute Issues",
             "description": null,
             "arguments": {
-                "when": "{{vars.steps.Fetch_Closed_Issuesss.data | length > 0}}",
+                "when": "{{vars.steps.Fetch_Closed_Issues.data | length > 0}}",
                 "params": {
-                    "value": "{% for issue in vars.steps.Fetch_Closed_Issuesss.data %}\nIssue#[{{issue.number}}]({{issue.html_url}})  {{issue.title}}\n**Description**: \n{{issue.body}}\n* * *\n{% endfor %}"
+                    "value": "{% for issue in vars.steps.Fetch_Closed_Issues.data %}\nIssue#[{{issue.number}}]({{issue.html_url}})  {{issue.title}}\n**Description**: \n{{issue.body}}\n* * *\n{% endfor %}"
                 },
                 "version": "3.2.3",
                 "connector": "cyops_utilities",
