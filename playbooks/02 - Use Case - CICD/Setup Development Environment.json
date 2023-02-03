@@ -135,7 +135,7 @@
             "arguments": {
                 "params": {
                     "macro": "{{\"cicd_config\"}}",
-                    "value": "{\"organizationName\": \"{{vars.organization_name}}\", \"content\": \"{{vars.content_repo_url}}\", \"productionSettings\": \"{{vars.prod_settings_url}}\", \"developmentSettings\": \"{{vars.dev_settings_url}}\",\"baseBranch\": \"{{vars.base_branch}}\"}"
+                    "value": "{{ ({\"organizationName\": vars.organization_name, \"content\": vars.content_repo_url, \"productionSettings\": vars.prod_settings_url, \"developmentSettings\": vars.dev_settings_url, \"baseBranch\": vars.base_branch,  \"contentRepoName\": vars.content_repo_url.split(\"\/\")[-1], \"prodSettingsRepoName\": vars.prod_settings_url.split(\"\/\")[-1], \"devSettingsRepoName\": vars.dev_settings_url.split(\"\/\")[-1]}) | toJSON}}"
                 },
                 "version": "3.2.3",
                 "connector": "cyops_utilities",
