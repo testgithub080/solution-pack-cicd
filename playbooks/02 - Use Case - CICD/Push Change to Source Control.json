@@ -73,7 +73,7 @@
                 "input": {
                     "schema": {
                         "title": "Confirmation",
-                        "description": "Do you want to Push the Change Request \"[{{vars.issue_no}}](https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}})\" to the branch \"{{vars.new_branch}}\" in \"{{vars.repo_name}}\" repository?",
+                        "description": "Do you want to Push the Change Request \"[{{vars.issue_no}}](https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}})\" to the branch \"{{vars.new_branch}}\" in \"{{vars.repo_name}}\" repository?",
                         "inputVariables": []
                     }
                 },
