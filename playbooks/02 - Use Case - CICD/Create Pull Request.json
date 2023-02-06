@@ -26,7 +26,7 @@
                     "head_repo": "{{vars.cicdConfig.organizationName}}:{{vars.new_branch}}",
                     "repo_name": "{{vars.repo_name}}",
                     "base_branch": "{{vars.cicdConfig.baseBranch}}",
-                    "pr_comments": "Resolves #{{vars.issue_no}}"
+                    "pr_comments": "This is a fix for Issue #{{vars.issue_no}}"
                 },
                 "apply_async": false,
                 "step_variables": [],
