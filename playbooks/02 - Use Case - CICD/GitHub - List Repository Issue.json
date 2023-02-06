@@ -75,7 +75,7 @@
                     "page": "",
                     "repo": "{{vars.input.params['repo_name']}}",
                     "sort": "created",
-                    "since": "{% if vars.input.params.since %}{{arrow.get(vars.input.params.since).to(\"UTC\").format(\"YYYY-MM-DDTHH:MM:SSZ\")}}{%endif%}",
+                    "since": "{% if vars.input.params.since %}{{arrow.get(vars.input.params.since).to(\"UTC\").format(\"YYYY-MM-DDTHH:mm:ssZ\")}}{%endif%}",
                     "state": "{{vars.input.params.state}}",
                     "labels": "",
                     "creator": "",

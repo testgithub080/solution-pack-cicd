@@ -25,14 +25,6 @@
                     "body": "{\"gitUsername\": \"{{vars.git_username}}\"}",
                     "method": "PUT"
                 },
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "thread": false,
-                    "content": "<p><strong>Content Administrator User is mapped to:<\/strong><\/p>\n<p class=\"mp-tile-description muted-80\">FortiSOAR User: <a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a><\/p>\n<p class=\"mp-tile-description muted-80\">GitHub User: {{vars.steps.Get_Usernames.input.gitHubUsername}}<\/p>",
-                    "records": ""
-                },
                 "version": "3.2.3",
                 "connector": "cyops_utilities",
                 "operation": "make_cyops_request",
@@ -243,12 +235,12 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p class=\"mp-tile-description muted-80\">\"{{vars.steps.Get_Usernames.input.gitHubUsername}}\" GitHub username assigned to FortiSOAR user \"<a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a>\".<\/p>",
+                    "content": "<p>{% if vars.input.records[0].title==\"Map GitHub Username\" %}<\/p>\n<p class=\"mp-tile-description muted-80\"><br \/><strong>- Mapped FortiSOAR User <\/strong> <a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.steps.Get_Usernames.input.fortiSOARUsername}}<\/a> with <strong>GitHub User <\/strong> {{vars.steps.Get_Usernames.input.gitHubUsername}}<\/p>\n<p>{% else %}<\/p>\n<p class=\"mp-tile-description muted-80\"><br \/><strong>- Mapped FortiSOAR User <\/strong> <a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a> with <strong>GitHub User <\/strong> {{vars.steps.Get_Usernames.input.gitHubUsername}}<\/p>\n<p>{% endif %}<\/p>",
                     "records": "{{vars.input.records[0]['@id']}}",
                     "parentstepid": "\/api\/3\/workflow_steps\/05bcfc1c-3b6a-4fbb-a4de-a5b5c662366d"
                 },
                 "resource": {
-                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p class=\"mp-tile-description muted-80\"><br \/><strong>- Content Administrator User<\/strong><\/p>\n<ul class=\"font-size-13 muted-80\">\n<li class=\"mp-tile-description muted-80\"><em>FortiSOAR User: <\/em><a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a><\/li>\n<li class=\"mp-tile-description muted-80\"><em>GitHub User:<\/em> {{vars.steps.Get_Usernames.input.gitHubUsername}}<\/li>\n<\/ul>"
+                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p class=\"mp-tile-description muted-80\">{% if vars.input.records[0].title==\"Map GitHub Username\" %}<\/p>\n<p class=\"mp-tile-description muted-80\"><br><strong>- Mapped Following FortiSOAR User<\/strong><\/p>\n<ul class=\"font-size-13 muted-80\">\n<li class=\"mp-tile-description muted-80\"><em>FortiSOAR User: <\/em><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.request.baseUri}}\/security\/people\">{{vars.steps.Get_Usernames.input.fortiSOARUsername}}<\/a><\/li>\n<li class=\"mp-tile-description muted-80\"><em>GitHub User:<\/em> {{vars.steps.Get_Usernames.input.gitHubUsername}}<\/li>\n<\/ul>\n<p class=\"mp-tile-description muted-80\">{% else %}<br><strong>- Content Administrator User<\/strong><\/p>\n<ul class=\"font-size-13 muted-80\">\n<li class=\"mp-tile-description muted-80\"><em>FortiSOAR User: <\/em><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.request.baseUri}}\/security\/people\">{{vars.logged_in_user}}<\/a><\/li>\n<li class=\"mp-tile-description muted-80\"><em>GitHub User:<\/em> {{vars.steps.Get_Usernames.input.gitHubUsername}}<\/li>\n{% endif %}<\/ul>"
                 },
                 "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",
