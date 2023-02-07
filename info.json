@@ -46,15 +46,11 @@
             }
         ],
         "modules": {
-            "attachments": {
-                "name": "Attachments",
-                "apiName": "attachments"
-            },
             "change_management": {
                 "name": "Change Management",
                 "apiName": "change_management"
             },
-            "": {
+            "people": {
                 "name": "People",
                 "apiName": "people"
             }
