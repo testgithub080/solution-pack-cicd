@@ -1,10 +1,10 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "GitHub - List Pull Request",
+    "name": "GitHub - List Pull Request Reviews",
     "aliasName": null,
     "tag": null,
-    "description": "Lists pull requests for the specified repository on GitHub based on the repository name, repository owner, and other input parameters you have specified",
+    "description": "Lists the reviews associated with the specified pull request on GitHub based on the repository name, repository owner, pull request number, and other input parameters you have specified",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -18,26 +18,8 @@
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/44dfb0c0-03c5-4a1f-b62e-c6e4d6ad4810",
+    "triggerStep": "\/api\/3\/workflow_steps\/f9edcca7-08bd-441b-9efe-bdb310614020",
     "steps": [
-        {
-            "@type": "WorkflowStep",
-            "name": "Start",
-            "description": null,
-            "arguments": {
-                "step_variables": {
-                    "input": {
-                        "params": []
-                    }
-                }
-            },
-            "status": null,
-            "top": "30",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "group": null,
-            "uuid": "44dfb0c0-03c5-4a1f-b62e-c6e4d6ad4810"
-        },
         {
             "@type": "WorkflowStep",
             "name": "List Pull Request",
@@ -47,21 +29,16 @@
                 "config": "{{vars.current_user_github_connector_config_id}}",
                 "params": {
                     "org": "{{vars.input.params['org_name']}}",
-                    "base": "",
-                    "head": "",
                     "page": "",
                     "repo": "{{vars.input.params['repo_name']}}",
-                    "sort": "created",
-                    "state": "{{vars.input.params.state}}",
                     "per_page": "",
-                    "direction": "desc",
                     "repo_type": "Organization",
                     "pull_number": "{{vars.input.params['pull_number']}}"
                 },
                 "version": "1.0.0",
                 "connector": "github",
-                "operation": "list_pull_request",
-                "operationTitle": "List Pull Request",
+                "operation": "list_pr_reviews",
+                "operationTitle": "List Pull Request Reviews",
                 "pickFromTenant": false,
                 "step_variables": []
             },
@@ -70,7 +47,7 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
-            "uuid": "7b99a773-4a5e-49d2-85e7-c503974de51a"
+            "uuid": "57a2c3bf-d493-4075-bd11-3a54d452524b"
         },
         {
             "@type": "WorkflowStep",
@@ -95,32 +72,50 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "c3ba72b8-eac3-4469-b390-f4cb1b938d2f"
+            "uuid": "98d0fa53-2f0b-468f-8599-111ee087ee61"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "f9edcca7-08bd-441b-9efe-bdb310614020"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Get GitHub Connector Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/c3ba72b8-eac3-4469-b390-f4cb1b938d2f",
-            "sourceStep": "\/api\/3\/workflow_steps\/44dfb0c0-03c5-4a1f-b62e-c6e4d6ad4810",
+            "targetStep": "\/api\/3\/workflow_steps\/98d0fa53-2f0b-468f-8599-111ee087ee61",
+            "sourceStep": "\/api\/3\/workflow_steps\/f9edcca7-08bd-441b-9efe-bdb310614020",
             "label": null,
             "isExecuted": false,
-            "uuid": "a6f6b6ec-0459-4221-8e2c-8b8a3d4affb4"
+            "uuid": "2660936c-ba89-46d0-9f23-9c3377ee26df"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Get GitHub Connector Configurations -> List Pull Request",
-            "targetStep": "\/api\/3\/workflow_steps\/7b99a773-4a5e-49d2-85e7-c503974de51a",
-            "sourceStep": "\/api\/3\/workflow_steps\/c3ba72b8-eac3-4469-b390-f4cb1b938d2f",
+            "targetStep": "\/api\/3\/workflow_steps\/57a2c3bf-d493-4075-bd11-3a54d452524b",
+            "sourceStep": "\/api\/3\/workflow_steps\/98d0fa53-2f0b-468f-8599-111ee087ee61",
             "label": null,
             "isExecuted": false,
-            "uuid": "e7123f43-05b1-4665-befb-0c994478c5de"
+            "uuid": "5b44e5c2-183b-4291-be99-00acf6a01b46"
         }
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "c7ac53b5-7a4b-4c01-abd3-9ea267cd500f",
+    "uuid": "b411121f-7dfe-45bb-9840-6f63c1e37638",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

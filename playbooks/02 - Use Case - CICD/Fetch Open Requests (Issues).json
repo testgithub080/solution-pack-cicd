@@ -117,16 +117,19 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get Open Pull Requests",
+            "name": "Get All Pull Requests",
             "description": null,
             "arguments": {
                 "arguments": {
-                    "state": "open",
+                    "state": "all",
                     "org_name": "{{vars.cicd_config.organizationName}}",
-                    "repo_name": "{{vars.cicd_config.contentRepoName}}"
+                    "repo_name": "{{vars.cicd_config.contentRepoName}}",
+                    "pull_number": ""
                 },
                 "apply_async": false,
-                "step_variables": [],
+                "step_variables": {
+                    "latest_pull_request": "{% set lpr = [] %}{% for pr in vars.steps.Get_All_Pull_Requests.data %}{% if pr.state==\"open\" %}{% set _=lpr.append(pr) %}{% endif %}{% endfor %}{% if lpr | length == 0 %}{% set _ = lpr.append(vars.steps.Get_All_Pull_Requests.data[0]) %}{% endif %}{{lpr}}"
+                },
                 "pass_parent_env": false,
                 "pass_input_record": true,
                 "workflowReference": "\/api\/3\/workflows\/c7ac53b5-7a4b-4c01-abd3-9ea267cd500f"
@@ -166,7 +169,7 @@
             "name": "Find PRs for Issues",
             "description": null,
             "arguments": {
-                "issuePRs": "{% set _tempDict = {} %}{% for pr in vars.steps.Get_Open_Pull_Requests.data %}{% if \"Issue #\" in pr.body %}{% set issue= pr.body.split(\"Issue #\")[-1].split(\" \")[0] %}{% set _temp=_tempDict.update({issue: {\"title\": pr.title, \"html_url\": pr.html_url, \"state\": pr.state, \"reviewers\": pr.requested_reviewers | json_query(\"[].login[]\")}}) %}{% endif %}{% endfor %}{{_tempDict}}"
+                "issuePRs": "{% set _tempDict = {} %}{% for pr in vars.latest_pull_request %}{% if \"Issue #\" in pr.body %}{% set issue= pr.body.split(\"Issue #\")[-1].split(\" \")[0] %}{% set _temp=_tempDict.update({issue: {\"title\": pr.title, \"html_url\": pr.html_url, \"state\": pr.state, \"reviewers\": pr.requested_reviewers | json_query(\"[].login[]\")}}) %}{% endif %}{% endfor %}{{_tempDict}}"
             },
             "status": null,
             "top": "840",
