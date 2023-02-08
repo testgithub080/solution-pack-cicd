@@ -62,8 +62,15 @@
                                                                                 },
                                                                                 "module": "change_management",
                                                                                 "query": {
-                                                                                    "sort": [],
-                                                                                    "limit": 30,
+                                                                                    "sort": [
+                                                                                        {
+                                                                                            "direction": "ASC",
+                                                                                            "field": "sequence",
+                                                                                            "_fieldTitle": "Sequence",
+                                                                                            "_fieldName": "sequence"
+                                                                                        }
+                                                                                    ],
+                                                                                    "limit": 5,
                                                                                     "logic": "AND",
                                                                                     "filters": [
                                                                                         {
@@ -71,7 +78,6 @@
                                                                                             "operator": "eq",
                                                                                             "value": "\/api\/3\/picklists\/b43deb65-1edc-482b-b20e-1fed06bbc01c",
                                                                                             "_value": {
-                                                                                                "display": "Setup",
                                                                                                 "itemValue": "Setup",
                                                                                                 "@id": "\/api\/3\/picklists\/b43deb65-1edc-482b-b20e-1fed06bbc01c"
                                                                                             },
@@ -80,18 +86,18 @@
                                                                                         {
                                                                                             "field": "environment",
                                                                                             "value": [
-                                                                                                "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b",
-                                                                                                "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651"
+                                                                                                "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651",
+                                                                                                "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b"
                                                                                             ],
                                                                                             "display": "",
                                                                                             "operator": "in",
-                                                                                            "type": "object",
+                                                                                            "type": "array",
                                                                                             "OPERATOR_KEY": "$",
-                                                                                            "displayTemplate": "",
-                                                                                            "module": "environment",
                                                                                             "template": "multiselectpicklist",
                                                                                             "previousOperator": "in",
-                                                                                            "previousTemplate": "multiselectpicklist"
+                                                                                            "previousTemplate": "multiselectpicklist",
+                                                                                            "useInOperator": true,
+                                                                                            "module": "environment"
                                                                                         }
                                                                                     ]
                                                                                 },
@@ -148,7 +154,7 @@
                                                                                             "_fieldName": "sequence"
                                                                                         }
                                                                                     ],
-                                                                                    "limit": 30,
+                                                                                    "limit": 5,
                                                                                     "logic": "AND",
                                                                                     "filters": [
                                                                                         {
@@ -156,7 +162,6 @@
                                                                                             "operator": "eq",
                                                                                             "value": "\/api\/3\/picklists\/409b289f-33f5-423f-9174-24bc8628cc4a",
                                                                                             "_value": {
-                                                                                                "display": "Production",
                                                                                                 "itemValue": "Production",
                                                                                                 "@id": "\/api\/3\/picklists\/409b289f-33f5-423f-9174-24bc8628cc4a"
                                                                                             },
@@ -391,7 +396,7 @@
                                                                                             "_fieldName": "sequence"
                                                                                         }
                                                                                     ],
-                                                                                    "limit": 30,
+                                                                                    "limit": 5,
                                                                                     "logic": "AND",
                                                                                     "filters": [
                                                                                         {
