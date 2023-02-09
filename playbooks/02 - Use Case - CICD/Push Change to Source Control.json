@@ -123,7 +123,7 @@
                 "input": {
                     "schema": {
                         "title": "Push (Export) Change Request Details",
-                        "description": "\"**Change Request - [{{vars.issue_no}}](https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}}) | {{vars.input.records[0].summary}}**\" is successfully pushed into the GitHub <a href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}\" target=\"_blank\"> https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}<\/a> Repository.\n",
+                        "description": "\"**Change Request - [{{vars.issue_no}}](https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}}) | {{vars.input.records[0].summary}}**\" is successfully pushed into the GitHub <a href=\"https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}\" target=\"_blank\"> https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}<\/a> Repository.\n",
                         "inputVariables": []
                     }
                 },
@@ -353,7 +353,7 @@
                 "input": {
                     "schema": {
                         "title": "Specify Commit Message",
-                        "description": "Please specify the commit message for the change request \"[{{vars.issue_no}}](https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}})\" which you want to push into the \"{{vars.repo_name}}\" Git Repository under the branch \"{{vars.new_branch}}\"",
+                        "description": "Please specify the commit message for the **Change Request \"[{{vars.issue_no}}](https:\/\/github.com\/{{vars.org_name}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}})\"** which you want to push into the **\"{{vars.repo_name}}\"** Git Repository under the branch **\"{{vars.new_branch}}\"**",
                         "inputVariables": [
                             {
                                 "name": "commitMessage",

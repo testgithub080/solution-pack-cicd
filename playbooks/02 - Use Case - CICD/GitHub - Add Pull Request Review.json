@@ -1,10 +1,10 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "GitHub - List Pull Request",
+    "name": "GitHub - Add Pull Request Review",
     "aliasName": null,
     "tag": null,
-    "description": "Lists pull requests for the specified repository on GitHub based on the repository name, repository owner, and other input parameters you have specified",
+    "description": "Add a review for a pull request on GitHub based on the repository name, repository owner, pull request number, and other input parameters you have specified",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -18,7 +18,7 @@
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/44dfb0c0-03c5-4a1f-b62e-c6e4d6ad4810",
+    "triggerStep": "\/api\/3\/workflow_steps\/2ecadb46-75cc-403a-be4d-c9c3fcaa4087",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -36,41 +36,7 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
             "group": null,
-            "uuid": "44dfb0c0-03c5-4a1f-b62e-c6e4d6ad4810"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "List Pull Request",
-            "description": null,
-            "arguments": {
-                "name": "GitHub",
-                "config": "{{vars.current_user_github_connector_config_id}}",
-                "params": {
-                    "org": "{{vars.input.params['org_name']}}",
-                    "base": "",
-                    "head": "",
-                    "page": "",
-                    "repo": "{{vars.input.params['repo_name']}}",
-                    "sort": "created",
-                    "state": "{{vars.input.params.state}}",
-                    "per_page": "",
-                    "direction": "desc",
-                    "repo_type": "Organization",
-                    "pull_number": "{{vars.input.params['pull_number']}}"
-                },
-                "version": "1.0.0",
-                "connector": "github",
-                "operation": "list_pull_request",
-                "operationTitle": "List Pull Request",
-                "pickFromTenant": false,
-                "step_variables": []
-            },
-            "status": null,
-            "top": "300",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "group": null,
-            "uuid": "7b99a773-4a5e-49d2-85e7-c503974de51a"
+            "uuid": "2ecadb46-75cc-403a-be4d-c9c3fcaa4087"
         },
         {
             "@type": "WorkflowStep",
@@ -95,32 +61,62 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "c3ba72b8-eac3-4469-b390-f4cb1b938d2f"
+            "uuid": "5170bb4e-f657-4054-9a9e-1c1709e2fe46"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Add Pull Request Review",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "{{vars.current_user_github_connector_config_id}}",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "body": "",
+                    "repo": "{{vars.input.params['repo_name']}}",
+                    "event": "APPROVE",
+                    "commit_id": "",
+                    "repo_type": "Organization",
+                    "pull_number": "{{vars.input.params['pull_number']}}"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "add_pr_review",
+                "operationTitle": "Add Pull Request Review",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "8a5a5907-792e-4144-a7cb-63d79bdbfd5e"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Get GitHub Connector Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/c3ba72b8-eac3-4469-b390-f4cb1b938d2f",
-            "sourceStep": "\/api\/3\/workflow_steps\/44dfb0c0-03c5-4a1f-b62e-c6e4d6ad4810",
+            "targetStep": "\/api\/3\/workflow_steps\/5170bb4e-f657-4054-9a9e-1c1709e2fe46",
+            "sourceStep": "\/api\/3\/workflow_steps\/2ecadb46-75cc-403a-be4d-c9c3fcaa4087",
             "label": null,
             "isExecuted": false,
-            "uuid": "a6f6b6ec-0459-4221-8e2c-8b8a3d4affb4"
+            "uuid": "5c8b31ea-4777-4ec9-8ca7-d8e5f01948d4"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Get GitHub Connector Configurations -> List Pull Request",
-            "targetStep": "\/api\/3\/workflow_steps\/7b99a773-4a5e-49d2-85e7-c503974de51a",
-            "sourceStep": "\/api\/3\/workflow_steps\/c3ba72b8-eac3-4469-b390-f4cb1b938d2f",
+            "targetStep": "\/api\/3\/workflow_steps\/8a5a5907-792e-4144-a7cb-63d79bdbfd5e",
+            "sourceStep": "\/api\/3\/workflow_steps\/5170bb4e-f657-4054-9a9e-1c1709e2fe46",
             "label": null,
             "isExecuted": false,
-            "uuid": "e7123f43-05b1-4665-befb-0c994478c5de"
+            "uuid": "8050c171-8532-4ce6-845e-73d50eba8634"
         }
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "c7ac53b5-7a4b-4c01-abd3-9ea267cd500f",
+    "uuid": "b23dc829-9574-4682-add1-c23d81a7eb7f",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

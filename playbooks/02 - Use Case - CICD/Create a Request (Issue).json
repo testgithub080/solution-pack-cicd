@@ -17,6 +17,25 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "No Operation",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "975",
+            "left": "495",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "0ba9da65-97ef-479b-bb92-4580347cf901"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Create Branch",
             "description": null,
             "arguments": {
@@ -35,8 +54,8 @@
                 "workflowReference": "\/api\/3\/workflows\/4521f7bb-9d92-4113-8123-ac0267707313"
             },
             "status": null,
-            "top": "840",
-            "left": "300",
+            "top": "975",
+            "left": "135",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "26df545c-19bb-4360-8ba7-e59a162684f1"
@@ -62,7 +81,7 @@
             },
             "status": null,
             "top": "165",
-            "left": "300",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "362f353a-d9d3-46fa-af66-54b797c87906"
@@ -169,10 +188,83 @@
             },
             "status": null,
             "top": "30",
-            "left": "300",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
             "group": null,
             "uuid": "48fc914f-9747-44e7-981e-bee4d91373ee"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Username Exist",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "No",
+                        "step_iri": "\/api\/3\/workflow_steps\/73b88d3e-84d5-492b-a2eb-cfa46d1d1139",
+                        "condition": "{{ vars.assigneeUsername != None }}",
+                        "step_name": "GitHub User Not Mapped"
+                    },
+                    {
+                        "option": "Yes",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/7b75662f-8d16-4193-a299-8e4d795c89e3",
+                        "step_name": "Create Issue"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "705",
+            "left": "485",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "5c8ada17-f0ad-4d8c-8f0b-3b53a8148b8b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "GitHub User Not Mapped",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Map GitHub Username",
+                        "description": "GitHub username is not mapped for assigned Change Request username \"{{vars.input.params.assignee.firstname}} {{vars.input.params.assignee.lastname}}\".\nFirst \"Map GitHub Username\" before creating the \"Change Request\"",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_management",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Ok",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/0ba9da65-97ef-479b-bb92-4580347cf901"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "840",
+            "left": "495",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "73b88d3e-84d5-492b-a2eb-cfa46d1d1139"
         },
         {
             "@type": "WorkflowStep",
@@ -193,8 +285,8 @@
                 "workflowReference": "\/api\/3\/workflows\/9db7a543-c5e6-4f39-870e-2b5763d3ea4a"
             },
             "status": null,
-            "top": "705",
-            "left": "300",
+            "top": "840",
+            "left": "135",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "7b75662f-8d16-4193-a299-8e4d795c89e3"
@@ -207,7 +299,7 @@
                 "_temp": "_temp"
             },
             "status": null,
-            "top": "570",
+            "top": "705",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -222,7 +314,7 @@
             },
             "status": null,
             "top": "570",
-            "left": "475",
+            "left": "485",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "e213a77d-5822-4966-8a4e-587e28277f8c"
@@ -237,7 +329,7 @@
             },
             "status": null,
             "top": "300",
-            "left": "300",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "e9b1e3c1-af41-4302-81de-72a2958cd7eb"
@@ -251,7 +343,7 @@
                     {
                         "option": "Yes",
                         "step_iri": "\/api\/3\/workflow_steps\/8a6b6161-ee8d-4b22-800a-7403c2306740",
-                        "condition": "{{ vars.assigneeUsername | length > 0 }}",
+                        "condition": "{{ vars.assigneeUsername != None }}",
                         "step_name": "Placeholder"
                     },
                     {
@@ -264,7 +356,7 @@
             },
             "status": null,
             "top": "435",
-            "left": "300",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
             "uuid": "f6889705-839c-42e4-8c80-9f8714ce9469"
@@ -318,15 +410,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Refresh User Version Control Details -> Create Iss",
-            "targetStep": "\/api\/3\/workflow_steps\/7b75662f-8d16-4193-a299-8e4d795c89e3",
-            "sourceStep": "\/api\/3\/workflow_steps\/e213a77d-5822-4966-8a4e-587e28277f8c",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "c62ac31b-55f4-486c-bf9a-b8f7b40c78c1"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Create Iss -> Create Branch",
             "targetStep": "\/api\/3\/workflow_steps\/26df545c-19bb-4360-8ba7-e59a162684f1",
             "sourceStep": "\/api\/3\/workflow_steps\/7b75662f-8d16-4193-a299-8e4d795c89e3",
@@ -342,6 +425,42 @@
             "label": null,
             "isExecuted": false,
             "uuid": "a2066333-5bb1-4604-a0dd-378792e064ca"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Refresh User Version Control Details -> Is Username Exist",
+            "targetStep": "\/api\/3\/workflow_steps\/5c8ada17-f0ad-4d8c-8f0b-3b53a8148b8b",
+            "sourceStep": "\/api\/3\/workflow_steps\/e213a77d-5822-4966-8a4e-587e28277f8c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "404ebcc4-4bdf-4053-8056-7ab7bbbc1eba"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Username Exist -> Create Issue",
+            "targetStep": "\/api\/3\/workflow_steps\/7b75662f-8d16-4193-a299-8e4d795c89e3",
+            "sourceStep": "\/api\/3\/workflow_steps\/5c8ada17-f0ad-4d8c-8f0b-3b53a8148b8b",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "c79b92f6-9517-4e11-aa86-ef92387cab9f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Username Exist -> GitHub User Not Mapped",
+            "targetStep": "\/api\/3\/workflow_steps\/73b88d3e-84d5-492b-a2eb-cfa46d1d1139",
+            "sourceStep": "\/api\/3\/workflow_steps\/5c8ada17-f0ad-4d8c-8f0b-3b53a8148b8b",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "62470fb8-0c95-4e0b-a2a2-2ec2051af9d4"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "GitHub User Not Mapped -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/0ba9da65-97ef-479b-bb92-4580347cf901",
+            "sourceStep": "\/api\/3\/workflow_steps\/73b88d3e-84d5-492b-a2eb-cfa46d1d1139",
+            "label": "Ok",
+            "isExecuted": false,
+            "uuid": "de0361dc-6b98-4982-8987-5fba693c3b0c"
         }
     ],
     "groups": [],
