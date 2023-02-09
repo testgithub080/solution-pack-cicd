@@ -129,14 +129,14 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Is Pull Merged",
+            "name": "Is Pull Closed",
             "description": null,
             "arguments": {
                 "conditions": [
                     {
                         "option": "Yes",
                         "step_iri": "\/api\/3\/workflow_steps\/0edbd253-6fd6-49cb-816b-723891012f3a",
-                        "condition": "{{ vars.steps.Get_Pull_Request_State.data.state == \"merged\" }}",
+                        "condition": "{{ vars.steps.Get_Pull_Request_State.data.state == \"closed\" }}",
                         "step_name": "Close Issue"
                     },
                     {
