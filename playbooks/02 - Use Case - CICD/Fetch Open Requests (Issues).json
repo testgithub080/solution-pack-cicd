@@ -169,7 +169,7 @@
             "name": "Find PRs for Issues",
             "description": null,
             "arguments": {
-                "issuePRs": "{% set _tempDict = {} %}{% for pr in vars.latest_pull_request %}{% if \"Issue #\" in pr.body %}{% set issue= pr.body.split(\"Issue #\")[-1].split(\" \")[0] %}{% set _temp=_tempDict.update({issue: {\"title\": pr.title, \"html_url\": pr.html_url, \"state\": pr.state, \"reviewers\": pr.requested_reviewers | json_query(\"[].login[]\")}}) %}{% endif %}{% endfor %}{{_tempDict}}"
+                "issuePRs": "{% set _tempDict = {} %}{% for pr in vars.latest_pull_request %}{% if pr.body != None and \"Issue #\" in pr.body %}{% set issue= pr.body.split(\"Issue #\")[-1].split(\" \")[0] %}{% set _temp=_tempDict.update({issue: {\"title\": pr.title, \"html_url\": pr.html_url, \"state\": pr.state, \"reviewers\": pr.requested_reviewers | json_query(\"[].login[]\")}}) %}{% endif %}{% endfor %}{{_tempDict}}"
             },
             "status": null,
             "top": "840",

@@ -746,7 +746,7 @@
                 "resource": {
                     "issues": "No new issues since the last applied change.",
                     "status": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293",
-                    "lastBuildDeployedOn": "{%if vars.repo_name == vars.cicd_config.content.split('\/')[-1] %}{{arrow.utcnow().int_timestamp}}{%endif%}"
+                    "lastBuildDeployedOn": "{%if vars.repo_name == vars.cicd_config.content.split('\/')[-1] %}{{arrow.utcnow().int_timestamp}}{%else%}{{vars.input.records[0].lastBuildDeployedOn}}{%endif%}"
                 },
                 "_showJson": false,
                 "operation": "Append",
