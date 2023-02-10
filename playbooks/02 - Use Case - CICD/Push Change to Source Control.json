@@ -169,7 +169,7 @@
                 "input": {
                     "schema": {
                         "title": "Warning: Playbook is Active or Awaiting State",
-                        "description": "{{vars.input.records[0].title}} operation is in Active\/Awaiting state.\nPlease wait while the previous operation is completed.",
+                        "description": "This operation is in Active\/Awaiting state.\nPlease wait while the previous operation is completed.",
                         "inputVariables": []
                     }
                 },
