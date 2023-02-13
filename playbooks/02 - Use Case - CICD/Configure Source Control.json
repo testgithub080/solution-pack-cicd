@@ -38,7 +38,7 @@
                 "input": {
                     "schema": {
                         "title": "Repositories Existence Confirmation",
-                        "description": "Confirm that the following repositories have been created:\n(You can click on the hyperlink to verify)<br>\n\n\n**Production Content Repository**: <a href=\"https:\/\/github.com\/{{vars.steps.Get_Repositories_Detail.input.orgName}}\/{{vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}\" target=\"_blank\" rel=\"noopener\">Production Content<\/a><br>\n\n\n**Production Settings Repository**: <a href=\"https:\/\/github.com\/{{vars.steps.Get_Repositories_Detail.input.orgName}}\/{{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}\" target=\"_blank\" rel=\"noopener\">Production Settings<\/a><br>\n\n\n**Development Settings Repository**:  <a href=\"https:\/\/github.com\/{{vars.steps.Get_Repositories_Detail.input.orgName}}\/{{vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}}\" target=\"_blank\" rel=\"noopener\">Development Settings<\/a>\n\n",
+                        "description": "Confirm that the following repositories have been created:\n(You can click on the hyperlink to verify)<br>\n\n\n**Production Content Repository**: <a href=\"https:\/\/github.com\/{{vars.steps.Get_Repositories_Detail.input.orgName}}\/{{vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}\" target=\"_blank\" rel=\"noopener\">{{vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}<\/a><br>\n\n\n**Production Settings Repository**: <a href=\"https:\/\/github.com\/{{vars.steps.Get_Repositories_Detail.input.orgName}}\/{{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}\" target=\"_blank\" rel=\"noopener\">{{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}<\/a><br>\n\n\n**Development Settings Repository**:  <a href=\"https:\/\/github.com\/{{vars.steps.Get_Repositories_Detail.input.orgName}}\/{{vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}}\" target=\"_blank\" rel=\"noopener\">{{vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}}<\/a>\n\n",
                         "inputVariables": []
                     }
                 },
@@ -237,7 +237,7 @@
                     {
                         "option": "No",
                         "step_iri": "\/api\/3\/workflow_steps\/0aa7db43-d395-4a12-9d4b-6bbe857f776e",
-                        "condition": "{{ vars.steps.Create_All_Repositories[0].is_status_failed }}",
+                        "condition": "{{ vars.steps.Create_All_Repositories[0].is_status_failed or vars.steps.Create_All_Repositories[1].is_status_failed or vars.steps.Create_All_Repositories[2].is_status_failed }}",
                         "step_name": "Return Playbook Status"
                     },
                     {

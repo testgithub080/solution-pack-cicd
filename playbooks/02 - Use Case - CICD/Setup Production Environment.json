@@ -112,8 +112,8 @@
                 "type": "InputBased",
                 "input": {
                     "schema": {
-                        "title": "Failed: Repositories Not Created",
-                        "description": "Repositories creation for \"{{vars.input.records[0].title}}\" task is failed. \nFor more details please check the playbook execution logs.",
+                        "title": "Failed: Repositories Creation",
+                        "description": "Failed to create repositories for the task ***{{vars.input.records[0].title}}***.\nFor additional details, please check the playbook execution logs.",
                         "inputVariables": []
                     }
                 },

@@ -24,28 +24,22 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Get GitHub Connector Configurations",
+            "name": "Check GitHub Connector Configuration",
             "description": null,
             "arguments": {
-                "params": {
-                    "iri": "\/api\/integration\/connectors\/github\/1.0.0\/?format=json",
-                    "body": "",
-                    "method": "POST"
-                },
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": {
-                    "current_user_github_connector_config_id": "{% if vars.request.currentUser is defined %}{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.request.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}{% else %}{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}{% endif %}"
-                }
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
             },
             "status": null,
             "top": "165",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
-            "uuid": "34fc25d1-1188-4f38-9829-a845c4a63b1f"
+            "uuid": "338df300-1f0a-4e5f-980a-cb53c281cfed"
         },
         {
             "@type": "WorkflowStep",
@@ -86,6 +80,7 @@
                 "version": "1.0.0",
                 "connector": "github",
                 "operation": "create_pull_request",
+                "ignore_errors": true,
                 "operationTitle": "Create Pull Request",
                 "pickFromTenant": false,
                 "step_variables": []
@@ -101,21 +96,21 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Get GitHub Connector Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/34fc25d1-1188-4f38-9829-a845c4a63b1f",
-            "sourceStep": "\/api\/3\/workflow_steps\/a07d539b-5a2c-492c-978d-cf7cd1328a39",
+            "name": "Check GitHub Connector Configuration -> Create Pull Request",
+            "targetStep": "\/api\/3\/workflow_steps\/c00b0f81-8734-49fe-a120-970fef2c7286",
+            "sourceStep": "\/api\/3\/workflow_steps\/338df300-1f0a-4e5f-980a-cb53c281cfed",
             "label": null,
             "isExecuted": false,
-            "uuid": "688de1ea-69a2-47ce-9543-af8fcb7fe9a7"
+            "uuid": "176af7d0-0624-4eb8-9627-268375cf8c81"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get GitHub Connector Configurations -> Create Pull Request",
-            "targetStep": "\/api\/3\/workflow_steps\/c00b0f81-8734-49fe-a120-970fef2c7286",
-            "sourceStep": "\/api\/3\/workflow_steps\/34fc25d1-1188-4f38-9829-a845c4a63b1f",
+            "name": "Start -> Check GitHub Connector Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/338df300-1f0a-4e5f-980a-cb53c281cfed",
+            "sourceStep": "\/api\/3\/workflow_steps\/a07d539b-5a2c-492c-978d-cf7cd1328a39",
             "label": null,
             "isExecuted": false,
-            "uuid": "6f9db157-05e3-4415-9603-8ce9eb615509"
+            "uuid": "9776c823-ff4b-4347-9c36-f64ae03f25fd"
         }
     ],
     "groups": [],

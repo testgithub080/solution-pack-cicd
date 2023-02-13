@@ -76,7 +76,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Created Repository {{vars.input.params['organization_name']}}\/{{vars.input.params['repo_name']}} and the base branch {{vars.input.params['base_branch']}}<\/p>",
+                    "content": "<p>{% if vars.steps.Create_Repository['<span style=\"color: #151515; letter-spacing: 0.76px;\">Error message'] is defined %<\/span>}{{vars.input.params['repo_name']}} creation failed.{% else %}Created Repository {{vars.input.params['organization_name']}}\/{{vars.input.params['repo_name']}} with the base branch {{vars.input.params['base_branch']}}{% endif %}<\/p>",
                     "records": ""
                 },
                 "arguments": {
@@ -137,21 +137,21 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Create Repository -> Create Base Branch",
-            "targetStep": "\/api\/3\/workflow_steps\/ce911462-69b0-4fd2-88f2-6ab4e0ed37f6",
-            "sourceStep": "\/api\/3\/workflow_steps\/6d298ae4-1346-4527-bd86-4edd5e2f2455",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "35d3b8c2-3981-4fdf-a56b-4b8fcc4d2ab6"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Configuration -> Crear",
             "targetStep": "\/api\/3\/workflow_steps\/6d298ae4-1346-4527-bd86-4edd5e2f2455",
             "sourceStep": "\/api\/3\/workflow_steps\/1b8cbd35-4af2-40b9-a086-039c40194785",
             "label": null,
             "isExecuted": false,
             "uuid": "912702e4-c234-4616-85c2-2f91d0fa96ef"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Repository -> Create Base Branch",
+            "targetStep": "\/api\/3\/workflow_steps\/ce911462-69b0-4fd2-88f2-6ab4e0ed37f6",
+            "sourceStep": "\/api\/3\/workflow_steps\/6d298ae4-1346-4527-bd86-4edd5e2f2455",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "dc28a0ba-c3d3-401b-8113-57413e91cdc5"
         },
         {
             "@type": "WorkflowRoute",

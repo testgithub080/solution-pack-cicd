@@ -50,7 +50,7 @@
                 "input": {
                     "schema": {
                         "title": "Warning: Pull Request is Not Merged",
-                        "description": "You can't close this change request because the latest content agains this change request haven't been merged yet. ",
+                        "description": "You can't close this change request because the latest content against this change request haven't been merged yet.",
                         "inputVariables": []
                     }
                 },

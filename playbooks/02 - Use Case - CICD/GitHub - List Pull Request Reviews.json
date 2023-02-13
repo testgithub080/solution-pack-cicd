@@ -22,6 +22,25 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "Check GitHub Connector Configuration",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "332800f7-e168-48c6-90d4-1319cb961cb9"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "List Pull Request",
             "description": null,
             "arguments": {
@@ -51,31 +70,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get GitHub Connector Configurations",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "\/api\/integration\/connectors\/github\/1.0.0\/?format=json",
-                    "body": "",
-                    "method": "POST"
-                },
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": {
-                    "current_user_github_connector_config_id": "{% if vars.request.currentUser is defined %}{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.request.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}{% else %}{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}{% endif %}"
-                }
-            },
-            "status": null,
-            "top": "165",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "98d0fa53-2f0b-468f-8599-111ee087ee61"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Start",
             "description": null,
             "arguments": {
@@ -96,21 +90,21 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Get GitHub Connector Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/98d0fa53-2f0b-468f-8599-111ee087ee61",
-            "sourceStep": "\/api\/3\/workflow_steps\/f9edcca7-08bd-441b-9efe-bdb310614020",
+            "name": "Check GitHub Connector Configuration -> List Pull Request",
+            "targetStep": "\/api\/3\/workflow_steps\/57a2c3bf-d493-4075-bd11-3a54d452524b",
+            "sourceStep": "\/api\/3\/workflow_steps\/332800f7-e168-48c6-90d4-1319cb961cb9",
             "label": null,
             "isExecuted": false,
-            "uuid": "2660936c-ba89-46d0-9f23-9c3377ee26df"
+            "uuid": "6aabc3be-3912-480b-8bf7-dd5042b3c2fa"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get GitHub Connector Configurations -> List Pull Request",
-            "targetStep": "\/api\/3\/workflow_steps\/57a2c3bf-d493-4075-bd11-3a54d452524b",
-            "sourceStep": "\/api\/3\/workflow_steps\/98d0fa53-2f0b-468f-8599-111ee087ee61",
+            "name": "Start -> Check GitHub Connector Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/332800f7-e168-48c6-90d4-1319cb961cb9",
+            "sourceStep": "\/api\/3\/workflow_steps\/f9edcca7-08bd-441b-9efe-bdb310614020",
             "label": null,
             "isExecuted": false,
-            "uuid": "5b44e5c2-183b-4291-be99-00acf6a01b46"
+            "uuid": "bc0e3a30-961e-47e0-904a-4af8c4707b7a"
         }
     ],
     "groups": [],
