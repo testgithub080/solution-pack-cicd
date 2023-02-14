@@ -41,11 +41,11 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "List Pull Request",
+            "name": "List Pull Request Reviews",
             "description": null,
             "arguments": {
                 "name": "GitHub",
-                "config": "{{vars.current_user_github_connector_config_id}}",
+                "config": "{{vars.steps.Check_GitHub_Connector_Configuration.config_id}}",
                 "params": {
                     "org": "{{vars.input.params['org_name']}}",
                     "page": "",

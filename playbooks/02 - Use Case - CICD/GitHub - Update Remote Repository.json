@@ -61,7 +61,7 @@
             "description": null,
             "arguments": {
                 "name": "GitHub",
-                "config": "{{vars.current_user_github_connector_config_id}}",
+                "config": "{{vars.steps.Check_GitHub_Connector_Configuration.config_id}}",
                 "params": {
                     "file_iri": "{{vars.input.params['fsr_file_iri']}}",
                     "clone_path": "{{vars.input.params['clone_repo_path']}}"

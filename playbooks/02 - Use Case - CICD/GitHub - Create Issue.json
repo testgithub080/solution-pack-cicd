@@ -27,7 +27,7 @@
             "description": null,
             "arguments": {
                 "name": "GitHub",
-                "config": "{{vars.current_user_github_connector_config_id}}",
+                "config": "{{vars.steps.Check_GitHub_Connector_Configuration.config_id}}",
                 "params": {
                     "org": "{{vars.input.params['org_name']}}",
                     "body": "{{vars.input.params['issue_content']}}",

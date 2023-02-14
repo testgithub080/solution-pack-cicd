@@ -25,7 +25,7 @@
             "description": null,
             "arguments": {
                 "name": "GitHub",
-                "config": "{{vars.current_user_github_connector_config_id}}",
+                "config": "{{vars.steps.Check_GitHub_Connector_Configuration.config_id}}",
                 "params": {
                     "org": "{{vars.input.params['org_name']}}",
                     "page": "",
@@ -71,7 +71,6 @@
             "name": "Save Result",
             "description": null,
             "arguments": {
-                "a": "{{vars.steps.Fetch_Release.data}}",
                 "data": "{{(vars.steps.Fetch_Release.data | json_query(\"[?name=='\"+(vars.input.params.release_name)+\"']\"))[0]}}"
             },
             "status": null,
