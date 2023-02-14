@@ -24,36 +24,11 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Get GitHub Connector Configurations",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "\/api\/integration\/connectors\/github\/1.0.0\/?format=json",
-                    "body": "",
-                    "method": "POST"
-                },
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": {
-                    "current_user_github_connector_config_id": "{% if vars.request.currentUser is defined %}{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.request.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}{% else %}{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}{% endif %}"
-                }
-            },
-            "status": null,
-            "top": "165",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "4ee0b7ce-e77c-4d1d-9685-db38cc3d30c3"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Create or Update File Content",
             "description": null,
             "arguments": {
                 "name": "GitHub",
-                "config": "{{vars.current_user_github_connector_config_id}}",
+                "config": "{{vars.steps.Check_GitHub_Connector_Configuration.config_id}}",
                 "params": {
                     "org": "{{vars.input.params['org_name']}}",
                     "sha": "",
@@ -96,26 +71,45 @@
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
             "group": null,
             "uuid": "aee8ede1-e968-4fb8-a188-3f09e6258342"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Check GitHub Connector Configuration",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "bbf03dde-b9d9-4495-9626-8c00a8ed8f41"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Get GitHub Connector Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/4ee0b7ce-e77c-4d1d-9685-db38cc3d30c3",
-            "sourceStep": "\/api\/3\/workflow_steps\/aee8ede1-e968-4fb8-a188-3f09e6258342",
+            "name": "Check GitHub Connector Configuration -> Create or Update File Content",
+            "targetStep": "\/api\/3\/workflow_steps\/a3d5e47d-8e40-40b7-bc7c-a4f42784c050",
+            "sourceStep": "\/api\/3\/workflow_steps\/bbf03dde-b9d9-4495-9626-8c00a8ed8f41",
             "label": null,
             "isExecuted": false,
-            "uuid": "4b67b577-e8fd-4a77-bf14-45801337517e"
+            "uuid": "b576e376-ee4b-4241-9278-035eb94c2643"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get GitHub Connector Configurations -> Create or Update File Content",
-            "targetStep": "\/api\/3\/workflow_steps\/a3d5e47d-8e40-40b7-bc7c-a4f42784c050",
-            "sourceStep": "\/api\/3\/workflow_steps\/4ee0b7ce-e77c-4d1d-9685-db38cc3d30c3",
+            "name": "Start -> Check GitHub Connector Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/bbf03dde-b9d9-4495-9626-8c00a8ed8f41",
+            "sourceStep": "\/api\/3\/workflow_steps\/aee8ede1-e968-4fb8-a188-3f09e6258342",
             "label": null,
             "isExecuted": false,
-            "uuid": "e20d9f92-e322-4782-89e4-e21415dcca9c"
+            "uuid": "efcb58d1-9151-42a2-90c3-2adbd422e713"
         }
     ],
     "groups": [],

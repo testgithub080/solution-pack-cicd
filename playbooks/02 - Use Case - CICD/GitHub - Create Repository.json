@@ -20,6 +20,25 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "Check GitHub Connector Configuration",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "52827860-cca0-4ce0-9f59-934f0144faae"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Start",
             "description": null,
             "arguments": {
@@ -38,36 +57,11 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get GitHub Connector Configurations",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "\/api\/integration\/connectors\/github\/1.0.0\/?format=json",
-                    "body": "",
-                    "method": "POST"
-                },
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": {
-                    "current_user_github_connector_config_id": "{% if vars.request.currentUser is defined %}{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.request.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}{% else %}{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}{% endif %}"
-                }
-            },
-            "status": null,
-            "top": "165",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "9af70db1-2d4e-4e41-8a6c-c6b564e3fc46"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Create Repository",
             "description": null,
             "arguments": {
                 "name": "GitHub",
-                "config": "{{vars.current_user_github_connector_config_id}}",
+                "config": "{{vars.steps.Check_GitHub_Connector_Configuration.config_id}}",
                 "params": {
                     "org": "{{vars.input.params['org_name']}}",
                     "name": "{{vars.input.params['repo_name']}}",
@@ -100,21 +94,21 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Get GitHub Connector Configurations -> Create Repository",
+            "name": "Check GitHub Connector Configuration -> Create Repository",
             "targetStep": "\/api\/3\/workflow_steps\/cb6cfbe8-edd3-4fd0-9bd9-5a951ac44f48",
-            "sourceStep": "\/api\/3\/workflow_steps\/9af70db1-2d4e-4e41-8a6c-c6b564e3fc46",
+            "sourceStep": "\/api\/3\/workflow_steps\/52827860-cca0-4ce0-9f59-934f0144faae",
             "label": null,
             "isExecuted": false,
-            "uuid": "22865a91-bc16-45b1-9805-7eacf304cf67"
+            "uuid": "d5064d5f-5403-4685-b86a-af86b50c0f59"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Get GitHub Connector Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/9af70db1-2d4e-4e41-8a6c-c6b564e3fc46",
+            "name": "Start -> Check GitHub Connector Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/52827860-cca0-4ce0-9f59-934f0144faae",
             "sourceStep": "\/api\/3\/workflow_steps\/6fdc651c-5027-4016-b774-d251caf02022",
             "label": null,
             "isExecuted": false,
-            "uuid": "5290103d-3763-4756-9253-34c220739b04"
+            "uuid": "f2b52eab-3250-43bd-8b28-f35336bda375"
         }
     ],
     "groups": [],

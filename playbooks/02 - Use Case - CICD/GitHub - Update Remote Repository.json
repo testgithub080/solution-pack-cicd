@@ -20,6 +20,25 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "Check GitHub Connector Configuration",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "01017029-eb5c-44e3-a756-aebe170160d1"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Start",
             "description": null,
             "arguments": {
@@ -38,36 +57,11 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get GitHub Connector Configurations",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "\/api\/integration\/connectors\/github\/1.0.0\/?format=json",
-                    "body": "",
-                    "method": "POST"
-                },
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": {
-                    "current_user_github_connector_config_id": "{% if vars.request.currentUser is defined %}{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.request.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}{% else %}{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}{% endif %}"
-                }
-            },
-            "status": null,
-            "top": "165",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "be105473-631b-432d-8ffa-7d76a2ddd68a"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Update Remote Repository",
             "description": null,
             "arguments": {
                 "name": "GitHub",
-                "config": "{{vars.current_user_github_connector_config_id}}",
+                "config": "{{vars.steps.Check_GitHub_Connector_Configuration.config_id}}",
                 "params": {
                     "file_iri": "{{vars.input.params['fsr_file_iri']}}",
                     "clone_path": "{{vars.input.params['clone_repo_path']}}"
@@ -90,21 +84,21 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Get GitHub Connector Configurations -> Update Remote Repository",
-            "targetStep": "\/api\/3\/workflow_steps\/d9d04c67-3fe9-4537-931c-3759bda9b6b1",
-            "sourceStep": "\/api\/3\/workflow_steps\/be105473-631b-432d-8ffa-7d76a2ddd68a",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "85c6e6ba-350f-43ea-80f5-fff023626e0b"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Get GitHub Connector Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/be105473-631b-432d-8ffa-7d76a2ddd68a",
+            "name": "Start -> Check GitHub Connector Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/01017029-eb5c-44e3-a756-aebe170160d1",
             "sourceStep": "\/api\/3\/workflow_steps\/1eea1968-483e-4b26-a1b2-177f199cd755",
             "label": null,
             "isExecuted": false,
-            "uuid": "e25be6d2-f145-4d84-8a30-4b53461dda74"
+            "uuid": "2cabcc85-10f8-4fc5-a69c-ad53c70bab72"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check GitHub Connector Configuration -> Update Remote Repository",
+            "targetStep": "\/api\/3\/workflow_steps\/d9d04c67-3fe9-4537-931c-3759bda9b6b1",
+            "sourceStep": "\/api\/3\/workflow_steps\/01017029-eb5c-44e3-a756-aebe170160d1",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "71bd6a90-f6db-4638-b35b-f771f630ab32"
         }
     ],
     "groups": [],

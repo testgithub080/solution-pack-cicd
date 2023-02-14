@@ -276,6 +276,24 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Extract Source Control Details -> Lis",
+            "targetStep": "\/api\/3\/workflow_steps\/57fbe283-063e-451b-9a3f-dc35473f328d",
+            "sourceStep": "\/api\/3\/workflow_steps\/6a1a345a-11dd-459d-ba61-451acee0c0e0",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "65414146-45a5-4981-ad45-6331fc1e69ce"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Issue Details -> Get Issues",
+            "targetStep": "\/api\/3\/workflow_steps\/57fbe283-063e-451b-9a3f-dc35473f328d",
+            "sourceStep": "\/api\/3\/workflow_steps\/c117fdd5-4727-44e7-9aa0-e21fe6bffc0b",
+            "label": "Submit",
+            "isExecuted": false,
+            "uuid": "6e4539eb-b19b-4f3b-9d14-05ff07b63dc0"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Is Executed Using Grid Data -> Get Issue Details",
             "targetStep": "\/api\/3\/workflow_steps\/c117fdd5-4727-44e7-9aa0-e21fe6bffc0b",
             "sourceStep": "\/api\/3\/workflow_steps\/b2afb372-97f5-49ab-a0a3-6829fa6fb77f",
@@ -294,24 +312,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Convert HTML To Dict -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/a0bef9d7-7731-4e25-9178-59db65a5834d",
-            "sourceStep": "\/api\/3\/workflow_steps\/33ffee41-58a1-44a6-92c2-e7ce4262bf49",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "fc6e35ee-9218-4045-89a8-6dae5be5f446"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Extract Source Control Details -> Lis",
-            "targetStep": "\/api\/3\/workflow_steps\/57fbe283-063e-451b-9a3f-dc35473f328d",
-            "sourceStep": "\/api\/3\/workflow_steps\/6a1a345a-11dd-459d-ba61-451acee0c0e0",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "65414146-45a5-4981-ad45-6331fc1e69ce"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Get Issues -> Convert HTML To Dict",
             "targetStep": "\/api\/3\/workflow_steps\/33ffee41-58a1-44a6-92c2-e7ce4262bf49",
             "sourceStep": "\/api\/3\/workflow_steps\/57fbe283-063e-451b-9a3f-dc35473f328d",
@@ -321,12 +321,12 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get Issue Details -> Get Issues",
-            "targetStep": "\/api\/3\/workflow_steps\/57fbe283-063e-451b-9a3f-dc35473f328d",
-            "sourceStep": "\/api\/3\/workflow_steps\/c117fdd5-4727-44e7-9aa0-e21fe6bffc0b",
-            "label": "Submit",
+            "name": "Convert HTML To Dict -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/a0bef9d7-7731-4e25-9178-59db65a5834d",
+            "sourceStep": "\/api\/3\/workflow_steps\/33ffee41-58a1-44a6-92c2-e7ce4262bf49",
+            "label": null,
             "isExecuted": false,
-            "uuid": "6e4539eb-b19b-4f3b-9d14-05ff07b63dc0"
+            "uuid": "fc6e35ee-9218-4045-89a8-6dae5be5f446"
         }
     ],
     "groups": [],

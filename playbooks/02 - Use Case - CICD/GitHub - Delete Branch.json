@@ -39,36 +39,11 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get GitHub Connector Configurations",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "\/api\/integration\/connectors\/github\/1.0.0\/?format=json",
-                    "body": "",
-                    "method": "POST"
-                },
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": {
-                    "current_user_github_connector_config_id": "{% if vars.request.currentUser is defined %}{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.request.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}{% else %}{{(vars.steps.Get_GitHub_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.currentUser | fromIRI).gitUsername+\"'].config_id\"))[0]}}{% endif %}"
-                }
-            },
-            "status": null,
-            "top": "165",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "7a5065d5-1a22-44dd-940e-ad6252a99016"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Delete Branch",
             "description": null,
             "arguments": {
                 "name": "GitHub",
-                "config": "{{vars.current_user_github_connector_config_id}}",
+                "config": "{{vars.steps.Check_GitHub_Connector_Configuration.config_id}}",
                 "params": {
                     "org": "{{vars.input.params['org_name']}}",
                     "repo": "{{vars.input.params['repo_name']}}",
@@ -88,26 +63,45 @@
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "7d7dabda-36bc-4fb3-855a-e30b182a77b4"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Check GitHub Connector Configuration",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "a1ed795c-c681-4538-8830-4660d2049131"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Get GitHub Connector Configurations -> Delete Branch",
-            "targetStep": "\/api\/3\/workflow_steps\/7d7dabda-36bc-4fb3-855a-e30b182a77b4",
-            "sourceStep": "\/api\/3\/workflow_steps\/7a5065d5-1a22-44dd-940e-ad6252a99016",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "277db0d2-de06-4293-9342-7208b41fbd41"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Get GitHub Connector Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/7a5065d5-1a22-44dd-940e-ad6252a99016",
+            "name": "Start -> Check GitHub Connector Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/a1ed795c-c681-4538-8830-4660d2049131",
             "sourceStep": "\/api\/3\/workflow_steps\/029c9009-83c1-4fd9-b056-6ce8d560865b",
             "label": null,
             "isExecuted": false,
-            "uuid": "a29fe853-0544-407b-9bb3-73850835bf7a"
+            "uuid": "151f7f4d-3c16-48f1-a22e-c9ad7b950be2"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check GitHub Connector Configuration -> Delete Branch",
+            "targetStep": "\/api\/3\/workflow_steps\/7d7dabda-36bc-4fb3-855a-e30b182a77b4",
+            "sourceStep": "\/api\/3\/workflow_steps\/a1ed795c-c681-4538-8830-4660d2049131",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c8adc285-e91c-4656-bbb7-fc0e81769a18"
         }
     ],
     "groups": [],
