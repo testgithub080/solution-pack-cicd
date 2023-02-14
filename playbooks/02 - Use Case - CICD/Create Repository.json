@@ -76,7 +76,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>{% if vars.steps.Create_Repository['<span style=\"color: #151515; letter-spacing: 0.76px;\">Error message'] is defined %<\/span>}{{vars.input.params['repo_name']}} creation failed.{% else %}Created Repository {{vars.input.params['organization_name']}}\/{{vars.input.params['repo_name']}} with the base branch {{vars.input.params['base_branch']}}{% endif %}<\/p>",
+                    "content": "<p>{% if vars.steps.Create_Repository['Error message'] is defined %}{{vars.input.params['repo_name']}} creation failed.{% else %}Created Repository {{vars.input.params['organization_name']}}\/{{vars.input.params['repo_name']}} with the base branch {{vars.input.params['base_branch']}}{% endif %}<\/p>",
                     "records": ""
                 },
                 "arguments": {
