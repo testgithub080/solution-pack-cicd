@@ -200,16 +200,16 @@
             "arguments": {
                 "conditions": [
                     {
-                        "option": "No",
-                        "step_iri": "\/api\/3\/workflow_steps\/73b88d3e-84d5-492b-a2eb-cfa46d1d1139",
-                        "condition": "{{ vars.assigneeUsername != None }}",
-                        "step_name": "GitHub User Not Mapped"
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/7b75662f-8d16-4193-a299-8e4d795c89e3",
+                        "condition": "{{ vars.assigneeUsername | length > 0 }}",
+                        "step_name": "Create Issue"
                     },
                     {
-                        "option": "Yes",
+                        "option": "No",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/7b75662f-8d16-4193-a299-8e4d795c89e3",
-                        "step_name": "Create Issue"
+                        "step_iri": "\/api\/3\/workflow_steps\/73b88d3e-84d5-492b-a2eb-cfa46d1d1139",
+                        "step_name": "GitHub User Not Mapped"
                     }
                 ]
             },
@@ -310,7 +310,7 @@
             "name": "Refresh User Version Control Details",
             "description": null,
             "arguments": {
-                "assigneeUsername": "{{(vars.input.params.assignee.assignee[\"@id\"] | fromIRI).gitUsername}}"
+                "assigneeUsername": "{{(vars.input.params.assignee['@id'] | fromIRI).gitUsername}}"
             },
             "status": null,
             "top": "570",
