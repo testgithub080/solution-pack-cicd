@@ -254,7 +254,7 @@
                         {
                             "option": "Ok",
                             "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/e08df4d0-61f9-477a-b0eb-df525d626706"
+                            "step_iri": "\/api\/3\/workflow_steps\/e3ef0ab2-4d44-487f-9880-e781321f2b67"
                         }
                     ],
                     "duplicateOption": false
@@ -268,8 +268,8 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "1080",
-            "left": "800",
+            "top": "1120",
+            "left": "920",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "5e09b8f4-3a92-4165-8d35-a21738a4166e"
@@ -318,7 +318,7 @@
                         },
                         {
                             "option": "No",
-                            "step_iri": "\/api\/3\/workflow_steps\/e08df4d0-61f9-477a-b0eb-df525d626706"
+                            "step_iri": "\/api\/3\/workflow_steps\/e3ef0ab2-4d44-487f-9880-e781321f2b67"
                         }
                     ],
                     "duplicateOption": false
@@ -397,7 +397,7 @@
                         },
                         {
                             "option": "Abort",
-                            "step_iri": "\/api\/3\/workflow_steps\/e08df4d0-61f9-477a-b0eb-df525d626706"
+                            "step_iri": "\/api\/3\/workflow_steps\/e3ef0ab2-4d44-487f-9880-e781321f2b67"
                         }
                     ],
                     "duplicateOption": false
@@ -411,7 +411,7 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "900",
+            "top": "940",
             "left": "580",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
@@ -581,7 +581,7 @@
                         },
                         {
                             "option": "Abort",
-                            "step_iri": "\/api\/3\/workflow_steps\/e08df4d0-61f9-477a-b0eb-df525d626706"
+                            "step_iri": "\/api\/3\/workflow_steps\/e3ef0ab2-4d44-487f-9880-e781321f2b67"
                         }
                     ],
                     "duplicateOption": false
@@ -779,8 +779,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1280",
-            "left": "620",
+            "top": "1260",
+            "left": "580",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "e08df4d0-61f9-477a-b0eb-df525d626706"
@@ -807,6 +807,18 @@
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "fbbe3045-febc-429f-b72e-bfe6856ea13b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Dummy Step",
+            "description": null,
+            "arguments": [],
+            "status": null,
+            "top": "1120",
+            "left": "580",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "e3ef0ab2-4d44-487f-9880-e781321f2b67"
         }
     ],
     "routes": [
@@ -881,15 +893,6 @@
             "label": null,
             "isExecuted": false,
             "uuid": "72e98f69-f37c-4c3f-8134-7993d2be29f8"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Get User Conformation -> Update Status to Pending",
-            "targetStep": "\/api\/3\/workflow_steps\/e08df4d0-61f9-477a-b0eb-df525d626706",
-            "sourceStep": "\/api\/3\/workflow_steps\/8ab39c8c-8aeb-4aa1-b4aa-db172a382ba3",
-            "label": "No",
-            "isExecuted": false,
-            "uuid": "30905091-ec9c-42d1-a9df-57d5c20de0e5"
         },
         {
             "@type": "WorkflowRoute",
@@ -1001,15 +1004,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Source Control is not Config -> Update Status to Pending",
-            "targetStep": "\/api\/3\/workflow_steps\/e08df4d0-61f9-477a-b0eb-df525d626706",
-            "sourceStep": "\/api\/3\/workflow_steps\/5e09b8f4-3a92-4165-8d35-a21738a4166e",
-            "label": "Ok",
-            "isExecuted": false,
-            "uuid": "e5329702-470a-4425-8e6d-aac0af3e9aa7"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Get User Conformation -> Clone Repository",
             "targetStep": "\/api\/3\/workflow_steps\/c0b41243-68bd-498d-8ffc-f9c6bd571694",
             "sourceStep": "\/api\/3\/workflow_steps\/8ab39c8c-8aeb-4aa1-b4aa-db172a382ba3",
@@ -1028,21 +1022,48 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Select Input For Dev Env -> Update Status to Pending",
-            "targetStep": "\/api\/3\/workflow_steps\/e08df4d0-61f9-477a-b0eb-df525d626706",
-            "sourceStep": "\/api\/3\/workflow_steps\/9566f6ac-49ea-4073-b412-a2a5cd658d30",
-            "label": "Abort",
-            "isExecuted": false,
-            "uuid": "20bda00c-b74f-4fa7-8b55-a50e62bb2a18"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Select Input For Prod Env -> Update Status to Pending",
-            "targetStep": "\/api\/3\/workflow_steps\/e08df4d0-61f9-477a-b0eb-df525d626706",
+            "name": "Select Input For Prod Env -> Dummy Step1",
+            "targetStep": "\/api\/3\/workflow_steps\/e3ef0ab2-4d44-487f-9880-e781321f2b67",
             "sourceStep": "\/api\/3\/workflow_steps\/a8de61e9-b13f-4319-932d-61792f89b7f8",
             "label": "Abort",
             "isExecuted": false,
-            "uuid": "8d592c05-3dc1-4db9-bfab-c123178e2791"
+            "uuid": "bd6f84eb-e570-4cfc-a0fe-b707b51b3821"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Dummy Step1 -> Update Status to Pending",
+            "targetStep": "\/api\/3\/workflow_steps\/e08df4d0-61f9-477a-b0eb-df525d626706",
+            "sourceStep": "\/api\/3\/workflow_steps\/e3ef0ab2-4d44-487f-9880-e781321f2b67",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "dd4befde-4197-487e-b4ea-26ba45f6b7e7"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Select Input For Dev Env -> Dummy Step",
+            "targetStep": "\/api\/3\/workflow_steps\/e3ef0ab2-4d44-487f-9880-e781321f2b67",
+            "sourceStep": "\/api\/3\/workflow_steps\/9566f6ac-49ea-4073-b412-a2a5cd658d30",
+            "label": "Abort",
+            "isExecuted": false,
+            "uuid": "6ef68721-b5c7-4995-a142-62e5fd2fcd8f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Source Control is not Config -> Dummy Step",
+            "targetStep": "\/api\/3\/workflow_steps\/e3ef0ab2-4d44-487f-9880-e781321f2b67",
+            "sourceStep": "\/api\/3\/workflow_steps\/5e09b8f4-3a92-4165-8d35-a21738a4166e",
+            "label": "Ok",
+            "isExecuted": false,
+            "uuid": "350b94fb-6dd9-4ebd-901b-3d8e886757f7"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get User Conformation -> Dummy Step",
+            "targetStep": "\/api\/3\/workflow_steps\/e3ef0ab2-4d44-487f-9880-e781321f2b67",
+            "sourceStep": "\/api\/3\/workflow_steps\/8ab39c8c-8aeb-4aa1-b4aa-db172a382ba3",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "1612821d-f8aa-4479-a7c1-43d04056da89"
         }
     ],
     "groups": [],
