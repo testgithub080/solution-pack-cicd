@@ -7,13 +7,13 @@
 
 # Overview
 
-FortiSOAR CICD – Change Management solution pack helps automate your content development workflows and deploy better quality code using a continuous and iterative process to build, test, and deploy content avoiding bugs and code failures.
+FortiSOAR Continuous Delivery solution pack helps automate your content development workflows and deploy better quality code using a continuous and iterative process to build, test, and deploy content avoiding bugs and code failures.
 
-With Continuous Integration (CI) you can integrate all your code changes into the main branch of a shared source code repository early and often, automatically testing each change when you commit or merge them. FortiSOAR CICD – Change Management helps you create a development source control where you can merge your changes and test them until you are confident that the changes are ready to be pushed to production.
+With Continuous Integration (CI) you can integrate all your code changes into the main branch of a shared source code repository early and often, automatically testing each change when you commit or merge them. FortiSOAR Continuous Delivery helps you create a development source control where you can merge your changes and test them until you are confident that the changes are ready to be pushed to production.
 
 Continuous Delivery (CD) takes over during the final stages to ensure that the code can be pushed to a production environment (or a staging environment if you so choose) at any time. For a more granular control, you can review the code changes before pulling them from development into production or staging. Even then you can wait until you are ready to apply the changes to a production or staging environment.
 
-The following diagram simplifies how FortiSOAR CICD – Change Management works:
+The following diagram simplifies how FortiSOAR Continuous Delivery works:
 
 ![](./docs/res/ci-cd-flow.svg)
 
@@ -23,7 +23,7 @@ This document is meant for content developers and FortiSOAR administrators who c
 
 # Terminology
 
-This section provides a comprehensive list of specialized terms and definitions used in this document. It serves as a reference guide to ensure that any communication regarding FortiSOAR's **Change Management** solution pack is clear and consistent. The section may include definitions, abbreviations, acronyms, and jargon that are unique to this solution pack.
+This section provides a comprehensive list of specialized terms and definitions used in this document. It serves as a reference guide to ensure that any communication regarding FortiSOAR's **Continuous Delivery** solution pack is clear and consistent. The section may include definitions, abbreviations, acronyms, and jargon that are unique to this solution pack.
 
 This terminology section may be regularly updated to reflect any changes or additions to the terms used throughout this document.
 

@@ -1,6 +1,6 @@
 # Contents
 
-The **CICD – Change Management** solution pack contains the following resources:
+The **Continuous Delivery** solution pack contains the following resources:
 
 ## Roles
 
@@ -14,21 +14,21 @@ The **CICD – Change Management** solution pack contains the following resource
 
 |System View|Description|
 |:-|:-|
-|Change Management|A menu option that launches the Change Management user interface for setting up developement and production environment subsequent interactions with source control.|
+|Change Management|A menu option that launches the Continuous Delivery user interface for setting up developement and production environment subsequent interactions with source control.|
 
 ## Module Schemas
 
 |Module Schema|Description|
 |:-|:-|
 |People|A schema or framework that helps organize information soecific to users interacting with GitHub like their names and GitHub usernames.|
-|Change Management|A schema or framework that helps organize information specific to Change Management like issue, title, description, and environment.|
+|Change Management|A schema or framework that helps organize information specific to Continuous Delivery like issue, title, description, and environment.|
 
 ## Widgets
 
 |Widgets|Description|
 |:-|:-|
 |JSON to Grid|Renders the JSON playbook result in grid view and performs various operation on the grid.|
-|CICD Configuration|Launches a wizard that walks a user through the process of setting up source control for change management.|
+|CICD Configuration|Launches a wizard that walks a user through the process of setting up source control for Continuous Delivery.|
 |Record CTA Tile|Displays the details of a module record when the containing button is clicked.|
 |Record Card|Displays the module records in a card format.|
 
@@ -79,7 +79,7 @@ The **CICD – Change Management** solution pack contains the following resource
 | Set GitHub Username | Update the GitHub Usernames in FortiSOAR User record |
 | Set Logged in GitHub Username | Update the GitHub Usernames in FortiSOAR  logged in user record |
 | Setup Development Environment | Setup the FortiSOAR Prod Content, FortiSOAR Dev Settings source control repositories |
-| Setup CICD Environment | Update the SVT of Change Management module as per the environment selected in CICD Configuration wizard |
+| Setup CICD Environment | Update the SVT of Continuous Delivery module as per the environment selected in CICD Configuration wizard |
 | Setup Export Templates - Content and Settings | Synchronize Content and Settings Export Template in export wizard |
 | Setup Production Environment | Execute Setup Production Environment Task on specified record |
 | Setup Export Templates | Generates an initial template for exporting the content, such as playbooks, module definitions, etc to source control. |
@@ -92,7 +92,7 @@ The **CICD – Change Management** solution pack contains the following resource
 ## Record Sets
 
 - Attachments
-- Change Management
+- Continuous Delivery
 
 ## Picklists
 

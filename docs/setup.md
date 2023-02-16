@@ -1,13 +1,13 @@
 # Installation
 
 1. To install this solution pack, click **Content Hub** > **Discover**.
-2. From the list of solution packs that appear, search for **CICD - Change Management** solution pack.
-3. Click the **CICD - Change Management** solution pack card.
+2. From the list of solution packs that appear, search for **Continuous Delivery** solution pack.
+3. Click the **Continuous Delivery** solution pack card.
 4. Click the **Install** button on the bottom to begin the installation.
 
 ## Prerequisites
 
-**CICD - Change Management** has no dependency on any of the solution packs. However, it has following prerequisites:
+**Continuous Delivery** has no dependency on any of the solution packs. However, it has following prerequisites:
 
 1. **Organizational account**: A GitHub organization account is a type of account that represents an organization, instead of an individual user. It allows multiple users to collaborate on projects and manage access to repositories and teams.
 
@@ -29,11 +29,11 @@
 
     3. **Development Settings Repository**: Development settings containing system views, application configuration, environment variables, account configuration, LDAP, SSO, and RADIUS configuration of a development environment are backed up or synced on this repository.
 
-    > **NOTE**: GitHub users who are setting up production environment in CICD - Change Management and creating repositories, must have permissions to create private repositories on GitHub. For more information, refer to Restricting repository creation in your organization.
+    > **NOTE**: GitHub users who are setting up production environment in Continuous Delivery and creating repositories, must have permissions to create private repositories on GitHub. For more information, refer to Restricting repository creation in your organization.
 
 # Configurations
 
-This section details the required configurations for optimal performance of the **CICD - Change Management** solution pack.
+This section details the required configurations for optimal performance of the **Continuous Delivery** solution pack.
 
 - A source control connector for tracking and managing changes to code:
     -	To configure and use the GitHub connector to track and manage changes through GitHub, refer to [Configuring GitHub](https://docs.fortinet.com/document/fortisoar/1.0.0/github/344/github-v1-0-0#Configuration_parameters).

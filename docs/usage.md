@@ -4,10 +4,10 @@ In this section we detail the various user flows to get an understanding of the 
 
 ## Setup Source Control for Production Environment
 
-You can setup GitHub as a source control management through playbooks, automatically, or by pre-creating repositories on GitHub and linking them to FortiSOAR Change Management solution pack.
+You can setup GitHub as a source control management through playbooks, automatically, or by pre-creating repositories on GitHub and linking them to FortiSOAR Continuous Delivery solution pack.
 To setup GitHub as a source control and creating repositories using playbooks:
 
-1. Select **Change Management** from the FortiSOAR menu.
+1. Select **Continuous Delivery** from the FortiSOAR menu.
 2. Click the button **Setup Source Control** under the **Setup** tab’s **Setup the Source Control for Production Environment** section.
 3. Click the button **Setup Prod Environment** from the lower left part of the screen.
 4. Enter the GitHub username with which to map the username you used to log in to FortiSOAR.
@@ -29,7 +29,7 @@ To setup GitHub as a source control and creating repositories using playbooks:
 
 Once you have setup source control for production environment, initiate the setup for development environment to keep dev changes under the purview of source control.
 
-1. Select **Change Management** from the FortiSOAR menu.
+1. Select **Continuous Delivery** from the FortiSOAR menu.
 2. Click the button **Setup Source Control** under the **Setup** tab’s **Setup the Source Control for Development Environment** section.
 3. Click the button **Setup Dev Environment** from the lower left part of the screen.
 4. Enter the GitHub username with which to map the username you used to log in to FortiSOAR.
@@ -38,7 +38,7 @@ Once you have setup source control for production environment, initiate the setu
 
 You can raise a change request (CR) from within the FortiSOAR’s production environment and assign it to a content developer for further action. To create a new CR and assign it to a content developer:
 
-1. Select **Change Management** from the FortiSOAR menu.
+1. Select **Continuous Delivery** from the FortiSOAR menu.
 2. Select the tab **Production**.
 3. Click **+ Create New Request**.
 4. Enter a **Summary** and an appropriate **Description** for the CR.
@@ -47,7 +47,7 @@ You can raise a change request (CR) from within the FortiSOAR’s production env
 
 The raised CR appears under **Issues** on GitHub under your organization’s Production Content repository.
 
-It also appears under the Change Management menu for both the Application Administrator and the Content Developer to whom the issue is assigned.
+It also appears under the Continuous Delivery menu for both the Application Administrator and the Content Developer to whom the issue is assigned.
 
 ## Working on the new Change Request
 
@@ -64,7 +64,7 @@ After content developers are done making the customizations to address the CR ra
 
 The CR submitted for review needs approval of the application administrator in FortiSOAR. The application administrator now has to approve, merge, and mark the changes as complete in production environment.
 
-1.	Select **Change Management** from the FortiSOAR menu.
+1.	Select **Continuous Delivery** from the FortiSOAR menu.
 2.	Select the tab **Production**.
 3.	CRs with changes appear with a PR name under the column Pull Request.
 
@@ -77,13 +77,13 @@ The CR submitted for review needs approval of the application administrator in F
 
 Application administrators may want to merge the customizations on GitHub on the main branch to production instance on FortiSOAR.
 
-1.	Select **Change Management** from the FortiSOAR menu.
+1.	Select **Continuous Delivery** from the FortiSOAR menu.
 2.	Select the tab **Production**.
 3.	Click the tile Apply Latest Content to initiate a git merge of content on GitHub with content on the FortiSOAR instance.
 
 ## Save Development Settings
 
-1.	Select **Change Management** from the FortiSOAR menu.
+1.	Select **Continuous Delivery** from the FortiSOAR menu.
 2.	Select the tab **Development**.
 3.	Click the tile **Save Development Settings** to initiate export of development settings like connector configurations, SSO settings, and user configurations to GitHub in the repository mapped with FortiSOAR Development Settings.
 
