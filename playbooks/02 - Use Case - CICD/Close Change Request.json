@@ -229,7 +229,7 @@
             "description": null,
             "arguments": {
                 "route": "740e63ae-b3c3-4586-971c-f3437a0c13f8",
-                "title": "Mark as Complete",
+                "title": "Close Request",
                 "resources": [
                     "change_management"
                 ],
@@ -264,19 +264,17 @@
                         "logic": "AND",
                         "filters": [
                             {
-                                "type": "object",
+                                "type": "array",
                                 "field": "environment",
                                 "value": [
                                     "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651",
-                                    "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b",
-                                    "\/api\/3\/picklists\/7c93c4a6-10b4-4806-aa20-1581d35d0dcb"
+                                    "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b"
                                 ],
                                 "module": "environment",
                                 "display": "",
                                 "operator": "nin",
                                 "template": "multiselectpicklist",
                                 "OPERATOR_KEY": "$",
-                                "displayTemplate": "",
                                 "previousOperator": "nin",
                                 "previousTemplate": "multiselectpicklist"
                             }

@@ -157,11 +157,11 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p class=\"mp-tile-description muted-80\">Following \"<a rel=\"noopener\" target=\"_blank\" href=\"{{vars.request.baseUri}}\/editor\/exporter\/templates\">Content and Settings<\/a> Export Templates synchronized successfully.<\/p>\n<ul>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Production Content<\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Production Settings<\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Development Settings<\/p>\n<\/li>\n<\/ul>",
+                    "content": "<p class=\"mp-tile-description muted-80\">Following <a href=\"{{vars.request.baseUri}}\/editor\/exporter\/templates\" target=\"_blank\" rel=\"noopener\">Content and Settings<\/a> Export Templates setup successfully.<\/p>\n<ul>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Production Content<\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Production Settings<\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Development Settings<\/p>\n<\/li>\n<\/ul>",
                     "records": "{{vars.input.records[0]['@id']}}"
                 },
                 "resource": {
-                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p>&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\"><strong>- Export Templates<\/strong><\/p>\n<p class=\"mp-tile-description muted-80\">Following \"<a href=\"{{vars.request.baseUri}}\/editor\/exporter\/templates\" target=\"_blank\" rel=\"noopener\">Content and Settings<\/a> Export Templates have been setup successfully.<\/p>\n<ul class=\"font-size-13 muted-80\">\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Production Content<\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Production Settings<\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Development Settings<\/p>\n<\/li>\n<\/ul>"
+                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p>&nbsp;<\/p>\n<p class=\"mp-tile-description muted-80\"><strong>- Export Templates<\/strong><\/p>\n<p class=\"mp-tile-description muted-80\">Following <a href=\"{{vars.request.baseUri}}\/editor\/exporter\/templates\" target=\"_blank\" rel=\"noopener\">Content and Settings<\/a> Export Templates have been setup successfully.<\/p>\n<ul class=\"font-size-13 muted-80\">\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Production Content<\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Production Settings<\/p>\n<\/li>\n<li>\n<p class=\"mp-tile-description muted-80\">Source Control - Development Settings<\/p>\n<\/li>\n<\/ul>"
                 },
                 "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",
@@ -276,6 +276,7 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
+        "Subroutine",
         "CICD"
     ]
 }

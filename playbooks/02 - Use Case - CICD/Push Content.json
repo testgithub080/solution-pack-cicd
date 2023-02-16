@@ -97,15 +97,6 @@
             "name": "Push Export Config into GitHub",
             "description": null,
             "arguments": {
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "thread": false,
-                    "content": "<p>Pushed remote changes on {{vars.repo_name}} repository<\/p>",
-                    "records": "",
-                    "parentstepid": "\/api\/3\/workflow_steps\/cf65e228-fca4-4ffc-8876-ebb016d05847"
-                },
                 "arguments": {
                     "org_name": "{{vars.org_name}}",
                     "repo_name": "{{vars.repo_name}}",
@@ -224,6 +215,7 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
+        "Subroutine",
         "CICD"
     ]
 }
