@@ -226,7 +226,7 @@
                         "option": "No",
                         "default": true,
                         "step_iri": "\/api\/3\/workflow_steps\/d135e606-7153-42f5-88fb-155730aadfba",
-                        "step_name": "Pull Request Not Approved"
+                        "step_name": "Pull Request Is Not Approved"
                     },
                     {
                         "option": "Yes",
