@@ -172,7 +172,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Pull Request Does Not Exist",
+            "name": "Pull Request Not Exist",
             "description": null,
             "arguments": {
                 "type": "InputBased",
@@ -266,7 +266,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Pull Request Does Not Approved",
+            "name": "Pull Request Not Approved",
             "description": null,
             "arguments": {
                 "type": "InputBased",
@@ -412,7 +412,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "No Operations",
+            "name": "Placeholder",
             "description": null,
             "arguments": [],
             "status": null,
