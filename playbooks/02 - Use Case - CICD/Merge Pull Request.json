@@ -172,7 +172,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Pull Request Not Exist",
+            "name": "Pull Request Does Not Exist",
             "description": null,
             "arguments": {
                 "type": "InputBased",
@@ -218,7 +218,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Does Pull Request Approved",
+            "name": "Is Pull Request Approved",
             "description": null,
             "arguments": {
                 "conditions": [
@@ -226,13 +226,13 @@
                         "option": "No",
                         "default": true,
                         "step_iri": "\/api\/3\/workflow_steps\/d135e606-7153-42f5-88fb-155730aadfba",
-                        "step_name": "Pull Request Is Not Approved"
+                        "step_name": "Pull Request Not Approved"
                     },
                     {
                         "option": "Yes",
                         "step_iri": "\/api\/3\/workflow_steps\/e8e6cb01-8285-4ce6-8872-c3a38b260400",
                         "condition": "{{ vars.steps.Get_Pull_Requests_Reviews.data | length > 0 and vars.steps.Get_Pull_Requests_Reviews.data[-1].state == \"APPROVED\" }}",
-                        "step_name": "Dummy Step"
+                        "step_name": "Placeholder"
                     }
                 ]
             },
@@ -266,7 +266,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Pull Request Not Approved",
+            "name": "Pull Request Is Not Approved",
             "description": null,
             "arguments": {
                 "type": "InputBased",
