@@ -5,14 +5,14 @@
     "config": {
         "navigation": [
             {
-                "icon": "fa fa-exchange",
+                "icon": "icon icon-queue_rules",
                 "state": {
                     "name": "main.modules.list",
                     "parameters": {
                         "module": "change_management"
                     }
                 },
-                "title": "Change Management",
+                "title": "Continuous Delivery",
                 "require": {
                     "action": "read",
                     "module": "change_management"

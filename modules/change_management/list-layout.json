@@ -86,8 +86,8 @@
                                                                                         {
                                                                                             "field": "environment",
                                                                                             "value": [
-                                                                                                "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651",
-                                                                                                "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b"
+                                                                                                "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b",
+                                                                                                "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651"
                                                                                             ],
                                                                                             "display": "",
                                                                                             "operator": "in",
@@ -117,7 +117,7 @@
                                                 }
                                             },
                                             "icon": "icon icon-deploy",
-                                            "show": false,
+                                            "show": true,
                                             "visible": true
                                         },
                                         {
@@ -186,7 +186,8 @@
                                                             "wid": "6086c04c-9cb5-4e55-86bc-165aac1cd659",
                                                             "_collapsed": false,
                                                             "collapsible": false,
-                                                            "collapsibleIndex": 0
+                                                            "collapsibleIndex": 0,
+                                                            "container": true
                                                         },
                                                         {
                                                             "columns": [
@@ -235,7 +236,7 @@
                                                                                                                     "description": "Closed the change Request and and Delete the specified change request branch",
                                                                                                                     "uuid": "ce29b3d9-06c5-4157-b1d1-52368c74c527",
                                                                                                                     "id": 454,
-                                                                                                                    "icon": "icon icon-close"
+                                                                                                                    "icon": "fa fa-check"
                                                                                                                 },
                                                                                                                 {
                                                                                                                     "@id": "\/api\/3\/workflows\/73dd86f5-2dfc-445a-9191-d3073e75fdc2",
@@ -244,7 +245,7 @@
                                                                                                                     "description": "Marge the specified Pull Request if Pull Request is Approved.",
                                                                                                                     "uuid": "73dd86f5-2dfc-445a-9191-d3073e75fdc2",
                                                                                                                     "id": 464,
-                                                                                                                    "icon": "icon icon-approval"
+                                                                                                                    "icon": "fa fa-code-fork"
                                                                                                                 }
                                                                                                             ],
                                                                                                             "selectedPlaybooks": [],
@@ -328,7 +329,8 @@
                                                                                                                 "recordTags": [],
                                                                                                                 "display": "02 - Use Case - CICD"
                                                                                                             },
-                                                                                                            "showButton": true
+                                                                                                            "showButton": true,
+                                                                                                            "title": "Change Requests"
                                                                                                         }
                                                                                                     }
                                                                                                 ],
@@ -354,15 +356,15 @@
                                                     ]
                                                 }
                                             },
-                                            "icon": "icon icon-queue_rules",
-                                            "show": true,
+                                            "icon": "fa fa-server",
+                                            "show": false,
                                             "visible": true
                                         },
                                         {
                                             "title": "Development",
                                             "active": 0,
-                                            "icon": "icon icon-decrease-indent",
-                                            "show": false,
+                                            "icon": "fa fa-code",
+                                            "show": true,
                                             "visible": true,
                                             "widget": {
                                                 "type": "rows",
@@ -427,7 +429,8 @@
                                                             ],
                                                             "wid": "76368e28-a68b-42f0-ad26-97efb6908244",
                                                             "_collapsed": false,
-                                                            "widgetAlwaysExpanded": true
+                                                            "widgetAlwaysExpanded": true,
+                                                            "container": true
                                                         },
                                                         {
                                                             "columns": [
@@ -547,7 +550,7 @@
                                                                                                                     "description": "Push (Export) specified change request content into the GitHub content repository",
                                                                                                                     "uuid": "2a7701aa-eba3-415a-b125-7908114e7d5a",
                                                                                                                     "id": 468,
-                                                                                                                    "icon": "icon icon-source-data"
+                                                                                                                    "icon": "icon icon-file-upload"
                                                                                                                 },
                                                                                                                 {
                                                                                                                     "@id": "\/api\/3\/workflows\/8731fb31-4fb5-4f03-80f5-e8920740a492",
@@ -556,10 +559,11 @@
                                                                                                                     "description": "Create the pull request",
                                                                                                                     "uuid": "8731fb31-4fb5-4f03-80f5-e8920740a492",
                                                                                                                     "id": 463,
-                                                                                                                    "icon": "icon icon-create-record"
+                                                                                                                    "icon": "fa fa-comments-o"
                                                                                                                 }
                                                                                                             ],
-                                                                                                            "showButton": true
+                                                                                                            "showButton": true,
+                                                                                                            "title": "Change Requests"
                                                                                                         }
                                                                                                     }
                                                                                                 ],
@@ -567,7 +571,8 @@
                                                                                             }
                                                                                         ],
                                                                                         "wid": "f18bb551-67ff-4345-8299-f69587189c93",
-                                                                                        "_collapsed": false
+                                                                                        "_collapsed": false,
+                                                                                        "container": false
                                                                                     }
                                                                                 ]
                                                                             }
@@ -577,7 +582,8 @@
                                                                 }
                                                             ],
                                                             "wid": "a0cc89b1-f774-4075-9b80-904b527daa3a",
-                                                            "_collapsed": false
+                                                            "_collapsed": false,
+                                                            "container": true
                                                         }
                                                     ]
                                                 }
@@ -599,7 +605,7 @@
         "wid": "77f9a995-f102-4c07-a8bd-86267d42ef1e",
         "widgetAlwaysExpanded": true,
         "metadata": {
-            "customTemplateTitle": "Change Management",
+            "customTemplateTitle": "Continuous Delivery",
             "originalTemplateTitle": "Change Management"
         }
     },
