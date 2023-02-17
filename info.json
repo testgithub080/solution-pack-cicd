@@ -1,10 +1,10 @@
 {
-    "name": "cICD-ContinuousIntegrationAndContinuousDelivery",
+    "name": "continuousDelivery",
     "version": "1.0.0",
     "fsrMinCompatibility": "7.3.1",
     "type": "solutionpack",
     "local": true,
-    "label": "CICD - Change Management",
+    "label": "Continuous Delivery",
     "dependencies": [
         {
             "name": "sOARFramework",
@@ -14,13 +14,12 @@
         }
     ],
     "prerequisite": null,
-    "certified": "true",
     "publisher": "Fortinet",
-    "description": "Setup Source Control (GitHub based) and mange/orchestrate/streamline Content Development Lifecycle across multiple FortiSOAR environments designated as Development, Staging and Production.",
-    "help": null,
+    "description": "Setup Source Control\u00a0and streamline content development lifecycle across multiple FortiSOAR environments designated as Development, Staging and Production.",
+    "help": "https://github.com/fortinet-fortisoar/solution-pack-cicd/blob/release/1.0.0/README.md",
     "category": [],
-    "supportInfo": null,
-    "iconLarge": null,
+    "supportInfo": "Fortinet Customer Support",
+    "iconLarge": "fsr-icon-large.png",
     "postInstallConfig": {
         "enabled": true,
         "widgets": [
@@ -28,21 +27,23 @@
                 "name": "cicdConfiguration",
                 "label": "CICD Configuration",
                 "version": "1.0.0",
-                "buttonLabel": "Configure"
+                "autoLaunch": true,
+                "buttonLabel": "Configure",
+                "autoLaunchTriggered": true
             }
         ]
     },
-    "date": "2023-01-20T07:41:28+00:00",
+    "date": "2023-02-17T10:57:48+00:00",
     "contents": {
         "picklistNames": [
             {
-                "name": "Environment"
+                "name": "Change Management Environment"
             },
             {
-                "name": "Task Status"
+                "name": "Change Management Status"
             },
             {
-                "name": "Task Type"
+                "name": "Change Management Type"
             }
         ],
         "modules": {
@@ -68,7 +69,7 @@
         },
         "views": {
             "navigation": [
-                "Change Management"
+                "Continuous Delivery"
             ]
         },
         "roles": [
@@ -96,20 +97,20 @@
         ],
         "widgets": [
             {
-                "apiName": "jsonToGrid",
-                "name": "JSON to Grid"
-            },
-            {
                 "apiName": "cicdConfiguration",
-                "name": "CICD Configuration"
-            },
-            {
-                "apiName": "recordCtaBlock",
-                "name": "Record CTA Block"
+                "name": "CICD Configuration Wizard"
             },
             {
                 "apiName": "recordCard",
                 "name": "Record Card"
+            },
+            {
+                "apiName": "jsonToGrid",
+                "name": "JSON to Grid"
+            },
+            {
+                "apiName": "recordCtaBlock",
+                "name": "Record CTA Tile"
             }
         ],
         "recordSets": [
