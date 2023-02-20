@@ -323,7 +323,7 @@
                     {
                         "option": "Yes",
                         "step_iri": "\/api\/3\/workflow_steps\/3eb3b741-aae1-4482-b141-e05bf41f1d23",
-                        "condition": "{{ vars.pull_number | length > 0 or (vars.input.records[0].pRStatus | length > 0 and vars.input.records[0].pRStatus==\"closed\") }}",
+                        "condition": "{{ (vars.pull_number | string) | length > 0 or (vars.input.records[0].pRStatus | length > 0 and vars.input.records[0].pRStatus==\"closed\") }}",
                         "step_name": "Get Pull Requests Reviews"
                     },
                     {
