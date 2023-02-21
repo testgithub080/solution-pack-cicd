@@ -45,7 +45,7 @@
                                             {
                                                 "showSpinner": true,
                                                 "picklistValue": "In-progress",
-                                                "picklistLoadingTitle": "Please wait while current task is being performed ..."
+                                                "picklistLoadingTitle": "Please wait while current task is being performed..."
                                             }
                                         ]
                                     },
