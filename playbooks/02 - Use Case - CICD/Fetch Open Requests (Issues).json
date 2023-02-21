@@ -17,6 +17,21 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "Return Blank Output",
+            "description": null,
+            "arguments": {
+                "grid_data": "[]",
+                "grid_columns": "{\n    \"columns\": [\n      {\n        \"field\": \"cRNo\",\n        \"displayName\": \"CR-No\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span title=\\\"{{ row.entity.cRNo }}\\\" data-ng-bind-html=\\\"row.entity.cRNo\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"repo_url\",\n        \"displayName\": \"Repository\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span title=\\\"{{ row.entity.repo_url }}\\\" data-ng-bind-html=\\\"row.entity.repo_url\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"summary\",\n        \"displayName\": \"Summary\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.summary\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"new_branch\",\n        \"displayName\": \"New Branch\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.new_branch\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"assigneeUsername\",\n        \"displayName\": \"Assignee\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.assigneeUsername\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"reporterUsername\",\n        \"displayName\": \"Reporter\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.reporterUsername\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"pullRequest\",\n        \"displayName\": \"Pull Request\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span title=\\\"{{ row.entity.pullRequest }}\\\" data-ng-bind-html=\\\"row.entity.pullRequest\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"pRStatus\",\n        \"displayName\": \"PR Status\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.pRStatus\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      },\n      {\n        \"field\": \"pRReviewer\",\n        \"displayName\": \"Reviewers\",\n        \"cellTemplate\": \"<div class='ui-grid-cell-contents'>&nbsp;&nbsp;<span data-ng-bind=\\\"row.entity.pRReviewer\\\"><\/span><\/div>\",\n        \"enableCellEdit\": false,\n        \"enableFiltering\": false,\n        \"enableColumnMenu\": true,\n        \"enableSorting\": true,\n        \"visible\": true,\n        \"width\": \"*\"\n      }\n    ]\n  }"
+            },
+            "status": null,
+            "top": "440",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "4b543122-bd89-4845-8456-98456ff24537"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Get Source Control Details",
             "description": null,
             "arguments": {
@@ -70,8 +85,8 @@
                     {
                         "option": "No",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/a4921965-2dba-4342-a85d-89b3842cc7b3",
-                        "step_name": "No Operation"
+                        "step_iri": "\/api\/3\/workflow_steps\/4b543122-bd89-4845-8456-98456ff24537",
+                        "step_name": "Return Blank Output"
                     }
                 ]
             },
@@ -95,25 +110,6 @@
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "949351d7-9f48-473a-bbc1-b1436fe705c1"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "No Operation",
-            "description": null,
-            "arguments": {
-                "params": [],
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "no_op",
-                "operationTitle": "Utils: No Operation",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "435",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "a4921965-2dba-4342-a85d-89b3842cc7b3"
         },
         {
             "@type": "WorkflowStep",
@@ -267,15 +263,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Has Repositories Created -> No Operation",
-            "targetStep": "\/api\/3\/workflow_steps\/a4921965-2dba-4342-a85d-89b3842cc7b3",
-            "sourceStep": "\/api\/3\/workflow_steps\/7331f40d-fe42-4a0e-b0b1-35bb9b259978",
-            "label": "No",
-            "isExecuted": false,
-            "uuid": "86a009ca-dd92-4589-ba5a-a85e64ba1ce5"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Copy of Get Source Control Details -> Has Repositories Created",
             "targetStep": "\/api\/3\/workflow_steps\/7331f40d-fe42-4a0e-b0b1-35bb9b259978",
             "sourceStep": "\/api\/3\/workflow_steps\/54facc75-f7e1-43c9-af88-e74e2ac978d1",
@@ -327,6 +314,15 @@
             "label": null,
             "isExecuted": false,
             "uuid": "e3c78f1c-9a7b-4208-a335-92c66e554479"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Are Repositories Created -> Return Blank Output",
+            "targetStep": "\/api\/3\/workflow_steps\/4b543122-bd89-4845-8456-98456ff24537",
+            "sourceStep": "\/api\/3\/workflow_steps\/7331f40d-fe42-4a0e-b0b1-35bb9b259978",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "12332617-610e-45a6-8755-df122d294122"
         }
     ],
     "groups": [],
