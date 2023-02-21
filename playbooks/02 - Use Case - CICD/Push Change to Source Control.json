@@ -123,7 +123,7 @@
                 "input": {
                     "schema": {
                         "title": "Push (Export) Change Request Details",
-                        "description": "\"[Change Request - {{vars.issue_no}}](https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}}) | {{vars.input.records[0].summary}}**\" is successfully pushed into the GitHub <a href=\"https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}\" target=\"_blank\"> https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}<\/a> Repository.\n",
+                        "description": "\"[Change Request - {{vars.issue_no}}](https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}}) | {{vars.input.records[0].summary}}\" is successfully pushed into the GitHub <a href=\"https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}\" target=\"_blank\"> https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}<\/a> Repository.\n",
                         "inputVariables": []
                     }
                 },

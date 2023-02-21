@@ -391,7 +391,7 @@
                 "input": {
                     "schema": {
                         "title": "Warning: Pull Request Creation Failed",
-                        "description": "{% if \"Validation Failed\" in vars.steps.Create_Pull_Request['Error message'] %}\"**Validation Failed**: No commits between main and CR-{{vars.issue_no}}\"{% else %}Pull Request is not created successfully, check playbook logs for more details{% endif %}",
+                        "description": "{% if \"Validation Failed\" in vars.steps.Create_Pull_Request['Error message'] %}\"**Validation Failed**: No commits between {{vars.cicdConfig.baseBranch}} and CR-{{vars.issue_no}}\"{% else %}Pull Request is not created successfully, check playbook logs for more details{% endif %}",
                         "inputVariables": []
                     }
                 },
