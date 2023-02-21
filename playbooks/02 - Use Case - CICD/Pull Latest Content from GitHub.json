@@ -41,8 +41,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2190",
-            "left": "125",
+            "top": "2306",
+            "left": "119",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "002070a1-165d-445a-a3f5-fa297d6564cc"
@@ -72,8 +72,8 @@
                 }
             },
             "status": null,
-            "top": "1380",
-            "left": "125",
+            "top": "1496",
+            "left": "119",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
             "uuid": "0c03b901-9cc4-45ac-a330-b9ffa6d4cd00"
@@ -153,8 +153,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2055",
-            "left": "125",
+            "top": "2171",
+            "left": "119",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "36714dcd-1ab4-400a-b41c-ab9d635a38a5"
@@ -195,8 +195,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1785",
-            "left": "125",
+            "top": "1901",
+            "left": "119",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "3c9d6743-147d-4ff2-b13c-4bc81f72a035"
@@ -302,14 +302,6 @@
                     }
                 },
                 "record": "{{ vars.input.records[0][\"@id\"] }}",
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "thread": false,
-                    "content": "<p>{% vars.steps.Get_User_Confirmation.input.<span style=\"color: #151515; letter-spacing: 0.76px;\">selectRepositoryType == \"Prod Content\" %}Applying the latest content from the {{vars.repo_name}} repository{% else %}Terminated applying the latest content from the {{vars.repo_name}} repository task {% endif %}<\/span><\/p>",
-                    "records": ""
-                },
                 "agent_id": null,
                 "resources": "change_management",
                 "owner_detail": {
@@ -322,11 +314,11 @@
                         {
                             "option": "Yes",
                             "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/c0b41243-68bd-498d-8ffc-f9c6bd571694"
+                            "step_iri": "\/api\/3\/workflow_steps\/b53e3d2b-34ee-4272-83f8-205801a5f4ab"
                         },
                         {
                             "option": "No",
-                            "step_iri": "\/api\/3\/workflow_steps\/e3ef0ab2-4d44-487f-9880-e781321f2b67"
+                            "step_iri": "\/api\/3\/workflow_steps\/442f1f19-197a-4065-b885-b8a029909fd1"
                         }
                     ],
                     "duplicateOption": false
@@ -355,7 +347,7 @@
                 "input": {
                     "schema": {
                         "title": "Apply Latest Content",
-                        "description": "Select the repository you want to apply the chnages from.",
+                        "description": "Select the repository you want to apply the changes from.",
                         "inputVariables": [
                             {
                                 "name": "selectRepositoryType",
@@ -442,8 +434,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1515",
-            "left": "125",
+            "top": "1631",
+            "left": "119",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "95cba225-03cc-472b-ab3a-775bcd1c901c"
@@ -550,7 +542,7 @@
                 "input": {
                     "schema": {
                         "title": "Apply Latest Content",
-                        "description": "Select the repository you want to apply the chnages from.",
+                        "description": "Select the repository you want to apply the changes from.",
                         "inputVariables": [
                             {
                                 "name": "selectRepositoryType",
@@ -637,8 +629,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1650",
-            "left": "125",
+            "top": "1766",
+            "left": "119",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "b251bc24-c4a4-4373-8ca5-44d1a44b9370"
@@ -653,7 +645,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>{{vars.repo_name}} repository is cloned at the {{vars.steps.Clone_Repository.path}} location&nbsp;<\/p>",
+                    "content": "<p>{{vars.repo_name}} repository is cloned at the {{vars.steps.Clone_Repository.data.path}} location&nbsp;<\/p>",
                     "records": "",
                     "parentstepid": "\/api\/3\/workflow_steps\/8ab39c8c-8aeb-4aa1-b4aa-db172a382ba3"
                 },
@@ -670,8 +662,8 @@
                 "workflowReference": "\/api\/3\/workflows\/2999d0f1-c491-460e-b9ff-2797417cb995"
             },
             "status": null,
-            "top": "1245",
-            "left": "125",
+            "top": "1361",
+            "left": "119",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "c0b41243-68bd-498d-8ffc-f9c6bd571694"
@@ -777,8 +769,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2595",
-            "left": "125",
+            "top": "2711",
+            "left": "119",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "caa717a2-7a9b-4300-8334-078084ed6742"
@@ -831,8 +823,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1920",
-            "left": "125",
+            "top": "2036",
+            "left": "119",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "fbbe3045-febc-429f-b72e-bfe6856ea13b"
@@ -843,8 +835,8 @@
             "description": null,
             "arguments": [],
             "status": null,
-            "top": "1245",
-            "left": "475",
+            "top": "1380",
+            "left": "480",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "e3ef0ab2-4d44-487f-9880-e781321f2b67"
@@ -911,8 +903,8 @@
                 }
             },
             "status": null,
-            "top": "2325",
-            "left": "125",
+            "top": "2441",
+            "left": "119",
             "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dbf",
             "group": null,
             "uuid": "36b2f8e4-196e-4193-9551-3cdc3e2e8250"
@@ -930,14 +922,90 @@
                 "workflowReference": "\/api\/3\/workflows\/78c482d2-3159-4aa5-8468-ec1526d37c23"
             },
             "status": null,
-            "top": "2460",
-            "left": "125",
+            "top": "2576",
+            "left": "119",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "830440f9-2690-4abe-8811-a9c3565f15d6"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Apply Latest Changes",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "people": [],
+                    "content": "<p>Applying the latest content from the {{vars.repo_name}} repository<\/p>",
+                    "__replace": "",
+                    "isImportant": false,
+                    "peopleUpdated": false,
+                    "changeManagement": "{{vars.input.records[0]['@id']}}"
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1240",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "b53e3d2b-34ee-4272-83f8-205801a5f4ab"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Terminate Apply Latest Changes",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "people": [],
+                    "content": "<p>Terminated applying the latest content from the {{vars.repo_name}} repository task<\/p>",
+                    "__replace": "",
+                    "isImportant": false,
+                    "peopleUpdated": false,
+                    "changeManagement": "{{vars.input.records[0]['@id']}}"
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1260",
+            "left": "480",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "442f1f19-197a-4065-b885-b8a029909fd1"
         }
     ],
     "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Import Zip File -> Wait",
+            "targetStep": "\/api\/3\/workflow_steps\/36b2f8e4-196e-4193-9551-3cdc3e2e8250",
+            "sourceStep": "\/api\/3\/workflow_steps\/002070a1-165d-445a-a3f5-fa297d6564cc",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "21d990d9-f389-4e6c-b58b-3f0fab1c3335"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "No Source Control -> Update Status to Pending",
+            "targetStep": "\/api\/3\/workflow_steps\/e08df4d0-61f9-477a-b0eb-df525d626706",
+            "sourceStep": "\/api\/3\/workflow_steps\/fcf54da4-fe32-47f6-9699-14994b0bbbc9",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "824423dc-1acc-4662-8e25-7859b576fc61"
+        },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Check Status",
@@ -1111,15 +1179,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get User Conformation -> Clone Repository",
-            "targetStep": "\/api\/3\/workflow_steps\/c0b41243-68bd-498d-8ffc-f9c6bd571694",
-            "sourceStep": "\/api\/3\/workflow_steps\/8ab39c8c-8aeb-4aa1-b4aa-db172a382ba3",
-            "label": "Yes",
-            "isExecuted": false,
-            "uuid": "ea8de4a8-fb39-406a-b400-45d8637d2803"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Clone Repository -> Get Source Control Attachment",
             "targetStep": "\/api\/3\/workflow_steps\/0c03b901-9cc4-45ac-a330-b9ffa6d4cd00",
             "sourceStep": "\/api\/3\/workflow_steps\/c0b41243-68bd-498d-8ffc-f9c6bd571694",
@@ -1135,15 +1194,6 @@
             "label": null,
             "isExecuted": false,
             "uuid": "dd4befde-4197-487e-b4ea-26ba45f6b7e7"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Get User Conformation -> Dummy Step",
-            "targetStep": "\/api\/3\/workflow_steps\/e3ef0ab2-4d44-487f-9880-e781321f2b67",
-            "sourceStep": "\/api\/3\/workflow_steps\/8ab39c8c-8aeb-4aa1-b4aa-db172a382ba3",
-            "label": "No",
-            "isExecuted": false,
-            "uuid": "1612821d-f8aa-4479-a7c1-43d04056da89"
         },
         {
             "@type": "WorkflowRoute",
@@ -1192,24 +1242,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "No Source Control -> Update Status to Pending",
-            "targetStep": "\/api\/3\/workflow_steps\/e08df4d0-61f9-477a-b0eb-df525d626706",
-            "sourceStep": "\/api\/3\/workflow_steps\/fcf54da4-fe32-47f6-9699-14994b0bbbc9",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "824423dc-1acc-4662-8e25-7859b576fc61"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Import Zip File -> Wait",
-            "targetStep": "\/api\/3\/workflow_steps\/36b2f8e4-196e-4193-9551-3cdc3e2e8250",
-            "sourceStep": "\/api\/3\/workflow_steps\/002070a1-165d-445a-a3f5-fa297d6564cc",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "21d990d9-f389-4e6c-b58b-3f0fab1c3335"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Wait for Publish -> Update Export Template",
             "targetStep": "\/api\/3\/workflow_steps\/830440f9-2690-4abe-8811-a9c3565f15d6",
             "sourceStep": "\/api\/3\/workflow_steps\/36b2f8e4-196e-4193-9551-3cdc3e2e8250",
@@ -1225,6 +1257,42 @@
             "label": null,
             "isExecuted": false,
             "uuid": "34b128e0-88ae-4258-b921-f904c5d8003e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get User Confirmation -> Apply Latest Changes",
+            "targetStep": "\/api\/3\/workflow_steps\/b53e3d2b-34ee-4272-83f8-205801a5f4ab",
+            "sourceStep": "\/api\/3\/workflow_steps\/8ab39c8c-8aeb-4aa1-b4aa-db172a382ba3",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "16198f3d-304a-4752-a23c-785e1fba2703"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get User Confirmation -> Terminate Apply Latest Changes",
+            "targetStep": "\/api\/3\/workflow_steps\/442f1f19-197a-4065-b885-b8a029909fd1",
+            "sourceStep": "\/api\/3\/workflow_steps\/8ab39c8c-8aeb-4aa1-b4aa-db172a382ba3",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "9eaee18d-5a57-4b0d-a4bc-deb2659c6e8d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Apply Latest Changes -> Clone Repository",
+            "targetStep": "\/api\/3\/workflow_steps\/c0b41243-68bd-498d-8ffc-f9c6bd571694",
+            "sourceStep": "\/api\/3\/workflow_steps\/b53e3d2b-34ee-4272-83f8-205801a5f4ab",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "0b45c150-de13-4c43-ad7c-1b259b62c42b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Terminate Apply Latest Changes -> No User Confirmation",
+            "targetStep": "\/api\/3\/workflow_steps\/e3ef0ab2-4d44-487f-9880-e781321f2b67",
+            "sourceStep": "\/api\/3\/workflow_steps\/442f1f19-197a-4065-b885-b8a029909fd1",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c2049d42-e8cb-4259-b928-04266055e4cf"
         }
     ],
     "groups": [],

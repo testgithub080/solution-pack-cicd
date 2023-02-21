@@ -152,7 +152,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p class=\"mp-tile-description muted-80\">\"Mapped {{vars.steps.Get_Usernames.input.gitHubUsername}}\" GitHub username to \"<a rel=\"noopener\" target=\"_blank\" href=\"{{vars.request.baseUri}}\/security\/people\">{{vars.logged_in_user}}<\/a>\" FortiSOAR user.<\/p>",
+                    "content": "<p class=\"mp-tile-description muted-80\">\"{{vars.steps.Get_Usernames.input.gitHubUsername}}\" GitHub username assigned to FortiSOAR user \"<a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a>\".<\/p>",
                     "records": "{{vars.input.records[0]['@id']}}",
                     "parentstepid": "\/api\/3\/workflow_steps\/05bcfc1c-3b6a-4fbb-a4de-a5b5c662366d"
                 },

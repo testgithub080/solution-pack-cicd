@@ -1,0 +1,13 @@
+{
+    "@context": "\/api\/3\/contexts\/File",
+    "@type": "File",
+    "uuid": "1d0e58bd-6e38-472c-9de8-02dfaa3d1efc",
+    "assignee": "",
+    "id": "1d0e58bd-6e38-472c-9de8-02dfaa3d1efc",
+    "filename": "Source Control - Production Content.json",
+    "mimeType": "application\/json",
+    "uploadDate": 1676977020.289135,
+    "size": 74688,
+    "thumbnail": null,
+    "metadata": []
+}

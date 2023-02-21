@@ -15,7 +15,7 @@
     ],
     "prerequisite": null,
     "publisher": "Fortinet",
-    "description": "Setup Source Control\u00a0and streamline content development lifecycle across multiple FortiSOAR environments designated as Development, Staging and Production.",
+    "description": "Setup Source Control and streamline content development lifecycle (CI/CD) across multiple FortiSOAR environments designated as Development, Staging and Production.",
     "help": "https://github.com/fortinet-fortisoar/solution-pack-cicd/blob/release/1.0.0/README.md",
     "category": [],
     "supportInfo": "Fortinet Customer Support",
@@ -33,7 +33,6 @@
             }
         ]
     },
-    "date": "2023-02-17T10:57:48+00:00",
     "contents": {
         "picklistNames": [
             {
@@ -97,16 +96,16 @@
         ],
         "widgets": [
             {
-                "apiName": "cicdConfiguration",
-                "name": "CICD Configuration Wizard"
-            },
-            {
                 "apiName": "recordCard",
                 "name": "Record Card"
             },
             {
                 "apiName": "jsonToGrid",
                 "name": "JSON to Grid"
+            },
+            {
+                "apiName": "cicdConfiguration",
+                "name": "CICD Configuration Wizard"
             },
             {
                 "apiName": "recordCtaBlock",
