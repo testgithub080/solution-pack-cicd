@@ -30,7 +30,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": true,
-                    "content": "<p>System Publish Underway. Please Wait...<\/p>",
+                    "content": "<p><strong>System Publish Underway. Please Wait...<\/strong><\/p>\n<p>Applying the latest content from the {{vars.repo_name}} repository and may require publishing in case of edits to the module schema. The server will be unavailable for all users during the publishing process.<\/p>",
                     "records": "",
                     "parentstepid": "\/api\/3\/workflow_steps\/a5c3262e-440b-4950-82bc-ad5f39e9bb93"
                 },
@@ -125,8 +125,8 @@
                 }
             },
             "status": null,
-            "top": "435",
-            "left": "825",
+            "top": "440",
+            "left": "820",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "2bda8e16-704f-420e-aa8a-ea4dc00d4ca3"
@@ -282,7 +282,7 @@
                 "org_name": "{{vars.cicd_config.organizationName}}"
             },
             "status": null,
-            "top": "975",
+            "top": "960",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -290,7 +290,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get User Conformation",
+            "name": "Get User Confirmation",
             "description": null,
             "arguments": {
                 "type": "InputBased",
@@ -302,6 +302,14 @@
                     }
                 },
                 "record": "{{ vars.input.records[0][\"@id\"] }}",
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>{% vars.steps.Get_User_Confirmation.input.<span style=\"color: #151515; letter-spacing: 0.76px;\">selectRepositoryType == \"Prod Content\" %}Applying the latest content from the {{vars.repo_name}} repository{% else %}Terminated applying the latest content from the {{vars.repo_name}} repository task {% endif %}<\/span><\/p>",
+                    "records": ""
+                },
                 "agent_id": null,
                 "resources": "change_management",
                 "owner_detail": {
@@ -411,7 +419,7 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "940",
+            "top": "960",
             "left": "820",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
@@ -645,8 +653,9 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Repository is cloned at the path: \/tmp\/cicd\/{{vars.repo_name}}.zip location&nbsp;<\/p>",
-                    "records": ""
+                    "content": "<p>{{vars.repo_name}} repository is cloned at the {{vars.steps.Clone_Repository.path}} location&nbsp;<\/p>",
+                    "records": "",
+                    "parentstepid": "\/api\/3\/workflow_steps\/8ab39c8c-8aeb-4aa1-b4aa-db172a382ba3"
                 },
                 "arguments": {
                     "org_name": "{{vars.org_name}}",
@@ -806,7 +815,16 @@
                     "body": "",
                     "method": "GET"
                 },
-                "version": "3.2.2",
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<div>\n<div>Initiating the i<span style=\"color: #000000; letter-spacing: 0.76px;\">mport activity from {{vars.repo_name}} repository<\/span><\/div>\n<\/div>",
+                    "records": "",
+                    "parentstepid": "\/api\/3\/workflow_steps\/c0b41243-68bd-498d-8ffc-f9c6bd571694"
+                },
+                "version": "3.2.3",
                 "connector": "cyops_utilities",
                 "operation": "make_cyops_request",
                 "operationTitle": "FSR: Make FortiSOAR API Call",
@@ -821,7 +839,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "No User Conformation",
+            "name": "No User Confirmation",
             "description": null,
             "arguments": [],
             "status": null,
@@ -833,24 +851,24 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Abort Prod Env",
+            "name": "Abort Further Setup Steps for Prod",
             "description": null,
             "arguments": [],
             "status": null,
-            "top": "1080",
-            "left": "800",
+            "top": "1120",
+            "left": "780",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "f190564b-b7ef-4881-9509-07402e4fc456"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Abort Dev Env",
+            "name": "Abort Further Setup Steps for Dev",
             "description": null,
             "arguments": [],
             "status": null,
-            "top": "1200",
-            "left": "980",
+            "top": "1180",
+            "left": "1000",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "8868573c-013c-45f3-995f-4643e8be53c4"
