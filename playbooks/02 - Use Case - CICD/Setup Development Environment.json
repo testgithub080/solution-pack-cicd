@@ -42,7 +42,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2730",
+            "top": "3000",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
@@ -82,7 +82,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2595",
+            "top": "2865",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -113,7 +113,7 @@
             "arguments": {
                 "params": {
                     "macro": "{{\"cicd_config\"}}",
-                    "value": "{{ ({\"organizationName\": vars.organization_name, \"content\": vars.content_repo_url, \"productionSettings\": vars.prod_settings_url, \"developmentSettings\": vars.dev_settings_url, \"baseBranch\": vars.base_branch,  \"contentRepoName\": vars.content_repo_url.split(\"\/\")[-1], \"prodSettingsRepoName\": vars.prod_settings_url.split(\"\/\")[-1], \"devSettingsRepoName\": vars.dev_settings_url.split(\"\/\")[-1]}) | toJSON}}"
+                    "value": "{{ ({\"organizationName\": vars.organization_name, \"content\": vars.content_repo_url, \"developmentSettings\": vars.dev_settings_url, \"baseBranch\": vars.base_branch,  \"contentRepoName\": vars.content_repo_url.split(\"\/\")[-1], \"devSettingsRepoName\": vars.dev_settings_url.split(\"\/\")[-1]}) | toJSON}}"
                 },
                 "version": "3.2.3",
                 "connector": "cyops_utilities",
@@ -124,8 +124,8 @@
                 }
             },
             "status": null,
-            "top": "840",
-            "left": "520",
+            "top": "880",
+            "left": "540",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "647f1314-3387-4bd6-8ae8-2987cb5b6cb4"
@@ -277,12 +277,11 @@
                 "base_branch": "{{vars.steps.Get_Repositories_Detail.input.baseBranchName}}",
                 "content_repo_url": "https:\/\/github.com\/{{vars.steps.Get_Repositories_Detail.input.orgName}}\/{{vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}",
                 "dev_settings_url": "https:\/\/github.com\/{{vars.steps.Get_Repositories_Detail.input.orgName}}\/{{vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}}",
-                "organization_name": "{{vars.steps.Get_Repositories_Detail.input.orgName}}",
-                "prod_settings_url": "https:\/\/github.com\/{{vars.steps.Get_Repositories_Detail.input.orgName}}\/{{vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}"
+                "organization_name": "{{vars.steps.Get_Repositories_Detail.input.orgName}}"
             },
             "status": null,
-            "top": "720",
-            "left": "520",
+            "top": "740",
+            "left": "540",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "9479bce1-f3a3-48ff-ad19-318985261934"
@@ -380,8 +379,7 @@
             "arguments": {
                 "org_name": "{{vars.cicd_config.organizationName or vars.organization_name}}",
                 "content_repo": "{{vars.cicd_config.content.split('\/')[-1] or vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}",
-                "dev_settings_repo": "{{vars.cicd_config.developmentSettings.split('\/')[-1] or vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}}",
-                "prod_settings_repo": "{{vars.cicd_config.productionSettings.split('\/')[-1] or vars.steps.Get_Repositories_Detail.input.productionSettingsRepositoryName}}"
+                "dev_settings_repo": "{{vars.cicd_config.developmentSettings.split('\/')[-1] or vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}}"
             },
             "status": null,
             "top": "975",
@@ -525,19 +523,6 @@
                                 "useRecordFieldDefault": false
                             },
                             {
-                                "name": "productionSettingsRepositoryName",
-                                "type": "string",
-                                "label": "Production Settings Repository Name",
-                                "tooltip": "Production Settings Repository stores connector configurations and any other data or content that is applicable only for production environment.",
-                                "dataType": "text",
-                                "formType": "text",
-                                "required": true,
-                                "_expanded": true,
-                                "defaultValue": "fortisoar-prod-settings",
-                                "_previousName": "",
-                                "useRecordFieldDefault": false
-                            },
-                            {
                                 "name": "developmentSettingsRepositoryName",
                                 "type": "string",
                                 "label": "Development Settings Repository Name",
@@ -593,8 +578,8 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "580",
-            "left": "520",
+            "top": "600",
+            "left": "540",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "e408ca41-9329-4e8b-a251-df1bb893ba4c"
@@ -637,6 +622,7 @@
                 "resource": {
                     "lastBuildDeployedOn": "{{arrow.utcnow().int_timestamp}}"
                 },
+                "_showJson": true,
                 "operation": "Append",
                 "collection": "{{vars.item['@id']}}",
                 "__recommend": [],
@@ -645,7 +631,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2865",
+            "top": "3135",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -661,12 +647,12 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p class=\"mp-tile-description muted-80\"><strong>- Identified source control repositories names as follows: <\/strong><\/p>\n<ul class=\"font-size-13 muted-80\">\n<li><em>Production Content: <\/em><a rel=\"noopener\" target=\"_blank\" href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.content_repo}}\">{{vars.content_repo}}<\/a><\/li>\n<li><em>Production Settings: <\/em><a rel=\"noopener\" target=\"_blank\" href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.prod_settings_repo}}\">{{vars.prod_settings_repo}}<\/a><\/li>\n<li><em>Development Settings: <\/em><a rel=\"noopener\" target=\"_blank\" href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.dev_settings_repo}}\">{{vars.dev_settings_repo}}<\/a><\/li>\n<\/ul>",
+                    "content": "<p class=\"mp-tile-description muted-80\"><strong>- Identified source control repositories names as follows: <\/strong><\/p>\n<ul class=\"font-size-13 muted-80\">\n<li><em>Production Content: <\/em><a href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.content_repo}}\" target=\"_blank\" rel=\"noopener\">{{vars.content_repo}}<\/a><\/li>\n<li><em>Development Settings: <\/em><a href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.dev_settings_repo}}\" target=\"_blank\" rel=\"noopener\">{{vars.dev_settings_repo}}<\/a><\/li>\n<\/ul>",
                     "records": "",
                     "parentstepid": "\/api\/3\/workflow_steps\/b18cb44c-0425-4a09-9438-7f0f455a4c24"
                 },
                 "resource": {
-                    "results": "<p class=\"mp-tile-description muted-80\"><strong>- Identified source control repositories names as follows: <\/strong><\/p>\n<ul class=\"font-size-13 muted-80\">\n<li><em>Production Content: <\/em><a href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.content_repo}}\" target=\"_blank\" rel=\"noopener\">https:\/\/github.com\/{{vars.org_name}}\/{{vars.content_repo}}<\/a><\/li>\n<li><em>Production Settings: <\/em><a href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.prod_settings_repo}}\" target=\"_blank\" rel=\"noopener\">https:\/\/github.com\/{{vars.org_name}}\/{{vars.prod_settings_repo}}<\/a><\/li>\n<li><em>Development Settings: <\/em><a href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.dev_settings_repo}}\" target=\"_blank\" rel=\"noopener\">https:\/\/github.com\/{{vars.org_name}}\/{{vars.dev_settings_repo}}<\/a><\/li>\n<\/ul>"
+                    "results": "<p class=\"mp-tile-description muted-80\"><strong>- Identified source control repositories names as follows: <\/strong><\/p>\n<ul class=\"font-size-13 muted-80\">\n<li><em>Production Content: <\/em><a href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.content_repo}}\" target=\"_blank\" rel=\"noopener\">https:\/\/github.com\/{{vars.org_name}}\/{{vars.content_repo}}<\/a><\/li>\n<li><em>Development Settings: <\/em><a href=\"https:\/\/github.com\/{{vars.org_name}}\/{{vars.dev_settings_repo}}\" target=\"_blank\" rel=\"noopener\">https:\/\/github.com\/{{vars.org_name}}\/{{vars.dev_settings_repo}}<\/a><\/li>\n<\/ul>"
                 },
                 "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",
@@ -681,6 +667,57 @@
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "29bdcaab-18ed-4c88-b065-f8fbf9ef518e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Wait for Publish",
+            "description": null,
+            "arguments": {
+                "rule": {
+                    "actions": [
+                        {
+                            "type": "resume_playbook",
+                            "enabled": true,
+                            "channel_uuid": "e2ce87c2-c55a-11ec-9d64-0242ac120002"
+                        }
+                    ],
+                    "is_active": true,
+                    "event_source": "crudhub"
+                },
+                "type": "TimeBased",
+                "delay": {
+                    "days": 0,
+                    "hours": 0,
+                    "weeks": 0,
+                    "minutes": 1,
+                    "seconds": 0
+                }
+            },
+            "status": null,
+            "top": "2595",
+            "left": "218",
+            "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dbf",
+            "group": null,
+            "uuid": "a08bfcb6-849a-4f4a-a70e-c0e882018163"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Export Template",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/78c482d2-3159-4aa5-8468-ec1526d37c23"
+            },
+            "status": null,
+            "top": "2730",
+            "left": "218",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "e5de5910-c580-4485-91fd-8a5c3b2280c4"
         }
     ],
     "routes": [
@@ -803,15 +840,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Import Zip File -> Update Status as Complete",
-            "targetStep": "\/api\/3\/workflow_steps\/599f239e-2f59-4dda-847d-79a661c6524c",
-            "sourceStep": "\/api\/3\/workflow_steps\/c738ed48-1da5-45f3-ba06-5886b1e748ac",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "aa2db810-081c-46d9-b8eb-0f55cc51786a"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Get Source Control Attachment -> Delete Attachments",
             "targetStep": "\/api\/3\/workflow_steps\/c864b7b6-7e54-481b-bdd5-d733b100bf70",
             "sourceStep": "\/api\/3\/workflow_steps\/a293517e-011f-4022-ad26-a60ad33b37c1",
@@ -881,6 +909,33 @@
             "label": null,
             "isExecuted": false,
             "uuid": "178de977-fa26-4a28-ab1f-6d8ac57049c1"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Wait for Publish -> Update Export Template",
+            "targetStep": "\/api\/3\/workflow_steps\/e5de5910-c580-4485-91fd-8a5c3b2280c4",
+            "sourceStep": "\/api\/3\/workflow_steps\/a08bfcb6-849a-4f4a-a70e-c0e882018163",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c920c997-fcc4-4142-9e1b-d33a8bc9debe"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Import Zip File -> Wait for Publish",
+            "targetStep": "\/api\/3\/workflow_steps\/a08bfcb6-849a-4f4a-a70e-c0e882018163",
+            "sourceStep": "\/api\/3\/workflow_steps\/c738ed48-1da5-45f3-ba06-5886b1e748ac",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "9c1119f8-d216-41bc-aac2-048b3f0391a8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Export Template -> Update Status as Complete",
+            "targetStep": "\/api\/3\/workflow_steps\/599f239e-2f59-4dda-847d-79a661c6524c",
+            "sourceStep": "\/api\/3\/workflow_steps\/e5de5910-c580-4485-91fd-8a5c3b2280c4",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "047a5a91-1836-4e0d-9e80-e5f35b90c2d0"
         }
     ],
     "groups": [],
