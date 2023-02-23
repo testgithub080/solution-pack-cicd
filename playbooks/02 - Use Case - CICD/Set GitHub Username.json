@@ -1,0 +1,346 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Set GitHub Username",
+    "aliasName": null,
+    "tag": null,
+    "description": "Update the GitHub Usernames in FortiSOAR User record",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/62dc4d31-01cc-40a5-94ae-e5de097cc27f",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Update GitHub Username",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/3\/people\/{{vars.fsr_user_uuid}}",
+                    "body": "{\"gitUsername\": \"{{vars.git_username}}\"}",
+                    "method": "PUT"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "05bcfc1c-3b6a-4fbb-a4de-a5b5c662366d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Status to In Progress",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "status": "\/api\/3\/picklists\/7f0263bf-29ab-4453-aefe-41d20f0fe9c3"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "4e4d74de-956b-4461-918a-18f6cb115b71"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "795e399c-622d-4252-9faf-d25e55c30fa7",
+                "resources": [
+                    "change_management"
+                ],
+                "inputVariables": [
+                    {
+                        "name": "fortiSOARUsername",
+                        "type": "people",
+                        "label": "FortiSOAR Username",
+                        "title": "Lookup (One to Many or One to One)",
+                        "usable": true,
+                        "tooltip": "Select the FotiSOAR user which you want to map with GitHub username",
+                        "dataType": "lookup",
+                        "formType": "lookup",
+                        "required": true,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "dataSource": {
+                            "model": "people"
+                        },
+                        "searchable": false,
+                        "templateUrl": "app\/components\/form\/fields\/typeahead.html",
+                        "defaultValue": null,
+                        "_previousName": "user",
+                        "playbookField": true,
+                        "displayTemplate": "%7B%7B%20firstname%20%7D%7D%20%7B%7B%20lastname%20%7D%7D",
+                        "lengthConstraint": false,
+                        "allowedEncryption": false,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "gitHubUsername",
+                        "type": "string",
+                        "label": "GitHub Username",
+                        "tooltip": "Enter the GitHub username which you want to map with FortiSOAR user",
+                        "dataType": "text",
+                        "formType": "text",
+                        "required": false,
+                        "_expanded": true,
+                        "defaultValue": null,
+                        "_previousName": "",
+                        "useRecordFieldDefault": false
+                    }
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "gitHubUsername": "{{vars.request.data[\"gitHubUsername\"]}}",
+                            "fortiSOARUsername": "{{vars.request.data[\"fortiSOARUsername\"]}}"
+                        },
+                        "records": "{{vars.input.records}}"
+                    },
+                    "logged_in_user": "{{(vars.currentUser | fromIRI).firstname}} {{(vars.currentUser | fromIRI).lastname}}"
+                },
+                "_promptexpanded": true,
+                "displayConditions": {
+                    "change_management": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "type": "primitive",
+                                "field": "title",
+                                "value": "Map GitHub Username",
+                                "operator": "eq",
+                                "_operator": "eq"
+                            },
+                            {
+                                "type": "array",
+                                "field": "type",
+                                "value": [
+                                    "\/api\/3\/picklists\/409b289f-33f5-423f-9174-24bc8628cc4a",
+                                    "\/api\/3\/picklists\/dc57442c-3d52-43a0-aa19-ed2898e30ff7"
+                                ],
+                                "module": "type",
+                                "display": "",
+                                "operator": "in",
+                                "template": "multiselectpicklist",
+                                "OPERATOR_KEY": "$",
+                                "useInOperator": true,
+                                "previousOperator": "in",
+                                "previousTemplate": "multiselectpicklist"
+                            },
+                            {
+                                "type": "object",
+                                "field": "status",
+                                "value": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293",
+                                    "itemValue": "Pending"
+                                },
+                                "operator": "eq"
+                            }
+                        ]
+                    }
+                },
+                "executeButtonText": "Map",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
+            "uuid": "62dc4d31-01cc-40a5-94ae-e5de097cc27f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "git_username": "{{vars.input.params.gitHubUsername}}",
+                "fsr_user_uuid": "{{vars.input.params.fortiSOARUsername.uuid}}"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "7c370e60-e44e-41f1-b3b2-5f8bb1b11da3"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Record",
+            "description": null,
+            "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>{% if vars.input.records[0].title==\"Map GitHub Username\" %}<\/p>\n<p><strong>- {{vars.steps.Get_Usernames.input.gitHubUsername}}<\/strong> GitHub username assigned to FortiSOAR user <a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.steps.Get_Usernames.input.fortiSOARUsername}}<\/a><\/p>\n<p>{% else %}<\/p>\n<p><strong>- {{vars.steps.Get_Usernames.input.gitHubUsername}}<\/strong> GitHub username assigned to FortiSOAR user <a href=\"{{vars.request.baseUri}}\/security\/people\" target=\"_blank\" rel=\"noopener\">{{vars.logged_in_user}}<\/a><\/p>\n<p>{% endif %}<\/p>",
+                    "records": "{{vars.input.records[0]['@id']}}",
+                    "parentstepid": "\/api\/3\/workflow_steps\/05bcfc1c-3b6a-4fbb-a4de-a5b5c662366d"
+                },
+                "resource": {
+                    "results": "<p>{{vars.steps.Find_Previous_Result[0].results}}<\/p>\n<p class=\"mp-tile-description muted-80\">{% if vars.input.records[0].title==\"Map GitHub Username\" %}<\/p>\n<p class=\"mp-tile-description muted-80\"><br><strong>- Mapped Following FortiSOAR User<\/strong><\/p>\n<ul class=\"font-size-13 muted-80\">\n<li class=\"mp-tile-description muted-80\"><em>FortiSOAR User: <\/em><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.request.baseUri}}\/security\/people\">{{vars.input.params.fortiSOARUsername.display}}<\/a><\/li>\n<li class=\"mp-tile-description muted-80\"><em>GitHub User:<\/em> {{vars.input.params.gitHubUsername}}<\/li>\n<\/ul>\n<p class=\"mp-tile-description muted-80\">{% else %}<br><strong>- Content Administrator User<\/strong><\/p>\n<ul class=\"font-size-13 muted-80\">\n<li class=\"mp-tile-description muted-80\"><em>FortiSOAR User: <\/em><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.request.baseUri}}\/security\/people\">{{vars.logged_in_user}}<\/a><\/li>\n<li class=\"mp-tile-description muted-80\"><em>GitHub User:<\/em> {{vars.input.params.gitHubUsername}}<\/li>\n{% endif %}<\/ul>"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "a3a81895-7a83-4ef7-a0a1-989279d50bd8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Status as Pending",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "status": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "dd585596-04c4-4b1d-a98d-8d5f5a8d27ef"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Find Previous Result",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "id",
+                            "value": "{{vars.input.records[0].id}}",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ],
+                    "__selectFields": [
+                        "results"
+                    ]
+                },
+                "module": "change_management?$limit=30",
+                "checkboxFields": true,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "e8125508-a100-4ddf-8590-70f4d93f6cc6"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update GitHub Username -> Find Previous Result",
+            "targetStep": "\/api\/3\/workflow_steps\/e8125508-a100-4ddf-8590-70f4d93f6cc6",
+            "sourceStep": "\/api\/3\/workflow_steps\/05bcfc1c-3b6a-4fbb-a4de-a5b5c662366d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "3e92ba2c-79e0-4af5-b216-569a5cd9f8c1"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Record -> Copy of Update Status as In Progress",
+            "targetStep": "\/api\/3\/workflow_steps\/dd585596-04c4-4b1d-a98d-8d5f5a8d27ef",
+            "sourceStep": "\/api\/3\/workflow_steps\/a3a81895-7a83-4ef7-a0a1-989279d50bd8",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "9c603a1e-6d9a-46cd-a1d7-b963589eb482"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Update Status as In Progress",
+            "targetStep": "\/api\/3\/workflow_steps\/4e4d74de-956b-4461-918a-18f6cb115b71",
+            "sourceStep": "\/api\/3\/workflow_steps\/62dc4d31-01cc-40a5-94ae-e5de097cc27f",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c64a7510-7a57-4aad-847f-943f9879485e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Find Previous Result -> Update Record",
+            "targetStep": "\/api\/3\/workflow_steps\/a3a81895-7a83-4ef7-a0a1-989279d50bd8",
+            "sourceStep": "\/api\/3\/workflow_steps\/e8125508-a100-4ddf-8590-70f4d93f6cc6",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e0d6a5eb-400e-4253-b369-2061039fbdb3"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Update GitHub Username",
+            "targetStep": "\/api\/3\/workflow_steps\/05bcfc1c-3b6a-4fbb-a4de-a5b5c662366d",
+            "sourceStep": "\/api\/3\/workflow_steps\/7c370e60-e44e-41f1-b3b2-5f8bb1b11da3",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "f29c9237-27d3-47ab-a84c-dee8f170a43b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Set Status to In Progress -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/7c370e60-e44e-41f1-b3b2-5f8bb1b11da3",
+            "sourceStep": "\/api\/3\/workflow_steps\/4e4d74de-956b-4461-918a-18f6cb115b71",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "4790391d-286f-40d1-b04c-76947c4acf7b"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "2e8df3ef-5db7-4f45-b15f-9c1279acee6b",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "ManualTrigger",
+        "CICD"
+    ]
+}

@@ -1,0 +1,125 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - List Pull Request",
+    "aliasName": null,
+    "tag": null,
+    "description": "Lists pull requests for the specified repository on GitHub based on the repository name, repository owner, and other input parameters you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "org_name",
+        "repo_name",
+        "state",
+        "pull_number"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/44dfb0c0-03c5-4a1f-b62e-c6e4d6ad4810",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "44dfb0c0-03c5-4a1f-b62e-c6e4d6ad4810"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "List Pull Request",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "{{vars.steps.Check_GitHub_Connector_Configuration.config_id}}",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "base": "",
+                    "head": "",
+                    "page": "",
+                    "repo": "{{vars.input.params['repo_name']}}",
+                    "sort": "created",
+                    "state": "{{vars.input.params.state}}",
+                    "per_page": "",
+                    "direction": "desc",
+                    "repo_type": "Organization",
+                    "pull_number": "{{vars.input.params['pull_number']}}"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "list_pull_request",
+                "operationTitle": "List Pull Request",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "7b99a773-4a5e-49d2-85e7-c503974de51a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Check GitHub Connector Configuration",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "7d304991-a576-4bb5-b795-53bf05503f08"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Check GitHub Connector Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/7d304991-a576-4bb5-b795-53bf05503f08",
+            "sourceStep": "\/api\/3\/workflow_steps\/44dfb0c0-03c5-4a1f-b62e-c6e4d6ad4810",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "3a0a6540-697d-4153-9281-f99a05421dca"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check GitHub Connector Configuration -> List Pull Request",
+            "targetStep": "\/api\/3\/workflow_steps\/7b99a773-4a5e-49d2-85e7-c503974de51a",
+            "sourceStep": "\/api\/3\/workflow_steps\/7d304991-a576-4bb5-b795-53bf05503f08",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c7d3a220-deda-4f5f-a0f3-798f6004ffe0"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "c7ac53b5-7a4b-4c01-abd3-9ea267cd500f",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

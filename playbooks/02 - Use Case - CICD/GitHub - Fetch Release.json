@@ -1,0 +1,141 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Fetch Release",
+    "aliasName": null,
+    "tag": null,
+    "description": "Fetches Release from the Repo",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "org_name",
+        "repo_name",
+        "release_name"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/b51a2e75-050a-45a0-bc68-198ba54cac78",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Fetch Release",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "{{vars.steps.Check_GitHub_Connector_Configuration.config_id}}",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "page": "",
+                    "repo": "{{vars.input.params['repo_name']}}",
+                    "per_page": "",
+                    "repo_type": "Organization"
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "list_releases",
+                "operationTitle": "List Releases",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "0bb986b7-c3a8-420a-a5f8-e68ecf414c63"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Check GitHub Connector Configuration",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "84069264-becd-44bd-a43a-65cb88d570b2"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Save Result",
+            "description": null,
+            "arguments": {
+                "data": "{{(vars.steps.Fetch_Release.data | json_query(\"[?name=='\"+(vars.input.params.release_name)+\"']\"))[0]}}"
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "969104ca-0082-4417-8b57-895845d582ec"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "b51a2e75-050a-45a0-bc68-198ba54cac78"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Check GitHub Connector Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/84069264-becd-44bd-a43a-65cb88d570b2",
+            "sourceStep": "\/api\/3\/workflow_steps\/b51a2e75-050a-45a0-bc68-198ba54cac78",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "6ecc8bea-30a1-4042-bcc1-1416188157d8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check GitHub Connector Configuration -> Fetch Release",
+            "targetStep": "\/api\/3\/workflow_steps\/0bb986b7-c3a8-420a-a5f8-e68ecf414c63",
+            "sourceStep": "\/api\/3\/workflow_steps\/84069264-becd-44bd-a43a-65cb88d570b2",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "8e154251-c5f9-4958-b0fb-3ed142de25a8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Fetch Release -> Save Result",
+            "targetStep": "\/api\/3\/workflow_steps\/969104ca-0082-4417-8b57-895845d582ec",
+            "sourceStep": "\/api\/3\/workflow_steps\/0bb986b7-c3a8-420a-a5f8-e68ecf414c63",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "aa0e7d2b-9e48-401e-8c1e-2f134f7bc1aa"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "de6ad75b-9146-4845-9c82-35864701e91a",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

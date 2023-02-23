@@ -1,0 +1,129 @@
+{
+    "name": "continuousDelivery",
+    "version": "1.0.0",
+    "fsrMinCompatibility": "7.3.1",
+    "type": "solutionpack",
+    "local": true,
+    "label": "Continuous Delivery",
+    "dependencies": [
+        {
+            "name": "sOARFramework",
+            "type": "solutionpack",
+            "label": "SOAR Framework",
+            "minVersion": null
+        }
+    ],
+    "prerequisite": null,
+    "publisher": "Fortinet",
+    "certified": "true",
+    "description": "Setup Source Control and streamline content development lifecycle (CI/CD) across multiple FortiSOAR environments designated as Development, Staging and Production.",
+    "help": "https://github.com/fortinet-fortisoar/solution-pack-cicd/blob/release/1.0.0/README.md",
+    "category": [],
+    "supportInfo": "Fortinet Customer Support",
+    "iconLarge": "fsr-icon-large.png",
+    "postInstallConfig": {
+        "enabled": true,
+        "widgets": [
+            {
+                "name": "cicdConfiguration",
+                "label": "CICD Configuration",
+                "version": "1.0.0",
+                "autoLaunch": true,
+                "buttonLabel": "Configure",
+                "autoLaunchTriggered": true
+            }
+        ]
+    },
+    "contents": {
+        "picklistNames": [
+            {
+                "name": "Change Management Environment"
+            },
+            {
+                "name": "Change Management Status"
+            },
+            {
+                "name": "Change Management Type"
+            }
+        ],
+        "modules": {
+            "change_management": {
+                "name": "Change Management",
+                "apiName": "change_management"
+            },
+            "people": {
+                "name": "People",
+                "apiName": "people"
+            }
+        },
+        "viewTemplates": {
+            "change_management": {
+                "name": "Change Management",
+                "apiName": "change_management",
+                "views": [
+                    "list",
+                    "detail",
+                    "form"
+                ]
+            }
+        },
+        "views": {
+            "navigation": [
+                "Continuous Delivery"
+            ]
+        },
+        "roles": [
+            {
+                "name": "Production Administrator (PA)"
+            },
+            {
+                "name": "Full App Permissions"
+            },
+            {
+                "name": "Content Developer (CD)"
+            }
+        ],
+        "playbooks": [
+            {
+                "name": "02 - Use Case - CICD"
+            }
+        ],
+        "globalVariables": [],
+        "connectors": [
+            {
+                "name": "GitHub",
+                "apiName": "github"
+            }
+        ],
+        "widgets": [
+            {
+                "apiName": "recordCard",
+                "name": "Record Card"
+            },
+            {
+                "apiName": "jsonToGrid",
+                "name": "JSON to Grid"
+            },
+            {
+                "apiName": "cicdConfiguration",
+                "name": "CICD Configuration Wizard"
+            },
+            {
+                "apiName": "recordCtaBlock",
+                "name": "Record CTA Tile"
+            }
+        ],
+        "recordSets": [
+            {
+                "name": "Attachments",
+                "apiName": "attachments",
+                "count": 3
+            },
+            {
+                "name": "Change Management",
+                "apiName": "change_management",
+                "count": 8
+            }
+        ]
+    }
+}

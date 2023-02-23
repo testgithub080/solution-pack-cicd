@@ -1,0 +1,13 @@
+{
+    "@context": "\/api\/3\/contexts\/File",
+    "@type": "File",
+    "uuid": "4ceba74d-afda-4996-abda-67b912558805",
+    "assignee": "",
+    "id": "4ceba74d-afda-4996-abda-67b912558805",
+    "filename": "Source Control - Development Settings.json",
+    "mimeType": "json",
+    "uploadDate": 1674199210.495928,
+    "size": 1819,
+    "thumbnail": null,
+    "metadata": []
+}

@@ -1,0 +1,538 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Push Change to Source Control",
+    "aliasName": null,
+    "tag": null,
+    "description": "Push (Export) specified change request content into the GitHub content repository",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/7af127bd-9fe7-467c-afe4-3bb9fdd681bb",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Playbook Active or Awaiting",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Active\/Awaiting",
+                        "step_iri": "\/api\/3\/workflow_steps\/64a4eb95-c012-4717-8b14-35e416238578",
+                        "condition": "{{ vars.steps.Check_Playbook_Active_or_Awaiting.playbook_status in [\"awaiting\", \"active\"] }}",
+                        "step_name": "Playbook Is Active"
+                    },
+                    {
+                        "option": "Finished",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/2b5440ab-7eb7-4d3b-b9f1-034c62daa246",
+                        "step_name": "Configuration"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "300",
+            "left": "393",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "29a98c56-01e7-45bf-bfc2-57691750b3da"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "issue_no": "{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
+                "repo_name": "{{(vars.input.records[0].repo_url.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
+                "new_branch": "CR-{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
+                "repo_owner": "{{vars.input.records[0].assigneeUsername}}",
+                "base_branch": "{{vars.input.records[0].baseBranch}}",
+                "cicd_config": "{{globalVars.cicd_config | toDict}}",
+                "export_file_name": "FortiSOAR Export-{{arrow.utcnow().int_timestamp}}",
+                "current_timestamp": "{{arrow.get((arrow.utcnow().int_timestamp  | int | abs)).format('YYYYMMDDHHmm')}}",
+                "export_template_name": "{% if \"fortisoar-prod-content\" in vars.input.records[0].repo_url %}Source Control - Production Content{% elif \"fortisoar-dev-settings\" in vars.input.records[0].repo_url %}Source Control - Development Settings{% else %}Source Control - Production Settings{% endif %}"
+            },
+            "status": null,
+            "top": "435",
+            "left": "568",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "2b5440ab-7eb7-4d3b-b9f1-034c62daa246"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get User Conformation",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Confirmation",
+                        "description": "Do you want to Push the [Change Request - {{vars.issue_no}}](https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}}) to the branch \"{{vars.new_branch}}\" in \"{{vars.repo_name}}\" repository?",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_management",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Yes",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/c3429296-0762-42c4-9f4b-62e251cb438e"
+                        },
+                        {
+                            "option": "No",
+                            "step_iri": "\/api\/3\/workflow_steps\/828fca03-7702-43eb-a3d4-08fac3db35f0"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "570",
+            "left": "568",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "3a9dc279-0cdf-4f0d-8842-c0304fa944d0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Populate Push Change Request Details",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Push (Export) Change Request Details",
+                        "description": "\"[Change Request - {{vars.issue_no}}](https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}}) | {{vars.input.records[0].summary}}\" is successfully pushed into the GitHub <a href=\"https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}\" target=\"_blank\"> https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}<\/a> Repository.\n",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_requests",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "OK",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/828fca03-7702-43eb-a3d4-08fac3db35f0"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "1000",
+            "left": "900",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "5540c83a-de50-4c6b-967e-f75a78173c8d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Playbook Is Active",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Warning: Playbook is Active or Awaiting State",
+                        "description": "This operation is in Active\/Awaiting state.\nPlease wait while the previous operation is completed.",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_management",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Ok",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/828fca03-7702-43eb-a3d4-08fac3db35f0"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "975",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "64a4eb95-c012-4717-8b14-35e416238578"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "b333b2d8-eb5c-4015-962d-c226aff386eb",
+                "title": "Push Changes",
+                "resources": [
+                    "change_management"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "_promptexpanded": true,
+                "displayConditions": {
+                    "alerts": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    },
+                    "change_requests": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "type": "object",
+                                "field": "cRState",
+                                "value": "\/api\/3\/picklists\/b5f55ab0-ac86-468f-9700-b68bf454937c",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/b5f55ab0-ac86-468f-9700-b68bf454937c",
+                                    "itemValue": "Assigned"
+                                },
+                                "operator": "eq"
+                            },
+                            {
+                                "type": "array",
+                                "field": "sourceControlState",
+                                "value": [
+                                    "\/api\/3\/picklists\/f5ba27dd-d1fe-4bba-b703-4066788f1c6e",
+                                    "\/api\/3\/picklists\/f643019c-83b4-4d40-afee-cfa429799715"
+                                ],
+                                "module": "sourceControlState",
+                                "display": "",
+                                "operator": "nin",
+                                "template": "multiselectpicklist",
+                                "OPERATOR_KEY": "$",
+                                "previousOperator": "nin",
+                                "previousTemplate": "multiselectpicklist"
+                            }
+                        ]
+                    },
+                    "change_management": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "type": "array",
+                                "field": "environment",
+                                "value": [
+                                    "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651",
+                                    "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b"
+                                ],
+                                "module": "environment",
+                                "display": "",
+                                "operator": "nin",
+                                "template": "multiselectpicklist",
+                                "OPERATOR_KEY": "$",
+                                "previousOperator": "nin",
+                                "previousTemplate": "multiselectpicklist"
+                            }
+                        ]
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "30",
+            "left": "393",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
+            "uuid": "7af127bd-9fe7-467c-afe4-3bb9fdd681bb"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "No Operation",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.2.2",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1100",
+            "left": "580",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "828fca03-7702-43eb-a3d4-08fac3db35f0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Push Export Config",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "org_name": "{{vars.cicd_config.organizationName}}",
+                    "repo_name": "{{vars.repo_name}}",
+                    "branch_name": "{{vars.new_branch}}",
+                    "commit_message": "{{vars.steps.Specify_Commit_Message.input.commitMessage}}",
+                    "export_file_name": "{{vars.export_file_name}}",
+                    "export_template_name": "{{vars.export_template_name}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/77707341-4fe8-4179-953d-7023073fc1f4"
+            },
+            "status": null,
+            "top": "880",
+            "left": "900",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "8d8aca75-c895-451c-bf3d-4bd663dbf27b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Specify Commit Message",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Specify Commit Message",
+                        "description": "Please specify the commit message for the [Change Request - {{vars.issue_no}}](https:\/\/github.com\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}}) which you want to push into the **\"{{vars.repo_name}}\"** Git Repository under the branch **\"{{vars.new_branch}}\"**",
+                        "inputVariables": [
+                            {
+                                "name": "commitMessage",
+                                "type": "string",
+                                "label": "Commit Message",
+                                "tooltip": "",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": true,
+                                "defaultValue": null,
+                                "_previousName": "commitMessa",
+                                "useRecordFieldDefault": false
+                            }
+                        ]
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_requests",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Commit",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/8d8aca75-c895-451c-bf3d-4bd663dbf27b"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "740",
+            "left": "920",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "c3429296-0762-42c4-9f4b-62e251cb438e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Check Playbook Active or Awaiting",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "playbook_name": "Push Change to Source Control"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/670507b8-633d-4262-8ac9-103fecdc172b"
+            },
+            "status": null,
+            "top": "165",
+            "left": "393",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "dc93d44c-b052-4bac-b99d-a91c85a70f73"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Populate Push Change Request Details -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/828fca03-7702-43eb-a3d4-08fac3db35f0",
+            "sourceStep": "\/api\/3\/workflow_steps\/5540c83a-de50-4c6b-967e-f75a78173c8d",
+            "label": "OK",
+            "isExecuted": false,
+            "uuid": "d9ea37ba-d5ab-47a6-8907-c398b81ae162"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get User Conformation",
+            "targetStep": "\/api\/3\/workflow_steps\/3a9dc279-0cdf-4f0d-8842-c0304fa944d0",
+            "sourceStep": "\/api\/3\/workflow_steps\/2b5440ab-7eb7-4d3b-b9f1-034c62daa246",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "cef3fad0-506f-4700-812c-5bd0c9ebc934"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get User Conformation -> Specify Commit Message",
+            "targetStep": "\/api\/3\/workflow_steps\/c3429296-0762-42c4-9f4b-62e251cb438e",
+            "sourceStep": "\/api\/3\/workflow_steps\/3a9dc279-0cdf-4f0d-8842-c0304fa944d0",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "4f0116c9-fedf-4167-8a7d-d02c72071687"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check Playbook Active or Awaiting -> Is Playbook Active or Awaiting",
+            "targetStep": "\/api\/3\/workflow_steps\/29a98c56-01e7-45bf-bfc2-57691750b3da",
+            "sourceStep": "\/api\/3\/workflow_steps\/dc93d44c-b052-4bac-b99d-a91c85a70f73",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "89d1bba0-25aa-4000-afb4-f6f8d1310010"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Check Playbook Active or Awaiting",
+            "targetStep": "\/api\/3\/workflow_steps\/dc93d44c-b052-4bac-b99d-a91c85a70f73",
+            "sourceStep": "\/api\/3\/workflow_steps\/7af127bd-9fe7-467c-afe4-3bb9fdd681bb",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "0f497a2d-ad2d-4e43-ac19-f7f8381dfe27"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Playbook Active or Awaiting -> Playbook Is Active",
+            "targetStep": "\/api\/3\/workflow_steps\/64a4eb95-c012-4717-8b14-35e416238578",
+            "sourceStep": "\/api\/3\/workflow_steps\/29a98c56-01e7-45bf-bfc2-57691750b3da",
+            "label": "Active\/Awaiting",
+            "isExecuted": false,
+            "uuid": "17f70655-58c7-4848-8063-6bdd8e9fdb52"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Playbook Active or Awaiting -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/2b5440ab-7eb7-4d3b-b9f1-034c62daa246",
+            "sourceStep": "\/api\/3\/workflow_steps\/29a98c56-01e7-45bf-bfc2-57691750b3da",
+            "label": "Finished",
+            "isExecuted": false,
+            "uuid": "08bf1599-1560-4dd0-b419-85d35d6d60ad"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Playbook Is Active -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/828fca03-7702-43eb-a3d4-08fac3db35f0",
+            "sourceStep": "\/api\/3\/workflow_steps\/64a4eb95-c012-4717-8b14-35e416238578",
+            "label": "Ok",
+            "isExecuted": false,
+            "uuid": "53e408df-d1c5-463c-ac1c-de950f20aaae"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get User Conformation -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/828fca03-7702-43eb-a3d4-08fac3db35f0",
+            "sourceStep": "\/api\/3\/workflow_steps\/3a9dc279-0cdf-4f0d-8842-c0304fa944d0",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "edd1f373-429d-41be-8a8a-e2a8b24f49cf"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Specify Commit Message -> Push Export Config",
+            "targetStep": "\/api\/3\/workflow_steps\/8d8aca75-c895-451c-bf3d-4bd663dbf27b",
+            "sourceStep": "\/api\/3\/workflow_steps\/c3429296-0762-42c4-9f4b-62e251cb438e",
+            "label": "Commit",
+            "isExecuted": false,
+            "uuid": "7a9e1610-7365-45ec-a476-5bceb0b93dfa"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Push Export Config -> Populate Push Change Request Details",
+            "targetStep": "\/api\/3\/workflow_steps\/5540c83a-de50-4c6b-967e-f75a78173c8d",
+            "sourceStep": "\/api\/3\/workflow_steps\/8d8aca75-c895-451c-bf3d-4bd663dbf27b",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "9fd6a176-c7e7-4a31-90c8-614f6fabb2c6"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "2a7701aa-eba3-415a-b125-7908114e7d5a",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "ManualTrigger",
+        "CICD"
+    ]
+}

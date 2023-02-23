@@ -1,0 +1,257 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "rows",
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "primaryDetail",
+                                "config": {
+                                    "wid": "2e8cfed4-7292-4d9c-b0eb-57d094517086",
+                                    "idField": "title",
+                                    "picklistFieldReadOnly": true,
+                                    "titleFieldReadOnly": false,
+                                    "featuredRelationship": {
+                                        "field": null,
+                                        "preText": "Under Investigation In",
+                                        "query": null,
+                                        "statusField": null,
+                                        "sort": []
+                                    },
+                                    "picklistField": "status"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "b7b4ea45-8a8d-4ca3-833b-6e47845673a6",
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "customPicklistMessage-1.1.0",
+                                "config": {
+                                    "wid": "1e8f3f54-b0f4-4e78-bf0c-e673ddb1c0e4",
+                                    "picklits_mapping": {
+                                        "options": [
+                                            {
+                                                "showSpinner": true,
+                                                "picklistValue": "In-progress",
+                                                "picklistLoadingTitle": "Please wait while current task is being performed..."
+                                            }
+                                        ]
+                                    },
+                                    "picklistItem": "status"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "fd3e9d54-7f33-48bc-8e58-7fafce7a7474",
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "tabs",
+                                "config": {
+                                    "wid": "a9eddea4-4168-4462-b22e-05bf5694c4f6",
+                                    "tabs": [
+                                        {
+                                            "title": "Configuration",
+                                            "active": 0,
+                                            "icon": "fa fa-none",
+                                            "show": true,
+                                            "visible": true,
+                                            "widget": {
+                                                "type": "rows",
+                                                "config": {
+                                                    "wid": "68a4afc8-b889-4c00-b887-26343f728814",
+                                                    "rows": [
+                                                        {
+                                                            "columns": [
+                                                                {
+                                                                    "widgets": [
+                                                                        {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
+                                                                                "wid": "a2ce692f-af91-4e70-80c0-b11f5e067c40",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "description",
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": true
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "style": "col-lg-12"
+                                                                }
+                                                            ],
+                                                            "wid": "44f93a82-8eb4-4a75-80ae-169ef00f8713",
+                                                            "container": true,
+                                                            "_collapsed": false
+                                                        },
+                                                        {
+                                                            "columns": [
+                                                                {
+                                                                    "widgets": [
+                                                                        {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
+                                                                                "wid": "7fe1fbc2-824c-45f4-97f7-2d9da1b0c139",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "results",
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": true
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
+                                                                                "wid": "57339ff3-f942-48ce-bda9-410a21684e77",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "lastBuildDeployedOn",
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": true
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ],
+                                                                                        "style": "display-inline-block"
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
+                                                                                "wid": "ffa3f82b-c2bb-481c-a5a2-480519f17294",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "issues",
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": true
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "style": "col-lg-12"
+                                                                }
+                                                            ],
+                                                            "wid": "35bebabf-70af-4f3e-a84f-c575158e1341",
+                                                            "container": true,
+                                                            "_collapsed": false
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "Actions",
+                                            "active": 0,
+                                            "widget": {
+                                                "type": "executedPlaybooks",
+                                                "config": {
+                                                    "wid": "3e345f0b-217d-4ed1-898f-a97ebb0ca3f1"
+                                                }
+                                            },
+                                            "icon": "fa fa-none",
+                                            "show": false,
+                                            "visible": true
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "7f60e3f8-fe32-4292-a52d-9b30ecae4ed4",
+                "_collapsed": false
+            }
+        ],
+        "actionButtons": [
+            {
+                "id": "\/api\/3\/workflows\/8e709eb0-7c8b-434d-928f-e26eda75f2b1",
+                "name": "Setup Production Environment",
+                "icon": "icon icon-FortiSOAR_setup_guide"
+            },
+            {
+                "id": "\/api\/3\/workflows\/31191224-502c-4b84-bb9b-cd84f005bd6a",
+                "name": "Setup Development Environment",
+                "icon": "icon icon-FortiSOAR_setup_guide"
+            },
+            {
+                "id": "\/api\/3\/workflows\/20a37bc8-6f60-469e-95f6-6e5d25e839d0",
+                "name": "Pull Latest Content from GitHub",
+                "icon": "icon icon-publish"
+            },
+            {
+                "id": "\/api\/3\/workflows\/69179225-e990-4112-b47b-ef9f4c877411",
+                "name": "Save FortiSOAR Settings",
+                "icon": "icon icon-dashboard-settings"
+            },
+            {
+                "id": "\/api\/3\/workflows\/2e8df3ef-5db7-4f45-b15f-9c1279acee6b",
+                "name": "Add GitHub Username",
+                "icon": "fa fa-user"
+            },
+            {
+                "id": "\/api\/3\/workflows\/7709fe05-fbce-48e8-891f-7d69ed8c66f6",
+                "name": "Fetch Latest Changes",
+                "icon": "icon icon-text-content-design"
+            }
+        ],
+        "wid": "2cb77b51-1f1e-4729-85c6-d03a61da3323",
+        "metadata": [],
+        "allowExecuteConnectorActionButton": false,
+        "showCollabByDefault": false
+    },
+    "uuid": "modules-change_management-detail"
+}

@@ -1,0 +1,126 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Create Pull Request",
+    "aliasName": null,
+    "tag": null,
+    "description": "Creates a pull request for the specified repository on GitHub based on the repository name, repository owner, and other input parameters you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "org_name",
+        "repo_name",
+        "head_repo",
+        "base_branch",
+        "pr_title",
+        "pr_comments"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/a07d539b-5a2c-492c-978d-cf7cd1328a39",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Check GitHub Connector Configuration",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "338df300-1f0a-4e5f-980a-cb53c281cfed"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "a07d539b-5a2c-492c-978d-cf7cd1328a39"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Pull Request",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "{{vars.steps.Check_GitHub_Connector_Configuration.config_id}}",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "base": "{{vars.input.params['base_branch']}}",
+                    "body": "{{vars.input.params['pr_comments']}}",
+                    "head": "{{vars.input.params['head_repo']}}",
+                    "repo": "{{vars.input.params['repo_name']}}",
+                    "draft": false,
+                    "title": "{{vars.input.params['pr_title']}}",
+                    "repo_type": "Organization",
+                    "maintainer_can_modify": true
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "create_pull_request",
+                "ignore_errors": true,
+                "operationTitle": "Create Pull Request",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "c00b0f81-8734-49fe-a120-970fef2c7286"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check GitHub Connector Configuration -> Create Pull Request",
+            "targetStep": "\/api\/3\/workflow_steps\/c00b0f81-8734-49fe-a120-970fef2c7286",
+            "sourceStep": "\/api\/3\/workflow_steps\/338df300-1f0a-4e5f-980a-cb53c281cfed",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "176af7d0-0624-4eb8-9627-268375cf8c81"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Check GitHub Connector Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/338df300-1f0a-4e5f-980a-cb53c281cfed",
+            "sourceStep": "\/api\/3\/workflow_steps\/a07d539b-5a2c-492c-978d-cf7cd1328a39",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "9776c823-ff4b-4347-9c36-f64ae03f25fd"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "368b358e-4584-4b5b-9ed2-c59f5d7ff940",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}

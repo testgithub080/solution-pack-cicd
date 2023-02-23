@@ -1,0 +1,25 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "app",
+    "config": {
+        "navigation": [
+            {
+                "icon": "icon icon-queue_rules",
+                "state": {
+                    "name": "main.modules.list",
+                    "parameters": {
+                        "module": "change_management"
+                    }
+                },
+                "title": "Continuous Delivery",
+                "require": {
+                    "action": "read",
+                    "module": "change_management"
+                },
+                "editMode": false
+            }
+        ]
+    },
+    "uuid": "navigation"
+}

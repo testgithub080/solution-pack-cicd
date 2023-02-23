@@ -1,0 +1,580 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Create Pull Request",
+    "aliasName": null,
+    "tag": null,
+    "description": "Create the pull request",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/b25c83e7-18a3-44e5-a9d3-37b6d411f9b9",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Pull Request",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "org_name": "{{vars.cicdConfig.organizationName}}",
+                    "pr_title": "{{vars.steps.Specify_PR_Title_and_Comments.input.title}}",
+                    "head_repo": "{{vars.cicdConfig.organizationName}}:{{vars.new_branch}}",
+                    "repo_name": "{{vars.repo_name}}",
+                    "base_branch": "{{vars.cicdConfig.baseBranch}}",
+                    "pr_comments": "This is a fix for Issue #{{vars.issue_no}}"
+                },
+                "apply_async": false,
+                "ignore_errors": true,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/368b358e-4584-4b5b-9ed2-c59f5d7ff940"
+            },
+            "status": null,
+            "top": "705",
+            "left": "650",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "07b1db66-5691-49ff-9144-53b0747b38f5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Specify PR Title and Comments",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Pull Request Title and Comments",
+                        "description": "Provide the following details for the Pull Request",
+                        "inputVariables": [
+                            {
+                                "name": "title",
+                                "type": "string",
+                                "label": "Title",
+                                "tooltip": "",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": true,
+                                "_nameTouched": true,
+                                "defaultValue": null,
+                                "_previousName": "pRTitle",
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "reviewersName",
+                                "type": "string",
+                                "label": "Reviewers Name",
+                                "tooltip": "Specify the comma-separated list of user names that you want to add as reviewers",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": true,
+                                "defaultValue": null,
+                                "_previousName": "",
+                                "useRecordFieldDefault": false
+                            }
+                        ]
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_requests",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Submit",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/07b1db66-5691-49ff-9144-53b0747b38f5"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "570",
+            "left": "650",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "524c224b-2d87-45ee-bd0e-d2dadaa07559"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Pull Request Created",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "No",
+                        "step_iri": "\/api\/3\/workflow_steps\/fa00bcf9-e468-41a9-8037-979013e29d30",
+                        "condition": "{{ vars.steps.Create_Pull_Request['Error message'] is defined }}",
+                        "step_name": "Populate Error Message"
+                    },
+                    {
+                        "option": "Yes",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/ae742cf1-490f-4c78-9a8b-5804a4ae112e",
+                        "step_name": "Add PR Reviewers"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "840",
+            "left": "650",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "7b0d9412-1a9c-46da-8a71-774deccb4261"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Playbook Active or Awaiting",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Active\/Awaiting",
+                        "step_iri": "\/api\/3\/workflow_steps\/de4cac43-a9a0-431b-8d86-777e781a4a59",
+                        "condition": "{{ vars.steps.Check_Playbook_Active_or_Awaiting.playbook_status in [\"awaiting\", \"active\"] }}",
+                        "step_name": "Playbook Is Active"
+                    },
+                    {
+                        "option": "Finished",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/c647ff60-64b8-470b-9a95-f5a61dca43a2",
+                        "step_name": "Configuration"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "300",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "7ce94824-9e21-4c04-b8cb-cefcffeff3f8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Check Playbook Active or Awaiting",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "playbook_name": "Create Pull Request"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/670507b8-633d-4262-8ac9-103fecdc172b"
+            },
+            "status": null,
+            "top": "165",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "90e5fc86-5c0f-4c39-a998-46aa7871922f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Add PR Reviewers",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "org_name": "{{vars.cicdConfig.organizationName}}",
+                    "repo_name": "{{vars.repo_name}}",
+                    "reviewers": "{{vars.steps.Specify_PR_Title_and_Comments.input.reviewersName}}",
+                    "pull_number": "{{vars.steps.Create_Pull_Request.data.number}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/1982520c-5862-426f-aea5-2a509fe185fb"
+            },
+            "status": null,
+            "top": "975",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "ae742cf1-490f-4c78-9a8b-5804a4ae112e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "9cdf70c1-24f4-406a-9622-1bc0bf56feca",
+                "title": "Submit for Review",
+                "resources": [
+                    "change_management"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "displayConditions": {
+                    "change_requests": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    },
+                    "change_management": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "type": "array",
+                                "field": "environment",
+                                "value": [
+                                    "\/api\/3\/picklists\/d4ff078d-7692-4737-b45b-00990e949651",
+                                    "\/api\/3\/picklists\/48b9f120-34bc-4884-b886-85e82321684b"
+                                ],
+                                "module": "environment",
+                                "display": "",
+                                "operator": "nin",
+                                "template": "multiselectpicklist",
+                                "OPERATOR_KEY": "$",
+                                "previousOperator": "nin",
+                                "previousTemplate": "multiselectpicklist"
+                            }
+                        ]
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "30",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
+            "uuid": "b25c83e7-18a3-44e5-a9d3-37b6d411f9b9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "issue_no": "{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
+                "repo_name": "{{(vars.input.records[0].repo_url.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
+                "cicdConfig": "{{globalVars.cicd_config | toDict}}",
+                "new_branch": "CR-{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}"
+            },
+            "status": null,
+            "top": "435",
+            "left": "650",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "c647ff60-64b8-470b-9a95-f5a61dca43a2"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Playbook Is Active",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Warning: Playbook is Active or Awaiting State",
+                        "description": "{{vars.input.records[0].title}} operation is in Active\/Awaiting state.\nPlease wait while the previous operation is completed.",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_management",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Ok",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/fad6223f-029e-4e22-b5a1-17e60df423c3"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "1110",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "de4cac43-a9a0-431b-8d86-777e781a4a59"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Populate PR Details",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Pull Request Details",
+                        "description": "Pull Request <a href=\"{{vars.steps.Create_Pull_Request1.data['html_url']}}\">{{vars.steps.Create_Pull_Request1.data['html_url']}}<\/a> is successfully created.\n",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_requests",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "OK",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/fad6223f-029e-4e22-b5a1-17e60df423c3"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "1110",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "e2d15988-05eb-446d-b8e1-3739c0b5afb4"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Populate Error Message",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Warning: Pull Request Creation Failed",
+                        "description": "{% if \"Validation Failed\" in vars.steps.Create_Pull_Request['Error message'] %}\"**Validation Failed**: No commits between {{vars.cicdConfig.baseBranch}} and CR-{{vars.issue_no}}\"{% else %}Pull Request is not created successfully, check playbook logs for more details{% endif %}",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_management",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Ok",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/fad6223f-029e-4e22-b5a1-17e60df423c3"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "1110",
+            "left": "825",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "fa00bcf9-e468-41a9-8037-979013e29d30"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "No Operation",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.2.2",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1245",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "fad6223f-029e-4e22-b5a1-17e60df423c3"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Specify PR Title and Comments",
+            "targetStep": "\/api\/3\/workflow_steps\/524c224b-2d87-45ee-bd0e-d2dadaa07559",
+            "sourceStep": "\/api\/3\/workflow_steps\/c647ff60-64b8-470b-9a95-f5a61dca43a2",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "759bd904-7a34-47db-9f01-7570e5c5a559"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Populate PR Details -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/fad6223f-029e-4e22-b5a1-17e60df423c3",
+            "sourceStep": "\/api\/3\/workflow_steps\/e2d15988-05eb-446d-b8e1-3739c0b5afb4",
+            "label": "OK",
+            "isExecuted": false,
+            "uuid": "ec7ec573-e3b1-4d9e-bf73-17122485651e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Is Playbook Active or Awaiting",
+            "targetStep": "\/api\/3\/workflow_steps\/90e5fc86-5c0f-4c39-a998-46aa7871922f",
+            "sourceStep": "\/api\/3\/workflow_steps\/b25c83e7-18a3-44e5-a9d3-37b6d411f9b9",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "51f907a6-97a0-4339-a98d-794bf835bd8e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check Playbook Active or Awaiting -> Is Playbook Active or Awaiting",
+            "targetStep": "\/api\/3\/workflow_steps\/7ce94824-9e21-4c04-b8cb-cefcffeff3f8",
+            "sourceStep": "\/api\/3\/workflow_steps\/90e5fc86-5c0f-4c39-a998-46aa7871922f",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "fb8db7de-daf1-459c-b23d-c5bb1822432b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Playbook Active or Awaiting -> Playbook Is Active",
+            "targetStep": "\/api\/3\/workflow_steps\/de4cac43-a9a0-431b-8d86-777e781a4a59",
+            "sourceStep": "\/api\/3\/workflow_steps\/7ce94824-9e21-4c04-b8cb-cefcffeff3f8",
+            "label": "Active\/Awaiting",
+            "isExecuted": false,
+            "uuid": "40f2f988-0beb-4019-8766-acb20c62b8ad"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Playbook Active or Awaiting -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/c647ff60-64b8-470b-9a95-f5a61dca43a2",
+            "sourceStep": "\/api\/3\/workflow_steps\/7ce94824-9e21-4c04-b8cb-cefcffeff3f8",
+            "label": "Finished",
+            "isExecuted": false,
+            "uuid": "67172ef5-83d2-4267-9384-a09b088c51f8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Playbook Is Active -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/fad6223f-029e-4e22-b5a1-17e60df423c3",
+            "sourceStep": "\/api\/3\/workflow_steps\/de4cac43-a9a0-431b-8d86-777e781a4a59",
+            "label": "Ok",
+            "isExecuted": false,
+            "uuid": "f3f0769a-0b87-4c65-9819-9f734db5a3b1"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Specify PR Title and Comments -> Create Pull Request",
+            "targetStep": "\/api\/3\/workflow_steps\/07b1db66-5691-49ff-9144-53b0747b38f5",
+            "sourceStep": "\/api\/3\/workflow_steps\/524c224b-2d87-45ee-bd0e-d2dadaa07559",
+            "label": "Submit",
+            "isExecuted": false,
+            "uuid": "02fd18a7-306b-405c-956a-6690a2eb381d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Add PR Reviewers -> Populate PR Details",
+            "targetStep": "\/api\/3\/workflow_steps\/e2d15988-05eb-446d-b8e1-3739c0b5afb4",
+            "sourceStep": "\/api\/3\/workflow_steps\/ae742cf1-490f-4c78-9a8b-5804a4ae112e",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e718e9a6-654b-406f-a925-ee5dcfff13da"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Pull Request -> Is Pull Request Created",
+            "targetStep": "\/api\/3\/workflow_steps\/7b0d9412-1a9c-46da-8a71-774deccb4261",
+            "sourceStep": "\/api\/3\/workflow_steps\/07b1db66-5691-49ff-9144-53b0747b38f5",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "bb5871b2-29b4-4dd1-b1af-e5da0bbb668d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Populate Error Message -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/fad6223f-029e-4e22-b5a1-17e60df423c3",
+            "sourceStep": "\/api\/3\/workflow_steps\/fa00bcf9-e468-41a9-8037-979013e29d30",
+            "label": "Ok",
+            "isExecuted": false,
+            "uuid": "96be30b8-608a-4e48-8da3-8f776e6a4708"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Pull Request Created -> Add PR Reviewers",
+            "targetStep": "\/api\/3\/workflow_steps\/ae742cf1-490f-4c78-9a8b-5804a4ae112e",
+            "sourceStep": "\/api\/3\/workflow_steps\/7b0d9412-1a9c-46da-8a71-774deccb4261",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "0ce29ea4-14bd-44ed-a10a-251918dbd978"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Pull Request Created -> Populate Error Message",
+            "targetStep": "\/api\/3\/workflow_steps\/fa00bcf9-e468-41a9-8037-979013e29d30",
+            "sourceStep": "\/api\/3\/workflow_steps\/7b0d9412-1a9c-46da-8a71-774deccb4261",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "50671227-7641-437e-b6ef-c0e871a5bbff"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "8731fb31-4fb5-4f03-80f5-e8920740a492",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "ManualTrigger",
+        "CICD"
+    ]
+}

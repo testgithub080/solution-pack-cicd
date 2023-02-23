@@ -1,0 +1,124 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "GitHub - Create Repository",
+    "aliasName": null,
+    "tag": null,
+    "description": "Creates a new organization or authenticated user repository based on the repository name, organization name, base branch name, and other input parameters you have specified",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "org_name",
+        "repo_name"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/6fdc651c-5027-4016-b774-d251caf02022",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Check GitHub Connector Configuration",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "52827860-cca0-4ce0-9f59-934f0144faae"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "6fdc651c-5027-4016-b774-d251caf02022"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Repository",
+            "description": null,
+            "arguments": {
+                "name": "GitHub",
+                "config": "{{vars.steps.Check_GitHub_Connector_Configuration.config_id}}",
+                "params": {
+                    "org": "{{vars.input.params['org_name']}}",
+                    "name": "{{vars.input.params['repo_name']}}",
+                    "private": true,
+                    "has_wiki": true,
+                    "homepage": "",
+                    "repo_type": "Organization",
+                    "has_issues": true,
+                    "description": "",
+                    "is_template": false,
+                    "has_projects": true,
+                    "other_fields": ""
+                },
+                "version": "1.0.0",
+                "connector": "github",
+                "operation": "create_repository",
+                "ignore_errors": true,
+                "operationTitle": "Create Repository",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "cb6cfbe8-edd3-4fd0-9bd9-5a951ac44f48"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check GitHub Connector Configuration -> Create Repository",
+            "targetStep": "\/api\/3\/workflow_steps\/cb6cfbe8-edd3-4fd0-9bd9-5a951ac44f48",
+            "sourceStep": "\/api\/3\/workflow_steps\/52827860-cca0-4ce0-9f59-934f0144faae",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "d5064d5f-5403-4685-b86a-af86b50c0f59"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Check GitHub Connector Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/52827860-cca0-4ce0-9f59-934f0144faae",
+            "sourceStep": "\/api\/3\/workflow_steps\/6fdc651c-5027-4016-b774-d251caf02022",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "f2b52eab-3250-43bd-8b28-f35336bda375"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "54667218-789e-4fff-b437-0c6aa79436c8",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "CICD",
+        "GitHub"
+    ]
+}
