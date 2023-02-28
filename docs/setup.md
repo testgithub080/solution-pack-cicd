@@ -10,7 +10,17 @@
 
 ## Prerequisites
 
-**Continuous Delivery** has no dependency on any of the solution packs. However, it has following prerequisites:
+The **Continuous Delivery** solution pack depends on the following solution packs that are installed automatically &ndash; if not already installed.
+
+| Solution Pack Name | Version | Purpose                                |
+|:-------------------|:--------|:---------------------------------------|
+| SOAR Framework     | v2.0.0  | Required for Incident Response modules |
+
+Following are some prerequisites to using this solution pack:
+
+>Development and Production environments must have the same license type.
+>
+>For information on available license types, refer to Deployment Guide's [License Manager](https://docs.fortinet.com/document/fortisoar/7.3.1/deployment-guide/223944/licensing-fortisoar#License_Manager_Page) section.
 
 1. **Organizational account**: A GitHub organization account is a type of account that represents an organization, instead of an individual user. It allows multiple users to collaborate on projects and manage access to repositories and teams.
 
@@ -73,7 +83,7 @@ After installation of **Continuous Delivery** solution pack, run the configurati
 
     ![All set](./res/config-wizard-04.png)
 
-## Setup Source Control for Production Environment
+## Setup Production Environment
 
 You can setup GitHub as a source control management through playbooks, automatically, or by pre-creating repositories on GitHub and linking them to FortiSOAR Continuous Delivery solution pack.
 To setup GitHub as a source control and creating repositories using playbooks:
@@ -107,6 +117,26 @@ To setup GitHub as a source control and creating repositories using playbooks:
     6. Click the button Push to push the content from FortiSOAR to the specified branch of the repository mentioned in Production Content.
     Pushing overwrites the contents of the repository mentioned in Production Content. You can click the button Skip to push the contents later.
 
+## Setup a Staging Environment
+
+Setting up a staging environment acts as a sandbox for testing out the content developed by the content developers before finally rolling out the changes in production.
+
+Following image helps understand the placement of a pre-production or a staging environment:
+
+![Development, Staging, and Production Environment](./res/setup-staging-environment.svg)
+
+1. [Setup Development Environment](#setup-development-environment) on a separate FortiSOAR instance.
+
+2. [Setup Production Environment](#setup-development-environment) on a separate FortiSOAR instance.
+
+3. Setup Production Environment on a separate FortiSOAR instance and consider it *Staging Environment*.
+
+4. [Apply latest changes](./usage.md#apply-latest-changes-in-production-environment) in the staging environment only after a successful run of those changes on the development environment.
+
+5. The staging environment acts as a production environment for changes that have been successfully tested in the development environment. So setting it up is similar to [setting up production environment](#setup-production-environment).
+
+6. After ensuring that the content changes are stable in production, only then you can [apply latest changes in production environment](./usage.md#apply-latest-changes-in-production-environment).
+
 ## Setup Development Environment
 
 Once you have setup source control for production environment, move over to the development FortiSOAR instance to initiate the setup for development environment. This action aims to keep dev changes under the purview of source control.
@@ -118,3 +148,60 @@ Once you have setup source control for production environment, move over to the 
 3. Click the button **Setup Dev Environment** from the lower left part of the screen.
 
 4. Enter the GitHub username with which to map the username you used to log in to FortiSOAR.
+
+## Working with Source Control and Continuous Delivery - Best Practices
+
+Apart from best practices around source control like branching and merging strategies, committing code frequently with clear commit messages, automating the build process, and using a deployment pipeline for consistent and reliable releases; following pointers help avoid common pitfalls.
+
+1. While creating repos using playbooks, ensure that the GitHub connector is configured.
+
+    - Credentials used in the configuration must have sufficient privileges to create private repos in the specified organization.
+
+    - GitHub username specified during configuration must be mapped with the user who is setting up the Source Control.
+
+2. For repos with restricted merge access, during the initial commit the current logged in user must have sufficient privileges to push the code without raising a PR.
+
+3. When mapping existing repos during Continuous Delivery's **Setup Source Control** process, ensure *Issues* & *Merge Commit* option are enabled for these existing repos. 
+
+    |Under GitHub repo settings, enable following options|
+    |:-|
+    |![Enable issues under features section](./res/repo-settings-enable-issues.png)|
+    |![Enable merge commits under pull requests section](./res/repo-settings-enable-merge-commits.png)|
+
+4. Users and their tokens must have sufficient privileges for following actions:
+
+    - Creating or closing a change request
+
+    - Creating or deleting a branch
+
+    - Merging a pull request (PR)
+
+5. After applying latest changes [in production](./usage.md#apply-latest-changes-in-production-environment) or [in development](./usage.md#apply-latest-changes-in-development-environment), perform following actions for optimum performance:
+
+    - Refresh the FortiSOAR page
+
+    - Logout & Login
+
+    - For a role change or addition, ensure the role is assigned to the appropriate user 
+
+6. In case of conflicts in a pull request (PR), resolve the conflict before merging the PR.
+
+7. Each development environment user must be mapped with their GitHub username in the *production* environment. 
+
+8. Base Branch must never be deleted.
+
+9. Following global variables must never be modified or deleted:
+
+    - `cicd_config`
+
+    - `cicd_env`
+
+10. When setting role permissions, never allow **Delete** permission to the change management module.
+
+11. Do not modify Change Management module's Service View Template (SVT).
+
+12. Do not create a PR before pushing code to the related branch
+
+13. Content developer must never be the PR reviewer.
+
+14. Changes related to a single change request (CR) must never be pushed from multiple development environments.
