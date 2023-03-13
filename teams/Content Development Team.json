@@ -1,0 +1,12 @@
+{
+    "@context": "\/api\/3\/contexts\/Team",
+    "@id": "\/api\/3\/teams\/57958923-8174-45af-a10f-f145e231334a",
+    "@type": "Team",
+    "description": "CICD Content Development Team",
+    "name": "Content Development Team",
+    "actors": [],
+    "parents": [],
+    "siblings": [],
+    "children": [],
+    "uuid": "57958923-8174-45af-a10f-f145e231334a"
+}

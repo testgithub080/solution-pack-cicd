@@ -18,10 +18,29 @@
         "branch_name"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "collection": "\/api\/3\/workflow_collections\/36f63e54-01b1-45f7-bd33-c53dba44b797",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/aee8ede1-e968-4fb8-a188-3f09e6258342",
+    "triggerStep": "\/api\/3\/workflow_steps\/5451e0b6-5a65-4369-9d05-2611ec0df28e",
     "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Check GitHub Connector Configuration",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/dd654cd4-923f-4c20-837c-279669c2fa82"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "8ebd5ecd-f49f-4c18-8110-0af485f7262f"
+        },
         {
             "@type": "WorkflowStep",
             "name": "Create or Update File Content",
@@ -52,7 +71,7 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
-            "uuid": "a3d5e47d-8e40-40b7-bc7c-a4f42784c050"
+            "uuid": "6ed4b6ec-308e-41db-b240-b76e8d6fcc72"
         },
         {
             "@type": "WorkflowStep",
@@ -70,51 +89,34 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
             "group": null,
-            "uuid": "aee8ede1-e968-4fb8-a188-3f09e6258342"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Check GitHub Connector Configuration",
-            "description": null,
-            "arguments": {
-                "arguments": [],
-                "apply_async": false,
-                "step_variables": [],
-                "pass_parent_env": false,
-                "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
-            },
-            "status": null,
-            "top": "165",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "bbf03dde-b9d9-4495-9626-8c00a8ed8f41"
+            "uuid": "5451e0b6-5a65-4369-9d05-2611ec0df28e"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Check GitHub Connector Configuration -> Create or Update File Content",
-            "targetStep": "\/api\/3\/workflow_steps\/a3d5e47d-8e40-40b7-bc7c-a4f42784c050",
-            "sourceStep": "\/api\/3\/workflow_steps\/bbf03dde-b9d9-4495-9626-8c00a8ed8f41",
+            "targetStep": "\/api\/3\/workflow_steps\/6ed4b6ec-308e-41db-b240-b76e8d6fcc72",
+            "sourceStep": "\/api\/3\/workflow_steps\/8ebd5ecd-f49f-4c18-8110-0af485f7262f",
             "label": null,
             "isExecuted": false,
-            "uuid": "b576e376-ee4b-4241-9278-035eb94c2643"
+            "group": null,
+            "uuid": "2f676208-f336-43fc-9899-cf380b0c2bc2"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Check GitHub Connector Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/bbf03dde-b9d9-4495-9626-8c00a8ed8f41",
-            "sourceStep": "\/api\/3\/workflow_steps\/aee8ede1-e968-4fb8-a188-3f09e6258342",
+            "targetStep": "\/api\/3\/workflow_steps\/8ebd5ecd-f49f-4c18-8110-0af485f7262f",
+            "sourceStep": "\/api\/3\/workflow_steps\/5451e0b6-5a65-4369-9d05-2611ec0df28e",
             "label": null,
             "isExecuted": false,
-            "uuid": "efcb58d1-9151-42a2-90c3-2adbd422e713"
+            "group": null,
+            "uuid": "880fc63e-7aa5-4941-b453-c2c51d3a7c8a"
         }
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "865a81b6-cb22-4133-825e-3b2401be9907",
+    "uuid": "3465e8b3-08ad-4ffc-8711-2925ede11c2f",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

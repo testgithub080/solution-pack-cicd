@@ -11,10 +11,31 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "collection": "\/api\/3\/workflow_collections\/36f63e54-01b1-45f7-bd33-c53dba44b797",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/f95d5f8c-3ac5-45c4-9a6a-7f659f529bf1",
+    "triggerStep": "\/api\/3\/workflow_steps\/470769a0-cbbc-4969-838d-09486cbee117",
     "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Check Playbook Active or Awaiting",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "playbook_name": "Close Change Request"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/2bf34362-0466-4590-9ce5-845ce08860bc"
+            },
+            "status": null,
+            "top": "165",
+            "left": "393",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "4154331a-cf9b-458c-aade-7dc36c4a3179"
+        },
         {
             "@type": "WorkflowStep",
             "name": "Close Issue",
@@ -32,14 +53,175 @@
                 "step_variables": [],
                 "pass_parent_env": false,
                 "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/57bfd9b5-7df7-4eef-bcb2-c71977cd7f0e"
+                "workflowReference": "\/api\/3\/workflows\/d1c67744-b330-4d01-b7a5-fb9920244488"
             },
             "status": null,
             "top": "800",
             "left": "100",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
-            "uuid": "0edbd253-6fd6-49cb-816b-723891012f3a"
+            "uuid": "a02dc76a-5c4c-4f3d-94ae-0a7d995aea0c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "issue_no": "{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
+                "org_name": "{{vars.input.records[0].cRNo.split(\"<a href='https:\/\/github.com\/\")[-1].split(\"\/\")[0]}}",
+                "repo_name": "{{(vars.input.records[0].repo_url.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
+                "pull_number": "{{vars.input.records[0].pullRequest.split(\"' target='\")[0].split(\"\/\")[-1]}}",
+                "issue_description": "{{vars.input.records[0].description}}"
+            },
+            "status": null,
+            "top": "435",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "63f44640-d0d9-4fa4-9c22-c4cadd521600"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Pull Request State",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "state": "all",
+                    "org_name": "{{vars.org_name}}",
+                    "repo_name": "{{vars.repo_name}}",
+                    "pull_number": "{{vars.pull_number}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/eb448291-11a6-44e4-ba5f-59a87ea5d4f3"
+            },
+            "status": null,
+            "top": "570",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "3c060cd4-cbc5-4331-8820-3ee1b304cb8a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Playbook Active or Awaiting",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Active\/Awaiting",
+                        "step_iri": "\/api\/3\/workflow_steps\/acb60c6f-7aa9-4a2d-b5e0-5479ffbaae2b",
+                        "condition": "{{ vars.steps.Check_Playbook_Active_or_Awaiting.playbook_status in [\"awaiting\", \"active\"] }}",
+                        "step_name": "No Operation"
+                    },
+                    {
+                        "option": "Finished",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/63f44640-d0d9-4fa4-9c22-c4cadd521600",
+                        "step_name": "Configuration"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "300",
+            "left": "393",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "bab0a936-47b8-4498-9fd5-0b618e6f393e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Pull Closed",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/a02dc76a-5c4c-4f3d-94ae-0a7d995aea0c",
+                        "condition": "{{ vars.steps.Get_Pull_Request_State.data.state == \"closed\" }}",
+                        "step_name": "Close Issue"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/9b0dc1df-3da5-4fd1-8381-76aca381fdaf",
+                        "step_name": "Pull Request Is Not Merged"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "705",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "536d20f5-37f6-45d7-878b-4fc6db8939ff"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "No Operation",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "980",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "acb60c6f-7aa9-4a2d-b5e0-5479ffbaae2b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Populate PR Merged Details",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Closed Issue",
+                        "description": "\"{{vars.repo_name}}\" repository Issue {{vars.steps.Close_Issue1.data.number}} is closed successfully ",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "change_requests",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "OK",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/acb60c6f-7aa9-4a2d-b5e0-5479ffbaae2b"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "980",
+            "left": "100",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "6e5cc265-c013-43ae-9678-f9807ec53e91"
         },
         {
             "@type": "WorkflowStep",
@@ -67,7 +249,7 @@
                         {
                             "option": "Ok",
                             "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/1fef85e2-cfa9-4264-bf53-88392f8b75c5"
+                            "step_iri": "\/api\/3\/workflow_steps\/acb60c6f-7aa9-4a2d-b5e0-5479ffbaae2b"
                         }
                     ],
                     "duplicateOption": false
@@ -85,150 +267,14 @@
             "left": "460",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
-            "uuid": "1f26d76d-26e0-4ac0-a58a-f1de9fa5d0ce"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "No Operation",
-            "description": null,
-            "arguments": {
-                "params": [],
-                "version": "3.2.1",
-                "connector": "cyops_utilities",
-                "operation": "no_op",
-                "operationTitle": "Utils: No Operation",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "980",
-            "left": "660",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "1fef85e2-cfa9-4264-bf53-88392f8b75c5"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Check Playbook Active or Awaiting",
-            "description": null,
-            "arguments": {
-                "arguments": {
-                    "playbook_name": "Close Change Request"
-                },
-                "apply_async": false,
-                "step_variables": [],
-                "pass_parent_env": false,
-                "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/670507b8-633d-4262-8ac9-103fecdc172b"
-            },
-            "status": null,
-            "top": "165",
-            "left": "393",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "3042a2e0-2a3d-4181-b6f3-42fdabf59eba"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Is Pull Closed",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/0edbd253-6fd6-49cb-816b-723891012f3a",
-                        "condition": "{{ vars.steps.Get_Pull_Request_State.data.state == \"closed\" }}",
-                        "step_name": "Close Issue"
-                    },
-                    {
-                        "option": "No",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/1f26d76d-26e0-4ac0-a58a-f1de9fa5d0ce",
-                        "step_name": "Pull Request Is Not Merged"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "705",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "group": null,
-            "uuid": "4e6b8b5c-05ae-4b12-bdad-ceb099cf7b6f"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Get Pull Request State",
-            "description": null,
-            "arguments": {
-                "arguments": {
-                    "state": "all",
-                    "org_name": "{{vars.org_name}}",
-                    "repo_name": "{{vars.repo_name}}",
-                    "pull_number": "{{vars.pull_number}}"
-                },
-                "apply_async": false,
-                "step_variables": [],
-                "pass_parent_env": false,
-                "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/c7ac53b5-7a4b-4c01-abd3-9ea267cd500f"
-            },
-            "status": null,
-            "top": "570",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "566c368f-a2f8-4aaf-8154-a160bcc8b491"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Configuration",
-            "description": null,
-            "arguments": {
-                "issue_no": "{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
-                "org_name": "{{vars.input.records[0].cRNo.split(\"<a href='https:\/\/github.com\/\")[-1].split(\"\/\")[0]}}",
-                "repo_name": "{{(vars.input.records[0].repo_url.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
-                "pull_number": "{{vars.input.records[0].pullRequest.split(\"' target='\")[0].split(\"\/\")[-1]}}",
-                "issue_description": "{{vars.input.records[0].description}}"
-            },
-            "status": null,
-            "top": "435",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "b01cbfa5-267a-484c-b5ab-4b137c4ef661"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Is Playbook Active or Awaiting",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Active\/Awaiting",
-                        "step_iri": "\/api\/3\/workflow_steps\/1fef85e2-cfa9-4264-bf53-88392f8b75c5",
-                        "condition": "{{ vars.steps.Check_Playbook_Active_or_Awaiting.playbook_status in [\"awaiting\", \"active\"] }}",
-                        "step_name": "No Operation"
-                    },
-                    {
-                        "option": "Finished",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/b01cbfa5-267a-484c-b5ab-4b137c4ef661",
-                        "step_name": "Configuration"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "300",
-            "left": "393",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "group": null,
-            "uuid": "dcdd0c08-73dc-4fd1-b996-4485d7c20a3f"
+            "uuid": "9b0dc1df-3da5-4fd1-8381-76aca381fdaf"
         },
         {
             "@type": "WorkflowStep",
             "name": "Start",
             "description": null,
             "arguments": {
-                "route": "740e63ae-b3c3-4586-971c-f3437a0c13f8",
+                "route": "f9811ca3-77db-46e0-a03e-cb86cee42501",
                 "title": "Close Request",
                 "resources": [
                     "change_management"
@@ -290,159 +336,124 @@
             "left": "393",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
             "group": null,
-            "uuid": "f95d5f8c-3ac5-45c4-9a6a-7f659f529bf1"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Populate PR Merged Details",
-            "description": null,
-            "arguments": {
-                "type": "InputBased",
-                "input": {
-                    "schema": {
-                        "title": "Closed Issue",
-                        "description": "\"{{vars.repo_name}}\" repository Issue {{vars.steps.Close_Issue1.data.number}} is closed successfully ",
-                        "inputVariables": []
-                    }
-                },
-                "record": "",
-                "agent_id": null,
-                "resources": "change_requests",
-                "owner_detail": {
-                    "isAssigned": false
-                },
-                "isRecordLinked": false,
-                "step_variables": [],
-                "response_mapping": {
-                    "options": [
-                        {
-                            "option": "OK",
-                            "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/1fef85e2-cfa9-4264-bf53-88392f8b75c5"
-                        }
-                    ],
-                    "duplicateOption": false
-                },
-                "email_notification": {
-                    "enabled": false,
-                    "smtpParameters": []
-                },
-                "inline_channel_list": [],
-                "external_channel_list": [],
-                "unauthenticated_input": false
-            },
-            "status": null,
-            "top": "980",
-            "left": "100",
-            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
-            "group": null,
-            "uuid": "fc1eb982-8230-4206-bf80-74c42ff54c55"
+            "uuid": "470769a0-cbbc-4969-838d-09486cbee117"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Configuration -> Get Pull Request State",
-            "targetStep": "\/api\/3\/workflow_steps\/566c368f-a2f8-4aaf-8154-a160bcc8b491",
-            "sourceStep": "\/api\/3\/workflow_steps\/b01cbfa5-267a-484c-b5ab-4b137c4ef661",
+            "name": "Check Playbook Active or Awaiting -> Is Playbook Active or Awaiting",
+            "targetStep": "\/api\/3\/workflow_steps\/bab0a936-47b8-4498-9fd5-0b618e6f393e",
+            "sourceStep": "\/api\/3\/workflow_steps\/4154331a-cf9b-458c-aade-7dc36c4a3179",
             "label": null,
             "isExecuted": false,
-            "uuid": "060e80d2-f431-46f3-ab5e-54d3ab5f8df6"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Pull Request Is Not Merged -> No Operation",
-            "targetStep": "\/api\/3\/workflow_steps\/1fef85e2-cfa9-4264-bf53-88392f8b75c5",
-            "sourceStep": "\/api\/3\/workflow_steps\/1f26d76d-26e0-4ac0-a58a-f1de9fa5d0ce",
-            "label": "Ok",
-            "isExecuted": false,
-            "uuid": "1292b750-3a3c-4dbe-811e-36efdd96043f"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Get Pull Request State -> Is Pull Merged",
-            "targetStep": "\/api\/3\/workflow_steps\/4e6b8b5c-05ae-4b12-bdad-ceb099cf7b6f",
-            "sourceStep": "\/api\/3\/workflow_steps\/566c368f-a2f8-4aaf-8154-a160bcc8b491",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "23db4285-4497-400e-b8b1-d37770635ec1"
+            "group": null,
+            "uuid": "16f0a78c-36b9-4816-bc59-0704456340b0"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Close Issue -> Populate PR Merged Details",
-            "targetStep": "\/api\/3\/workflow_steps\/fc1eb982-8230-4206-bf80-74c42ff54c55",
-            "sourceStep": "\/api\/3\/workflow_steps\/0edbd253-6fd6-49cb-816b-723891012f3a",
+            "targetStep": "\/api\/3\/workflow_steps\/6e5cc265-c013-43ae-9678-f9807ec53e91",
+            "sourceStep": "\/api\/3\/workflow_steps\/a02dc76a-5c4c-4f3d-94ae-0a7d995aea0c",
             "label": null,
             "isExecuted": false,
-            "uuid": "41c9f75f-9219-45d3-82bd-184de5c820ec"
+            "group": null,
+            "uuid": "81a614f5-7d2b-49fa-aa7e-e87a77145dbb"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Populate PR Merged Details -> No Operation",
-            "targetStep": "\/api\/3\/workflow_steps\/1fef85e2-cfa9-4264-bf53-88392f8b75c5",
-            "sourceStep": "\/api\/3\/workflow_steps\/fc1eb982-8230-4206-bf80-74c42ff54c55",
-            "label": "OK",
+            "name": "Configuration -> Get Pull Request State",
+            "targetStep": "\/api\/3\/workflow_steps\/3c060cd4-cbc5-4331-8820-3ee1b304cb8a",
+            "sourceStep": "\/api\/3\/workflow_steps\/63f44640-d0d9-4fa4-9c22-c4cadd521600",
+            "label": null,
             "isExecuted": false,
-            "uuid": "451885fa-ee51-4e26-ab51-866ae3fda6be"
+            "group": null,
+            "uuid": "fd07053f-3397-4b1d-9ed9-5bcd94ec509a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Pull Request State -> Is Pull Merged",
+            "targetStep": "\/api\/3\/workflow_steps\/536d20f5-37f6-45d7-878b-4fc6db8939ff",
+            "sourceStep": "\/api\/3\/workflow_steps\/3c060cd4-cbc5-4331-8820-3ee1b304cb8a",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "636b1de5-fff0-4cff-bdef-20a58001c69a"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Playbook Active or Awaiting -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/b01cbfa5-267a-484c-b5ab-4b137c4ef661",
-            "sourceStep": "\/api\/3\/workflow_steps\/dcdd0c08-73dc-4fd1-b996-4485d7c20a3f",
+            "targetStep": "\/api\/3\/workflow_steps\/63f44640-d0d9-4fa4-9c22-c4cadd521600",
+            "sourceStep": "\/api\/3\/workflow_steps\/bab0a936-47b8-4498-9fd5-0b618e6f393e",
             "label": "Finished",
             "isExecuted": false,
-            "uuid": "70d0e65e-df95-4be7-a61e-458a1be09960"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Check Playbook Active or Awaiting -> Is Playbook Active or Awaiting",
-            "targetStep": "\/api\/3\/workflow_steps\/dcdd0c08-73dc-4fd1-b996-4485d7c20a3f",
-            "sourceStep": "\/api\/3\/workflow_steps\/3042a2e0-2a3d-4181-b6f3-42fdabf59eba",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "8eff5747-a815-4f96-b436-358bdb66e570"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Is Pull Merged -> Close Issue",
-            "targetStep": "\/api\/3\/workflow_steps\/0edbd253-6fd6-49cb-816b-723891012f3a",
-            "sourceStep": "\/api\/3\/workflow_steps\/4e6b8b5c-05ae-4b12-bdad-ceb099cf7b6f",
-            "label": "Yes",
-            "isExecuted": false,
-            "uuid": "a8c50b8f-78c0-404b-9cf6-1ceafe81e25e"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Check Playbook Active or Awaiting",
-            "targetStep": "\/api\/3\/workflow_steps\/3042a2e0-2a3d-4181-b6f3-42fdabf59eba",
-            "sourceStep": "\/api\/3\/workflow_steps\/f95d5f8c-3ac5-45c4-9a6a-7f659f529bf1",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "abbd17db-51c7-4851-929c-15e32f84b0aa"
+            "group": null,
+            "uuid": "68b1948b-6e44-4826-afbd-921a9b5aba71"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Playbook Active or Awaiting -> No Operation",
-            "targetStep": "\/api\/3\/workflow_steps\/1fef85e2-cfa9-4264-bf53-88392f8b75c5",
-            "sourceStep": "\/api\/3\/workflow_steps\/dcdd0c08-73dc-4fd1-b996-4485d7c20a3f",
+            "targetStep": "\/api\/3\/workflow_steps\/acb60c6f-7aa9-4a2d-b5e0-5479ffbaae2b",
+            "sourceStep": "\/api\/3\/workflow_steps\/bab0a936-47b8-4498-9fd5-0b618e6f393e",
             "label": "Active\/Awaiting",
             "isExecuted": false,
-            "uuid": "ceb873b4-60be-44b1-a695-77b60c199b81"
+            "group": null,
+            "uuid": "45e57cc8-2e76-4cae-9adc-616b3ab2cbd8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Pull Merged -> Close Issue",
+            "targetStep": "\/api\/3\/workflow_steps\/a02dc76a-5c4c-4f3d-94ae-0a7d995aea0c",
+            "sourceStep": "\/api\/3\/workflow_steps\/536d20f5-37f6-45d7-878b-4fc6db8939ff",
+            "label": "Yes",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "d5b7a858-369b-461b-bc4c-223dc7a7ccc5"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Pull Merged -> Pull Request Is Not Merged",
-            "targetStep": "\/api\/3\/workflow_steps\/1f26d76d-26e0-4ac0-a58a-f1de9fa5d0ce",
-            "sourceStep": "\/api\/3\/workflow_steps\/4e6b8b5c-05ae-4b12-bdad-ceb099cf7b6f",
+            "targetStep": "\/api\/3\/workflow_steps\/9b0dc1df-3da5-4fd1-8381-76aca381fdaf",
+            "sourceStep": "\/api\/3\/workflow_steps\/536d20f5-37f6-45d7-878b-4fc6db8939ff",
             "label": "No",
             "isExecuted": false,
-            "uuid": "f9732f8f-6e7d-47a5-aef4-023dc94b8a7c"
+            "group": null,
+            "uuid": "64be6dca-b3b3-44d5-a110-c04e01be719a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Populate PR Merged Details -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/acb60c6f-7aa9-4a2d-b5e0-5479ffbaae2b",
+            "sourceStep": "\/api\/3\/workflow_steps\/6e5cc265-c013-43ae-9678-f9807ec53e91",
+            "label": "OK",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "9846e198-e63e-4571-a9c8-d0dc9b6cc3e3"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Pull Request Is Not Merged -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/acb60c6f-7aa9-4a2d-b5e0-5479ffbaae2b",
+            "sourceStep": "\/api\/3\/workflow_steps\/9b0dc1df-3da5-4fd1-8381-76aca381fdaf",
+            "label": "Ok",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "390fcfa3-0fb8-4747-b6f5-837f61a58188"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Check Playbook Active or Awaiting",
+            "targetStep": "\/api\/3\/workflow_steps\/4154331a-cf9b-458c-aade-7dc36c4a3179",
+            "sourceStep": "\/api\/3\/workflow_steps\/470769a0-cbbc-4969-838d-09486cbee117",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "4326f9d6-d3fb-46b4-8d96-8b2589d12255"
         }
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "ce29b3d9-06c5-4157-b1d1-52368c74c527",
+    "uuid": "be1b4a01-38fe-4899-b933-fe44460d2f7e",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

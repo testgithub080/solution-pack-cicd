@@ -17,10 +17,29 @@
         "issue_assignee"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "collection": "\/api\/3\/workflow_collections\/36f63e54-01b1-45f7-bd33-c53dba44b797",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/5fd6d698-479f-46d4-9f13-45a31c78a179",
+    "triggerStep": "\/api\/3\/workflow_steps\/89bc0f0f-f56a-4a44-8dfd-52ad121247e0",
     "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Check GitHub Connector Configuration",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/dd654cd4-923f-4c20-837c-279669c2fa82"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "fce4e951-24e5-4789-add5-860e24b6e895"
+        },
         {
             "@type": "WorkflowStep",
             "name": "Create Issue",
@@ -50,7 +69,7 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
-            "uuid": "22baea61-d671-413c-9a47-f2d0aae33a39"
+            "uuid": "0a83241e-2cfb-421d-b07e-3c7bab90bf30"
         },
         {
             "@type": "WorkflowStep",
@@ -68,51 +87,34 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
             "group": null,
-            "uuid": "5fd6d698-479f-46d4-9f13-45a31c78a179"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Check GitHub Connector Configuration",
-            "description": null,
-            "arguments": {
-                "arguments": [],
-                "apply_async": false,
-                "step_variables": [],
-                "pass_parent_env": false,
-                "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
-            },
-            "status": null,
-            "top": "165",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "f3ebfe59-6947-4078-a249-70f019ea0a85"
+            "uuid": "89bc0f0f-f56a-4a44-8dfd-52ad121247e0"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Check GitHub Connector Configuration -> Create Issue",
-            "targetStep": "\/api\/3\/workflow_steps\/22baea61-d671-413c-9a47-f2d0aae33a39",
-            "sourceStep": "\/api\/3\/workflow_steps\/f3ebfe59-6947-4078-a249-70f019ea0a85",
+            "targetStep": "\/api\/3\/workflow_steps\/0a83241e-2cfb-421d-b07e-3c7bab90bf30",
+            "sourceStep": "\/api\/3\/workflow_steps\/fce4e951-24e5-4789-add5-860e24b6e895",
             "label": null,
             "isExecuted": false,
-            "uuid": "37df967d-4e70-4c8d-b557-714b04b853c4"
+            "group": null,
+            "uuid": "b94fd991-f3ab-4b8b-9201-92f3ecf15c8e"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Check GitHub Connector Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/f3ebfe59-6947-4078-a249-70f019ea0a85",
-            "sourceStep": "\/api\/3\/workflow_steps\/5fd6d698-479f-46d4-9f13-45a31c78a179",
+            "targetStep": "\/api\/3\/workflow_steps\/fce4e951-24e5-4789-add5-860e24b6e895",
+            "sourceStep": "\/api\/3\/workflow_steps\/89bc0f0f-f56a-4a44-8dfd-52ad121247e0",
             "label": null,
             "isExecuted": false,
-            "uuid": "ccc1a067-224a-4a5a-934b-b7f475b04f95"
+            "group": null,
+            "uuid": "5521e5d6-4964-467c-a777-0979169d898e"
         }
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "9db7a543-c5e6-4f39-870e-2b5763d3ea4a",
+    "uuid": "c14a94aa-dd10-4c8c-854c-3c6546ede04a",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

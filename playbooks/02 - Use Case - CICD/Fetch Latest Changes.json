@@ -11,31 +11,45 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "collection": "\/api\/3\/workflow_collections\/36f63e54-01b1-45f7-bd33-c53dba44b797",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/bf84858e-4e8e-406c-9adc-20eff64d9c78",
+    "triggerStep": "\/api\/3\/workflow_steps\/1e78e439-d22f-4889-ab1c-12a6f9c35ad3",
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Update Issue Details",
+            "name": "Compute Issues",
             "description": null,
             "arguments": {
-                "resource": {
-                    "issues": "<p>{% if (vars.steps.Fetch_Closed_Issues.data | length)==0%}No new issues resolved since the last applied change{%else%}<\/p>\n<p>Following issues were resolved since the last applied change<\/p>\n                                                                              \n\n* * *\n\n\n{{vars.steps.Compute_Issues.data['formatted_string']}}\n{%endif%}"
+                "when": "{{vars.steps.Fetch_Closed_Issues.data | length > 0}}",
+                "params": {
+                    "value": "{% for issue in vars.steps.Fetch_Closed_Issues.data %}\nIssue#[{{issue.number}}]({{issue.html_url}})  {{issue.title}}\n**Description**: \n{{issue.body}}\n* * *\n{% endfor %}"
                 },
-                "operation": "Append",
-                "collection": "{{vars.input.records[0]['@id']}}",
-                "__recommend": [],
-                "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "format_richtext",
+                "operationTitle": "Utils: Format as RichText (Markdown)",
                 "step_variables": []
             },
             "status": null,
-            "top": "570",
+            "top": "435",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "144c9ffc-7c42-4008-b3e9-916ddc8c660b"
+            "uuid": "23f117ac-7612-492f-9ff5-d80c6024de13"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "cicd_config": "{{globalVars.cicd_config | toDict}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "5c619fb1-2d59-4934-831c-4ce71b8adbdd"
         },
         {
             "@type": "WorkflowStep",
@@ -52,21 +66,21 @@
                 "step_variables": [],
                 "pass_parent_env": false,
                 "pass_input_record": false,
-                "workflowReference": "\/api\/3\/workflows\/7c46caf1-ac8c-4345-8582-7e726e23a9e8"
+                "workflowReference": "\/api\/3\/workflows\/3be836e2-654b-4eb9-934b-02f1809f9c88"
             },
             "status": null,
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
-            "uuid": "589daed6-3376-463f-9063-5e41c5bc051c"
+            "uuid": "f41325c0-e06b-4c71-a8e2-f56f8e502559"
         },
         {
             "@type": "WorkflowStep",
             "name": "Start",
             "description": null,
             "arguments": {
-                "route": "49215633-c57d-45a9-a190-bc8aa55ffbf0",
+                "route": "5bd8be58-2a4e-4e9e-8e9e-51e1f9173a82",
                 "resources": [
                     "change_management"
                 ],
@@ -102,86 +116,76 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
             "group": null,
-            "uuid": "bf84858e-4e8e-406c-9adc-20eff64d9c78"
+            "uuid": "1e78e439-d22f-4889-ab1c-12a6f9c35ad3"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Compute Issues",
+            "name": "Update Issue Details",
             "description": null,
             "arguments": {
-                "when": "{{vars.steps.Fetch_Closed_Issues.data | length > 0}}",
-                "params": {
-                    "value": "{% for issue in vars.steps.Fetch_Closed_Issues.data %}\nIssue#[{{issue.number}}]({{issue.html_url}})  {{issue.title}}\n**Description**: \n{{issue.body}}\n* * *\n{% endfor %}"
+                "resource": {
+                    "issues": "<p>{% if (vars.steps.Fetch_Closed_Issues.data | length)==0%}No new issues resolved since the last applied change{%else%}<\/p>\n<p>Following issues were resolved since the last applied change<\/p>\n                                                                              \n\n* * *\n\n\n{{vars.steps.Compute_Issues.data['formatted_string']}}\n{%endif%}"
                 },
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "format_richtext",
-                "operationTitle": "Utils: Format as RichText (Markdown)",
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
                 "step_variables": []
             },
             "status": null,
-            "top": "435",
+            "top": "570",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
-            "uuid": "e2ab876e-976d-4553-83e8-523c491158ca"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Configuration",
-            "description": null,
-            "arguments": {
-                "cicd_config": "{{globalVars.cicd_config | toDict}}"
-            },
-            "status": null,
-            "top": "165",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "faea8d1b-346f-438a-b59d-432bc870cbc5"
+            "uuid": "7f2142a3-e138-4c51-9a24-18ffe2b609df"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/faea8d1b-346f-438a-b59d-432bc870cbc5",
-            "sourceStep": "\/api\/3\/workflow_steps\/bf84858e-4e8e-406c-9adc-20eff64d9c78",
+            "name": "Compute Issues -> Update Issue Details",
+            "targetStep": "\/api\/3\/workflow_steps\/7f2142a3-e138-4c51-9a24-18ffe2b609df",
+            "sourceStep": "\/api\/3\/workflow_steps\/23f117ac-7612-492f-9ff5-d80c6024de13",
             "label": null,
             "isExecuted": false,
-            "uuid": "27b863bf-190e-42c4-a462-7e090af4ebc8"
+            "group": null,
+            "uuid": "9abc8b6d-0f2f-423a-9dfd-4eb864560eb0"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Configuration -> Fetch Closed Issues",
-            "targetStep": "\/api\/3\/workflow_steps\/589daed6-3376-463f-9063-5e41c5bc051c",
-            "sourceStep": "\/api\/3\/workflow_steps\/faea8d1b-346f-438a-b59d-432bc870cbc5",
+            "targetStep": "\/api\/3\/workflow_steps\/f41325c0-e06b-4c71-a8e2-f56f8e502559",
+            "sourceStep": "\/api\/3\/workflow_steps\/5c619fb1-2d59-4934-831c-4ce71b8adbdd",
             "label": null,
             "isExecuted": false,
-            "uuid": "36e3c1c6-5b62-44f4-9bc5-c8df73ec8012"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Compute Issues -> Update Issue Details",
-            "targetStep": "\/api\/3\/workflow_steps\/144c9ffc-7c42-4008-b3e9-916ddc8c660b",
-            "sourceStep": "\/api\/3\/workflow_steps\/e2ab876e-976d-4553-83e8-523c491158ca",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "4c53c16b-e34a-4008-bc39-48dd479b7976"
+            "group": null,
+            "uuid": "90080540-10dd-4178-9d9b-92d72fb5dd38"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Fetch Closed Issues -> Compute Issues",
-            "targetStep": "\/api\/3\/workflow_steps\/e2ab876e-976d-4553-83e8-523c491158ca",
-            "sourceStep": "\/api\/3\/workflow_steps\/589daed6-3376-463f-9063-5e41c5bc051c",
+            "targetStep": "\/api\/3\/workflow_steps\/23f117ac-7612-492f-9ff5-d80c6024de13",
+            "sourceStep": "\/api\/3\/workflow_steps\/f41325c0-e06b-4c71-a8e2-f56f8e502559",
             "label": null,
             "isExecuted": false,
-            "uuid": "7b9aeeff-0146-4437-b47a-80f2e856f4b1"
+            "group": null,
+            "uuid": "a84f693b-d7b4-4f68-ac08-1c05d8a23401"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/5c619fb1-2d59-4934-831c-4ce71b8adbdd",
+            "sourceStep": "\/api\/3\/workflow_steps\/1e78e439-d22f-4889-ab1c-12a6f9c35ad3",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "42d65725-f622-4f5f-85f0-92581d6c5609"
         }
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "7709fe05-fbce-48e8-891f-7d69ed8c66f6",
+    "uuid": "92d44b26-8ef6-490c-994b-5086651e65b8",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

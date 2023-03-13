@@ -13,41 +13,32 @@
         "playbook_name"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "collection": "\/api\/3\/workflow_collections\/36f63e54-01b1-45f7-bd33-c53dba44b797",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/031e0a44-d083-44e3-91da-aacf5b381201",
+    "triggerStep": "\/api\/3\/workflow_steps\/33c2c681-22b4-4191-a4cf-a0c27044896b",
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Start",
+            "name": "Check Active Playbook",
             "description": null,
             "arguments": {
-                "step_variables": {
-                    "input": {
-                        "params": []
-                    }
-                }
+                "params": {
+                    "iri": "\/api\/wf\/api\/workflows\/log_list\/?format=json&limit=10&offset=0&ordering=-modified&page=1&search={{vars.playbook_name}}&status=active&tags_exclude=system",
+                    "body": "",
+                    "method": "POST"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
             },
             "status": null,
-            "top": "30",
+            "top": "300",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "031e0a44-d083-44e3-91da-aacf5b381201"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Return Playbook Status",
-            "description": null,
-            "arguments": {
-                "playbook_status": "{% if vars.steps.Check_Active_Playbook.data['hydra:member'] | length == 1 and vars.steps.Check_Awaiting_Playbook.data['hydra:member'] | length == 1 %}{{\"active\"}}{% elif vars.steps.Check_Active_Playbook.data['hydra:member'] | length > 1 %}{{\"active\"}}{% elif vars.steps.Check_Awaiting_Playbook.data['hydra:member'] | length > 0 %}{{\"active\"}}{% else %}{{\"Finished\"}}{% endif %}"
-            },
-            "status": null,
-            "top": "570",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "1705f467-05d8-4759-af10-9a49166d259b"
+            "uuid": "32104af9-2546-4856-8dd0-23e83c7f3920"
         },
         {
             "@type": "WorkflowStep",
@@ -70,7 +61,7 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "276654c1-e2bb-44ab-a4a1-a6f837f9b2cf"
+            "uuid": "26aebcdb-d311-4111-8a1a-45cfd099a936"
         },
         {
             "@type": "WorkflowStep",
@@ -84,73 +75,86 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
-            "uuid": "70f59eac-e9c4-4ef2-91ef-2ad7323af53c"
+            "uuid": "d8b99315-1bd9-43ae-b8ba-1aa7d564e762"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Check Active Playbook",
+            "name": "Return Playbook Status",
             "description": null,
             "arguments": {
-                "params": {
-                    "iri": "\/api\/wf\/api\/workflows\/log_list\/?format=json&limit=10&offset=0&ordering=-modified&page=1&search={{vars.playbook_name}}&status=active&tags_exclude=system",
-                    "body": "",
-                    "method": "POST"
-                },
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": []
+                "playbook_status": "{% if vars.steps.Check_Active_Playbook.data['hydra:member'] | length == 1 and vars.steps.Check_Awaiting_Playbook.data['hydra:member'] | length == 1 %}{{\"active\"}}{% elif vars.steps.Check_Active_Playbook.data['hydra:member'] | length > 1 %}{{\"active\"}}{% elif vars.steps.Check_Awaiting_Playbook.data['hydra:member'] | length > 0 %}{{\"active\"}}{% else %}{{\"Finished\"}}{% endif %}"
             },
             "status": null,
-            "top": "300",
+            "top": "570",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
-            "uuid": "7136a20f-f446-48ba-b971-9d09f8f3804f"
+            "uuid": "f8563bb9-15a7-4451-a3be-e4999245f101"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "33c2c681-22b4-4191-a4cf-a0c27044896b"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Configuration -> Check Active Playbook",
-            "targetStep": "\/api\/3\/workflow_steps\/7136a20f-f446-48ba-b971-9d09f8f3804f",
-            "sourceStep": "\/api\/3\/workflow_steps\/70f59eac-e9c4-4ef2-91ef-2ad7323af53c",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "0869e31d-0118-4c3e-b436-4d39bc82d559"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Check Active Playbook -> Copy of Check Active Playbook",
-            "targetStep": "\/api\/3\/workflow_steps\/276654c1-e2bb-44ab-a4a1-a6f837f9b2cf",
-            "sourceStep": "\/api\/3\/workflow_steps\/7136a20f-f446-48ba-b971-9d09f8f3804f",
+            "targetStep": "\/api\/3\/workflow_steps\/26aebcdb-d311-4111-8a1a-45cfd099a936",
+            "sourceStep": "\/api\/3\/workflow_steps\/32104af9-2546-4856-8dd0-23e83c7f3920",
             "label": null,
             "isExecuted": false,
-            "uuid": "ae213433-2090-4c11-8880-3946a2749206"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/70f59eac-e9c4-4ef2-91ef-2ad7323af53c",
-            "sourceStep": "\/api\/3\/workflow_steps\/031e0a44-d083-44e3-91da-aacf5b381201",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "d3548ea4-c488-4ec7-a927-c5d645a4e832"
+            "group": null,
+            "uuid": "948697e3-f733-463e-b459-dabac8d7c760"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Check Awaiting Playbook -> Return Playbook Status",
-            "targetStep": "\/api\/3\/workflow_steps\/1705f467-05d8-4759-af10-9a49166d259b",
-            "sourceStep": "\/api\/3\/workflow_steps\/276654c1-e2bb-44ab-a4a1-a6f837f9b2cf",
+            "targetStep": "\/api\/3\/workflow_steps\/f8563bb9-15a7-4451-a3be-e4999245f101",
+            "sourceStep": "\/api\/3\/workflow_steps\/26aebcdb-d311-4111-8a1a-45cfd099a936",
             "label": null,
             "isExecuted": false,
-            "uuid": "f47afb3a-4ec5-449b-bb4c-3cdfcc0ffc23"
+            "group": null,
+            "uuid": "7e6b5265-911d-42cc-8605-8d2a9febae29"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Check Active Playbook",
+            "targetStep": "\/api\/3\/workflow_steps\/32104af9-2546-4856-8dd0-23e83c7f3920",
+            "sourceStep": "\/api\/3\/workflow_steps\/d8b99315-1bd9-43ae-b8ba-1aa7d564e762",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "de55a6ec-5c13-4b6b-8c8b-ab41875390ee"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/d8b99315-1bd9-43ae-b8ba-1aa7d564e762",
+            "sourceStep": "\/api\/3\/workflow_steps\/33c2c681-22b4-4191-a4cf-a0c27044896b",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "8bfd856a-41bb-4824-a668-671de5f3ddca"
         }
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "670507b8-633d-4262-8ac9-103fecdc172b",
+    "uuid": "2bf34362-0466-4590-9ce5-845ce08860bc",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

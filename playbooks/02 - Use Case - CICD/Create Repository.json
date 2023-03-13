@@ -15,28 +15,10 @@
         "base_branch"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "collection": "\/api\/3\/workflow_collections\/36f63e54-01b1-45f7-bd33-c53dba44b797",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/19c05abd-09a3-4e0b-8fcc-7291663612a9",
+    "triggerStep": "\/api\/3\/workflow_steps\/a3d1eeea-a6f4-4619-a94b-0727444bf39c",
     "steps": [
-        {
-            "@type": "WorkflowStep",
-            "name": "Start",
-            "description": null,
-            "arguments": {
-                "step_variables": {
-                    "input": {
-                        "params": []
-                    }
-                }
-            },
-            "status": null,
-            "top": "30",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "group": null,
-            "uuid": "19c05abd-09a3-4e0b-8fcc-7291663612a9"
-        },
         {
             "@type": "WorkflowStep",
             "name": "Configuration",
@@ -49,53 +31,7 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
-            "uuid": "1b8cbd35-4af2-40b9-a086-039c40194785"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Return Output",
-            "description": null,
-            "arguments": {
-                "html_url": "{{vars.steps.Create_Repository.data['html_url']}}",
-                "is_status_failed": "{% if vars.steps.Create_Repository.status != \"Success\" or vars.steps.Create_Base_Branch.status != \"Success\" %}{{true}}{% else %}{{false}}{% endif %}"
-            },
-            "status": null,
-            "top": "570",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "4cb4f4eb-23f4-4733-acf8-76ae56eba236"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Create Repository",
-            "description": null,
-            "arguments": {
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "thread": false,
-                    "content": "<p>{% if vars.steps.Create_Repository['Error message'] is defined %}{{vars.input.params['repo_name']}} creation failed.{% else %}Created Repository {{vars.input.params['organization_name']}}\/{{vars.input.params['repo_name']}} with the base branch {{vars.input.params['base_branch']}}{% endif %}<\/p>",
-                    "records": ""
-                },
-                "arguments": {
-                    "org_name": "{{vars.input.params['organization_name']}}",
-                    "repo_name": "{{vars.input.params['repo_name']}}"
-                },
-                "apply_async": false,
-                "ignore_errors": true,
-                "step_variables": [],
-                "pass_parent_env": false,
-                "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/54667218-789e-4fff-b437-0c6aa79436c8"
-            },
-            "status": null,
-            "top": "300",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "6d298ae4-1346-4527-bd86-4edd5e2f2455"
+            "uuid": "228fe521-d440-42a1-b466-f5fa6f5a1163"
         },
         {
             "@type": "WorkflowStep",
@@ -115,57 +51,125 @@
                 "step_variables": [],
                 "pass_parent_env": false,
                 "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/865a81b6-cb22-4133-825e-3b2401be9907"
+                "workflowReference": "\/api\/3\/workflows\/3465e8b3-08ad-4ffc-8711-2925ede11c2f"
             },
             "status": null,
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
-            "uuid": "ce911462-69b0-4fd2-88f2-6ab4e0ed37f6"
+            "uuid": "27f8f48d-c111-430e-8c88-6ee55af30e46"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Repository",
+            "description": null,
+            "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>{% if vars.steps.Create_Repository['Error message'] is defined %}{{vars.input.params['repo_name']}} creation failed.{% else %}Created Repository <a href=\"https:\/\/github.com\/{{vars.input.params['organization_name']}}\/{{vars.input.params['repo_name']}}\" target=\"_blank\" rel=\"noopener\">{{vars.input.params['repo_name']}}<\/a> with the base branch {{vars.input.params['base_branch']}}{% endif %}<\/p>",
+                    "records": ""
+                },
+                "arguments": {
+                    "org_name": "{{vars.input.params['organization_name']}}",
+                    "repo_name": "{{vars.input.params['repo_name']}}"
+                },
+                "apply_async": false,
+                "ignore_errors": true,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/42ecbf82-e892-495d-aba6-23e91757ea38"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "bf0679c3-99e0-4bc8-941a-1361841f356b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Return Output",
+            "description": null,
+            "arguments": {
+                "html_url": "{{vars.steps.Create_Repository.data['html_url']}}",
+                "is_status_failed": "{% if vars.steps.Create_Repository.status != \"Success\" or vars.steps.Create_Base_Branch.status != \"Success\" %}{{true}}{% else %}{{false}}{% endif %}"
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "a6fda2d9-f33f-424b-94fe-5498e61286a0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "a3d1eeea-a6f4-4619-a94b-0727444bf39c"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Create Base Branch -> Return Output",
-            "targetStep": "\/api\/3\/workflow_steps\/4cb4f4eb-23f4-4733-acf8-76ae56eba236",
-            "sourceStep": "\/api\/3\/workflow_steps\/ce911462-69b0-4fd2-88f2-6ab4e0ed37f6",
+            "name": "Configuration -> Crear",
+            "targetStep": "\/api\/3\/workflow_steps\/bf0679c3-99e0-4bc8-941a-1361841f356b",
+            "sourceStep": "\/api\/3\/workflow_steps\/228fe521-d440-42a1-b466-f5fa6f5a1163",
             "label": null,
             "isExecuted": false,
-            "uuid": "25795af2-bab2-4d38-8905-c24fd345959e"
+            "group": null,
+            "uuid": "084449bf-d36b-43c9-b937-f5eb26c6fe31"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Configuration -> Crear",
-            "targetStep": "\/api\/3\/workflow_steps\/6d298ae4-1346-4527-bd86-4edd5e2f2455",
-            "sourceStep": "\/api\/3\/workflow_steps\/1b8cbd35-4af2-40b9-a086-039c40194785",
+            "name": "Create Base Branch -> Return Output",
+            "targetStep": "\/api\/3\/workflow_steps\/a6fda2d9-f33f-424b-94fe-5498e61286a0",
+            "sourceStep": "\/api\/3\/workflow_steps\/27f8f48d-c111-430e-8c88-6ee55af30e46",
             "label": null,
             "isExecuted": false,
-            "uuid": "912702e4-c234-4616-85c2-2f91d0fa96ef"
+            "group": null,
+            "uuid": "9fa9a515-c652-4a47-ad47-d7e5d4ebe548"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Create Repository -> Create Base Branch",
-            "targetStep": "\/api\/3\/workflow_steps\/ce911462-69b0-4fd2-88f2-6ab4e0ed37f6",
-            "sourceStep": "\/api\/3\/workflow_steps\/6d298ae4-1346-4527-bd86-4edd5e2f2455",
+            "targetStep": "\/api\/3\/workflow_steps\/27f8f48d-c111-430e-8c88-6ee55af30e46",
+            "sourceStep": "\/api\/3\/workflow_steps\/bf0679c3-99e0-4bc8-941a-1361841f356b",
             "label": null,
             "isExecuted": false,
-            "uuid": "dc28a0ba-c3d3-401b-8113-57413e91cdc5"
+            "group": null,
+            "uuid": "60b16d1d-c9bf-41b0-8df7-440bc7f282df"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/1b8cbd35-4af2-40b9-a086-039c40194785",
-            "sourceStep": "\/api\/3\/workflow_steps\/19c05abd-09a3-4e0b-8fcc-7291663612a9",
+            "targetStep": "\/api\/3\/workflow_steps\/228fe521-d440-42a1-b466-f5fa6f5a1163",
+            "sourceStep": "\/api\/3\/workflow_steps\/a3d1eeea-a6f4-4619-a94b-0727444bf39c",
             "label": null,
             "isExecuted": false,
-            "uuid": "fb8902e7-cfbc-4c05-8f0d-4905ed983776"
+            "group": null,
+            "uuid": "578dc178-6b53-4712-a493-bdb83a951d37"
         }
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "7d94d329-8d15-4d90-ba33-fb04b9f8fdc9",
+    "uuid": "712f286a-2edb-4c25-ba2f-e55a299f5dea",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

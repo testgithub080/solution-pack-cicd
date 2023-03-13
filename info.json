@@ -1,7 +1,7 @@
 {
     "name": "continuousDelivery",
-    "version": "1.0.0",
-    "fsrMinCompatibility": "7.3.1",
+    "version": "1.1.0",
+    "fsrMinCompatibility": "7.4.0",
     "type": "solutionpack",
     "local": true,
     "label": "Continuous Delivery",
@@ -16,8 +16,8 @@
     "prerequisite": null,
     "publisher": "Fortinet",
     "certified": "true",
-    "description": "Setup Source Control and streamline content development lifecycle (CI/CD) across multiple FortiSOAR environments designated as Development, Staging and Production.",
-    "help": "https://github.com/fortinet-fortisoar/solution-pack-cicd/blob/release/1.0.0/README.md",
+    "description": "Setup Source Control and streamline content development lifecycle (CICD) across multiple FortiSOAR environments designated as Development, Staging and Production.",
+    "help": "https://github.com/fortinet-fortisoar/solution-pack-cicd/blob/release/1.1.0/README.md",
     "category": [],
     "supportInfo": "Fortinet Customer Support",
     "iconLarge": "fsr-icon-large.png",
@@ -34,6 +34,9 @@
             }
         ]
     },
+    "recordTags": [
+        "CICD"
+    ],
     "contents": {
         "picklistNames": [
             {
@@ -83,6 +86,11 @@
                 "name": "Content Developer (CD)"
             }
         ],
+        "teams": [
+            {
+                "name": "Content Development Team"
+            }
+        ],
         "playbooks": [
             {
                 "name": "02 - Use Case - CICD"
@@ -97,32 +105,32 @@
         ],
         "widgets": [
             {
-                "apiName": "recordCard",
-                "name": "Record Card"
-            },
-            {
-                "apiName": "jsonToGrid",
-                "name": "JSON to Grid"
-            },
-            {
                 "apiName": "cicdConfiguration",
                 "name": "CICD Configuration Wizard"
             },
             {
                 "apiName": "recordCtaBlock",
                 "name": "Record CTA Tile"
+            },
+            {
+                "apiName": "jsonToGrid",
+                "name": "JSON to Grid"
+            },
+            {
+                "apiName": "recordCard",
+                "name": "Record Card"
             }
         ],
         "recordSets": [
             {
-                "name": "Attachments",
-                "apiName": "attachments",
-                "count": 3
-            },
-            {
                 "name": "Change Management",
                 "apiName": "change_management",
                 "count": 8
+            },
+            {
+                "name": "Export Templates",
+                "apiName": "export_templates",
+                "count": 3
             }
         ]
     }

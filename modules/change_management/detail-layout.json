@@ -12,7 +12,7 @@
                                 "type": "primaryDetail",
                                 "config": {
                                     "wid": "2e8cfed4-7292-4d9c-b0eb-57d094517086",
-                                    "idField": "title",
+                                    "idField": "doNotDisplay",
                                     "picklistFieldReadOnly": true,
                                     "titleFieldReadOnly": false,
                                     "featuredRelationship": {
@@ -22,7 +22,8 @@
                                         "statusField": null,
                                         "sort": []
                                     },
-                                    "picklistField": "status"
+                                    "picklistField": "status",
+                                    "titleField": "title"
                                 }
                             }
                         ],
@@ -218,34 +219,34 @@
         ],
         "actionButtons": [
             {
-                "id": "\/api\/3\/workflows\/8e709eb0-7c8b-434d-928f-e26eda75f2b1",
+                "id": "\/api\/3\/workflows\/76c36ff5-351a-494a-8aec-7bdaa1a10140",
                 "name": "Setup Production Environment",
                 "icon": "icon icon-FortiSOAR_setup_guide"
             },
             {
-                "id": "\/api\/3\/workflows\/31191224-502c-4b84-bb9b-cd84f005bd6a",
+                "id": "\/api\/3\/workflows\/83ef811d-d0c5-4e54-88b3-0ded13bfff30",
                 "name": "Setup Development Environment",
                 "icon": "icon icon-FortiSOAR_setup_guide"
             },
             {
-                "id": "\/api\/3\/workflows\/20a37bc8-6f60-469e-95f6-6e5d25e839d0",
+                "id": "\/api\/3\/workflows\/26de7a6e-ba7a-4a53-b1ef-e6e4bbcd6f69",
                 "name": "Pull Latest Content from GitHub",
                 "icon": "icon icon-publish"
             },
             {
-                "id": "\/api\/3\/workflows\/69179225-e990-4112-b47b-ef9f4c877411",
+                "id": "\/api\/3\/workflows\/9e10c198-b260-440b-aece-b98462578e3e",
                 "name": "Save FortiSOAR Settings",
                 "icon": "icon icon-dashboard-settings"
             },
             {
-                "id": "\/api\/3\/workflows\/2e8df3ef-5db7-4f45-b15f-9c1279acee6b",
-                "name": "Add GitHub Username",
-                "icon": "fa fa-user"
-            },
-            {
-                "id": "\/api\/3\/workflows\/7709fe05-fbce-48e8-891f-7d69ed8c66f6",
+                "id": "\/api\/3\/workflows\/92d44b26-8ef6-490c-994b-5086651e65b8",
                 "name": "Fetch Latest Changes",
                 "icon": "icon icon-text-content-design"
+            },
+            {
+                "id": "\/api\/3\/workflows\/07a59630-d29a-47ca-9d97-b755025fed1e",
+                "name": "Set GitHub Username",
+                "icon": "fa fa-user"
             }
         ],
         "wid": "2cb77b51-1f1e-4729-85c6-d03a61da3323",

@@ -16,10 +16,29 @@
         "org_type"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "collection": "\/api\/3\/workflow_collections\/36f63e54-01b1-45f7-bd33-c53dba44b797",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/a86cea50-0b03-41cb-b651-e50006ae24c8",
+    "triggerStep": "\/api\/3\/workflow_steps\/b6c927da-1cc2-45f1-9fc0-3d644bbacdb3",
     "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Check GitHub Connector Configuration",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/dd654cd4-923f-4c20-837c-279669c2fa82"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "59b20204-ea7c-4da3-9cf0-45e9fe8f19b5"
+        },
         {
             "@type": "WorkflowStep",
             "name": "Merge Pull Request",
@@ -49,26 +68,7 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
-            "uuid": "119ffe99-e085-4d80-8cab-b99f487d13bb"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Check GitHub Connector Configuration",
-            "description": null,
-            "arguments": {
-                "arguments": [],
-                "apply_async": false,
-                "step_variables": [],
-                "pass_parent_env": false,
-                "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
-            },
-            "status": null,
-            "top": "165",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "48aa4cf0-69f1-401b-a819-a97f21c5543c"
+            "uuid": "de73f2b3-14eb-458c-b640-e8241b3b1225"
         },
         {
             "@type": "WorkflowStep",
@@ -86,32 +86,34 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
             "group": null,
-            "uuid": "a86cea50-0b03-41cb-b651-e50006ae24c8"
+            "uuid": "b6c927da-1cc2-45f1-9fc0-3d644bbacdb3"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Check GitHub Connector Configuration -> Merge Pull Request",
-            "targetStep": "\/api\/3\/workflow_steps\/119ffe99-e085-4d80-8cab-b99f487d13bb",
-            "sourceStep": "\/api\/3\/workflow_steps\/48aa4cf0-69f1-401b-a819-a97f21c5543c",
+            "targetStep": "\/api\/3\/workflow_steps\/de73f2b3-14eb-458c-b640-e8241b3b1225",
+            "sourceStep": "\/api\/3\/workflow_steps\/59b20204-ea7c-4da3-9cf0-45e9fe8f19b5",
             "label": null,
             "isExecuted": false,
-            "uuid": "132c8f78-22fd-422c-95e3-98fff9ec09af"
+            "group": null,
+            "uuid": "560b857c-c3f7-462e-9e9d-0f9df90c31cf"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Check GitHub Connector Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/48aa4cf0-69f1-401b-a819-a97f21c5543c",
-            "sourceStep": "\/api\/3\/workflow_steps\/a86cea50-0b03-41cb-b651-e50006ae24c8",
+            "targetStep": "\/api\/3\/workflow_steps\/59b20204-ea7c-4da3-9cf0-45e9fe8f19b5",
+            "sourceStep": "\/api\/3\/workflow_steps\/b6c927da-1cc2-45f1-9fc0-3d644bbacdb3",
             "label": null,
             "isExecuted": false,
-            "uuid": "ec8f682b-a01c-4eff-b6d0-b90226158dd8"
+            "group": null,
+            "uuid": "6b7c1164-fe76-49d4-b053-0808ee6225ab"
         }
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "4ee72908-457d-4383-9d04-140d7ba5d81e",
+    "uuid": "d9f53fdc-afee-4a62-885a-43fa945694d2",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

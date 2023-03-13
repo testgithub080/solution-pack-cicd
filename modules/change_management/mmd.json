@@ -1,6 +1,6 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/b8aba27d-b571-4ca0-a45b-0368fb1916b5",
+    "@id": "\/api\/3\/staging_model_metadatas\/e1593c62-8eae-4801-ae4f-56ee930525b1",
     "@type": "StagingModelMetadata",
     "type": "change_management",
     "parentType": null,
@@ -26,7 +26,6 @@
     "writable": true,
     "attributes": [
         {
-            "@id": "\/api\/3\/attribute_metadatas\/abab16db-2236-4ac0-9360-49dda633d0ce",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "issues",
@@ -80,14 +79,13 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "uuid": "abab16db-2236-4ac0-9360-49dda633d0ce",
+            "skipSerialization": false,
             "displayName": "{{ issues }}",
             "descriptions": {
                 "singular": "Issues"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/2b826061-3d0e-4782-9712-57af1dd30ca2",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "lastBuildDeployedOn",
@@ -140,14 +138,13 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "uuid": "2b826061-3d0e-4782-9712-57af1dd30ca2",
+            "skipSerialization": false,
             "displayName": "{{ lastBuildDeployedOn }}",
             "descriptions": {
                 "singular": "Last Build Deployed On"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/b4ba06b1-ec9a-40fa-a548-a23983271a02",
             "@type": "AttributeMetadata",
             "type": "comments",
             "name": "comments",
@@ -182,14 +179,13 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "uuid": "b4ba06b1-ec9a-40fa-a548-a23983271a02",
+            "skipSerialization": false,
             "displayName": "{{ comments }}",
             "descriptions": {
                 "singular": "Comments"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/377128e6-4a1f-4b4a-af32-5af4f22d0747",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "title",
@@ -228,14 +224,13 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "uuid": "377128e6-4a1f-4b4a-af32-5af4f22d0747",
+            "skipSerialization": false,
             "displayName": "{{ title }}",
             "descriptions": {
                 "singular": "Title"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/d009015b-cc56-447a-ae18-0d767710b037",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "description",
@@ -274,14 +269,13 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "uuid": "d009015b-cc56-447a-ae18-0d767710b037",
+            "skipSerialization": false,
             "displayName": "{{ description }}",
             "descriptions": {
                 "singular": "Description"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/703becf6-d7bb-426c-b121-8c42770b3b92",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "results",
@@ -335,14 +329,13 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "uuid": "703becf6-d7bb-426c-b121-8c42770b3b92",
+            "skipSerialization": false,
             "displayName": "{{ results }}",
             "descriptions": {
                 "singular": "Results"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/5681b1c4-ab9b-4229-b13c-fef4b0efc805",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "status",
@@ -471,14 +464,13 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "uuid": "5681b1c4-ab9b-4229-b13c-fef4b0efc805",
+            "skipSerialization": false,
             "displayName": "{{ status }}",
             "descriptions": {
                 "singular": "Status"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/2b0631e7-9b45-462f-8ab6-4c8d6bfdb117",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "type",
@@ -555,14 +547,13 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "uuid": "2b0631e7-9b45-462f-8ab6-4c8d6bfdb117",
+            "skipSerialization": false,
             "displayName": "{{ type }}",
             "descriptions": {
                 "singular": "Type"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/c66c94b6-b5c9-4e9e-b808-e6342387fd38",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "environment",
@@ -633,14 +624,13 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "uuid": "c66c94b6-b5c9-4e9e-b808-e6342387fd38",
+            "skipSerialization": false,
             "displayName": "{{ environment }}",
             "descriptions": {
                 "singular": "Environment"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/fe004cf6-c9fd-493c-963a-21c199a61ab0",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "sequence",
@@ -678,14 +668,13 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "uuid": "fe004cf6-c9fd-493c-963a-21c199a61ab0",
+            "skipSerialization": false,
             "displayName": "{{ sequence }}",
             "descriptions": {
                 "singular": "Sequence"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/bb300149-3766-4094-8741-bf1e1bce5687",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "recordIcon",
@@ -723,7 +712,7 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "uuid": "bb300149-3766-4094-8741-bf1e1bce5687",
+            "skipSerialization": false,
             "displayName": "{{ recordIcon }}",
             "descriptions": {
                 "singular": "Record Icon"
@@ -741,7 +730,7 @@
         "delete_primary_data_after": 60
     },
     "archivalFilters": [],
-    "uuid": "b8aba27d-b571-4ca0-a45b-0368fb1916b5",
+    "uuid": "e1593c62-8eae-4801-ae4f-56ee930525b1",
     "displayName": "{{ title }}",
     "descriptions": {
         "singular": "Change Management",
