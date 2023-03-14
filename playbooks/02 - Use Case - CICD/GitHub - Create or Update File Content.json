@@ -18,7 +18,7 @@
         "branch_name"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/36f63e54-01b1-45f7-bd33-c53dba44b797",
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/5451e0b6-5a65-4369-9d05-2611ec0df28e",
     "steps": [

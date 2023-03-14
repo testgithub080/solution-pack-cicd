@@ -18,7 +18,7 @@
         "pr_comments"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/36f63e54-01b1-45f7-bd33-c53dba44b797",
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/d973e030-e04a-4861-8c1b-1db7a225a307",
     "steps": [

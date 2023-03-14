@@ -11,7 +11,7 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/36f63e54-01b1-45f7-bd33-c53dba44b797",
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/1e78e439-d22f-4889-ab1c-12a6f9c35ad3",
     "steps": [

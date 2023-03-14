@@ -13,7 +13,7 @@
         "environment"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/36f63e54-01b1-45f7-bd33-c53dba44b797",
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/4945d2c4-1dd3-4ba3-b5f2-b77cd28be236",
     "steps": [
