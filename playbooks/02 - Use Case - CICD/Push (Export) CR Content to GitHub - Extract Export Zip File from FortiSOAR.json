@@ -40,7 +40,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "840",
+            "top": "705",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -52,18 +52,18 @@
             "description": null,
             "arguments": {
                 "params": {
-                    "iri": "\/api\/export?fileName={{vars.export_file_name}}.zip&template={{vars.template_name[0].uuid}}",
+                    "iri": "\/api\/export?fileName={{vars.export_file_name}}.zip&template={{vars.config_info[0].uuid}}",
                     "body": "",
                     "method": "PUT"
                 },
-                "version": "3.2.1",
+                "version": "3.2.3",
                 "connector": "cyops_utilities",
                 "operation": "make_cyops_request",
                 "operationTitle": "FSR: Make FortiSOAR API Call",
                 "step_variables": []
             },
             "status": null,
-            "top": "705",
+            "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -76,7 +76,7 @@
             "arguments": {
                 "params": {
                     "iri": "\/api\/query\/export_templates?$export=true&$limit=2147483647",
-                    "body": "{\"logic\":\"AND\",\"filters\":[{\"field\":\"uuid\",\"operator\":\"in\",\"value\":\"{{vars.template_name[0].uuid}}\"}]}",
+                    "body": "{\n    \"logic\": \"AND\",\n    \"filters\": [\n        {\n            \"field\": \"name\",\n            \"operator\": \"eq\",\n            \"value\": \"{{vars.export_template_name}}\"\n        }\n    ]\n}",
                     "method": "POST"
                 },
                 "version": "3.2.3",
@@ -86,36 +86,11 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "300",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "6929ce64-ccd2-4e37-b76e-e548239ed26e"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Get Export Template Details",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "\/api\/3\/export_templates",
-                    "body": "",
-                    "method": "GET"
-                },
-                "version": "3.2.1",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": {
-                    "template_name": "{{vars.result.data['hydra:member'] | json_query(\"[?name == '\"+vars.export_template_name+\"']\")}}"
-                }
-            },
-            "status": null,
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "8e949961-af72-455d-b8c5-20c8ff353395"
+            "uuid": "6929ce64-ccd2-4e37-b76e-e548239ed26e"
         },
         {
             "@type": "WorkflowStep",
@@ -125,7 +100,7 @@
                 "file_iri": "{{vars.steps.Get_Export_Job_Details.data.file['@id']}}"
             },
             "status": null,
-            "top": "975",
+            "top": "840",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -155,10 +130,10 @@
             "name": "Updated Export Config",
             "description": null,
             "arguments": {
-                "config_info": "{% set record = [] %}{% for item in vars.steps.Get_Export_Template.data['hydra:member'][0].options.recordSets %}{% if item.type != \"export_templates\" %}{% set _ = record.append(item) %}{% endif %}{% endfor %}{% set _ = record.append(vars.export_template_recordset) %}{% set option = {} %}{% for k, v in vars.steps.Get_Export_Template.data['hydra:member'][0].options.items() %}{% if k == \"recordSets\" %}{% set _ = option.update({\"recordSets\": record}) %}{% else %}{% set _ = option.update({k: v}) %}{% endif %}{% endfor %}{% set template = {} %}{% for k, v in vars.steps.Get_Export_Template.data['hydra:member'][0].items() %}{% if k == \"options\" %}{% set _ = template.update({\"options\": option}) %}{% else %}{% set _ = template.update({k: v}) %}{% endif %}{% endfor %}[{{template}}]"
+                "config_info": "{% set template = {\n    \"name\": \"Export Templates\",\n    \"type\": \"export_templates\",\n    \"query\": {\n      \"sort\": [],\n      \"limit\": 100,\n      \"logic\": \"AND\",\n      \"filters\": [\n        {\n          \"type\": \"primitive\",\n          \"field\": \"name\",\n          \"value\": \"%Source Control%\",\n          \"operator\": \"like\",\n          \"_operator\": \"like\"\n        }\n      ],\n      \"__selectFields\": [\n        \"uuid\"\n      ]\n    },\n    \"include\": true,\n    \"includeCorrelations\": false,\n    \"whenExists\": \"replace\",\n    \"moduleNotExists\": true\n  } %}{% set _ = vars.steps.Get_Export_Template.data['hydra:member'][0].options.recordSets.append(template) %}{{vars.steps.Get_Export_Template.data['hydra:member']}}"
             },
             "status": null,
-            "top": "435",
+            "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -170,7 +145,7 @@
             "description": null,
             "arguments": {
                 "params": {
-                    "iri": "\/api\/3\/export_templates\/{{vars.template_name[0].uuid}}",
+                    "iri": "\/api\/3\/export_templates\/{{vars.config_info[0].uuid}}",
                     "body": "{{vars.config_info[0]}}",
                     "method": "PUT"
                 },
@@ -181,7 +156,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "570",
+            "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -211,16 +186,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get Export Template Details -> Get Export Template",
-            "targetStep": "\/api\/3\/workflow_steps\/6929ce64-ccd2-4e37-b76e-e548239ed26e",
-            "sourceStep": "\/api\/3\/workflow_steps\/8e949961-af72-455d-b8c5-20c8ff353395",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "a60287c1-9f1f-4fb1-b2ca-580920dfeb28"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Get Export Template -> Updated Export Config",
             "targetStep": "\/api\/3\/workflow_steps\/14402924-8e5a-4620-b921-909930415421",
             "sourceStep": "\/api\/3\/workflow_steps\/6929ce64-ccd2-4e37-b76e-e548239ed26e",
@@ -231,13 +196,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Get Export Template Details",
-            "targetStep": "\/api\/3\/workflow_steps\/8e949961-af72-455d-b8c5-20c8ff353395",
+            "name": "Start -> Get Export Template",
+            "targetStep": "\/api\/3\/workflow_steps\/6929ce64-ccd2-4e37-b76e-e548239ed26e",
             "sourceStep": "\/api\/3\/workflow_steps\/4de303f0-1eb9-4b5f-83ff-e16de3f6d043",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "c3179dff-da79-464a-9414-7fdfd5fbac7f"
+            "uuid": "d3d0d6fc-eff4-48b6-89cc-eb0e49f9ab1c"
         },
         {
             "@type": "WorkflowRoute",
@@ -247,7 +212,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "dc019d4e-dac0-495c-9734-3439a4572fb7"
+            "uuid": "1773ee75-9ed8-4298-bb69-f710ea44f3fd"
         },
         {
             "@type": "WorkflowRoute",

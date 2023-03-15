@@ -130,7 +130,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2730",
+            "top": "2460",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
@@ -281,7 +281,7 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "700",
+            "top": "720",
             "left": "540",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
@@ -356,7 +356,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2325",
+            "top": "2055",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -388,8 +388,8 @@
                 "config_options": "{% set uvalues = [] %}{% set record_set = {} %}{% set op = {} %}{% set import_job = {} %}{% for value in vars.steps.Get_Import_Job.data.options.recordSets.get('values') %}{% if value.type == \"export_templates\" %}{% set _ = value.pop(\"include\") %}{% set _ = value.pop(\"name\") %}{% set _ = value.update({\"name\": \"Export Templates\"}) %}{% set _ = value.update({\"include\": true}) %}{% endif %}{% set _ = uvalues.append(value) %}{% endfor %}{% set _ = record_set.update({\"values\": uvalues, \"include\": true}) %}{% for k, v in vars.steps.Get_Import_Job.data.options.items() %}{% if k == \"recordSets\" %}{% set _ = op.update({\"recordSets\": record_set}) %}{% else %}{% set _  = op.update({k: v}) %}{% endif %}{% endfor %}{% for k, v in vars.steps.Get_Import_Job.data.items() %}{% if k == \"options\" %}{% set _ = import_job.update({\"options\": op}) %}{% else %}{% set _ = import_job.update({k: v}) %}{% endif %}{% endfor %}{{import_job}}"
             },
             "status": null,
-            "top": "2055",
-            "left": "218",
+            "top": "30",
+            "left": "568",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "8a0a753c-e61d-40d1-87ce-d4a946ea265b"
@@ -434,7 +434,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2865",
+            "top": "2595",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -456,7 +456,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2595",
+            "top": "2325",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -627,8 +627,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2190",
-            "left": "218",
+            "top": "165",
+            "left": "568",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "a85a3f36-2fc6-4a16-ba13-4bfd65d3ab58"
@@ -659,7 +659,7 @@
                 }
             },
             "status": null,
-            "top": "2460",
+            "top": "2190",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dbf",
             "group": null,
@@ -739,13 +739,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get Import Job -> Modify Configuration Option",
-            "targetStep": "\/api\/3\/workflow_steps\/8a0a753c-e61d-40d1-87ce-d4a946ea265b",
+            "name": "Get Import Job -> Import Zip File",
+            "targetStep": "\/api\/3\/workflow_steps\/f1366835-975d-4a49-b6f4-f26761ae111e",
             "sourceStep": "\/api\/3\/workflow_steps\/981430f8-94be-493a-8741-5d2134c1f181",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "5e618c0e-9c9a-4210-abf9-7f6cd4b61b16"
+            "uuid": "ea5a24af-8497-4c20-8a80-47eaf20a3db3"
         },
         {
             "@type": "WorkflowRoute",
@@ -846,16 +846,6 @@
             "isExecuted": false,
             "group": null,
             "uuid": "1a42efd7-2f6d-4dca-b556-1c26ed4ec59b"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Update Import Job -> Import Zip File",
-            "targetStep": "\/api\/3\/workflow_steps\/f1366835-975d-4a49-b6f4-f26761ae111e",
-            "sourceStep": "\/api\/3\/workflow_steps\/a85a3f36-2fc6-4a16-ba13-4bfd65d3ab58",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "605bc8fe-c791-42a7-a318-5b28640aa5bd"
         },
         {
             "@type": "WorkflowRoute",
