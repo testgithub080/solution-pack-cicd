@@ -15,7 +15,7 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1671453569.56218,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1676624896.824589,
+        "modifyDate": 1678699904.909822,
         "id": 1
     },
     {
@@ -33,8 +33,8 @@
         "uuid": "4e27fc88-a14c-4d20-bdef-2c7987eac860",
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1674140292.351013,
-        "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
-        "modifyDate": 1676449736.131103,
+        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "modifyDate": 1678702506.820963,
         "id": 2
     },
     {
@@ -53,7 +53,7 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1671461578.863882,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1676624862.403243,
+        "modifyDate": 1678702524.078782,
         "id": 3
     },
     {
@@ -61,7 +61,7 @@
         "issues": null,
         "lastBuildDeployedOn": null,
         "title": "Setup the Source Control for Production Environment",
-        "description": "<p class=\"font-size-13  muted-80\">Setting up the source control&nbsp;for the production environment involves the following actions:<\/p>\n<ol class=\"font-size-13 muted-80\">\n<li class=\"font-size-13 muted-80\">Connects to a source control service and creates new repositories or links to an already created repository for storing 3 types of data\n<ol style=\"list-style-type: lower-alpha;\">\n<li>Production Content<\/li>\n<li>Production Settings<\/li>\n<li>Development Settings<\/li>\n<\/ol>\n<\/li>\n<li class=\"font-size-13  muted-80\">Maps logged in FortiSOAR user to specified GitHub user account, who has admin privileges, on the source control service.<\/li>\n<li class=\"font-size-13  muted-80\">Sets up export templates that define content to be saved in the source control repositories.<\/li>\n<li class=\"font-size-13  muted-80\">Pushes initial content to the respective source control repositories<\/li>\n<\/ol>\n<p>&nbsp;<\/p>\n<p class=\"font-size-13  muted-80\">Pre-Requisites<\/p>\n<p class=\"font-size-13  muted-80\">- Must have a GitHub Organization, under which respective repositories would be created<\/p>\n<p class=\"font-size-13  muted-80\">- GitHub Connector must already be configured with privileges to access\/create respective repositories<\/p>",
+        "description": "<p class=\"font-size-13  muted-80\"><strong>Pre-Requisites<\/strong><\/p>\n<p class=\"font-size-13  muted-80\">- Must have a GitHub Organization, under which respective repositories would be created<\/p>\n<p class=\"font-size-13  muted-80\">- GitHub Connector must already be configured with privileges to access\/create respective repositories<\/p>\n<p class=\"font-size-13  muted-80\">&nbsp;<\/p>\n<p class=\"font-size-13  muted-80\"><strong>Setup the Source Control for Production Environment<\/strong><\/p>\n<p class=\"font-size-13  muted-80\">Setting up the source control&nbsp;for the production environment involves the following actions:<\/p>\n<ol class=\"font-size-13 muted-80\">\n<li class=\"font-size-13  muted-80\">Maps logged in FortiSOAR user to specified GitHub user account, who has admin privileges, on the source control service.<\/li>\n<li class=\"font-size-13 muted-80\">Connects to a source control service and creates new repositories or links to an already created repository for storing 3 types of data\n<ol style=\"list-style-type: lower-alpha;\">\n<li>Production Content<\/li>\n<li>Production Settings<\/li>\n<li>Development Settings<\/li>\n<\/ol>\n<\/li>\n<li class=\"font-size-13  muted-80\">Following <a href=\"\/editor\/exporter\/templates\" target=\"_blank\" rel=\"noopener\">Export Templates<\/a> that define content to be saved in the source control repositories.\n<ol style=\"list-style-type: lower-alpha;\">\n<li>Source Control - Production Content<\/li>\n<li>Source Control - Production Settings<\/li>\n<li>Source Control - Development Settings<\/li>\n<\/ol>\n<\/li>\n<li class=\"font-size-13  muted-80\">Pushes initial content to the respective source control repositories<\/li>\n<\/ol>",
         "results": "",
         "sequence": 1,
         "recordIcon": "",
@@ -72,7 +72,7 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1670934469.007706,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1676624931.800327,
+        "modifyDate": 1678699454.47064,
         "id": 4
     },
     {
@@ -137,7 +137,7 @@
         "issues": null,
         "lastBuildDeployedOn": null,
         "title": "Setup the Development Environment",
-        "description": "<p class=\"font-size-13  muted-80\">Setting up the source control&nbsp;for the development environment entails the following:<\/p>\n<ol class=\"font-size-13 muted-80\">\n<li class=\"font-size-13 muted-80\">Connects to a source control service and identify following repositories\n<ol style=\"list-style-type: lower-alpha;\">\n<li>Production Content<\/li>\n<li>Development Settings<\/li>\n<\/ol>\n<\/li>\n<li class=\"font-size-13  muted-80\">Maps logged in FortiSOAR user to specified GitHub user account.<\/li>\n<li class=\"font-size-13  muted-80\">Installs export templates that define content to be saved in the source control repositories.<\/li>\n<li class=\"font-size-13  muted-80\">Applies latest content on this box. At this step, this development instance would like identical to production instances from the content standpoint.<\/li>\n<\/ol>\n<p>&nbsp;<\/p>\n<p class=\"font-size-13  muted-80\">Pre-Requisites<\/p>\n<p class=\"font-size-13  muted-80\">- Source Control must be setup already from the production environment.<\/p>\n<p class=\"font-size-13  muted-80\">- GitHub Connector must already be configured with privileges to access and write on the Production Content and Development Settings repositories<\/p>",
+        "description": "<p class=\"font-size-13  muted-80\"><strong>Pre-Requisites<\/strong><\/p>\n<p class=\"font-size-13  muted-80\">- Source Control must be setup already from the production environment.<\/p>\n<p class=\"font-size-13  muted-80\">- GitHub Connector must already be configured with privileges to access and write on the Production Content and Development Settings repositories<\/p>\n<p class=\"font-size-13  muted-80\">&nbsp;<\/p>\n<p class=\"font-size-13  muted-80\"><strong>Setup the Development Environment<\/strong><\/p>\n<p class=\"font-size-13  muted-80\">Setting up the source control&nbsp;for the development environment entails the following:<\/p>\n<ol class=\"font-size-13 muted-80\">\n<li class=\"font-size-13  muted-80\">Maps logged in FortiSOAR user to specified GitHub user account.<\/li>\n<li class=\"font-size-13 muted-80\">Connects to a source control service and identify following repositories\n<ol style=\"list-style-type: lower-alpha;\">\n<li>Production Content<\/li>\n<li>Development Settings<\/li>\n<\/ol>\n<\/li>\n<li class=\"font-size-13  muted-80\">Following <a href=\"\/editor\/exporter\/templates\" target=\"_blank\" rel=\"noopener\">Export Templates<\/a> that define content to be saved in the source control repositories.\n<ol style=\"list-style-type: lower-alpha;\">\n<li>Source Control - Production Content<\/li>\n<li>Source Control - Development Settings<\/li>\n<\/ol>\n<\/li>\n<li class=\"font-size-13  muted-80\">Applies latest content on this box. At this step, this development instance would like identical to production instances from the content standpoint.<\/li>\n<\/ol>",
         "results": "",
         "sequence": 2,
         "recordIcon": "",
@@ -148,7 +148,7 @@
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
         "createDate": 1671450064.070924,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1676624958.494252,
+        "modifyDate": 1678697343.566643,
         "id": 8
     }
 ]

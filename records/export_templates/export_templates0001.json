@@ -2,7 +2,7 @@
   {
     "@type": "ExportTemplate",
     "name": "Source Control - Production Content",
-    "lastExportDate": 1676980704.302405,
+    "lastExportDate": 1678694038.363458,
     "options": {
       "roles": [
         {
@@ -54,7 +54,6 @@
           },
           "modulePermissionDetails": {
             "hunt": {
-              "uuid": "cfb33345-22d9-471c-a580-cda37ab0bbf5",
               "@type": "ModulePermission",
               "module": "hunt",
               "canRead": true,
@@ -66,7 +65,6 @@
               "_fieldPermissionChanged": false
             },
             "files": {
-              "uuid": "d1698afa-dfda-4e27-ba91-a262e43c49df",
               "@type": "ModulePermission",
               "module": "files",
               "canRead": true,
@@ -78,7 +76,6 @@
               "_fieldPermissionChanged": false
             },
             "rules": {
-              "uuid": "ecf97548-7d42-4342-adf1-b6d8b2a96372",
               "@type": "ModulePermission",
               "module": "rules",
               "canRead": true,
@@ -90,7 +87,6 @@
               "_fieldPermissionChanged": false
             },
             "tasks": {
-              "uuid": "7b929490-b8a1-4581-a756-2654a95bda47",
               "@type": "ModulePermission",
               "module": "tasks",
               "canRead": true,
@@ -102,7 +98,6 @@
               "_fieldPermissionChanged": false
             },
             "agents": {
-              "uuid": "2be0f23b-3b2d-449b-afda-08254d49996f",
               "@type": "ModulePermission",
               "module": "agents",
               "canRead": false,
@@ -114,7 +109,6 @@
               "_fieldPermissionChanged": false
             },
             "alerts": {
-              "uuid": "e7478ee0-a4cf-42bf-ab13-698c8a65fc3d",
               "@type": "ModulePermission",
               "module": "alerts",
               "canRead": true,
@@ -126,7 +120,6 @@
               "_fieldPermissionChanged": false
             },
             "assets": {
-              "uuid": "49553923-c1b2-431b-9f34-744316b94413",
               "@type": "ModulePermission",
               "module": "assets",
               "canRead": true,
@@ -138,7 +131,6 @@
               "_fieldPermissionChanged": false
             },
             "events": {
-              "uuid": "2b024793-bcae-4487-b019-b98cd6cca2cc",
               "@type": "ModulePermission",
               "module": "events",
               "canRead": true,
@@ -150,7 +142,6 @@
               "_fieldPermissionChanged": false
             },
             "people": {
-              "uuid": "f42b1c00-d954-4b4f-9ca9-b12e0d35d690",
               "@type": "ModulePermission",
               "module": "people",
               "canRead": true,
@@ -162,7 +153,6 @@
               "_fieldPermissionChanged": false
             },
             "shifts": {
-              "uuid": "c608021d-ffeb-411d-9609-f4d3426dfec9",
               "@type": "ModulePermission",
               "module": "shifts",
               "canRead": true,
@@ -174,7 +164,6 @@
               "_fieldPermissionChanged": false
             },
             "routers": {
-              "uuid": "9a16dd02-ed90-4c98-9509-e82c7bebafb1",
               "@type": "ModulePermission",
               "module": "routers",
               "canRead": false,
@@ -186,7 +175,6 @@
               "_fieldPermissionChanged": false
             },
             "tenants": {
-              "uuid": "b0d58759-b675-48a3-9157-9a45a059cfa6",
               "@type": "ModulePermission",
               "module": "tenants",
               "canRead": false,
@@ -198,7 +186,6 @@
               "_fieldPermissionChanged": false
             },
             "widgets": {
-              "uuid": "3b7ff1c1-3cca-46cb-b3a7-8bf45b790ce0",
               "@type": "ModulePermission",
               "module": "widgets",
               "canRead": false,
@@ -210,7 +197,6 @@
               "_fieldPermissionChanged": false
             },
             "comments": {
-              "uuid": "812045fb-b8c4-4354-a92d-76cc5c61f487",
               "@type": "ModulePermission",
               "module": "comments",
               "canRead": true,
@@ -222,7 +208,6 @@
               "_fieldPermissionChanged": false
             },
             "security": {
-              "uuid": "1862519b-9188-4241-8935-7f787facfbd9",
               "@type": "ModulePermission",
               "module": "security",
               "canRead": false,
@@ -234,7 +219,6 @@
               "_fieldPermissionChanged": false
             },
             "warrooms": {
-              "uuid": "e907c62f-c3f1-4443-87d7-e3f4f786c298",
               "@type": "ModulePermission",
               "module": "warrooms",
               "canRead": true,
@@ -246,7 +230,6 @@
               "_fieldPermissionChanged": false
             },
             "approvals": {
-              "uuid": "861a754b-44f2-471b-a4a9-020e7a76ccc3",
               "@type": "ModulePermission",
               "module": "approvals",
               "canRead": true,
@@ -258,7 +241,6 @@
               "_fieldPermissionChanged": false
             },
             "campaigns": {
-              "uuid": "3e267498-415a-4b90-8e1a-75409702ee57",
               "@type": "ModulePermission",
               "module": "campaigns",
               "canRead": true,
@@ -270,7 +252,6 @@
               "_fieldPermissionChanged": false
             },
             "companies": {
-              "uuid": "f7fdc8d3-3e24-4ec5-a4da-cdcbe07591d0",
               "@type": "ModulePermission",
               "module": "companies",
               "canRead": false,
@@ -282,7 +263,6 @@
               "_fieldPermissionChanged": false
             },
             "dashboard": {
-              "uuid": "fee7562f-40f2-4e71-a127-53bd99022277",
               "@type": "ModulePermission",
               "module": "dashboard",
               "canRead": true,
@@ -294,7 +274,6 @@
               "_fieldPermissionChanged": false
             },
             "incidents": {
-              "uuid": "bc65bb41-6140-434a-94e8-147147b73a9a",
               "@type": "ModulePermission",
               "module": "incidents",
               "canRead": true,
@@ -306,7 +285,6 @@
               "_fieldPermissionChanged": false
             },
             "reporting": {
-              "uuid": "1e33b308-e809-4347-a807-8b2a5858b53c",
               "@type": "ModulePermission",
               "module": "reporting",
               "canRead": true,
@@ -318,7 +296,6 @@
               "_fieldPermissionChanged": false
             },
             "schedules": {
-              "uuid": "b6432cea-1ef8-424a-9aa6-f59e740d7a48",
               "@type": "ModulePermission",
               "module": "schedules",
               "canRead": true,
@@ -330,7 +307,6 @@
               "_fieldPermissionChanged": false
             },
             "workflows": {
-              "uuid": "92a10fb7-68e9-40e3-9724-974cee33d49d",
               "@type": "ModulePermission",
               "module": "workflows",
               "canRead": true,
@@ -342,7 +318,6 @@
               "_fieldPermissionChanged": false
             },
             "activities": {
-              "uuid": "01508778-9899-47d0-ae27-1db5582f327e",
               "@type": "ModulePermission",
               "module": "activities",
               "canRead": true,
@@ -354,7 +329,6 @@
               "_fieldPermissionChanged": false
             },
             "appliances": {
-              "uuid": "79b577cb-0e85-4715-b7b2-053d61b7d668",
               "@type": "ModulePermission",
               "module": "appliances",
               "canRead": false,
@@ -366,7 +340,6 @@
               "_fieldPermissionChanged": false
             },
             "connectors": {
-              "uuid": "365c645a-e0a3-4d67-92b8-5c30738b9e85",
               "@type": "ModulePermission",
               "module": "connectors",
               "canRead": false,
@@ -378,7 +351,6 @@
               "_fieldPermissionChanged": false
             },
             "contentHub": {
-              "uuid": "3bae2935-7f26-4b01-88fc-f9a2574ba057",
               "@type": "ModulePermission",
               "module": "contentHub",
               "canRead": true,
@@ -390,7 +362,6 @@
               "_fieldPermissionChanged": false
             },
             "fsr_queues": {
-              "uuid": "37fab834-6b73-46a3-93ed-0e217d703108",
               "@type": "ModulePermission",
               "module": "fsr_queues",
               "canRead": true,
@@ -402,7 +373,6 @@
               "_fieldPermissionChanged": false
             },
             "indicators": {
-              "uuid": "7bb4930b-b52e-4c52-b925-f8bbe2940dca",
               "@type": "ModulePermission",
               "module": "indicators",
               "canRead": true,
@@ -414,7 +384,6 @@
               "_fieldPermissionChanged": false
             },
             "application": {
-              "uuid": "5e52b578-6b35-4ff4-b2c6-3d1ca311994d",
               "@type": "ModulePermission",
               "module": "application",
               "canRead": true,
@@ -426,7 +395,6 @@
               "_fieldPermissionChanged": false
             },
             "attachments": {
-              "uuid": "37e4c517-67a7-4a07-8c51-ec7de8ff0826",
               "@type": "ModulePermission",
               "module": "attachments",
               "canRead": true,
@@ -438,7 +406,6 @@
               "_fieldPermissionChanged": false
             },
             "sla_template": {
-              "uuid": "4f72f818-87d0-46c6-b817-48fb57a39ef4",
               "@type": "ModulePermission",
               "module": "sla_template",
               "canRead": true,
@@ -450,7 +417,6 @@
               "_fieldPermissionChanged": false
             },
             "announcements": {
-              "uuid": "5e825763-2277-4951-a7ff-7d92fe556269",
               "@type": "ModulePermission",
               "module": "announcements",
               "canRead": true,
@@ -462,7 +428,6 @@
               "_fieldPermissionChanged": false
             },
             "communication": {
-              "uuid": "c895dc90-6a49-4727-82d1-3759ca8cd61a",
               "@type": "ModulePermission",
               "module": "communication",
               "canRead": true,
@@ -474,7 +439,6 @@
               "_fieldPermissionChanged": false
             },
             "data_archival": {
-              "uuid": "07ad69b7-6b8b-44be-8988-8a0d46da7ef0",
               "@type": "ModulePermission",
               "module": "data_archival",
               "canRead": false,
@@ -486,7 +450,6 @@
               "_fieldPermissionChanged": false
             },
             "saved_reports": {
-              "uuid": "cebf2464-6fd1-4f76-bf4b-54fb289493cf",
               "@type": "ModulePermission",
               "module": "saved_reports",
               "canRead": true,
@@ -498,7 +461,6 @@
               "_fieldPermissionChanged": false
             },
             "solutionpacks": {
-              "uuid": "a7041952-b63d-4ac4-8255-475a5f66a5a2",
               "@type": "ModulePermission",
               "module": "solutionpacks",
               "canRead": false,
@@ -510,7 +472,6 @@
               "_fieldPermissionChanged": false
             },
             "email_templates": {
-              "uuid": "baa036ab-f2ab-47f0-a78e-82ecb83ac964",
               "@type": "ModulePermission",
               "module": "email_templates",
               "canRead": true,
@@ -527,6 +488,7 @@
           "label": "Full App Permissions",
           "value": "/api/3/roles/21d7a7c6-9d68-438f-b732-e8950c5f745b",
           "include": true,
+          "_expanded": false,
           "_allChecked": true,
           "description": "Essentially the root user, use carefully",
           "modulePermissions": {
@@ -573,7 +535,6 @@
           },
           "modulePermissionDetails": {
             "hunt": {
-              "uuid": "41eb3a79-1fe3-4c46-8037-70a81200447b",
               "@type": "ModulePermission",
               "module": "hunt",
               "canRead": true,
@@ -585,7 +546,6 @@
               "_fieldPermissionChanged": false
             },
             "files": {
-              "uuid": "24a48619-37b0-426b-8c11-6c1498394067",
               "@type": "ModulePermission",
               "module": "files",
               "canRead": true,
@@ -597,7 +557,6 @@
               "_fieldPermissionChanged": false
             },
             "rules": {
-              "uuid": "bb1e643f-df45-4648-9a74-00609cec1619",
               "@type": "ModulePermission",
               "module": "rules",
               "canRead": true,
@@ -609,7 +568,6 @@
               "_fieldPermissionChanged": false
             },
             "tasks": {
-              "uuid": "ca2afb78-95b9-41ec-9d8e-a719380f3fea",
               "@type": "ModulePermission",
               "module": "tasks",
               "canRead": true,
@@ -621,7 +579,6 @@
               "_fieldPermissionChanged": false
             },
             "agents": {
-              "uuid": "ad1fcaa9-1eb2-4654-8d41-465cb8ae1c0c",
               "@type": "ModulePermission",
               "module": "agents",
               "canRead": true,
@@ -633,7 +590,6 @@
               "_fieldPermissionChanged": false
             },
             "alerts": {
-              "uuid": "dc9dc4ea-44de-4973-9f04-8b3f360b16df",
               "@type": "ModulePermission",
               "module": "alerts",
               "canRead": true,
@@ -645,7 +601,6 @@
               "_fieldPermissionChanged": false
             },
             "assets": {
-              "uuid": "bdd4b607-07f7-49e0-9756-824033738690",
               "@type": "ModulePermission",
               "module": "assets",
               "canRead": true,
@@ -657,7 +612,6 @@
               "_fieldPermissionChanged": false
             },
             "events": {
-              "uuid": "a605bbaf-f673-49a1-b1a4-91e86e019bff",
               "@type": "ModulePermission",
               "module": "events",
               "canRead": true,
@@ -669,7 +623,6 @@
               "_fieldPermissionChanged": false
             },
             "people": {
-              "uuid": "1a891f63-230f-4ed4-8e73-0540acdc0691",
               "@type": "ModulePermission",
               "module": "people",
               "canRead": true,
@@ -681,7 +634,6 @@
               "_fieldPermissionChanged": false
             },
             "shifts": {
-              "uuid": "6fc424fb-daf4-40b8-ac22-bc4706aec469",
               "@type": "ModulePermission",
               "module": "shifts",
               "canRead": true,
@@ -693,7 +645,6 @@
               "_fieldPermissionChanged": false
             },
             "routers": {
-              "uuid": "ccb5f02e-1c6d-4b17-a55f-4ca6965e5214",
               "@type": "ModulePermission",
               "module": "routers",
               "canRead": true,
@@ -705,7 +656,6 @@
               "_fieldPermissionChanged": false
             },
             "tenants": {
-              "uuid": "1485650e-149a-4120-92af-71441723400f",
               "@type": "ModulePermission",
               "module": "tenants",
               "canRead": true,
@@ -717,7 +667,6 @@
               "_fieldPermissionChanged": false
             },
             "widgets": {
-              "uuid": "c3431a53-12e7-4995-bca7-2b6654dfdc8e",
               "@type": "ModulePermission",
               "module": "widgets",
               "canRead": true,
@@ -729,7 +678,6 @@
               "_fieldPermissionChanged": false
             },
             "comments": {
-              "uuid": "fd3ba96d-eec5-4e99-8f00-9945c07cb948",
               "@type": "ModulePermission",
               "module": "comments",
               "canRead": true,
@@ -741,7 +689,6 @@
               "_fieldPermissionChanged": false
             },
             "security": {
-              "uuid": "9d0672fe-c8a6-44c7-af15-d4233ec1e3e0",
               "@type": "ModulePermission",
               "module": "security",
               "canRead": true,
@@ -753,7 +700,6 @@
               "_fieldPermissionChanged": false
             },
             "warrooms": {
-              "uuid": "4fa847e6-d382-4c46-b5f5-c42e5225a5aa",
               "@type": "ModulePermission",
               "module": "warrooms",
               "canRead": true,
@@ -765,7 +711,6 @@
               "_fieldPermissionChanged": false
             },
             "approvals": {
-              "uuid": "9cb4850e-4df7-4cff-a9bb-0d34eda18777",
               "@type": "ModulePermission",
               "module": "approvals",
               "canRead": true,
@@ -777,7 +722,6 @@
               "_fieldPermissionChanged": false
             },
             "campaigns": {
-              "uuid": "d3ce7d0d-16fc-472b-894b-e4ed74edc528",
               "@type": "ModulePermission",
               "module": "campaigns",
               "canRead": true,
@@ -789,7 +733,6 @@
               "_fieldPermissionChanged": false
             },
             "companies": {
-              "uuid": "2ade269b-0813-420e-94d1-97ce29ed4274",
               "@type": "ModulePermission",
               "module": "companies",
               "canRead": true,
@@ -801,7 +744,6 @@
               "_fieldPermissionChanged": false
             },
             "dashboard": {
-              "uuid": "ea525038-922b-4b27-92f8-9407e34a8b49",
               "@type": "ModulePermission",
               "module": "dashboard",
               "canRead": true,
@@ -813,7 +755,6 @@
               "_fieldPermissionChanged": false
             },
             "incidents": {
-              "uuid": "ce778c35-266e-4bc0-b203-f1a825aca985",
               "@type": "ModulePermission",
               "module": "incidents",
               "canRead": true,
@@ -825,7 +766,6 @@
               "_fieldPermissionChanged": false
             },
             "reporting": {
-              "uuid": "9effaf54-ac54-4c32-9d77-a166e5f07185",
               "@type": "ModulePermission",
               "module": "reporting",
               "canRead": true,
@@ -837,7 +777,6 @@
               "_fieldPermissionChanged": false
             },
             "schedules": {
-              "uuid": "629054d0-c585-4150-a5a4-58b451f550e5",
               "@type": "ModulePermission",
               "module": "schedules",
               "canRead": true,
@@ -849,7 +788,6 @@
               "_fieldPermissionChanged": false
             },
             "workflows": {
-              "uuid": "4aa86694-aa13-4145-b75a-cd9c28da94f6",
               "@type": "ModulePermission",
               "module": "workflows",
               "canRead": true,
@@ -861,7 +799,6 @@
               "_fieldPermissionChanged": false
             },
             "activities": {
-              "uuid": "9a30f7f7-b12a-448c-a2ba-11b031e99087",
               "@type": "ModulePermission",
               "module": "activities",
               "canRead": true,
@@ -873,7 +810,6 @@
               "_fieldPermissionChanged": false
             },
             "appliances": {
-              "uuid": "6a8f1ba8-be34-48ec-b868-6c58fb0439d8",
               "@type": "ModulePermission",
               "module": "appliances",
               "canRead": true,
@@ -885,7 +821,6 @@
               "_fieldPermissionChanged": false
             },
             "connectors": {
-              "uuid": "fc82593e-064f-4afd-9ae6-d2043bc24650",
               "@type": "ModulePermission",
               "module": "connectors",
               "canRead": true,
@@ -897,7 +832,6 @@
               "_fieldPermissionChanged": false
             },
             "contentHub": {
-              "uuid": "e4e211dc-53fc-38c5-8f02-48b7c9344cd3",
               "@type": "ModulePermission",
               "module": "contentHub",
               "canRead": true,
@@ -909,7 +843,6 @@
               "_fieldPermissionChanged": false
             },
             "fsr_queues": {
-              "uuid": "5c7c5561-6735-4ca0-959b-2394c67a062f",
               "@type": "ModulePermission",
               "module": "fsr_queues",
               "canRead": true,
@@ -921,7 +854,6 @@
               "_fieldPermissionChanged": false
             },
             "indicators": {
-              "uuid": "5dd31110-d8a8-4f8c-9c33-640b3f0dd12e",
               "@type": "ModulePermission",
               "module": "indicators",
               "canRead": true,
@@ -933,7 +865,6 @@
               "_fieldPermissionChanged": false
             },
             "application": {
-              "uuid": "aaddd387-b46c-4a10-8859-ca5aeb0c487a",
               "@type": "ModulePermission",
               "module": "application",
               "canRead": true,
@@ -945,7 +876,6 @@
               "_fieldPermissionChanged": false
             },
             "attachments": {
-              "uuid": "fb7723f6-7055-4365-a914-e240cbe0fcae",
               "@type": "ModulePermission",
               "module": "attachments",
               "canRead": true,
@@ -957,7 +887,6 @@
               "_fieldPermissionChanged": false
             },
             "sla_template": {
-              "uuid": "80367a1c-1166-483d-9c0e-242e5f91cbce",
               "@type": "ModulePermission",
               "module": "sla_template",
               "canRead": true,
@@ -969,7 +898,6 @@
               "_fieldPermissionChanged": false
             },
             "announcements": {
-              "uuid": "2b607d13-63eb-44ed-ba0e-5f34152bf042",
               "@type": "ModulePermission",
               "module": "announcements",
               "canRead": true,
@@ -981,7 +909,6 @@
               "_fieldPermissionChanged": false
             },
             "communication": {
-              "uuid": "848f7739-fd53-4f23-9e5c-122cf07b4d7f",
               "@type": "ModulePermission",
               "module": "communication",
               "canRead": true,
@@ -993,7 +920,6 @@
               "_fieldPermissionChanged": false
             },
             "data_archival": {
-              "uuid": "3859adf6-7a37-494a-9ef7-fa853a5f6a72",
               "@type": "ModulePermission",
               "module": "data_archival",
               "canRead": true,
@@ -1005,7 +931,6 @@
               "_fieldPermissionChanged": false
             },
             "saved_reports": {
-              "uuid": "1a9817e6-ee5a-4de4-b821-e60e6ad5f777",
               "@type": "ModulePermission",
               "module": "saved_reports",
               "canRead": true,
@@ -1017,7 +942,6 @@
               "_fieldPermissionChanged": false
             },
             "solutionpacks": {
-              "uuid": "5351bf80-d3fa-4f2b-b1b8-5f5dec89efa3",
               "@type": "ModulePermission",
               "module": "solutionpacks",
               "canRead": true,
@@ -1029,7 +953,6 @@
               "_fieldPermissionChanged": false
             },
             "email_templates": {
-              "uuid": "a55f86ca-09af-4cd7-9374-a79b3992a1ef",
               "@type": "ModulePermission",
               "module": "email_templates",
               "canRead": true,
@@ -1041,7 +964,6 @@
               "_fieldPermissionChanged": false
             },
             "change_management": {
-              "uuid": "c5e9b846-fe93-4c5f-a9e8-9ce9782ffeef",
               "@type": "ModulePermission",
               "module": "change_management",
               "canRead": true,
@@ -1103,7 +1025,6 @@
           },
           "modulePermissionDetails": {
             "hunt": {
-              "uuid": "dd1a0c45-6a84-423a-8bb4-68d7827377cf",
               "@type": "ModulePermission",
               "module": "hunt",
               "canRead": true,
@@ -1115,7 +1036,6 @@
               "_fieldPermissionChanged": false
             },
             "files": {
-              "uuid": "62062d74-7ed9-47df-b495-2f73a660440e",
               "@type": "ModulePermission",
               "module": "files",
               "canRead": true,
@@ -1127,7 +1047,6 @@
               "_fieldPermissionChanged": false
             },
             "rules": {
-              "uuid": "e3ac57e6-f27a-4961-bf1a-174d183ae01d",
               "@type": "ModulePermission",
               "module": "rules",
               "canRead": true,
@@ -1139,7 +1058,6 @@
               "_fieldPermissionChanged": false
             },
             "tasks": {
-              "uuid": "12a4c365-7a38-467a-9edf-538bf7412e6e",
               "@type": "ModulePermission",
               "module": "tasks",
               "canRead": true,
@@ -1151,7 +1069,6 @@
               "_fieldPermissionChanged": false
             },
             "agents": {
-              "uuid": "1b6bf8d7-55c0-4777-a779-0e91f6914625",
               "@type": "ModulePermission",
               "module": "agents",
               "canRead": false,
@@ -1163,7 +1080,6 @@
               "_fieldPermissionChanged": false
             },
             "alerts": {
-              "uuid": "1bdd6ec0-0331-417f-8f31-0a8d598cd74d",
               "@type": "ModulePermission",
               "module": "alerts",
               "canRead": true,
@@ -1175,7 +1091,6 @@
               "_fieldPermissionChanged": false
             },
             "assets": {
-              "uuid": "72ea9076-975d-447b-81ba-bbb81af8ad00",
               "@type": "ModulePermission",
               "module": "assets",
               "canRead": true,
@@ -1187,7 +1102,6 @@
               "_fieldPermissionChanged": false
             },
             "events": {
-              "uuid": "b54db5bf-bca8-4515-bf43-02a2c6991e88",
               "@type": "ModulePermission",
               "module": "events",
               "canRead": true,
@@ -1199,7 +1113,6 @@
               "_fieldPermissionChanged": false
             },
             "people": {
-              "uuid": "8fd1acc0-f524-472c-9e10-84abe20a4c6c",
               "@type": "ModulePermission",
               "module": "people",
               "canRead": true,
@@ -1211,7 +1124,6 @@
               "_fieldPermissionChanged": false
             },
             "shifts": {
-              "uuid": "5f3a8fef-8ffa-4586-8f87-536c1151bd2e",
               "@type": "ModulePermission",
               "module": "shifts",
               "canRead": true,
@@ -1223,7 +1135,6 @@
               "_fieldPermissionChanged": false
             },
             "routers": {
-              "uuid": "6baff8f6-6d29-46ef-b4f9-18f40c1c4866",
               "@type": "ModulePermission",
               "module": "routers",
               "canRead": false,
@@ -1235,7 +1146,6 @@
               "_fieldPermissionChanged": false
             },
             "tenants": {
-              "uuid": "eed8ca2a-19fe-435a-934a-801f40a887c0",
               "@type": "ModulePermission",
               "module": "tenants",
               "canRead": false,
@@ -1247,7 +1157,6 @@
               "_fieldPermissionChanged": false
             },
             "widgets": {
-              "uuid": "37d416c7-e7f8-49e9-9d47-4c590ff683d3",
               "@type": "ModulePermission",
               "module": "widgets",
               "canRead": false,
@@ -1259,7 +1168,6 @@
               "_fieldPermissionChanged": false
             },
             "comments": {
-              "uuid": "818feac7-3f92-4a1a-9448-1075235a7dc6",
               "@type": "ModulePermission",
               "module": "comments",
               "canRead": true,
@@ -1271,7 +1179,6 @@
               "_fieldPermissionChanged": false
             },
             "security": {
-              "uuid": "a496e2bc-abdd-437a-b6a8-ab5f41098f4e",
               "@type": "ModulePermission",
               "module": "security",
               "canRead": false,
@@ -1283,7 +1190,6 @@
               "_fieldPermissionChanged": false
             },
             "warrooms": {
-              "uuid": "cdb02ce1-6313-4ea6-9561-4e5752a93bb3",
               "@type": "ModulePermission",
               "module": "warrooms",
               "canRead": true,
@@ -1295,7 +1201,6 @@
               "_fieldPermissionChanged": false
             },
             "approvals": {
-              "uuid": "f59fd7c0-142a-4549-93c6-4455c36b3bc4",
               "@type": "ModulePermission",
               "module": "approvals",
               "canRead": true,
@@ -1307,7 +1212,6 @@
               "_fieldPermissionChanged": false
             },
             "campaigns": {
-              "uuid": "951acf72-c180-43cd-8553-a8c9dcba1903",
               "@type": "ModulePermission",
               "module": "campaigns",
               "canRead": true,
@@ -1319,7 +1223,6 @@
               "_fieldPermissionChanged": false
             },
             "companies": {
-              "uuid": "424ad0bb-894e-4f77-b093-3695a0b6bf4c",
               "@type": "ModulePermission",
               "module": "companies",
               "canRead": false,
@@ -1331,7 +1234,6 @@
               "_fieldPermissionChanged": false
             },
             "dashboard": {
-              "uuid": "3e8dbb8e-ecb6-4dac-909b-22b0dc7fb3e4",
               "@type": "ModulePermission",
               "module": "dashboard",
               "canRead": true,
@@ -1343,7 +1245,6 @@
               "_fieldPermissionChanged": false
             },
             "incidents": {
-              "uuid": "28f4cad3-201c-48cc-b693-b8207f231696",
               "@type": "ModulePermission",
               "module": "incidents",
               "canRead": true,
@@ -1355,7 +1256,6 @@
               "_fieldPermissionChanged": false
             },
             "reporting": {
-              "uuid": "2e171ca1-5d01-4ab0-aec1-1b2e48b80f4e",
               "@type": "ModulePermission",
               "module": "reporting",
               "canRead": true,
@@ -1367,7 +1267,6 @@
               "_fieldPermissionChanged": false
             },
             "schedules": {
-              "uuid": "7a029426-0124-4156-903b-4a4e1e5ad49f",
               "@type": "ModulePermission",
               "module": "schedules",
               "canRead": true,
@@ -1379,7 +1278,6 @@
               "_fieldPermissionChanged": false
             },
             "workflows": {
-              "uuid": "49eb41c1-a11b-42eb-b7f6-3671c8a4e3e9",
               "@type": "ModulePermission",
               "module": "workflows",
               "canRead": false,
@@ -1391,7 +1289,6 @@
               "_fieldPermissionChanged": false
             },
             "activities": {
-              "uuid": "e23f7bc1-b11c-4092-b23f-b6a0b2573875",
               "@type": "ModulePermission",
               "module": "activities",
               "canRead": true,
@@ -1403,7 +1300,6 @@
               "_fieldPermissionChanged": false
             },
             "appliances": {
-              "uuid": "a9d9a02b-5b44-4e32-b794-4a7845bce934",
               "@type": "ModulePermission",
               "module": "appliances",
               "canRead": false,
@@ -1415,7 +1311,6 @@
               "_fieldPermissionChanged": false
             },
             "connectors": {
-              "uuid": "5a7a7fc8-b38c-4361-b719-136f04743b99",
               "@type": "ModulePermission",
               "module": "connectors",
               "canRead": false,
@@ -1427,7 +1322,6 @@
               "_fieldPermissionChanged": false
             },
             "contentHub": {
-              "uuid": "b6440bf3-3aa2-4f36-bc96-aa2b991bd4f1",
               "@type": "ModulePermission",
               "module": "contentHub",
               "canRead": true,
@@ -1439,7 +1333,6 @@
               "_fieldPermissionChanged": false
             },
             "fsr_queues": {
-              "uuid": "4c0228c0-c709-4f5a-aa89-d0d49faa41be",
               "@type": "ModulePermission",
               "module": "fsr_queues",
               "canRead": true,
@@ -1451,7 +1344,6 @@
               "_fieldPermissionChanged": false
             },
             "indicators": {
-              "uuid": "d1ae5e95-975e-4a95-908a-14adb81860a9",
               "@type": "ModulePermission",
               "module": "indicators",
               "canRead": true,
@@ -1463,7 +1355,6 @@
               "_fieldPermissionChanged": false
             },
             "application": {
-              "uuid": "ab9b56c5-2275-479c-a7db-51507eb57d21",
               "@type": "ModulePermission",
               "module": "application",
               "canRead": true,
@@ -1475,7 +1366,6 @@
               "_fieldPermissionChanged": false
             },
             "attachments": {
-              "uuid": "f77ef462-58fd-436d-8e86-cf95a9f51ef2",
               "@type": "ModulePermission",
               "module": "attachments",
               "canRead": true,
@@ -1487,7 +1377,6 @@
               "_fieldPermissionChanged": false
             },
             "sla_template": {
-              "uuid": "5e71bdfd-90fd-4fc3-8acf-bbc69303bb87",
               "@type": "ModulePermission",
               "module": "sla_template",
               "canRead": true,
@@ -1499,7 +1388,6 @@
               "_fieldPermissionChanged": false
             },
             "announcements": {
-              "uuid": "b1b81efd-74af-49ee-87d6-09618f19fb81",
               "@type": "ModulePermission",
               "module": "announcements",
               "canRead": true,
@@ -1511,7 +1399,6 @@
               "_fieldPermissionChanged": false
             },
             "communication": {
-              "uuid": "db17e3ba-9b6e-4d84-8f95-5b0d3180d254",
               "@type": "ModulePermission",
               "module": "communication",
               "canRead": true,
@@ -1523,7 +1410,6 @@
               "_fieldPermissionChanged": false
             },
             "data_archival": {
-              "uuid": "dfb08b77-eb3a-47f0-8eb9-045fc2506558",
               "@type": "ModulePermission",
               "module": "data_archival",
               "canRead": false,
@@ -1535,7 +1421,6 @@
               "_fieldPermissionChanged": false
             },
             "saved_reports": {
-              "uuid": "e82bd38a-b188-48dc-ac19-60ef05189f79",
               "@type": "ModulePermission",
               "module": "saved_reports",
               "canRead": true,
@@ -1547,7 +1432,6 @@
               "_fieldPermissionChanged": false
             },
             "solutionpacks": {
-              "uuid": "af1370bb-5ba3-4a2b-a083-8d8c807bc1f5",
               "@type": "ModulePermission",
               "module": "solutionpacks",
               "canRead": false,
@@ -1559,7 +1443,6 @@
               "_fieldPermissionChanged": false
             },
             "email_templates": {
-              "uuid": "6a6991f4-7768-4d85-ae36-91eaa5869096",
               "@type": "ModulePermission",
               "module": "email_templates",
               "canRead": true,
@@ -1615,6 +1498,9 @@
             "Help",
             "User Community"
           ]
+        },
+        {
+          "value": "cs_queue_management"
         }
       ],
       "actors": [],
@@ -1773,24 +1659,6 @@
           ]
         },
         {
-          "value": "attachments",
-          "includedAttributes": [
-            "name",
-            "description",
-            "file",
-            "type",
-            "alerts",
-            "assets",
-            "incidents",
-            "indicators",
-            "tasks",
-            "warrooms",
-            "comments",
-            "uuid",
-            "people"
-          ]
-        },
-        {
           "value": "campaigns",
           "includedAttributes": [
             "alerts",
@@ -1844,6 +1712,22 @@
             "uuid",
             "indicators",
             "alerts"
+          ]
+        },
+        {
+          "value": "fsr_queues",
+          "includedAttributes": [
+            "assignmentMethod",
+            "name",
+            "description",
+            "members",
+            "currentRoundRobinIndex",
+            "leader",
+            "assignmentParameters",
+            "recordTypeRules",
+            "recordTypes",
+            "active",
+            "draft"
           ]
         },
         {
@@ -2082,8 +1966,7 @@
         "add96996-0f45-4d15-a897-1b77a9444336",
         "f59eaa50-8f79-4d20-bc69-79ee19e2e0c2",
         "93bc8209-cf8d-463c-bcd8-db3ac03822cb-212c",
-        "82bc8209-ef8d-463d-bcd8-db3ac08882cb-444d",
-        "3bc504ee-bf04-46b1-bfec-e000d2e40cd8"
+        "82bc8209-ef8d-463d-bcd8-db3ac08882cb-444d"
       ],
       "recordSets": [
         {
@@ -2117,25 +2000,9 @@
           "includeCorrelations": false
         },
         {
-          "type": "attachments",
-          "label": "Attachments",
-          "query": {
-            "sort": [],
-            "limit": 100,
-            "logic": "AND",
-            "filters": [
-              {
-                "type": "primitive",
-                "field": "name",
-                "value": "%Source Control%",
-                "operator": "like",
-                "_operator": "like"
-              }
-            ],
-            "__selectFields": [
-              "uuid"
-            ]
-          },
+          "type": "fsr_queues",
+          "label": "Queues",
+          "query": null,
           "include": true,
           "includeCorrelations": false
         }
@@ -2174,6 +2041,7 @@
         "/api/3/picklist_names/4e80cba3-032f-48b4-ac03-17e3ec247aac",
         "/api/3/picklist_names/98830189-afff-40e6-bed1-94012551dc67",
         "/api/3/picklist_names/fe36a8f2-fcba-4221-b4ab-1081f596b153",
+        "/api/3/picklist_names/21ddbcfd-b4a3-4273-adea-c674fe47d643",
         "/api/3/picklist_names/40f1345f-f679-43c0-9237-5b06edd8385f",
         "/api/3/picklist_names/ab8bbdb4-2cf9-4695-90ef-9f1f825d2b1f",
         "/api/3/picklist_names/7b348719-8ffc-4c94-8ce7-1812eae43d78"
@@ -2197,6 +2065,9 @@
         "modules-events-list",
         "modules-events-detail",
         "modules-events-form",
+        "modules-fsr_queues-list",
+        "modules-fsr_queues-detail",
+        "modules-fsr_queues-form",
         "modules-hunt-list",
         "modules-hunt-detail",
         "modules-hunt-form",
@@ -2212,15 +2083,130 @@
         "modules-warrooms-list",
         "modules-warrooms-detail",
         "modules-warrooms-form"
-      ]
+      ],
+      "playbookBlocks": []
     },
     "type": "Export Wizard",
     "solutionPack": null,
-    "uuid": "276fa859-d067-401a-bd8a-d199e6a889a2",
-    "id": 4,
-    "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-    "createDate": 1676980656.552386,
+    "uuid": "114d8b44-ed1c-4219-ac0c-05a8f057c133",
+    "id": 2,
+    "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1678361239.732998,
     "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1676984194.148242
+    "modifyDate": 1678732307.725184
+  },
+  {
+    "@type": "ExportTemplate",
+    "name": "Source Control - Production Settings",
+    "lastExportDate": 1672684884.845795,
+    "options": {
+      "roles": [],
+      "rules": [],
+      "teams": [],
+      "views": [
+        {
+          "value": "app",
+          "appendNavigation": [
+            "Dashboard",
+            "Queue & Shift Management",
+            "Incident Response",
+            "Automation",
+            "Resources",
+            "Reports",
+            "Widget Library",
+            "Content Hub",
+            "Help",
+            "User Community"
+          ]
+        }
+      ],
+      "actors": [],
+      "modules": [],
+      "reports": [],
+      "widgets": [],
+      "connectors": [],
+      "dashboards": [],
+      "recordSets": [],
+      "appSettings": [
+        "systemSettings",
+        "LDAP",
+        "RADIUS",
+        "TOKEN",
+        "HA",
+        "sso",
+        "syslog",
+        "proxy"
+      ],
+      "ruleChannels": [],
+      "picklistNames": [],
+      "viewTemplates": [],
+      "globalVariables": [],
+      "playbookCollections": []
+    },
+    "type": "Export Wizard",
+    "solutionPack": null,
+    "uuid": "3ca2b745-9b43-4e38-9091-13880e656723",
+    "id": 3,
+    "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1678361239.633928,
+    "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1678361239.633928
+  },
+  {
+    "@type": "ExportTemplate",
+    "name": "Source Control - Development Settings",
+    "lastExportDate": 1671778968.929019,
+    "options": {
+      "roles": [],
+      "rules": [],
+      "teams": [],
+      "views": [
+        {
+          "value": "app",
+          "appendNavigation": [
+            "Dashboard",
+            "Queue & Shift Management",
+            "Incident Response",
+            "Automation",
+            "Resources",
+            "Reports",
+            "Widget Library",
+            "Content Hub",
+            "Help",
+            "User Community"
+          ]
+        }
+      ],
+      "actors": [],
+      "modules": [],
+      "reports": [],
+      "widgets": [],
+      "connectors": [],
+      "dashboards": [],
+      "recordSets": [],
+      "appSettings": [
+        "systemSettings",
+        "LDAP",
+        "RADIUS",
+        "TOKEN",
+        "HA",
+        "sso",
+        "syslog",
+        "proxy"
+      ],
+      "ruleChannels": [],
+      "picklistNames": [],
+      "viewTemplates": [],
+      "globalVariables": [],
+      "playbookCollections": []
+    },
+    "type": "Export Wizard",
+    "solutionPack": null,
+    "uuid": "f9b26711-cbb9-431b-9ba3-da5750f9bce3",
+    "id": 4,
+    "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1678361239.710754,
+    "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1678361239.710754
   }
 ]

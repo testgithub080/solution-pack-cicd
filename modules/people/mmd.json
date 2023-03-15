@@ -8,7 +8,6 @@
     "type": "people",
     "attributes": [
         {
-            "@id": "\/api\/3\/attribute_metadatas\/a7bbf1ba-b7e1-4c6e-b149-d63fada06b3f",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "gitUsername",
@@ -47,7 +46,7 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "uuid": "a7bbf1ba-b7e1-4c6e-b149-d63fada06b3f",
+            "skipSerialization": false,
             "displayName": "{{ gitUsername }}",
             "descriptions": {
                 "singular": "GitHub Username"
