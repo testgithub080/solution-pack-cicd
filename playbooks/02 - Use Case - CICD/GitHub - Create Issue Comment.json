@@ -22,7 +22,7 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Add Issue Commit",
+            "name": "Add a Comment to an Issue",
             "description": null,
             "arguments": {
                 "name": "GitHub",
@@ -37,7 +37,7 @@
                 "version": "1.0.1",
                 "connector": "github",
                 "operation": "create_issue_comment",
-                "operationTitle": "Create Issue Commnet",
+                "operationTitle": "Create Issue Comment",
                 "pickFromTenant": false,
                 "step_variables": []
             },
@@ -89,7 +89,7 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Check GitHub Connector Configuration -> Add Issue Commit",
+            "name": "Check GitHub Connector Configuration -> Add a Comment to an Issue",
             "targetStep": "\/api\/3\/workflow_steps\/dfd33073-145c-4b59-8ecf-b0ed64763b86",
             "sourceStep": "\/api\/3\/workflow_steps\/78b59fc7-93bf-4d78-a7da-0debd42c55f9",
             "label": null,
