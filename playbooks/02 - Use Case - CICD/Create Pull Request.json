@@ -33,8 +33,8 @@
                 "workflowReference": "\/api\/3\/workflows\/866ec422-0704-420c-a57a-f35cae432087"
             },
             "status": null,
-            "top": "975",
-            "left": "475",
+            "top": "1110",
+            "left": "825",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "03c08c02-206b-4010-839f-d8f0a21f8531"
@@ -76,6 +76,30 @@
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "81aca20f-c858-4f58-908a-d05f6ba73cb1"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Issue Comment",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "org_name": "{{vars.cicdConfig.organizationName}}",
+                    "cr_number": "{{vars.issue_no}}",
+                    "repo_name": "{{vars.repo_name}}",
+                    "commit_message": "PR Title: {{vars.steps.Specify_PR_Title_and_Comments.input.title}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/02f7b058-01fd-4e39-8b13-f9c780e0dfbe"
+            },
+            "status": null,
+            "top": "840",
+            "left": "650",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "84ae49b9-748e-452c-9fd5-2d5a1e5126f9"
         },
         {
             "@type": "WorkflowStep",
@@ -152,7 +176,7 @@
                 ]
             },
             "status": null,
-            "top": "840",
+            "top": "975",
             "left": "650",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
@@ -171,7 +195,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1245",
+            "top": "1380",
             "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -217,7 +241,7 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "1110",
+            "top": "1245",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
@@ -263,8 +287,8 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "1110",
-            "left": "825",
+            "top": "1245",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "4a5eb89c-51de-457b-8bce-fb8252c7c250"
@@ -309,8 +333,8 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "1110",
-            "left": "475",
+            "top": "1245",
+            "left": "825",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "5fca68e2-f313-40f5-a385-b21f8f43e82d"
@@ -481,13 +505,23 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Create Pull Request -> Is Pull Request Created",
+            "name": "Create Issue Comment -> Is Pull Request Created",
             "targetStep": "\/api\/3\/workflow_steps\/0620867b-08e1-44b6-b211-0534ca0861e7",
+            "sourceStep": "\/api\/3\/workflow_steps\/84ae49b9-748e-452c-9fd5-2d5a1e5126f9",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "4c9b42e3-60b6-425f-b93e-31c0389fff03"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Pull Request -> Create Issue Comment",
+            "targetStep": "\/api\/3\/workflow_steps\/84ae49b9-748e-452c-9fd5-2d5a1e5126f9",
             "sourceStep": "\/api\/3\/workflow_steps\/c8e4928a-475e-4418-81ba-0ab29ca8e6e4",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "9f942fea-424e-430a-9eeb-d86febe19993"
+            "uuid": "1ddc55cd-8be0-4fb9-a897-fee043ccb47b"
         },
         {
             "@type": "WorkflowRoute",

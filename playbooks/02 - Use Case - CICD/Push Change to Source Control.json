@@ -31,7 +31,7 @@
             },
             "status": null,
             "top": "165",
-            "left": "393",
+            "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "dd78482a-e2f9-4657-969e-84569f9947d1"
@@ -53,7 +53,7 @@
             },
             "status": null,
             "top": "435",
-            "left": "568",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "f6a00cfc-e612-445e-9cf8-89ac3cafef6c"
@@ -103,7 +103,7 @@
             },
             "status": null,
             "top": "570",
-            "left": "568",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "22273d51-5b26-4f10-bcd2-741fad7355d8"
@@ -130,7 +130,7 @@
             },
             "status": null,
             "top": "300",
-            "left": "393",
+            "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
             "uuid": "6232d4f6-f20c-4d57-8929-b525039902f0"
@@ -148,8 +148,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1100",
-            "left": "580",
+            "top": "780",
+            "left": "520",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "90b13e1d-ae65-423a-a0f0-043707012489"
@@ -194,8 +194,8 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "975",
-            "left": "125",
+            "top": "520",
+            "left": "520",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "368d4725-09db-4628-b3d2-577420f3d8cc"
@@ -240,8 +240,8 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "1000",
-            "left": "900",
+            "top": "980",
+            "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "a61c04eb-851e-4164-b191-7c37658955e1"
@@ -254,6 +254,7 @@
                 "arguments": {
                     "org_name": "{{vars.cicd_config.organizationName}}",
                     "repo_name": "{{vars.repo_name}}",
+                    "base_branch": "{{vars.cicd_config.baseBranch}}",
                     "branch_name": "{{vars.new_branch}}",
                     "commit_message": "{{vars.steps.Specify_Commit_Message.input.commitMessage}}",
                     "export_file_name": "{{vars.export_file_name}}",
@@ -266,8 +267,8 @@
                 "workflowReference": "\/api\/3\/workflows\/8413a393-367b-4501-9196-ffbb027f0a3b"
             },
             "status": null,
-            "top": "880",
-            "left": "900",
+            "top": "860",
+            "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "edf78e20-48b0-47e5-a2fb-52348c9bc917"
@@ -326,8 +327,8 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "740",
-            "left": "920",
+            "top": "720",
+            "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "5ccd158d-6f16-43fd-9e9d-8867299a3c8e"
@@ -418,7 +419,7 @@
             },
             "status": null,
             "top": "30",
-            "left": "393",
+            "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
             "group": null,
             "uuid": "49fb604d-4e3c-43e4-ab71-c47f7ac56a26"

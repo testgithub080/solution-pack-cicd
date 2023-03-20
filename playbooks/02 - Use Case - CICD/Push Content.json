@@ -15,7 +15,8 @@
         "export_file_name",
         "export_template_name",
         "branch_name",
-        "commit_message"
+        "commit_message",
+        "base_branch"
     ],
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
@@ -46,7 +47,7 @@
                 "workflowReference": "\/api\/3\/workflows\/8a1d0632-05e8-4cbe-9d73-d942c3cb591d"
             },
             "status": null,
-            "top": "570",
+            "top": "705",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -61,6 +62,7 @@
                     "org_name": "{{vars.org_name}}",
                     "repo_name": "{{vars.repo_name}}",
                     "repo_type": "Organization",
+                    "branch_name": "{{vars.base_branch}}",
                     "clone_as_zip": "false"
                 },
                 "apply_async": false,
@@ -70,7 +72,7 @@
                 "workflowReference": "\/api\/3\/workflows\/9ff46b00-868f-4b67-9a3d-9dca5d636803"
             },
             "status": null,
-            "top": "300",
+            "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -82,7 +84,9 @@
             "description": null,
             "arguments": {
                 "org_name": "{{vars.input.params['org_name']}}",
+                "cr_number": "{{vars.input.params['branch_name'].split('-')[-1]}}",
                 "repo_name": "{{vars.input.params['repo_name']}}",
+                "base_branch": "{{vars.input.params['base_branch']}}",
                 "branch_name": "{{vars.input.params['branch_name']}}",
                 "commit_message": "{{vars.input.params['commit_message']}}",
                 "export_file_name": "{{vars.input.params['export_file_name']}}",
@@ -94,6 +98,30 @@
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "29fc54b4-1c22-43fa-bdbd-29f141d8942b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Issue Comment",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "org_name": "{{vars.org_name}}",
+                    "cr_number": "{{vars.cr_number}}",
+                    "repo_name": "{{vars.repo_name}}",
+                    "commit_message": "Commit Message: {{vars.commit_message}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/02f7b058-01fd-4e39-8b13-f9c780e0dfbe"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "b6717765-d9fc-407c-af65-c7a1e6344aae"
         },
         {
             "@type": "WorkflowStep",
@@ -110,7 +138,7 @@
                 "workflowReference": "\/api\/3\/workflows\/affaba28-9404-4e37-9cc1-09b1fcfe78f8"
             },
             "status": null,
-            "top": "435",
+            "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -136,7 +164,7 @@
                 "workflowReference": "\/api\/3\/workflows\/296eadfd-c4c8-41f9-9990-ac6804851813"
             },
             "status": null,
-            "top": "705",
+            "top": "840",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -184,13 +212,23 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Configuration -> Clone Repository",
-            "targetStep": "\/api\/3\/workflow_steps\/e4c1cfaa-a004-4d6f-88a4-95e19da3db40",
+            "name": "Configuration -> Create Issue Comment",
+            "targetStep": "\/api\/3\/workflow_steps\/b6717765-d9fc-407c-af65-c7a1e6344aae",
             "sourceStep": "\/api\/3\/workflow_steps\/29fc54b4-1c22-43fa-bdbd-29f141d8942b",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "6a4445b5-6a96-4188-bb7c-0a40aaf9a91d"
+            "uuid": "4f5f4885-41f4-463d-abd2-f98ee21ca1c2"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Issue Comment -> Clone Repository",
+            "targetStep": "\/api\/3\/workflow_steps\/e4c1cfaa-a004-4d6f-88a4-95e19da3db40",
+            "sourceStep": "\/api\/3\/workflow_steps\/b6717765-d9fc-407c-af65-c7a1e6344aae",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "a5f89107-eaea-4825-8cbe-bb045927a08c"
         },
         {
             "@type": "WorkflowRoute",
