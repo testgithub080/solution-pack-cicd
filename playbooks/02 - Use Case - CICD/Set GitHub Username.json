@@ -190,7 +190,7 @@
                     {
                         "name": "permission",
                         "type": "boolean",
-                        "label": "Do you want to provide the write permission on \"Content Repository\" ?",
+                        "label": "Also add the user as a Collaborator with a \"Write\" role to the \"Content Repository\"",
                         "title": "Checkbox",
                         "usable": true,
                         "tooltip": "",
