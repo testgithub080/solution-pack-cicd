@@ -24,6 +24,7 @@
                     "org_name": "{{vars.org_name}}",
                     "repo_name": "{{vars.content_repo}}",
                     "repo_type": "Organization",
+                    "branch_name": "{{vars.base_branch}}",
                     "clone_as_zip": "true"
                 },
                 "apply_async": false,
@@ -382,24 +383,11 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Modify Configuration Option",
-            "description": null,
-            "arguments": {
-                "config_options": "{% set uvalues = [] %}{% set record_set = {} %}{% set op = {} %}{% set import_job = {} %}{% for value in vars.steps.Get_Import_Job.data.options.recordSets.get('values') %}{% if value.type == \"export_templates\" %}{% set _ = value.pop(\"include\") %}{% set _ = value.pop(\"name\") %}{% set _ = value.update({\"name\": \"Export Templates\"}) %}{% set _ = value.update({\"include\": true}) %}{% endif %}{% set _ = uvalues.append(value) %}{% endfor %}{% set _ = record_set.update({\"values\": uvalues, \"include\": true}) %}{% for k, v in vars.steps.Get_Import_Job.data.options.items() %}{% if k == \"recordSets\" %}{% set _ = op.update({\"recordSets\": record_set}) %}{% else %}{% set _  = op.update({k: v}) %}{% endif %}{% endfor %}{% for k, v in vars.steps.Get_Import_Job.data.items() %}{% if k == \"options\" %}{% set _ = import_job.update({\"options\": op}) %}{% else %}{% set _ = import_job.update({k: v}) %}{% endif %}{% endfor %}{{import_job}}"
-            },
-            "status": null,
-            "top": "30",
-            "left": "568",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "8a0a753c-e61d-40d1-87ce-d4a946ea265b"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Repository Details",
             "description": null,
             "arguments": {
                 "org_name": "{{vars.cicd_config.organizationName or vars.organization_name}}",
+                "base_branch": "{{vars.cicd_config.baseBranch}}",
                 "content_repo": "{{vars.cicd_config.content.split('\/')[-1] or vars.steps.Get_Repositories_Detail.input.contentRepositoryName}}",
                 "dev_settings_repo": "{{vars.cicd_config.developmentSettings.split('\/')[-1] or vars.steps.Get_Repositories_Detail.input.developmentSettingsRepositoryName}}"
             },
@@ -612,29 +600,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Update Import Job",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "\/api\/3\/import_jobs\/{{vars.config_options.uuid}}",
-                    "body": "{{vars.config_options}}",
-                    "method": "PUT"
-                },
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "165",
-            "left": "568",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "a85a3f36-2fc6-4a16-ba13-4bfd65d3ab58"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Wait for Publish",
             "description": null,
             "arguments": {
@@ -796,16 +761,6 @@
             "isExecuted": false,
             "group": null,
             "uuid": "898361b5-33f5-420a-8f40-22b83eadf02d"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Modify Configuration Option -> Update Import Job",
-            "targetStep": "\/api\/3\/workflow_steps\/a85a3f36-2fc6-4a16-ba13-4bfd65d3ab58",
-            "sourceStep": "\/api\/3\/workflow_steps\/8a0a753c-e61d-40d1-87ce-d4a946ea265b",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "8d6e2ad3-a783-4a2a-bbc0-afc749b633c8"
         },
         {
             "@type": "WorkflowRoute",

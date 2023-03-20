@@ -113,6 +113,7 @@
                     "org_name": "{{vars.org_name}}",
                     "repo_name": "{{vars.repo_name}}",
                     "repo_type": "Organization",
+                    "branch_name": "{{vars.base_branch_name}}",
                     "clone_as_zip": "true"
                 },
                 "apply_async": false,
@@ -133,7 +134,8 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
-                "org_name": "{{vars.cicd_config.organizationName}}"
+                "org_name": "{{vars.cicd_config.organizationName}}",
+                "base_branch_name": "{{vars.cicd_config.baseBranch}}"
             },
             "status": null,
             "top": "960",
@@ -141,6 +143,56 @@
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "37d57671-f503-49ba-929f-3462ef9f6c2f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Confirm Apply Latest Changes",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Warning",
+                        "description": "This task will apply the latest content from the {{vars.repo_name}} repository and may require publishing in case of edits to the module schema. The server will be unavailable for all users during the publishing process.",
+                        "inputVariables": []
+                    }
+                },
+                "record": "{{ vars.input.records[0][\"@id\"] }}",
+                "agent_id": null,
+                "resources": "change_management",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": true,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Yes",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/4889ad4e-352a-4e12-9095-e7b493f7266f"
+                        },
+                        {
+                            "option": "No",
+                            "step_iri": "\/api\/3\/workflow_steps\/f572b130-3ba2-4b86-b88c-26aafbbf84d2"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "1110",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "7d0d744c-3657-4daa-9d8a-26e9cd5d35a4"
         },
         {
             "@type": "WorkflowStep",
@@ -241,56 +293,6 @@
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "14051544-1748-48d8-a66a-eb8f54f2357d"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Get User Confirmation",
-            "description": null,
-            "arguments": {
-                "type": "InputBased",
-                "input": {
-                    "schema": {
-                        "title": "Warning",
-                        "description": "This task will apply the latest content from the {{vars.repo_name}} repository and may require publishing in case of edits to the module schema. The server will be unavailable for all users during the publishing process.",
-                        "inputVariables": []
-                    }
-                },
-                "record": "{{ vars.input.records[0][\"@id\"] }}",
-                "agent_id": null,
-                "resources": "change_management",
-                "owner_detail": {
-                    "isAssigned": false
-                },
-                "isRecordLinked": true,
-                "step_variables": [],
-                "response_mapping": {
-                    "options": [
-                        {
-                            "option": "Yes",
-                            "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/4889ad4e-352a-4e12-9095-e7b493f7266f"
-                        },
-                        {
-                            "option": "No",
-                            "step_iri": "\/api\/3\/workflow_steps\/f572b130-3ba2-4b86-b88c-26aafbbf84d2"
-                        }
-                    ],
-                    "duplicateOption": false
-                },
-                "email_notification": {
-                    "enabled": false,
-                    "smtpParameters": []
-                },
-                "inline_channel_list": [],
-                "external_channel_list": [],
-                "unauthenticated_input": false
-            },
-            "status": null,
-            "top": "1110",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
-            "group": null,
-            "uuid": "7d0d744c-3657-4daa-9d8a-26e9cd5d35a4"
         },
         {
             "@type": "WorkflowStep",

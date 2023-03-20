@@ -235,6 +235,7 @@
                 "arguments": {
                     "org_name": "{{vars.org_name}}",
                     "repo_name": "{{vars.repo_name}}",
+                    "base_branch": "{{vars.base_branch}}",
                     "branch_name": "{{vars.base_branch}}",
                     "commit_message": "Initial Production Environment Content",
                     "export_file_name": "{{vars.export_file_name}}",
