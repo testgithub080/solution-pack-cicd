@@ -147,7 +147,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Pushed \"{{vars.input.params['export_template_name']}}\" content in to \"{{vars.input.params['repo_name']}}\" repository.<\/p>",
+                    "content": "<p>Pushed \"{{vars.input.params['export_template_name']}}\" content to \"{{vars.input.params['repo_name']}}\" repository.<\/p>",
                     "records": "",
                     "parentstepid": "\/api\/3\/workflow_steps\/36fa8cb9-06c3-45fa-90a5-daab9f2edd1e"
                 },
@@ -182,7 +182,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Pushing \"{{vars.input.params['export_template_name']}}\" content in to \"{{vars.input.params['repo_name']}}\" repository.<\/p>",
+                    "content": "<p>Pushing \"{{vars.input.params['export_template_name']}}\" content to \"{{vars.input.params['repo_name']}}\" repository.<\/p>",
                     "records": ""
                 },
                 "step_variables": {
