@@ -28,14 +28,6 @@
             "name": "Apply Changes to Remote Repository",
             "description": null,
             "arguments": {
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "thread": false,
-                    "content": "<p>Apply settings to remote repository<\/p>",
-                    "records": ""
-                },
                 "arguments": {
                     "fsr_file_iri": "{{vars.steps.Extract_Exported_Zip_File_from_FortiSOAR.file_iri}}",
                     "clone_repo_path": "{{vars.steps.Clone_Repository.data.path}}"
@@ -104,6 +96,7 @@
             "name": "Create Issue Comment",
             "description": null,
             "arguments": {
+                "when": "{{vars.cr_number is number}}",
                 "arguments": {
                     "org_name": "{{vars.org_name}}",
                     "cr_number": "{{vars.cr_number}}",
@@ -149,6 +142,15 @@
             "name": "Push Export Config into GitHub",
             "description": null,
             "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>Pushed \"{{vars.input.params['export_template_name']}}\" content in to \"{{vars.input.params['repo_name']}}\" repository.<\/p>",
+                    "records": "",
+                    "parentstepid": "\/api\/3\/workflow_steps\/36fa8cb9-06c3-45fa-90a5-daab9f2edd1e"
+                },
                 "arguments": {
                     "org_name": "{{vars.org_name}}",
                     "repo_name": "{{vars.repo_name}}",
@@ -175,6 +177,14 @@
             "name": "Start",
             "description": null,
             "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>Pushing \"{{vars.input.params['export_template_name']}}\" content in to \"{{vars.input.params['repo_name']}}\" repository.<\/p>",
+                    "records": ""
+                },
                 "step_variables": {
                     "input": {
                         "params": []
