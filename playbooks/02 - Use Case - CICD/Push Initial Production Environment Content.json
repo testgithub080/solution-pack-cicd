@@ -1,7 +1,7 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "Push (Initial) Production Environment Content",
+    "name": "Push Initial Production Environment Content",
     "aliasName": null,
     "tag": null,
     "description": "Push initial Production Environment Content into GitHub main branch",
@@ -61,7 +61,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Push Export Config",
+            "name": "Push Content to Source Control",
             "description": null,
             "arguments": {
                 "arguments": {
