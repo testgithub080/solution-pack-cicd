@@ -382,20 +382,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Modify Configuration Option",
-            "description": null,
-            "arguments": {
-                "config_options": "{% set uvalues = [] %}{% set record_set = {} %}{% set op = {} %}{% set import_job = {} %}{% for value in vars.steps.Get_Import_Job.data.options.recordSets.get('values') %}{% if value.type == \"export_templates\" %}{% set _ = value.pop(\"include\") %}{% set _ = value.pop(\"name\") %}{% set _ = value.update({\"name\": \"Export Templates\"}) %}{% set _ = value.update({\"include\": true}) %}{% endif %}{% set _ = uvalues.append(value) %}{% endfor %}{% set _ = record_set.update({\"values\": uvalues, \"include\": true}) %}{% for k, v in vars.steps.Get_Import_Job.data.options.items() %}{% if k == \"recordSets\" %}{% set _ = op.update({\"recordSets\": record_set}) %}{% else %}{% set _  = op.update({k: v}) %}{% endif %}{% endfor %}{% for k, v in vars.steps.Get_Import_Job.data.items() %}{% if k == \"options\" %}{% set _ = import_job.update({\"options\": op}) %}{% else %}{% set _ = import_job.update({k: v}) %}{% endif %}{% endfor %}{{import_job}}"
-            },
-            "status": null,
-            "top": "2080",
-            "left": "740",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "d2876822-c04a-4ab4-b9f9-0a2a10e3ac16"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "No Operation",
             "description": null,
             "arguments": {
@@ -773,7 +759,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<div>\n<div>Initiating the i<span style=\"color: #000000; letter-spacing: 0.76px;\">mport activity from {{vars.repo_name}} repository<\/span><\/div>\n<\/div>",
+                    "content": "<div>\n<div>Initiating the import activity from {{vars.repo_name}} repository<\/div>\n<\/div>",
                     "records": "",
                     "parentstepid": "\/api\/3\/workflow_steps\/c0b41243-68bd-498d-8ffc-f9c6bd571694"
                 },
@@ -818,29 +804,6 @@
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
             "uuid": "f572b130-3ba2-4b86-b88c-26aafbbf84d2"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Update Import Job",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "\/api\/3\/import_jobs\/{{vars.config_options.uuid}}",
-                    "body": "{{vars.config_options}}",
-                    "method": "PUT"
-                },
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "2220",
-            "left": "740",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "0a51abfd-42b2-46fa-8ae2-f22268d5d86c"
         },
         {
             "@type": "WorkflowStep",
@@ -1156,16 +1119,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Modify Configuration Option -> Update Import Job",
-            "targetStep": "\/api\/3\/workflow_steps\/0a51abfd-42b2-46fa-8ae2-f22268d5d86c",
-            "sourceStep": "\/api\/3\/workflow_steps\/d2876822-c04a-4ab4-b9f9-0a2a10e3ac16",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "7795282a-add8-49dd-8676-a4d44640db2a"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "No Source Control -> Update Status to Pending",
             "targetStep": "\/api\/3\/workflow_steps\/29a77e9d-ca7c-4be7-a010-ff6a8fae62c5",
             "sourceStep": "\/api\/3\/workflow_steps\/84efc4dc-a854-4afc-bc39-b1efdc06d27d",
@@ -1282,7 +1235,7 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "ManualTrigger",
-        "CICD"
+        "CICD",
+        "ManualTrigger"
     ]
 }

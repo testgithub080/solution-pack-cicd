@@ -2005,6 +2005,31 @@
           "query": null,
           "include": true,
           "includeCorrelations": false
+        },
+        {
+          "name": "Export Templates",
+          "type": "export_templates",
+          "query": {
+            "sort": [],
+            "limit": 1,
+            "logic": "AND",
+            "filters": [
+              {
+                "type": "primitive",
+                "field": "name",
+                "value": "Source Control - Production Content",
+                "operator": "eq",
+                "_operator": "eq"
+              }
+            ],
+            "__selectFields": [
+              "uuid"
+            ]
+          },
+          "include": true,
+          "whenExists": "replace",
+          "moduleNotExists": true,
+          "includeCorrelations": false
         }
       ],
       "appSettings": [],
@@ -2094,119 +2119,5 @@
     "createDate": 1678361239.732998,
     "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
     "modifyDate": 1678732307.725184
-  },
-  {
-    "@type": "ExportTemplate",
-    "name": "Source Control - Production Settings",
-    "lastExportDate": 1672684884.845795,
-    "options": {
-      "roles": [],
-      "rules": [],
-      "teams": [],
-      "views": [
-        {
-          "value": "app",
-          "appendNavigation": [
-            "Dashboard",
-            "Queue & Shift Management",
-            "Incident Response",
-            "Automation",
-            "Resources",
-            "Reports",
-            "Widget Library",
-            "Content Hub",
-            "Help",
-            "User Community"
-          ]
-        }
-      ],
-      "actors": [],
-      "modules": [],
-      "reports": [],
-      "widgets": [],
-      "connectors": [],
-      "dashboards": [],
-      "recordSets": [],
-      "appSettings": [
-        "systemSettings",
-        "LDAP",
-        "RADIUS",
-        "TOKEN",
-        "HA",
-        "sso",
-        "syslog",
-        "proxy"
-      ],
-      "ruleChannels": [],
-      "picklistNames": [],
-      "viewTemplates": [],
-      "globalVariables": [],
-      "playbookCollections": []
-    },
-    "type": "Export Wizard",
-    "solutionPack": null,
-    "uuid": "3ca2b745-9b43-4e38-9091-13880e656723",
-    "id": 3,
-    "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1678361239.633928,
-    "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1678361239.633928
-  },
-  {
-    "@type": "ExportTemplate",
-    "name": "Source Control - Development Settings",
-    "lastExportDate": 1671778968.929019,
-    "options": {
-      "roles": [],
-      "rules": [],
-      "teams": [],
-      "views": [
-        {
-          "value": "app",
-          "appendNavigation": [
-            "Dashboard",
-            "Queue & Shift Management",
-            "Incident Response",
-            "Automation",
-            "Resources",
-            "Reports",
-            "Widget Library",
-            "Content Hub",
-            "Help",
-            "User Community"
-          ]
-        }
-      ],
-      "actors": [],
-      "modules": [],
-      "reports": [],
-      "widgets": [],
-      "connectors": [],
-      "dashboards": [],
-      "recordSets": [],
-      "appSettings": [
-        "systemSettings",
-        "LDAP",
-        "RADIUS",
-        "TOKEN",
-        "HA",
-        "sso",
-        "syslog",
-        "proxy"
-      ],
-      "ruleChannels": [],
-      "picklistNames": [],
-      "viewTemplates": [],
-      "globalVariables": [],
-      "playbookCollections": []
-    },
-    "type": "Export Wizard",
-    "solutionPack": null,
-    "uuid": "f9b26711-cbb9-431b-9ba3-da5750f9bce3",
-    "id": 4,
-    "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1678361239.710754,
-    "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1678361239.710754
   }
 ]

@@ -1,10 +1,10 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "Push Content",
+    "name": "Push Content to Source Control",
     "aliasName": null,
     "tag": null,
-    "description": "Clone the specified repository, apply the export template content and push to source control",
+    "description": "Clone the specified repository, apply the export template content and push it to the source control",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -29,7 +29,7 @@
             "description": null,
             "arguments": {
                 "arguments": {
-                    "fsr_file_iri": "{{vars.steps.Extract_Exported_Zip_File_from_FortiSOAR.file_iri}}",
+                    "fsr_file_iri": "{{vars.steps.Get_FortiSOAR_Export_Templates.file_iri}}",
                     "clone_repo_path": "{{vars.steps.Clone_Repository.data.path}}"
                 },
                 "apply_async": false,
@@ -118,7 +118,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Extract Exported Zip File from FortiSOAR",
+            "name": "Get FortiSOAR Export Templates",
             "description": null,
             "arguments": {
                 "arguments": {
