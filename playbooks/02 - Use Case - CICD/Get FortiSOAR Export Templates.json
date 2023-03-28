@@ -28,7 +28,8 @@
                 "old_path": "{% for item in vars.steps.Unzip_Export_Template.data.filenames %}{% if 'export_templates' in item %}{{item}}{% endif %}{% endfor %}",
                 "zip_file": "\/tmp\/{{vars.input.params['export_file_name']}}",
                 "export_template_one": "{{vars.export_template_path}}{{vars.other_config_info[0]. name}}.json",
-                "export_template_two": "{{vars.export_template_path}}{{vars.other_config_info[1]. name}}.json"
+                "export_template_two": "{{vars.export_template_path}}{{vars.other_config_info[1]. name}}.json",
+                "current_export_template": "{{vars.export_template_path}}{{vars.config_info[0].name}}.json"
             },
             "status": null,
             "top": "840",
@@ -103,7 +104,7 @@
                 "operation": "make_cyops_request",
                 "operationTitle": "FSR: Make FortiSOAR API Call",
                 "step_variables": {
-                    "config_info": "{% set template = {\n                    \"name\": \"Export Templates\",\n                    \"type\": \"export_templates\",\n                    \"query\": {\n                        \"sort\": [],\n                        \"limit\": 1,\n                        \"logic\": \"AND\",\n                        \"filters\": [\n                            {\n                                \"type\": \"primitive\",\n                                \"field\": \"name\",\n                                \"value\": \"{{vars.input.params['export_template_name']}}\",\n                                \"operator\": \"eq\",\n                                \"_operator\": \"eq\"\n                            }\n                        ],\n                        \"__selectFields\": [\n                            \"uuid\"\n                        ]\n                    },\n                    \"include\": true,\n                    \"whenExists\": \"replace\",\n                    \"moduleNotExists\": true,\n                    \"includeCorrelations\": false\n                } %}{% for item in vars.steps.Get_Export_Template.data['hydra:member'] %}{% if item.name==vars.input.params['export_template_name'] and (item.options.recordSets | json_query(\"[?type=='export_templates']\")) | length == 0 %}{% set _ = item.options.recordSets.append(template) %}{% endif %}{% endfor %}{{vars.steps.Get_Export_Template.data['hydra:member'] | json_query(\"[?name=='\"+vars.input.params['export_template_name']+\"']\")}}",
+                    "config_info": "{% set template = {\n                    \"name\": \"Export Templates\",\n                    \"type\": \"export_templates\",\n                    \"query\": {\n                        \"sort\": [],\n                        \"limit\": 1,\n                        \"logic\": \"AND\",\n                        \"filters\": [\n                            {\n                                \"type\": \"primitive\",\n                                \"field\": \"name\",\n                                \"value\": vars.input.params['export_template_name'],\n                                \"operator\": \"eq\",\n                                \"_operator\": \"eq\"\n                            }\n                        ],\n                        \"__selectFields\": [\n                            \"uuid\"\n                        ]\n                    },\n                    \"include\": true,\n                    \"whenExists\": \"replace\",\n                    \"moduleNotExists\": true,\n                    \"includeCorrelations\": false\n                } %}{% for item in vars.steps.Get_Export_Template.data['hydra:member'] %}{% if item.name==vars.input.params['export_template_name'] and (item.options.recordSets | json_query(\"[?type=='export_templates']\")) | length == 0 %}{% set _ = item.options.recordSets.append(template) %}{% endif %}{% endfor %}{{vars.steps.Get_Export_Template.data['hydra:member'] | json_query(\"[?name=='\"+vars.input.params['export_template_name']+\"']\")}}",
                     "other_config_info": "{{vars.steps.Get_Export_Template.data['hydra:member'] | json_query(\"[?name!='\"+vars.input.params['export_template_name']+\"']\")}}"
                 }
             },
@@ -162,7 +163,7 @@
                 "operation": "unzip_protected_file",
                 "operationTitle": "File: Unzip",
                 "step_variables": {
-                    "export_template_path": "{% for item in vars.steps.Unzip_Export_Template.data.filenames %}{% if 'export_templates' in item %}{{item | win_dirname }}{{\"\/\"}}{% endif %}{% endfor %}"
+                    "export_template_path": "{{vars.steps.Unzip_Export_Template.data.filenames[0] | win_dirname }}\/records\/export_templates\/"
                 }
             },
             "status": null,
@@ -179,7 +180,7 @@
             "arguments": {
                 "config": "55af591c-8fba-4b2e-a798-e92638ede294",
                 "params": {
-                    "python_function": "import json\nimport shutil\nimport pathlib\n\nfilename1=\"{{vars.export_template_one}}\"\nfilename2=\"{{vars.export_template_two}}\"\n\nwith open(filename1, 'w', encoding='utf-8') as f:\n    json.dump({{vars.other_config_info[0]}}, f, ensure_ascii=False, indent=4)\n    \nwith open(filename2, 'w', encoding='utf-8') as f:\n    json.dump({{vars.other_config_info[1]}}, f, ensure_ascii=False, indent=4)\n    \nshutil.move('{{vars.old_path}}', '{{vars.new_path}}')\n\noldFilePath = pathlib.Path('\/tmp\/{{vars.steps.Get_Export_Job_Details.data.file.filename}}')\nif oldFilePath.is_file():\n    path.unlink()\n\nshutil.make_archive('{{vars.zip_file}}', 'zip', '{{vars.zip_dir}}')\n"
+                    "python_function": "import json\nimport shutil\nimport pathlib\n\np = pathlib.Path('{{vars.steps.Unzip_Export_Template.data.filenames[0] | win_dirname }}\/records\/export_templates')\np.mkdir(parents=True, exist_ok=True)\n\nwith open('{{vars.export_template_one}}', 'w', encoding='utf-8') as f:\n    json.dump({{vars.other_config_info[0]}}, f, ensure_ascii=False, indent=4)\n    \nwith open('{{vars.export_template_two}}', 'w', encoding='utf-8') as f:\n    json.dump({{vars.other_config_info[1]}}, f, ensure_ascii=False, indent=4)\n\noldFilePath = pathlib.Path('\/tmp\/{{vars.steps.Get_Export_Job_Details.data.file.filename}}')\nif oldFilePath.is_file():\n     oldFilePath.unlink()\n\nif '{{vars.old_path}}':\n  \tshutil.move('{{vars.old_path}}', '{{vars.new_path}}')\nelse:\n    with open('{{vars.current_export_template}}', 'w', encoding='utf-8') as f:\n    \tjson.dump({{vars.config_info[0]}}, f, ensure_ascii=False, indent=4)\n    \nshutil.make_archive('{{vars.zip_file}}', 'zip', '{{vars.zip_dir}}')"
                 },
                 "version": "2.0.3",
                 "connector": "code-snippet",
