@@ -335,7 +335,7 @@
                     "tags": [],
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
-                    "thread": true,
+                    "thread": false,
                     "content": "<p><strong>System Publish Underway. Please Wait...<\/strong><\/p>\n<p>Applying the latest content from the {{vars.repo_name}} repository and may require publishing in case of edits to the module schema. The server will be unavailable for all users during the publishing process.<\/p>",
                     "records": "",
                     "parentstepid": "\/api\/3\/workflow_steps\/a5c3262e-440b-4950-82bc-ad5f39e9bb93"
@@ -814,7 +814,7 @@
                     "tags": [],
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
-                    "thread": true,
+                    "thread": false,
                     "content": "<p>Latest content is applied successfully from the {{vars.repo_name}} repository.<\/p>",
                     "records": "",
                     "parentstepid": "\/api\/3\/workflow_steps\/a5c3262e-440b-4950-82bc-ad5f39e9bb93"
