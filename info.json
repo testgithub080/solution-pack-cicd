@@ -16,7 +16,7 @@
     "prerequisite": null,
     "publisher": "Fortinet",
     "certified": "true",
-    "description": "Setup Source Control and streamline content development lifecycle (CI/CD) across multiple FortiSOAR environments designated as Development, Staging and Production.",
+    "description": "Setup Source Control and streamline content development lifecycle (CICD) across multiple FortiSOAR environments designated as Development, Staging and Production.",
     "help": "https://github.com/fortinet-fortisoar/solution-pack-cicd/blob/release/2.0.0/README.md",
     "category": [],
     "supportInfo": "Fortinet Customer Support",
