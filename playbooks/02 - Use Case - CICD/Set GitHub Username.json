@@ -20,7 +20,7 @@
             "name": "Add Repository Collaborator",
             "description": null,
             "arguments": {
-                "when": "{{vars.logged_in_user}}",
+                "when": "{{(vars.input.params.permission) and (vars.is_collaborator_added | length == 0)}}",
                 "arguments": {
                     "org_name": "{{vars.org_name}}",
                     "username": "{{vars.git_username}}",
@@ -33,7 +33,7 @@
                 "workflowReference": "\/api\/3\/workflows\/24ce1642-3e71-43dd-b351-0c0673b36562"
             },
             "status": null,
-            "top": "705",
+            "top": "840",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -83,7 +83,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "840",
+            "top": "975",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
@@ -114,6 +114,30 @@
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "21966811-e68e-484b-a04b-b38ad5cdf62a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "List Repository Collaborator",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "org_name": "{{vars.org_name}}",
+                    "repo_name": "{{vars.repo_name}}"
+                },
+                "apply_async": false,
+                "step_variables": {
+                    "is_collaborator_added": "{{(vars.steps.List_Repository_Collaborator.data | json_query(\"[? login=='\"+vars.input.params.gitHubUsername+\"']\"))}}"
+                },
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/f1131cb4-74d0-4ffe-8c1a-bf4c7cab3f0c"
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "5dad3bc2-4439-4932-a5f3-6133781c9b3d"
         },
         {
             "@type": "WorkflowStep",
@@ -326,7 +350,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "975",
+            "top": "1110",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -348,7 +372,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1110",
+            "top": "1245",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -398,6 +422,16 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "List Repository Collaborator -> Add Repository Collaborator",
+            "targetStep": "\/api\/3\/workflow_steps\/c1334ebe-4904-40a5-adb2-f22d3958f595",
+            "sourceStep": "\/api\/3\/workflow_steps\/5dad3bc2-4439-4932-a5f3-6133781c9b3d",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "57ae42af-dfe6-425b-b794-b7afe61af387"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Set Status to In Progress -> Get Source Control Details",
             "targetStep": "\/api\/3\/workflow_steps\/21966811-e68e-484b-a04b-b38ad5cdf62a",
             "sourceStep": "\/api\/3\/workflow_steps\/1852ac31-f4a1-467d-b8b6-7250a5c188fe",
@@ -418,13 +452,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Update GitHub Username -> Add Repository Collaborator",
-            "targetStep": "\/api\/3\/workflow_steps\/c1334ebe-4904-40a5-adb2-f22d3958f595",
+            "name": "Update GitHub Username -> List Repository Collaborator",
+            "targetStep": "\/api\/3\/workflow_steps\/5dad3bc2-4439-4932-a5f3-6133781c9b3d",
             "sourceStep": "\/api\/3\/workflow_steps\/0dbe4c15-5af0-4c43-acba-9200551af869",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "e00cc386-ddce-446e-885c-cbac8cf76b04"
+            "uuid": "54cf3e48-9d2f-47e2-94f5-04202fae75da"
         },
         {
             "@type": "WorkflowRoute",
@@ -444,7 +478,7 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "ManualTrigger",
-        "CICD"
+        "CICD",
+        "ManualTrigger"
     ]
 }
