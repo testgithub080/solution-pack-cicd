@@ -17,27 +17,31 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Add Repository Collaborator",
+            "name": "Add GitHub Repository Collaborator",
             "description": null,
             "arguments": {
-                "when": "{{(vars.input.params.permission) and (vars.is_collaborator_added | length == 0)}}",
+                "for_each": {
+                    "item": "{{vars.collaborator_repo}}",
+                    "parallel": false,
+                    "condition": ""
+                },
                 "arguments": {
                     "org_name": "{{vars.org_name}}",
-                    "username": "{{vars.git_username}}",
-                    "repo_name": "{{vars.repo_name}}"
+                    "repo_name": "{{vars.item}}",
+                    "git_username": "{{vars.git_username}}"
                 },
                 "apply_async": false,
                 "step_variables": [],
                 "pass_parent_env": false,
                 "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/24ce1642-3e71-43dd-b351-0c0673b36562"
+                "workflowReference": "\/api\/3\/workflows\/a7087e20-c07a-4f79-80e2-751bd693875f"
             },
             "status": null,
-            "top": "840",
+            "top": "705",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
-            "uuid": "c1334ebe-4904-40a5-adb2-f22d3958f595"
+            "uuid": "d97c6679-8c05-414d-8f71-48fc1c2bbc3f"
         },
         {
             "@type": "WorkflowStep",
@@ -47,7 +51,8 @@
                 "org_name": "{{vars.cicd_config.organizationName}}",
                 "repo_name": "{{vars.cicd_config.contentRepoName}}",
                 "git_username": "{{vars.input.params.gitHubUsername}}",
-                "fsr_user_uuid": "{{vars.input.params.fortiSOARUsername.uuid}}"
+                "fsr_user_uuid": "{{vars.input.params.fortiSOARUsername.uuid}}",
+                "collaborator_repo": "{% set repo_names = [] %}{% if vars.input.params['prod_content_role'] %}{% set _= repo_names.append(vars.cicd_config.contentRepoName) %}{% endif %}{% if vars.input.params['prod_settings_role'] %}{% set _= repo_names.append(vars.cicd_config.prodSettingsRepoName) %}{% endif %}{% if vars.input.params['dev_settings_role'] %}{% set _= repo_names.append(vars.cicd_config.devSettingsRepoName) %}{% endif %}{{repo_names}}"
             },
             "status": null,
             "top": "435",
@@ -83,7 +88,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "975",
+            "top": "840",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
@@ -114,30 +119,6 @@
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "21966811-e68e-484b-a04b-b38ad5cdf62a"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "List Repository Collaborator",
-            "description": null,
-            "arguments": {
-                "arguments": {
-                    "org_name": "{{vars.org_name}}",
-                    "repo_name": "{{vars.repo_name}}"
-                },
-                "apply_async": false,
-                "step_variables": {
-                    "is_collaborator_added": "{{(vars.steps.List_Repository_Collaborator.data | json_query(\"[? login=='\"+vars.input.params.gitHubUsername+\"']\"))}}"
-                },
-                "pass_parent_env": false,
-                "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/f1131cb4-74d0-4ffe-8c1a-bf4c7cab3f0c"
-            },
-            "status": null,
-            "top": "705",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "5dad3bc2-4439-4932-a5f3-6133781c9b3d"
         },
         {
             "@type": "WorkflowStep",
@@ -196,6 +177,7 @@
                         "lengthConstraint": false,
                         "allowedEncryption": false,
                         "allowedGridColumn": true,
+                        "jinjaExpressionView": true,
                         "useRecordFieldDefault": false
                     },
                     {
@@ -209,18 +191,19 @@
                         "_expanded": true,
                         "defaultValue": null,
                         "_previousName": "",
+                        "jinjaExpressionView": true,
                         "useRecordFieldDefault": false
                     },
                     {
-                        "name": "permission",
+                        "name": "prod_content_role",
                         "type": "boolean",
-                        "label": "Also add the user as a Collaborator with a \"Write\" role to the \"Content Repository\"",
+                        "label": "Add as a Collaborator with a \"Write\" role to the \"Prod Content Repository\"",
                         "title": "Checkbox",
                         "usable": true,
                         "tooltip": "",
                         "dataType": "checkbox",
                         "formType": "checkbox",
-                        "required": true,
+                        "required": false,
                         "_expanded": true,
                         "mmdUpdate": true,
                         "collection": false,
@@ -228,7 +211,57 @@
                         "templateUrl": "app\/components\/form\/fields\/checkbox.html",
                         "_nameTouched": true,
                         "defaultValue": true,
-                        "_previousName": "doYouWantToProvideTheWritePermissionOn\"ContentRepository\"?",
+                        "_previousName": "permission",
+                        "playbookField": true,
+                        "lengthConstraint": false,
+                        "allowedEncryption": false,
+                        "allowedGridColumn": true,
+                        "jinjaExpressionView": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "dev_settings_role",
+                        "type": "boolean",
+                        "label": "Add as a Collaborator with a \"Write\" role to the \"Dev Settings Repository\"",
+                        "title": "Checkbox",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "checkbox",
+                        "formType": "checkbox",
+                        "required": false,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/checkbox.html",
+                        "_nameTouched": true,
+                        "defaultValue": true,
+                        "_previousName": "addAsACollaboratorWithA\"Write\"RoleToThe\"DevSettingsRepository\"",
+                        "playbookField": true,
+                        "lengthConstraint": false,
+                        "allowedEncryption": false,
+                        "allowedGridColumn": true,
+                        "jinjaExpressionView": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "prod_settings_role",
+                        "type": "boolean",
+                        "label": "Add as a Collaborator with a \"Write\" role to the \"Prod Settings Repository\"",
+                        "title": "Checkbox",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "checkbox",
+                        "formType": "checkbox",
+                        "required": false,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/checkbox.html",
+                        "_nameTouched": true,
+                        "defaultValue": null,
+                        "_previousName": "addAsACollaboratorWithA\"Write\"RoleToThe\"ProdSettingsRepository\"",
                         "playbookField": true,
                         "lengthConstraint": false,
                         "allowedEncryption": false,
@@ -240,9 +273,11 @@
                 "step_variables": {
                     "input": {
                         "params": {
-                            "permission": "{{vars.request.data[\"permission\"]}}",
                             "gitHubUsername": "{{vars.request.data[\"gitHubUsername\"]}}",
-                            "fortiSOARUsername": "{{vars.request.data[\"fortiSOARUsername\"]}}"
+                            "dev_settings_role": "{{vars.request.data[\"dev_settings_role\"]}}",
+                            "fortiSOARUsername": "{{vars.request.data[\"fortiSOARUsername\"]}}",
+                            "prod_content_role": "{{vars.request.data[\"prod_content_role\"]}}",
+                            "prod_settings_role": "{{vars.request.data[\"prod_settings_role\"]}}"
                         },
                         "records": "{{vars.input.records}}"
                     },
@@ -350,7 +385,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1110",
+            "top": "975",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -372,7 +407,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1245",
+            "top": "1110",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -382,13 +417,13 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Add Repository Collaborator -> Find Previous Result",
+            "name": "Add GitHub Repository Collaborator -> Find Previous Result",
             "targetStep": "\/api\/3\/workflow_steps\/306b2f0f-5887-44b7-a270-208b140fabb6",
-            "sourceStep": "\/api\/3\/workflow_steps\/c1334ebe-4904-40a5-adb2-f22d3958f595",
+            "sourceStep": "\/api\/3\/workflow_steps\/d97c6679-8c05-414d-8f71-48fc1c2bbc3f",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "22fdae32-b018-4075-8c2b-bcc1d057935c"
+            "uuid": "dbd03b8b-bf19-4404-99af-172348c4e403"
         },
         {
             "@type": "WorkflowRoute",
@@ -422,16 +457,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "List Repository Collaborator -> Add Repository Collaborator",
-            "targetStep": "\/api\/3\/workflow_steps\/c1334ebe-4904-40a5-adb2-f22d3958f595",
-            "sourceStep": "\/api\/3\/workflow_steps\/5dad3bc2-4439-4932-a5f3-6133781c9b3d",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "57ae42af-dfe6-425b-b794-b7afe61af387"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Set Status to In Progress -> Get Source Control Details",
             "targetStep": "\/api\/3\/workflow_steps\/21966811-e68e-484b-a04b-b38ad5cdf62a",
             "sourceStep": "\/api\/3\/workflow_steps\/1852ac31-f4a1-467d-b8b6-7250a5c188fe",
@@ -452,13 +477,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Update GitHub Username -> List Repository Collaborator",
-            "targetStep": "\/api\/3\/workflow_steps\/5dad3bc2-4439-4932-a5f3-6133781c9b3d",
+            "name": "Update GitHub Username -> Add GitHub Repository Collaborator",
+            "targetStep": "\/api\/3\/workflow_steps\/d97c6679-8c05-414d-8f71-48fc1c2bbc3f",
             "sourceStep": "\/api\/3\/workflow_steps\/0dbe4c15-5af0-4c43-acba-9200551af869",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "54cf3e48-9d2f-47e2-94f5-04202fae75da"
+            "uuid": "86778855-e175-4fba-9f84-6c9f6fcc4812"
         },
         {
             "@type": "WorkflowRoute",
