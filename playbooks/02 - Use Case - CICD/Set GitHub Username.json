@@ -20,7 +20,7 @@
             "name": "Add Repository Collaborator",
             "description": null,
             "arguments": {
-                "when": "{{vars.logged_in_user}}",
+                "when": "{{vars.input.params.permission}}",
                 "arguments": {
                     "org_name": "{{vars.org_name}}",
                     "username": "{{vars.git_username}}",
@@ -444,7 +444,7 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "ManualTrigger",
-        "CICD"
+        "CICD",
+        "ManualTrigger"
     ]
 }
