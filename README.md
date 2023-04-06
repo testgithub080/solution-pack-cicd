@@ -1,9 +1,10 @@
 # Release Information
 
-- **Version**:  1.0.0
+- **Version**:  2.0.0
 - **Certified**: Yes
 - **Publisher**: Fortinet
-- **Compatible Version**: FortiSOAR v7.3.1 and later
+- **Compatible Version**: FortiSOAR v7.4.0 and later
+- [**Release Notes**](./release_notes.md)
 
 # Overview
 
@@ -13,7 +14,7 @@ With Continuous Integration (CI) you can integrate all your code changes into th
 
 Continuous Delivery (CD) takes over during the final stages to ensure that the code can be pushed to a production environment (or a staging environment if you so choose) at any time. For more granular control, you can review the code changes before pulling them from development into production or staging. Even then you can wait until you are ready to apply the changes to a production or staging environment.
 
-The following diagram simplifies how FortiSOAR Continuous Delivery works:
+The following diagram simplifies how FortiSOAR's Continuous Delivery works:
 
 ![Continuous Delivery Flowchart](./docs/res/ci-cd-flow.svg)
 

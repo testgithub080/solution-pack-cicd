@@ -47,6 +47,8 @@ Following are some prerequisites to using this solution pack:
 
         > **NOTE**: GitHub users who are setting up production environment in Continuous Delivery and creating repositories, must have permissions to create private repositories on GitHub. For more information, refer to [Restricting repository creation in your organization](https://docs.github.com/en/organizations/managing-organization-settings/restricting-repository-creation-in-your-organization).
 
+
+
 # Configurations
 
 This section details the required configurations for optimal performance of the **Continuous Delivery** solution pack.
@@ -59,7 +61,7 @@ This section details the required configurations for optimal performance of the 
 
 ## Setup Continuous Delivery on FortiSOAR
 
-After installation of **Continuous Delivery** solution pack, run the configuration wizard to ready your FortiSOAR environment for (CI/CD). This wizard helps you connect your FortiSOAR development and production environments to a source control.
+After installation of **Continuous Delivery** solution pack, run the configuration wizard to ready your FortiSOAR environment for CICD. This wizard helps you connect your FortiSOAR development and production environments to a source control.
 
 1. Log in to FortiSOAR and [after installation](#installation), click the button **Configure** from the lower-left of the screen.
 
@@ -86,6 +88,7 @@ After installation of **Continuous Delivery** solution pack, run the configurati
 ## Setup Production Environment
 
 You can setup GitHub as a source control management through playbooks, automatically, or by pre-creating repositories on GitHub and linking them to FortiSOAR Continuous Delivery solution pack.
+
 To setup GitHub as a source control and creating repositories using playbooks:
 
 1. Select **Continuous Delivery** from the FortiSOAR menu.
@@ -110,11 +113,11 @@ To setup GitHub as a source control and creating repositories using playbooks:
 
     5. Click the button Create Repositories to let the playbooks automatically create the repo (repository) and the specified branch in each repo.
 
-        1. Click the button I have the repositories if you have already created the repositories, with the exact same names as specified in the earlier step, on GitHub.
+        1. Click the button **I have the repositories** if you have already created the repositories, with the exact same names as specified in the earlier step, on GitHub.
 
-        2. Click the button Confirm, after creating the repositories, for FortiSOAR to check if the specified repositories exist.
+        2. Click the button **Confirm**, after creating the repositories, for FortiSOAR to check if the specified repositories exist.
 
-    6. Click the button Push to push the content from FortiSOAR to the specified branch of the repository mentioned in Production Content.
+    6. Click the button **Push** to push the content from FortiSOAR to the specified branch of the repository mentioned in Production Content.
     Pushing overwrites the contents of the repository mentioned in Production Content. You can click the button Skip to push the contents later.
 
 ## Setup a Staging Environment
@@ -148,6 +151,27 @@ Once you have setup source control for production environment, move over to the 
 3. Click the button **Setup Dev Environment** from the lower left part of the screen.
 
 4. Enter the GitHub username with which to map the username you used to log in to FortiSOAR.
+
+5. Enter the GitHub Source Control details:
+
+    ![Source Control Details Modal](./res/dev-source-control-details.png)
+
+    1. Enter the Organization’s name as created on GitHub.
+
+    2. Enter the repository names to be created under the specified organization. To accept the auto-populated suggested name, leave the fields as-is.
+
+    3. Enter the **Base Branch Name** to be created under the specified repositories. To accept the auto-populated suggested name, leave the field as-is.
+
+    4. Click **Setup** to proceed.
+
+    5. Click the button **Create Repositories** to let the playbooks automatically create the repo (repository) and the specified branch in each repo.
+
+        1. Click the button **I have the repositories** if you have already created the repositories, with the exact same names as specified in the earlier step, on GitHub.
+
+        2. Click the button **Confirm**, after creating the repositories, for FortiSOAR to check if the specified repositories exist.
+
+    6. Click the button **Push** to push the content from FortiSOAR to the specified branch of the repository mentioned in Development Content.
+    Pushing overwrites the contents of the repository mentioned in Development Content. You can click the button **Skip** to push the contents later.
 
 ## Working with Source Control and Continuous Delivery - Best Practices
 
