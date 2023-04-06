@@ -23,20 +23,63 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
-                "zip_dir": "\/{{vars.steps.Unzip_Export_Template.data.filenames[0].split(\"\/\")[1]}}\/{{vars.steps.Unzip_Export_Template.data.filenames[0].split(\"\/\")[2]}}",
+                "zip_dir": "\/{{vars.steps.Unzip_Export_Template.data.code_output[0].split(\"\/\")[1]}}\/{{vars.steps.Unzip_Export_Template.data.code_output[0].split(\"\/\")[2]}}",
                 "new_path": "{{vars.export_template_path}}{{vars.config_info[0].name}}.json",
-                "old_path": "{% for item in vars.steps.Unzip_Export_Template.data.filenames %}{% if 'export_templates' in item %}{{item}}{% endif %}{% endfor %}",
+                "old_path": "{% for item in vars.steps.Unzip_Export_Template.data.code_output %}{% if 'export_templates' in item %}{{item}}{% endif %}{% endfor %}",
                 "zip_file": "\/tmp\/{{vars.input.params['export_file_name']}}",
                 "export_template_one": "{{vars.export_template_path}}{{vars.other_config_info[0]. name}}.json",
                 "export_template_two": "{{vars.export_template_path}}{{vars.other_config_info[1]. name}}.json",
                 "current_export_template": "{{vars.export_template_path}}{{vars.config_info[0].name}}.json"
             },
             "status": null,
-            "top": "840",
+            "top": "975",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
-            "uuid": "59eddcee-c762-42fd-bcc1-428d8e3cbe37"
+            "uuid": "8f20d875-e9b8-4625-a8c9-2e84b58e19fa"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Delete Unzip File",
+            "description": null,
+            "arguments": {
+                "config": "059acbf5-d79e-4b56-8ec6-86e46bbda907",
+                "params": {
+                    "python_function": "import shutil\n\ndir_path = '{{vars.zip_dir}}'\nshutil.rmtree(dir_path,ignore_errors=True, onerror=None)"
+                },
+                "version": "2.0.3",
+                "connector": "code-snippet",
+                "operation": "python_inline_code_editor",
+                "operationTitle": "Execute Python Code",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1380",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
+            "group": null,
+            "uuid": "bebfe1da-02de-4d27-9e15-a01267e02906"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Download Zip File",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "{{vars.steps.Get_Export_Job_Details.data.file['@id']}}"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "download_file_from_cyops_alias",
+                "operationTitle": "File: Download File From FortiSOAR",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "9e08dfe5-4d38-4b13-bffd-3509ec9a146c"
         },
         {
             "@type": "WorkflowStep",
@@ -117,13 +160,35 @@
         },
         {
             "@type": "WorkflowStep",
+            "name": "Modify Export Template",
+            "description": null,
+            "arguments": {
+                "config": "55af591c-8fba-4b2e-a798-e92638ede294",
+                "params": {
+                    "python_function": "import json\nimport shutil\nimport pathlib\n\np = pathlib.Path('{{vars.steps.Unzip_Export_Template.data.code_output[0] | win_dirname }}\/records\/export_templates')\np.mkdir(parents=True, exist_ok=True)\n\nwith open('{{vars.export_template_one}}', 'w', encoding='utf-8') as f:\n    json.dump([{{vars.other_config_info[0]}}], f, ensure_ascii=False, indent=4)\n    \nwith open('{{vars.export_template_two}}', 'w', encoding='utf-8') as f:\n    json.dump([{{vars.other_config_info[1]}}], f, ensure_ascii=False, indent=4)\n\noldFilePath = pathlib.Path('\/tmp\/{{vars.steps.Get_Export_Job_Details.data.file.filename}}')\nif oldFilePath.is_file():\n     oldFilePath.unlink()\n\nif '{{vars.old_path}}':\n  \tshutil.move('{{vars.old_path}}', '{{vars.new_path}}')\nelse:\n    with open('{{vars.current_export_template}}', 'w', encoding='utf-8') as f:\n    \tjson.dump([{{vars.config_info[0]}}], f, ensure_ascii=False, indent=4)\n    \nshutil.make_archive('{{vars.zip_file}}', 'zip', '{{vars.zip_dir}}')"
+                },
+                "version": "2.0.3",
+                "connector": "code-snippet",
+                "operation": "python_inline_code_editor",
+                "operationTitle": "Execute Python Code",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1110",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
+            "group": null,
+            "uuid": "856e2d5d-9a5d-48cf-a22b-0c63f955f950"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Return File IRI",
             "description": null,
             "arguments": {
                 "file_iri": "{{vars.steps.Upload_Export_Template_File.data['@id']}}"
             },
             "status": null,
-            "top": "1245",
+            "top": "1515",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -153,47 +218,24 @@
             "name": "Unzip Export Template",
             "description": null,
             "arguments": {
+                "config": "b5195722-9917-4e6e-ac0f-cddab46620ee",
                 "params": {
-                    "type": "File IRI",
-                    "file_iri": "{{vars.steps.Get_Export_Job_Details.data.file['@id']}}",
-                    "password": ""
-                },
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "unzip_protected_file",
-                "operationTitle": "File: Unzip",
-                "step_variables": {
-                    "export_template_path": "{{vars.steps.Unzip_Export_Template.data.filenames[0] | win_dirname }}\/records\/export_templates\/"
-                }
-            },
-            "status": null,
-            "top": "705",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "101778c3-fdc7-4800-933b-f92af29c0553"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Update Export Temaplate",
-            "description": null,
-            "arguments": {
-                "config": "55af591c-8fba-4b2e-a798-e92638ede294",
-                "params": {
-                    "python_function": "import json\nimport shutil\nimport pathlib\n\np = pathlib.Path('{{vars.steps.Unzip_Export_Template.data.filenames[0] | win_dirname }}\/records\/export_templates')\np.mkdir(parents=True, exist_ok=True)\n\nwith open('{{vars.export_template_one}}', 'w', encoding='utf-8') as f:\n    json.dump([{{vars.other_config_info[0]}}], f, ensure_ascii=False, indent=4)\n    \nwith open('{{vars.export_template_two}}', 'w', encoding='utf-8') as f:\n    json.dump([{{vars.other_config_info[1]}}], f, ensure_ascii=False, indent=4)\n\noldFilePath = pathlib.Path('\/tmp\/{{vars.steps.Get_Export_Job_Details.data.file.filename}}')\nif oldFilePath.is_file():\n     oldFilePath.unlink()\n\nif '{{vars.old_path}}':\n  \tshutil.move('{{vars.old_path}}', '{{vars.new_path}}')\nelse:\n    with open('{{vars.current_export_template}}', 'w', encoding='utf-8') as f:\n    \tjson.dump([{{vars.config_info[0]}}], f, ensure_ascii=False, indent=4)\n    \nshutil.make_archive('{{vars.zip_file}}', 'zip', '{{vars.zip_dir}}')"
+                    "python_function": "import shutil\nfrom datetime import datetime\nimport glob\n\nlistOfFiles = list()\ntarget_filepath = '\/tmp\/' + datetime.now().strftime('%Y-%m-%d-%H-%M-%S-%f')\nfilename = '\/tmp\/{{vars.steps.Download_Zip_File.data.cyops_file_path}}'\nshutil.unpack_archive(filename, target_filepath, 'zip') \n\nread_target_filepath = target_filepath + '\/**\/*.*'\nfor files in glob.iglob(read_target_filepath,recursive = True): \n  listOfFiles.append(files)\n\nprint(listOfFiles)\n"
                 },
                 "version": "2.0.3",
                 "connector": "code-snippet",
                 "operation": "python_inline_code_editor",
                 "operationTitle": "Execute Python Code",
-                "step_variables": []
+                "step_variables": {
+                    "export_template_path": "{{vars.steps.Unzip_Export_Template.data.code_output[0] | win_dirname }}\/records\/export_templates\/"
+                }
             },
             "status": null,
-            "top": "975",
+            "top": "840",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
             "group": null,
-            "uuid": "a2e0520c-4f4c-4f70-9698-4d3726a5a9d4"
+            "uuid": "b97a678f-a8c0-4843-96c5-29cc97b92944"
         },
         {
             "@type": "WorkflowStep",
@@ -235,7 +277,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1110",
+            "top": "1245",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -246,22 +288,42 @@
         {
             "@type": "WorkflowRoute",
             "name": "Configuration -> Update Export Temaplate",
-            "targetStep": "\/api\/3\/workflow_steps\/a2e0520c-4f4c-4f70-9698-4d3726a5a9d4",
-            "sourceStep": "\/api\/3\/workflow_steps\/59eddcee-c762-42fd-bcc1-428d8e3cbe37",
+            "targetStep": "\/api\/3\/workflow_steps\/856e2d5d-9a5d-48cf-a22b-0c63f955f950",
+            "sourceStep": "\/api\/3\/workflow_steps\/8f20d875-e9b8-4625-a8c9-2e84b58e19fa",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "c293b05d-444c-433e-990e-c22fc31cc870"
+            "uuid": "99e6942a-13df-48bd-bda6-87e99b77719a"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get Export Job Details -> Unzip Export Template",
-            "targetStep": "\/api\/3\/workflow_steps\/101778c3-fdc7-4800-933b-f92af29c0553",
+            "name": "Delete Unzip File -> Return File IRI",
+            "targetStep": "\/api\/3\/workflow_steps\/66aa2c6e-f174-4e83-b553-3d77a8b74b20",
+            "sourceStep": "\/api\/3\/workflow_steps\/bebfe1da-02de-4d27-9e15-a01267e02906",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "a8157153-de9e-41bf-83bc-edee1e9a055e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Download Zip File -> Unzip Export Template",
+            "targetStep": "\/api\/3\/workflow_steps\/b97a678f-a8c0-4843-96c5-29cc97b92944",
+            "sourceStep": "\/api\/3\/workflow_steps\/9e08dfe5-4d38-4b13-bffd-3509ec9a146c",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "003e9d8b-9c6d-424f-88ff-020015fbecc4"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Export Job Details -> Download Zip File",
+            "targetStep": "\/api\/3\/workflow_steps\/9e08dfe5-4d38-4b13-bffd-3509ec9a146c",
             "sourceStep": "\/api\/3\/workflow_steps\/8705638d-46b1-49d6-a80c-a02ff8270b05",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "a5edc1d1-8c9d-4a5a-a591-cb592574b211"
+            "uuid": "19c81ce0-c39c-4e7b-a7dc-9baf77e46be8"
         },
         {
             "@type": "WorkflowRoute",
@@ -296,22 +358,22 @@
         {
             "@type": "WorkflowRoute",
             "name": "Unzip Export Template -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/59eddcee-c762-42fd-bcc1-428d8e3cbe37",
-            "sourceStep": "\/api\/3\/workflow_steps\/101778c3-fdc7-4800-933b-f92af29c0553",
+            "targetStep": "\/api\/3\/workflow_steps\/8f20d875-e9b8-4625-a8c9-2e84b58e19fa",
+            "sourceStep": "\/api\/3\/workflow_steps\/b97a678f-a8c0-4843-96c5-29cc97b92944",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "082def4f-4788-4232-8ce5-3cfb0acef6cc"
+            "uuid": "063b36c9-8ea9-412a-902e-748b08e859a5"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Update Export Temaplate -> Upload Export Template File",
             "targetStep": "\/api\/3\/workflow_steps\/c78c331f-332a-4a43-a06c-f70c92075686",
-            "sourceStep": "\/api\/3\/workflow_steps\/a2e0520c-4f4c-4f70-9698-4d3726a5a9d4",
+            "sourceStep": "\/api\/3\/workflow_steps\/856e2d5d-9a5d-48cf-a22b-0c63f955f950",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "d2074329-8730-46a0-9015-9c613c8415df"
+            "uuid": "3978919d-a838-49c6-91fe-4933008291f5"
         },
         {
             "@type": "WorkflowRoute",
@@ -325,13 +387,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Upload Export Template File -> Return File IRI",
-            "targetStep": "\/api\/3\/workflow_steps\/66aa2c6e-f174-4e83-b553-3d77a8b74b20",
+            "name": "Upload Export Template File -> Delete Unzip File",
+            "targetStep": "\/api\/3\/workflow_steps\/bebfe1da-02de-4d27-9e15-a01267e02906",
             "sourceStep": "\/api\/3\/workflow_steps\/c78c331f-332a-4a43-a06c-f70c92075686",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "e5eec4e0-be03-4b0a-b519-0c50299d64cf"
+            "uuid": "de9be734-015d-417e-98c0-9c463f0784a7"
         }
     ],
     "groups": [],

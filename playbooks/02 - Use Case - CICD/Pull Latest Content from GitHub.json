@@ -347,7 +347,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2080",
+            "top": "2300",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -379,6 +379,20 @@
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
             "uuid": "11e1cfb8-377e-40fc-b2a0-553d6d647bf6"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Modify Playbook Merge Option",
+            "description": null,
+            "arguments": {
+                "import_job_payload": "{% set playbook = {} %}{% set playbooks = [] %}{% for item in vars.steps.Get_Import_Job.data.options.playbooks[\"values\"].collections[\"values\"] %}{% if item.mergeType == \"merge_append\" %}{% set _= item.update({\"mergeType\": \"merge_replace\"}) %}{% set _ = playbooks.append(item) %}{% endif %}{% endfor %}{% set _ = vars.steps.Get_Import_Job.data.options.playbooks[\"values\"].collections.update({\"values\": playbooks}) %}{{vars.steps.Get_Import_Job.data}}"
+            },
+            "status": null,
+            "top": "2060",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "5f1ce1f6-e8c3-4426-80d4-cdd01bb497fb"
         },
         {
             "@type": "WorkflowStep",
@@ -807,6 +821,29 @@
         },
         {
             "@type": "WorkflowStep",
+            "name": "Update Import Job",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/3\/import_jobs\/{{vars.steps.Create_Import_Job.data.uuid}}",
+                    "body": "{{vars.import_job_payload}}",
+                    "method": "PUT"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "2180",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "6972514d-e94f-4d24-b947-78b5588f963d"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Update Status",
             "description": null,
             "arguments": {
@@ -833,7 +870,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2360",
+            "top": "2580",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -909,7 +946,7 @@
                 }
             },
             "status": null,
-            "top": "2220",
+            "top": "2440",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dbf",
             "group": null,
@@ -1029,13 +1066,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get Import Job -> Import Zip File",
-            "targetStep": "\/api\/3\/workflow_steps\/55f479c9-c142-4dab-975a-6f693385bd58",
+            "name": "Get Import Job -> Modify Playbook Merge Option",
+            "targetStep": "\/api\/3\/workflow_steps\/5f1ce1f6-e8c3-4426-80d4-cdd01bb497fb",
             "sourceStep": "\/api\/3\/workflow_steps\/892ced53-f38a-4707-95a6-d05e92ad4890",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "bf6ef822-d235-4fa8-8351-e66b6828a8f7"
+            "uuid": "cb2e7b4f-8f99-4f14-b634-360043cf3db6"
         },
         {
             "@type": "WorkflowRoute",
@@ -1116,6 +1153,16 @@
             "isExecuted": false,
             "group": null,
             "uuid": "98a5fc29-fb66-4afa-84f5-9e31d7ea0da0"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Modify Playbook Merge Option -> Update Import Job",
+            "targetStep": "\/api\/3\/workflow_steps\/6972514d-e94f-4d24-b947-78b5588f963d",
+            "sourceStep": "\/api\/3\/workflow_steps\/5f1ce1f6-e8c3-4426-80d4-cdd01bb497fb",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "76a84506-fff8-42f2-b393-162d438d477e"
         },
         {
             "@type": "WorkflowRoute",
@@ -1209,6 +1256,16 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Update Import Job -> Import Zip File",
+            "targetStep": "\/api\/3\/workflow_steps\/55f479c9-c142-4dab-975a-6f693385bd58",
+            "sourceStep": "\/api\/3\/workflow_steps\/6972514d-e94f-4d24-b947-78b5588f963d",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "dd904b39-c746-4b7b-a80a-cd16f72dc596"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Update Status as In Progress -> Get Source Control Details",
             "targetStep": "\/api\/3\/workflow_steps\/14051544-1748-48d8-a66a-eb8f54f2357d",
             "sourceStep": "\/api\/3\/workflow_steps\/d6077c02-5b27-4d30-8b02-91177052d91f",
@@ -1235,7 +1292,7 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "CICD",
-        "ManualTrigger"
+        "ManualTrigger",
+        "CICD"
     ]
 }
