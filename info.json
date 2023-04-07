@@ -99,6 +99,10 @@
         "globalVariables": [],
         "connectors": [
             {
+                "name": "CICD Utils",
+                "apiName": "cicd-utils"
+            },
+            {
                 "name": "GitHub",
                 "apiName": "github"
             }

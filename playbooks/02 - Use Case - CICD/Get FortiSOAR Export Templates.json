@@ -23,42 +23,21 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
-                "zip_dir": "\/{{vars.steps.Unzip_Export_Template.data.code_output[0].split(\"\/\")[1]}}\/{{vars.steps.Unzip_Export_Template.data.code_output[0].split(\"\/\")[2]}}",
-                "new_path": "{{vars.export_template_path}}{{vars.config_info[0].name}}.json",
-                "old_path": "{% for item in vars.steps.Unzip_Export_Template.data.code_output %}{% if 'export_templates' in item %}{{item}}{% endif %}{% endfor %}",
-                "zip_file": "\/tmp\/{{vars.input.params['export_file_name']}}",
-                "export_template_one": "{{vars.export_template_path}}{{vars.other_config_info[0]. name}}.json",
-                "export_template_two": "{{vars.export_template_path}}{{vars.other_config_info[1]. name}}.json",
-                "current_export_template": "{{vars.export_template_path}}{{vars.config_info[0].name}}.json"
+                "zip_filename": "{{vars.input.params['export_file_name']}}",
+                "uzip_filepath": "\/{{vars.steps.Unzip_Export_Template.data.filenames[0].split(\"\/\")[1]}}\/{{vars.steps.Unzip_Export_Template.data.filenames[0].split(\"\/\")[2]}}",
+                "dev_settings_json": "{{vars.config_info | json_query(\"[?name=='Source Control - Development Settings']\")}}",
+                "prod_content_json": "{{vars.config_info | json_query(\"[?name=='Source Control - Production Content']\")}}",
+                "prod_settings_json": "{{vars.config_info | json_query(\"[?name=='Source Control - Production Settings']\")}}",
+                "dev_settings_filepath": "\/{{vars.steps.Unzip_Export_Template.data.filenames[0].split(\"\/\")[1]}}\/{{vars.steps.Unzip_Export_Template.data.filenames[0].split(\"\/\")[2]}}\/{{vars.input.params['export_file_name']}}\/records\/export_templates\/Source Control - Development Settings.json",
+                "prod_content_filepath": "\/{{vars.steps.Unzip_Export_Template.data.filenames[0].split(\"\/\")[1]}}\/{{vars.steps.Unzip_Export_Template.data.filenames[0].split(\"\/\")[2]}}\/{{vars.input.params['export_file_name']}}\/records\/export_templates\/Source Control - Production Content.json",
+                "prod_settings_filepath": "\/{{vars.steps.Unzip_Export_Template.data.filenames[0].split(\"\/\")[1]}}\/{{vars.steps.Unzip_Export_Template.data.filenames[0].split(\"\/\")[2]}}\/{{vars.input.params['export_file_name']}}\/records\/export_templates\/Source Control - Production Settings.json"
             },
             "status": null,
             "top": "975",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
-            "uuid": "8f20d875-e9b8-4625-a8c9-2e84b58e19fa"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Delete Unzip File",
-            "description": null,
-            "arguments": {
-                "config": "059acbf5-d79e-4b56-8ec6-86e46bbda907",
-                "params": {
-                    "python_function": "import shutil\n\ndir_path = '{{vars.zip_dir}}'\nshutil.rmtree(dir_path,ignore_errors=True, onerror=None)"
-                },
-                "version": "2.0.3",
-                "connector": "code-snippet",
-                "operation": "python_inline_code_editor",
-                "operationTitle": "Execute Python Code",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "1380",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
-            "group": null,
-            "uuid": "bebfe1da-02de-4d27-9e15-a01267e02906"
+            "uuid": "1fae7a02-3d99-4652-903d-0db8c09eb88a"
         },
         {
             "@type": "WorkflowStep",
@@ -115,7 +94,7 @@
             "description": null,
             "arguments": {
                 "params": {
-                    "iri": "\/api\/export?fileName={{vars.export_file_name}}.zip&template={{vars.config_info[0].uuid}}",
+                    "iri": "\/api\/export?fileName={{vars.export_file_name}}.zip&template={{(vars.config_info | json_query(\"[?name=='\"+vars.input.params.export_template_name+\"'].uuid\"))[0]}}",
                     "body": "",
                     "method": "PUT"
                 },
@@ -147,8 +126,7 @@
                 "operation": "make_cyops_request",
                 "operationTitle": "FSR: Make FortiSOAR API Call",
                 "step_variables": {
-                    "config_info": "{% set template = {\n                    \"name\": \"Export Templates\",\n                    \"type\": \"export_templates\",\n                    \"query\": {\n                        \"sort\": [],\n                        \"limit\": 1,\n                        \"logic\": \"AND\",\n                        \"filters\": [\n                            {\n                                \"type\": \"primitive\",\n                                \"field\": \"name\",\n                                \"value\": vars.input.params['export_template_name'],\n                                \"operator\": \"eq\",\n                                \"_operator\": \"eq\"\n                            }\n                        ],\n                        \"__selectFields\": [\n                            \"uuid\"\n                        ]\n                    },\n                    \"include\": true,\n                    \"whenExists\": \"replace\",\n                    \"moduleNotExists\": true,\n                    \"includeCorrelations\": false\n                } %}{% for item in vars.steps.Get_Export_Template.data['hydra:member'] %}{% if item.name==vars.input.params['export_template_name'] and (item.options.recordSets | json_query(\"[?type=='export_templates']\")) | length == 0 %}{% set _ = item.options.recordSets.append(template) %}{% endif %}{% endfor %}{{vars.steps.Get_Export_Template.data['hydra:member'] | json_query(\"[?name=='\"+vars.input.params['export_template_name']+\"']\")}}",
-                    "other_config_info": "{{vars.steps.Get_Export_Template.data['hydra:member'] | json_query(\"[?name!='\"+vars.input.params['export_template_name']+\"']\")}}"
+                    "config_info": "{% set template = {\n                    \"name\": \"Export Templates\",\n                    \"type\": \"export_templates\",\n                    \"query\": {\n                        \"sort\": [],\n                        \"limit\": 1,\n                        \"logic\": \"AND\",\n                        \"filters\": [\n                            {\n                                \"type\": \"primitive\",\n                                \"field\": \"name\",\n                                \"value\": vars.input.params['export_template_name'],\n                                \"operator\": \"eq\",\n                                \"_operator\": \"eq\"\n                            }\n                        ],\n                        \"__selectFields\": [\n                            \"uuid\"\n                        ]\n                    },\n                    \"include\": true,\n                    \"whenExists\": \"replace\",\n                    \"moduleNotExists\": true,\n                    \"includeCorrelations\": false\n                } %}{% for item in vars.steps.Get_Export_Template.data['hydra:member'] %}{% if item.name==vars.input.params['export_template_name'] and (item.options.recordSets | json_query(\"[?type=='export_templates']\")) | length == 0 %}{% set _ = item.options.recordSets.append(template) %}{% endif %}{% endfor %}{{vars.steps.Get_Export_Template.data['hydra:member']}}"
                 }
             },
             "status": null,
@@ -163,22 +141,30 @@
             "name": "Modify Export Template",
             "description": null,
             "arguments": {
-                "config": "55af591c-8fba-4b2e-a798-e92638ede294",
+                "name": "CICD Utils",
                 "params": {
-                    "python_function": "import json\nimport shutil\nimport pathlib\n\np = pathlib.Path('{{vars.steps.Unzip_Export_Template.data.code_output[0] | win_dirname }}\/records\/export_templates')\np.mkdir(parents=True, exist_ok=True)\n\nwith open('{{vars.export_template_one}}', 'w', encoding='utf-8') as f:\n    json.dump([{{vars.other_config_info[0]}}], f, ensure_ascii=False, indent=4)\n    \nwith open('{{vars.export_template_two}}', 'w', encoding='utf-8') as f:\n    json.dump([{{vars.other_config_info[1]}}], f, ensure_ascii=False, indent=4)\n\noldFilePath = pathlib.Path('\/tmp\/{{vars.steps.Get_Export_Job_Details.data.file.filename}}')\nif oldFilePath.is_file():\n     oldFilePath.unlink()\n\nif '{{vars.old_path}}':\n  \tshutil.move('{{vars.old_path}}', '{{vars.new_path}}')\nelse:\n    with open('{{vars.current_export_template}}', 'w', encoding='utf-8') as f:\n    \tjson.dump([{{vars.config_info[0]}}], f, ensure_ascii=False, indent=4)\n    \nshutil.make_archive('{{vars.zip_file}}', 'zip', '{{vars.zip_dir}}')"
+                    "zip_filename": "{{vars.zip_filename}}",
+                    "unzip_filepath": "{{vars.uzip_filepath}}",
+                    "dev_settings_json": "{{vars.dev_settings_json}}",
+                    "prod_content_json": "{{vars.prod_content_json}}",
+                    "prod_settings_json": "{{vars.prod_settings_json}}",
+                    "dev_settings_filepath": "{{vars.dev_settings_filepath}}",
+                    "prod_content_filepath": "{{vars.prod_content_filepath}}",
+                    "prod_settings_filepath": "{{vars.prod_settings_filepath}}"
                 },
-                "version": "2.0.3",
-                "connector": "code-snippet",
-                "operation": "python_inline_code_editor",
-                "operationTitle": "Execute Python Code",
+                "version": "1.0.0",
+                "connector": "cicd-utils",
+                "operation": "split_export_templates",
+                "operationTitle": "Split Export Template",
+                "pickFromTenant": false,
                 "step_variables": []
             },
             "status": null,
             "top": "1110",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
-            "uuid": "856e2d5d-9a5d-48cf-a22b-0c63f955f950"
+            "uuid": "ed967eb9-e044-4915-846f-e40ed2c130f2"
         },
         {
             "@type": "WorkflowStep",
@@ -188,7 +174,7 @@
                 "file_iri": "{{vars.steps.Upload_Export_Template_File.data['@id']}}"
             },
             "status": null,
-            "top": "1515",
+            "top": "1380",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -218,24 +204,25 @@
             "name": "Unzip Export Template",
             "description": null,
             "arguments": {
-                "config": "b5195722-9917-4e6e-ac0f-cddab46620ee",
+                "name": "CICD Utils",
                 "params": {
-                    "python_function": "import shutil\nfrom datetime import datetime\nimport glob\n\nlistOfFiles = list()\ntarget_filepath = '\/tmp\/' + datetime.now().strftime('%Y-%m-%d-%H-%M-%S-%f')\nfilename = '\/tmp\/{{vars.steps.Download_Zip_File.data.cyops_file_path}}'\nshutil.unpack_archive(filename, target_filepath, 'zip') \n\nread_target_filepath = target_filepath + '\/**\/*.*'\nfor files in glob.iglob(read_target_filepath,recursive = True): \n  listOfFiles.append(files)\n\nprint(listOfFiles)\n"
+                    "filepath": "{{vars.steps.Download_Zip_File.data['cyops_file_path']}}"
                 },
-                "version": "2.0.3",
-                "connector": "code-snippet",
-                "operation": "python_inline_code_editor",
-                "operationTitle": "Execute Python Code",
+                "version": "1.0.0",
+                "connector": "cicd-utils",
+                "operation": "unzip_export_template",
+                "operationTitle": "Unzip Export Template",
+                "pickFromTenant": false,
                 "step_variables": {
-                    "export_template_path": "{{vars.steps.Unzip_Export_Template.data.code_output[0] | win_dirname }}\/records\/export_templates\/"
+                    "export_template_path": "{{vars.steps.Unzip_Export_Template.data.filenames[0] | win_dirname }}\/records\/export_templates\/"
                 }
             },
             "status": null,
             "top": "840",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
-            "uuid": "b97a678f-a8c0-4843-96c5-29cc97b92944"
+            "uuid": "6e8e9a04-54a0-4f20-b8d1-3e98fc5a83c6"
         },
         {
             "@type": "WorkflowStep",
@@ -243,8 +230,8 @@
             "description": null,
             "arguments": {
                 "params": {
-                    "iri": "\/api\/3\/export_templates\/{{vars.config_info[0].uuid}}",
-                    "body": "{{vars.config_info[0]}}",
+                    "iri": "\/api\/3\/export_templates\/{{(vars.config_info | json_query(\"[?name=='\"+vars.input.params.export_template_name+\"'].uuid\"))[0]}}",
+                    "body": "{{(vars.config_info | json_query(\"[?name=='\"+vars.export_template_name+\"']\"))[0]}}",
                     "method": "PUT"
                 },
                 "version": "3.2.3",
@@ -266,8 +253,8 @@
             "description": null,
             "arguments": {
                 "params": {
-                    "filename": "{{vars.zip_file.split(\"\/\")[-1]}}.zip",
-                    "file_path": "{{vars.zip_file}}.zip",
+                    "filename": "{{vars.zip_filename}}.zip",
+                    "file_path": "{{vars.zip_filename}}.zip",
                     "create_attachment": false
                 },
                 "version": "3.2.3",
@@ -281,39 +268,29 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "c78c331f-332a-4a43-a06c-f70c92075686"
+            "uuid": "12bdea4f-6cf2-4043-b5bf-fdb6f8974809"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Configuration -> Update Export Temaplate",
-            "targetStep": "\/api\/3\/workflow_steps\/856e2d5d-9a5d-48cf-a22b-0c63f955f950",
-            "sourceStep": "\/api\/3\/workflow_steps\/8f20d875-e9b8-4625-a8c9-2e84b58e19fa",
+            "name": "Configuration -> Modify Export Template",
+            "targetStep": "\/api\/3\/workflow_steps\/ed967eb9-e044-4915-846f-e40ed2c130f2",
+            "sourceStep": "\/api\/3\/workflow_steps\/1fae7a02-3d99-4652-903d-0db8c09eb88a",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "99e6942a-13df-48bd-bda6-87e99b77719a"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Delete Unzip File -> Return File IRI",
-            "targetStep": "\/api\/3\/workflow_steps\/66aa2c6e-f174-4e83-b553-3d77a8b74b20",
-            "sourceStep": "\/api\/3\/workflow_steps\/bebfe1da-02de-4d27-9e15-a01267e02906",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "a8157153-de9e-41bf-83bc-edee1e9a055e"
+            "uuid": "05405e0a-070e-4e77-9938-d5119b74282b"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Download Zip File -> Unzip Export Template",
-            "targetStep": "\/api\/3\/workflow_steps\/b97a678f-a8c0-4843-96c5-29cc97b92944",
+            "targetStep": "\/api\/3\/workflow_steps\/6e8e9a04-54a0-4f20-b8d1-3e98fc5a83c6",
             "sourceStep": "\/api\/3\/workflow_steps\/9e08dfe5-4d38-4b13-bffd-3509ec9a146c",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "003e9d8b-9c6d-424f-88ff-020015fbecc4"
+            "uuid": "cf37efe6-019b-4d6a-b16f-9b5431189826"
         },
         {
             "@type": "WorkflowRoute",
@@ -347,6 +324,16 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Modify Export Template -> Upload Export Template File",
+            "targetStep": "\/api\/3\/workflow_steps\/12bdea4f-6cf2-4043-b5bf-fdb6f8974809",
+            "sourceStep": "\/api\/3\/workflow_steps\/ed967eb9-e044-4915-846f-e40ed2c130f2",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "25f9128f-c9cf-40e3-9e34-1b63d040b3e8"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Start -> Get Export Template",
             "targetStep": "\/api\/3\/workflow_steps\/6929ce64-ccd2-4e37-b76e-e548239ed26e",
             "sourceStep": "\/api\/3\/workflow_steps\/4de303f0-1eb9-4b5f-83ff-e16de3f6d043",
@@ -358,22 +345,12 @@
         {
             "@type": "WorkflowRoute",
             "name": "Unzip Export Template -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/8f20d875-e9b8-4625-a8c9-2e84b58e19fa",
-            "sourceStep": "\/api\/3\/workflow_steps\/b97a678f-a8c0-4843-96c5-29cc97b92944",
+            "targetStep": "\/api\/3\/workflow_steps\/1fae7a02-3d99-4652-903d-0db8c09eb88a",
+            "sourceStep": "\/api\/3\/workflow_steps\/6e8e9a04-54a0-4f20-b8d1-3e98fc5a83c6",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "063b36c9-8ea9-412a-902e-748b08e859a5"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Update Export Temaplate -> Upload Export Template File",
-            "targetStep": "\/api\/3\/workflow_steps\/c78c331f-332a-4a43-a06c-f70c92075686",
-            "sourceStep": "\/api\/3\/workflow_steps\/856e2d5d-9a5d-48cf-a22b-0c63f955f950",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "3978919d-a838-49c6-91fe-4933008291f5"
+            "uuid": "72b340b4-4269-4e4e-93e9-84137994b460"
         },
         {
             "@type": "WorkflowRoute",
@@ -387,13 +364,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Upload Export Template File -> Delete Unzip File",
-            "targetStep": "\/api\/3\/workflow_steps\/bebfe1da-02de-4d27-9e15-a01267e02906",
-            "sourceStep": "\/api\/3\/workflow_steps\/c78c331f-332a-4a43-a06c-f70c92075686",
+            "name": "Upload Export Template File -> Return File IRI",
+            "targetStep": "\/api\/3\/workflow_steps\/66aa2c6e-f174-4e83-b553-3d77a8b74b20",
+            "sourceStep": "\/api\/3\/workflow_steps\/12bdea4f-6cf2-4043-b5bf-fdb6f8974809",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "de9be734-015d-417e-98c0-9c463f0784a7"
+            "uuid": "d9691f61-ae52-412e-96d0-0664bbed9b97"
         }
     ],
     "groups": [],
