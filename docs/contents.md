@@ -46,6 +46,8 @@ The **Continuous Delivery** solution pack installs the following resources:
 | Push (Export) CR Content to GitHub - Update Export Config Attachment<sup>Deprecated</sup> | Update the "Export Template Configuration" attachment                                                                                                                                     |
 | GitHub - Create Issue Comment<sup>New</sup>                                               | Creates an issue comment for the specified repository or user on GitHub                                                                                                                   |
 | GitHub - Add Repository Collaborator<sup>New</sup>                                        | Updates a personal repository of a specified user to add a collaborator                                                                                                                   |
+|GitHub - List Repository Collaborator<sup>New</sup>| List repository collaborators|
+|Add GitHub Repository Collaborator<sup>New</sup> | Add GitHub repository collaborator for specified repository |
 | Setup Production Environment                                                              | Execute Setup Production Environment Task on specified record                                                                                                                             |
 | Setup Development Environment                                                             | Setup the FortiSOAR Prod Content, FortiSOAR Dev Settings source control repositories                                                                                                      |
 | Setup CICD Environment                                                                    | Update the SVT of Change Management module as per the environment selected in CICD Configuration wizard                                                                                   |
@@ -93,20 +95,21 @@ The **Continuous Delivery** solution pack installs the following resources:
 |Connector|Description|
 |:-|:-|
 |GitHub|This connector facilitates automated interactions with Github such as creating and managing repositories, branches, issues, and pull requests.|
+|CICD Utils|CICD Utils provides out of the box actions for CICD solution pack|
 
 ## Record Sets
 
-- Attachments
-- Continuous Delivery
+- Change Management (8)
+- Export Templates (3)
 
 ## Picklists
 
-- Environment
-- Task Status
-- Task Type
+- Change Management Environment
+- Change Management Status
+- Change Management Type
 
 ## Module Views
 
-- List
-- Detail
-- Form
+- Change Management List
+- Change Management Detail
+- Change Management Form
