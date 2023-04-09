@@ -29,6 +29,8 @@
 - Following playbooks were added
     - GitHub - Create Issue Comment
     - GitHub - Add Repository Collaborator
+    - GitHub - List Repository Collaborator
+    - Add GitHub Repository Collaborator
 
 - Following playbooks were removed
     - Update Export Templates
@@ -42,7 +44,7 @@
     - *Push (Initial) Production Environment Content* renamed to *Push Initial Production Environment Content*
     - *Push (Export) CR Content to GitHub - Extract Export Zip File from FortiSOAR* renamed to *Get FortiSOAR Export Templates*
 
-- Following playbooks pass the branch name parameter from the GitHub connector to the solution pack's **GitHub - Clone Repository** playbook:
+- Following playbooks pass the branch name parameter to the **GitHub - Clone Repository** playbook:
     - Push Initial Production Environment Content
     - Push Change to Source Control
     - Push Content to Source Control
