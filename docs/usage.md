@@ -1,3 +1,6 @@
+| [Home](../README.md) |
+|----------------------|
+
 # Usage
 
 In this section we detail the various user flows to understand the scenarios where this solution pack’s automation addresses our needs.

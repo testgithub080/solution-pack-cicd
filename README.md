@@ -5,6 +5,7 @@
 - **Publisher**: Fortinet
 - **Compatible Version**: FortiSOAR v7.4.0 and later
 - [**Release Notes**](./release_notes.md)
+- [**Upgrade Instructions**](./docs/upgrade-instructions.md)
 
 # Overview
 
@@ -66,6 +67,8 @@ This section explains setting up initial configurations for GitHub source contro
 6. **Working with Personal Access Tokens**: Personal access tokens help avoid entering sensitive information like passwords. You can assign only relevant rights to your access token. GitHub connector in FortiSOAR requires a personal access token (classic) to be entered during configuration.
 
     Refer to this article for [Accessing GitHub using Personal Access Token (Classic)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#personal-access-tokens-classic.).
+
+7. **Invite Collaborators**: Collaborators have write access to the repositories to which they are invited. Collaborators must accept the invitation from GitHub's user interface to begin contributing.
 
 
 # Next Steps 

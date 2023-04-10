@@ -1,3 +1,6 @@
+| [Home](../README.md) |
+|----------------------|
+
 # Release Notes
 
 ## Enhancements
@@ -14,6 +17,8 @@
 
 - Added a new team *Content Development* to add users involved with content development in FortiSOAR
 
+- Option to invite collaborators with write permissions available during mapping GitHub users.
+
 ### Playbook Enhancements
 
 - Added Pull Request (PR) title as an issue comment in *Create Pull Request* playbook
@@ -26,11 +31,16 @@
 
 - Added *Add Repository Collaborator* step in *Set GitHub Username* playbook
 
+- *GitHub - Clone Repository* action uses the Codeload service that speeds up the subsequent push and pull operations
+
 - Following playbooks were added
     - GitHub - Create Issue Comment
     - GitHub - Add Repository Collaborator
     - GitHub - List Repository Collaborator
     - Add GitHub Repository Collaborator
+    - Push Content to Source Control
+    - Push Initial Production Environment Content
+    - Get FortiSOAR Export Templates
 
 - Following playbooks were removed
     - Update Export Templates
@@ -38,11 +48,9 @@
     - Setup Export Templates
     - Setup Export Templates - Content and Settings
     - Push (Export) CR Content to GitHub - Update Export Config Attachment
-
-- Following playbooks were renamed to better communicate their purpose
-    - *Push Content* playbook renamed to *Push Content to Source Control*
-    - *Push (Initial) Production Environment Content* renamed to *Push Initial Production Environment Content*
-    - *Push (Export) CR Content to GitHub - Extract Export Zip File from FortiSOAR* renamed to *Get FortiSOAR Export Templates*
+    - Push Content
+    - Push (Initial) Production Environment Content
+    - Push (Export) CR Content to GitHub - Extract Export Zip File from FortiSOAR
 
 - Following playbooks pass the branch name parameter to the **GitHub - Clone Repository** playbook:
     - Push Initial Production Environment Content
