@@ -2,7 +2,7 @@
   {
     "@type": "ExportTemplate",
     "name": "Source Control - Production Content",
-    "lastExportDate": 1678694038.363458,
+    "lastExportDate": null,
     "options": {
       "roles": [
         {
@@ -493,6 +493,7 @@
           "description": "Essentially the root user, use carefully",
           "modulePermissions": {
             "hunt": true,
+            "keys": true,
             "files": true,
             "rules": true,
             "tasks": true,
@@ -530,13 +531,23 @@
             "data_archival": true,
             "saved_reports": true,
             "solutionpacks": true,
-            "email_templates": true,
-            "change_management": true
+            "email_templates": true
           },
           "modulePermissionDetails": {
             "hunt": {
               "@type": "ModulePermission",
               "module": "hunt",
+              "canRead": true,
+              "canCreate": true,
+              "canDelete": true,
+              "canUpdate": true,
+              "canExecute": true,
+              "fieldPermissions": [],
+              "_fieldPermissionChanged": false
+            },
+            "keys": {
+              "@type": "ModulePermission",
+              "module": "keys",
               "canRead": true,
               "canCreate": true,
               "canDelete": true,
@@ -960,17 +971,6 @@
               "canDelete": true,
               "canUpdate": true,
               "canExecute": false,
-              "fieldPermissions": [],
-              "_fieldPermissionChanged": false
-            },
-            "change_management": {
-              "@type": "ModulePermission",
-              "module": "change_management",
-              "canRead": true,
-              "canCreate": true,
-              "canDelete": false,
-              "canUpdate": true,
-              "canExecute": true,
               "fieldPermissions": [],
               "_fieldPermissionChanged": false
             }
@@ -1508,7 +1508,10 @@
         {
           "value": "alerts",
           "includedAttributes": [
+            "iPAddresses",
+            "resolvedAutomatedly",
             "emailClassification",
+            "fileHashes",
             "respSLApausedon",
             "ackSLApausedon",
             "alertRemainingRespSLA",
@@ -1627,6 +1630,7 @@
         {
           "value": "assets",
           "includedAttributes": [
+            "assetRisk",
             "emailId",
             "deviceUid",
             "name",
@@ -1867,6 +1871,13 @@
           ]
         },
         {
+          "value": "keys",
+          "includedAttributes": [
+            "key",
+            "value"
+          ]
+        },
+        {
           "value": "sla_template",
           "includedAttributes": [
             "incPauseSLAOn",
@@ -1941,7 +1952,6 @@
         ],
         "globalVariables": [
           "Default_Email",
-          "Current_Data",
           "PB_Log_TTL",
           "Default_Indicator_TTL_Days",
           "Indicator_Type_Map",
@@ -1956,7 +1966,8 @@
           "IP_Enrichment_Playbooks_IRIs",
           "Domain_Enrichment_Playbooks_IRIs",
           "FileHash_Enrichment_Playbooks_IRIs",
-          "User_Enrichment_Playbooks_IRIs"
+          "User_Enrichment_Playbooks_IRIs",
+          "Demo_mode"
         ],
         "includeVersions": false,
         "includeGlobalVariables": true
@@ -1984,10 +1995,11 @@
                   "/api/3/tags/Sample"
                 ],
                 "module": "recordTags",
-                "display": null,
+                "display": "",
                 "operator": "in",
                 "template": "tags",
                 "OPERATOR_KEY": "$",
+                "useInOperator": true,
                 "previousOperator": "in",
                 "previousTemplate": "tags"
               }
@@ -2042,6 +2054,7 @@
         "/api/3/picklist_names/520e35ae-c3c2-45f5-bc73-af6b9476cbeb",
         "/api/3/picklist_names/0042bf40-d0e6-4324-ab84-0c7b0703f681",
         "/api/3/picklist_names/54642443-1ab4-4f2b-968e-a0c43907fad0",
+        "/api/3/picklist_names/fc7c0b32-ce9f-4fb5-a0fe-6923fb1c0a2c",
         "/api/3/picklist_names/45de7d2e-8ef0-495e-a6e5-07fddfbd4749",
         "/api/3/picklist_names/3c57ea34-4866-4c8f-ba74-dc51806727a9",
         "/api/3/picklist_names/95749529-b229-4fbd-ba14-01c51a4f21b5",
@@ -2066,7 +2079,6 @@
         "/api/3/picklist_names/4e80cba3-032f-48b4-ac03-17e3ec247aac",
         "/api/3/picklist_names/98830189-afff-40e6-bed1-94012551dc67",
         "/api/3/picklist_names/fe36a8f2-fcba-4221-b4ab-1081f596b153",
-        "/api/3/picklist_names/21ddbcfd-b4a3-4273-adea-c674fe47d643",
         "/api/3/picklist_names/40f1345f-f679-43c0-9237-5b06edd8385f",
         "/api/3/picklist_names/ab8bbdb4-2cf9-4695-90ef-9f1f825d2b1f",
         "/api/3/picklist_names/7b348719-8ffc-4c94-8ce7-1812eae43d78"
@@ -2102,6 +2114,9 @@
         "modules-indicators-list",
         "modules-indicators-detail",
         "modules-indicators-form",
+        "modules-keys-list",
+        "modules-keys-detail",
+        "modules-keys-form",
         "modules-sla_template-list",
         "modules-sla_template-detail",
         "modules-sla_template-form",
@@ -2109,15 +2124,49 @@
         "modules-warrooms-detail",
         "modules-warrooms-form"
       ],
-      "playbookBlocks": []
+      "playbookBlocks": {
+        "blocks": [
+          "03ec9579-e5d4-455a-beef-6ce10824abd1",
+          "8d78e298-abc6-498d-a1bd-78abfc0d79a7",
+          "be84dabf-f499-4ef0-8bcb-94d156a451c3",
+          "6a7d82cc-5e6f-4ab1-9cfd-439aad677192",
+          "f64748cd-09aa-4fe2-8e36-e0235f4a7144",
+          "361dda83-1f75-42bb-ba54-9514f1d194c8",
+          "f7daf8a9-ab11-48fa-b479-7cc8a73d10e1",
+          "9000848c-78aa-441c-9b2b-ce38f8db4762",
+          "c365a02a-b6c4-4387-a98d-ad865979f4a1",
+          "dac3442b-2490-44cc-ab9f-c2938afe02db",
+          "b11a5995-3056-45af-85d0-7f63a7c2c99c",
+          "a5dd165e-dc61-45d0-aae8-2abee7e10580",
+          "0c1a54bb-90e7-4a9f-ac4f-f5e00fbf81f8",
+          "405a1462-ef23-4196-a4d5-021371c9c984",
+          "1f878cfc-d73e-49c3-9863-695dbe2032ea",
+          "766391ab-30f2-4b94-9096-4328e17470ef",
+          "88769e66-646a-4e70-8e9a-67cdcebf5a88",
+          "8895767f-b55b-462b-919a-1872b6770988",
+          "3aeb9326-ebef-4fb7-ad55-a2655cea739c",
+          "013b6ac0-3cfb-4bd2-be8f-d692473d755f",
+          "4876b073-41af-4ec8-b526-76c3b59e2bd1",
+          "123e3f56-b295-4d00-b549-ce9f7f98e884",
+          "023ec590-5a27-421c-9a33-e88c488ef19c",
+          "65967969-d405-46ee-b80d-f2b096e77e2d",
+          "c6d238fa-fa8c-4fec-b563-d053a0f989e8",
+          "238dbdca-88ad-4b2c-bb10-d776fca89272",
+          "fd1dc226-1583-4dd8-a576-d9b350200569",
+          "e56e800d-61aa-4fe8-abce-6246b9a31fd1",
+          "381764e6-f53c-4615-9171-67d4e75b4124",
+          "5cd13da5-909d-4ead-adc6-70b7177998cb"
+        ],
+        "includeGlobalVariables": true
+      }
     },
     "type": "Export Wizard",
     "solutionPack": null,
-    "uuid": "114d8b44-ed1c-4219-ac0c-05a8f057c133",
+    "uuid": "49466255-50e3-4345-b1a8-0b2cd29bcc2f",
     "id": 2,
     "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1678361239.732998,
+    "createDate": 1681112238.742993,
     "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1678732307.725184
+    "modifyDate": 1681112321.618513
   }
 ]
