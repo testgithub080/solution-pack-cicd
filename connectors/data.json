@@ -1,5 +1,16 @@
 [
     {
+        "name": "cicd-utils",
+        "label": "CICD Utils",
+        "category": "Utilities",
+        "description": "CICD provides the out of box actions for CICD solution pack",
+        "publisher": null,
+        "operation_roles": [],
+        "configurations": [],
+        "dataImports": [],
+        "install_mode": "rpm"
+    },
+    {
         "name": "github",
         "label": "GitHub",
         "category": "Source Code Management",

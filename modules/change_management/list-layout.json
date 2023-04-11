@@ -117,7 +117,7 @@
                                                 }
                                             },
                                             "icon": "icon icon-deploy",
-                                            "show": true,
+                                            "show": false,
                                             "visible": true
                                         },
                                         {
@@ -208,56 +208,56 @@
                                                                                                             "wid": "c0d6b66e-0177-4fcb-a1a8-48d4b4a14fc5",
                                                                                                             "actionButtons": [
                                                                                                                 {
-                                                                                                                    "@id": "\/api\/3\/workflows\/eaf38ff8-eccc-4a38-a8a9-c17416900647",
+                                                                                                                    "@id": "\/api\/3\/workflows\/22ddd2f3-b2e5-4465-b8b8-86ca8a276a6a",
                                                                                                                     "@type": "Workflow",
                                                                                                                     "name": "Fetch Open Requests (Issues)",
                                                                                                                     "description": "Fetch all open GitHub requests (Issues) from Content, Production Setting and Development Setting repositories",
-                                                                                                                    "uuid": "eaf38ff8-eccc-4a38-a8a9-c17416900647",
-                                                                                                                    "id": 457,
+                                                                                                                    "uuid": "22ddd2f3-b2e5-4465-b8b8-86ca8a276a6a",
+                                                                                                                    "id": 575,
                                                                                                                     "icon": "fa fa-refresh"
                                                                                                                 }
                                                                                                             ],
                                                                                                             "selectedPlaybooksWithoutRecord": [
                                                                                                                 {
-                                                                                                                    "@id": "\/api\/3\/workflows\/d4448659-a2a8-4af4-8108-578caaa4f82d",
+                                                                                                                    "@id": "\/api\/3\/workflows\/c0d9f6b2-19e5-4a81-9802-731f26bed58d",
                                                                                                                     "@type": "Workflow",
                                                                                                                     "name": "Create a Request (Issue)",
                                                                                                                     "description": "Creates a Github Issue against the FortiSOAR Content or Settings Repository with the request content",
-                                                                                                                    "uuid": "d4448659-a2a8-4af4-8108-578caaa4f82d",
-                                                                                                                    "id": 456,
+                                                                                                                    "uuid": "c0d9f6b2-19e5-4a81-9802-731f26bed58d",
+                                                                                                                    "id": 572,
                                                                                                                     "icon": "fa fa-plus"
                                                                                                                 }
                                                                                                             ],
                                                                                                             "selectedPlaybooksWithRecord": [
                                                                                                                 {
-                                                                                                                    "@id": "\/api\/3\/workflows\/ce29b3d9-06c5-4157-b1d1-52368c74c527",
+                                                                                                                    "@id": "\/api\/3\/workflows\/be1b4a01-38fe-4899-b933-fe44460d2f7e",
                                                                                                                     "@type": "Workflow",
                                                                                                                     "name": "Close Change Request",
                                                                                                                     "description": "Closed the change Request and and Delete the specified change request branch",
-                                                                                                                    "uuid": "ce29b3d9-06c5-4157-b1d1-52368c74c527",
-                                                                                                                    "id": 454,
+                                                                                                                    "uuid": "be1b4a01-38fe-4899-b933-fe44460d2f7e",
+                                                                                                                    "id": 570,
                                                                                                                     "icon": "fa fa-check"
                                                                                                                 },
                                                                                                                 {
-                                                                                                                    "@id": "\/api\/3\/workflows\/73dd86f5-2dfc-445a-9191-d3073e75fdc2",
+                                                                                                                    "@id": "\/api\/3\/workflows\/8de2d719-a90d-4b5e-ad2b-5ef0564fbb05",
                                                                                                                     "@type": "Workflow",
                                                                                                                     "name": "Merge Pull Request",
                                                                                                                     "description": "Marge the specified Pull Request if Pull Request is Approved.",
-                                                                                                                    "uuid": "73dd86f5-2dfc-445a-9191-d3073e75fdc2",
-                                                                                                                    "id": 464,
+                                                                                                                    "uuid": "8de2d719-a90d-4b5e-ad2b-5ef0564fbb05",
+                                                                                                                    "id": 550,
                                                                                                                     "icon": "fa fa-code-fork"
                                                                                                                 }
                                                                                                             ],
                                                                                                             "selectedPlaybooks": [],
                                                                                                             "playbookCollection": {
-                                                                                                                "@id": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+                                                                                                                "@id": "\/api\/3\/workflow_collections\/36f63e54-01b1-45f7-bd33-c53dba44b797",
                                                                                                                 "@type": "WorkflowCollection",
                                                                                                                 "name": "02 - Use Case - CICD",
                                                                                                                 "description": null,
                                                                                                                 "visible": true,
                                                                                                                 "image": null,
-                                                                                                                "uuid": "4c58fed3-9e16-451a-9528-0be2b71acda4",
-                                                                                                                "id": 41,
+                                                                                                                "uuid": "36f63e54-01b1-45f7-bd33-c53dba44b797",
+                                                                                                                "id": 42,
                                                                                                                 "createUser": {
                                                                                                                     "@id": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
                                                                                                                     "@type": "Person",
@@ -280,14 +280,14 @@
                                                                                                                     "avatar": null,
                                                                                                                     "uuid": "3451141c-bac6-467c-8d72-85e0fab569ce",
                                                                                                                     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-                                                                                                                    "createDate": 1674451614.060673,
+                                                                                                                    "createDate": 1678353866.181699,
                                                                                                                     "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
-                                                                                                                    "modifyDate": 1674552815.776824,
+                                                                                                                    "modifyDate": 1678693892.640058,
                                                                                                                     "id": 3,
-                                                                                                                    "userId": "5068b7f7-3a5e-4226-aead-8089520309af",
+                                                                                                                    "userId": "c44dccc1-9610-4bd5-adf0-c0c13eebf733",
                                                                                                                     "@settings": "\/api\/3\/user_settings\/3451141c-bac6-467c-8d72-85e0fab569ce"
                                                                                                                 },
-                                                                                                                "createDate": 1674552327.020665,
+                                                                                                                "createDate": 1678683658.383075,
                                                                                                                 "modifyUser": {
                                                                                                                     "@id": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
                                                                                                                     "@type": "Person",
@@ -310,19 +310,19 @@
                                                                                                                     "avatar": null,
                                                                                                                     "uuid": "3451141c-bac6-467c-8d72-85e0fab569ce",
                                                                                                                     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-                                                                                                                    "createDate": 1674451614.060673,
+                                                                                                                    "createDate": 1678353866.181699,
                                                                                                                     "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
-                                                                                                                    "modifyDate": 1674552815.776824,
+                                                                                                                    "modifyDate": 1678693892.640058,
                                                                                                                     "id": 3,
-                                                                                                                    "userId": "5068b7f7-3a5e-4226-aead-8089520309af",
+                                                                                                                    "userId": "c44dccc1-9610-4bd5-adf0-c0c13eebf733",
                                                                                                                     "@settings": "\/api\/3\/user_settings\/3451141c-bac6-467c-8d72-85e0fab569ce"
                                                                                                                 },
-                                                                                                                "modifyDate": 1674552327.020665,
+                                                                                                                "modifyDate": 1678683658.383075,
                                                                                                                 "deletedAt": null,
                                                                                                                 "importedBy": [
                                                                                                                     {
-                                                                                                                        "apiName": "cICD-ContinuousIntegrationAndContinuousDelivery",
-                                                                                                                        "name": "CICD - Change Management",
+                                                                                                                        "apiName": "continuousDelivery",
+                                                                                                                        "name": "Continuous Delivery",
                                                                                                                         "version": "1.0.0"
                                                                                                                     }
                                                                                                                 ],
@@ -357,14 +357,14 @@
                                                 }
                                             },
                                             "icon": "fa fa-server",
-                                            "show": false,
+                                            "show": true,
                                             "visible": true
                                         },
                                         {
                                             "title": "Development",
                                             "active": 0,
                                             "icon": "fa fa-code",
-                                            "show": false,
+                                            "show": true,
                                             "visible": true,
                                             "widget": {
                                                 "type": "rows",
@@ -451,25 +451,25 @@
                                                                                                             "wid": "8b034467-2bc9-4825-8e9e-ca45525a7049",
                                                                                                             "actionButtons": [
                                                                                                                 {
-                                                                                                                    "@id": "\/api\/3\/workflows\/eaf38ff8-eccc-4a38-a8a9-c17416900647",
+                                                                                                                    "@id": "\/api\/3\/workflows\/22ddd2f3-b2e5-4465-b8b8-86ca8a276a6a",
                                                                                                                     "@type": "Workflow",
                                                                                                                     "name": "Fetch Open Requests (Issues)",
                                                                                                                     "description": "Fetch all open GitHub requests (Issues) from Content, Production Setting and Development Setting repositories",
-                                                                                                                    "uuid": "eaf38ff8-eccc-4a38-a8a9-c17416900647",
-                                                                                                                    "id": 457,
+                                                                                                                    "uuid": "22ddd2f3-b2e5-4465-b8b8-86ca8a276a6a",
+                                                                                                                    "id": 575,
                                                                                                                     "icon": "fa fa-refresh"
                                                                                                                 }
                                                                                                             ],
                                                                                                             "selectedPlaybooks": [],
                                                                                                             "playbookCollection": {
-                                                                                                                "@id": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+                                                                                                                "@id": "\/api\/3\/workflow_collections\/36f63e54-01b1-45f7-bd33-c53dba44b797",
                                                                                                                 "@type": "WorkflowCollection",
                                                                                                                 "name": "02 - Use Case - CICD",
                                                                                                                 "description": null,
                                                                                                                 "visible": true,
                                                                                                                 "image": null,
-                                                                                                                "uuid": "4c58fed3-9e16-451a-9528-0be2b71acda4",
-                                                                                                                "id": 41,
+                                                                                                                "uuid": "36f63e54-01b1-45f7-bd33-c53dba44b797",
+                                                                                                                "id": 42,
                                                                                                                 "createUser": {
                                                                                                                     "@id": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
                                                                                                                     "@type": "Person",
@@ -492,14 +492,14 @@
                                                                                                                     "avatar": null,
                                                                                                                     "uuid": "3451141c-bac6-467c-8d72-85e0fab569ce",
                                                                                                                     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-                                                                                                                    "createDate": 1674451614.060673,
+                                                                                                                    "createDate": 1678353866.181699,
                                                                                                                     "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
-                                                                                                                    "modifyDate": 1674552815.776824,
+                                                                                                                    "modifyDate": 1678693892.640058,
                                                                                                                     "id": 3,
-                                                                                                                    "userId": "5068b7f7-3a5e-4226-aead-8089520309af",
+                                                                                                                    "userId": "c44dccc1-9610-4bd5-adf0-c0c13eebf733",
                                                                                                                     "@settings": "\/api\/3\/user_settings\/3451141c-bac6-467c-8d72-85e0fab569ce"
                                                                                                                 },
-                                                                                                                "createDate": 1674552327.020665,
+                                                                                                                "createDate": 1678683658.383075,
                                                                                                                 "modifyUser": {
                                                                                                                     "@id": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
                                                                                                                     "@type": "Person",
@@ -522,19 +522,19 @@
                                                                                                                     "avatar": null,
                                                                                                                     "uuid": "3451141c-bac6-467c-8d72-85e0fab569ce",
                                                                                                                     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-                                                                                                                    "createDate": 1674451614.060673,
+                                                                                                                    "createDate": 1678353866.181699,
                                                                                                                     "modifyUser": "\/api\/3\/appliances\/57545210-2adc-472b-a24f-2df6ee8dfe63",
-                                                                                                                    "modifyDate": 1674552815.776824,
+                                                                                                                    "modifyDate": 1678693892.640058,
                                                                                                                     "id": 3,
-                                                                                                                    "userId": "5068b7f7-3a5e-4226-aead-8089520309af",
+                                                                                                                    "userId": "c44dccc1-9610-4bd5-adf0-c0c13eebf733",
                                                                                                                     "@settings": "\/api\/3\/user_settings\/3451141c-bac6-467c-8d72-85e0fab569ce"
                                                                                                                 },
-                                                                                                                "modifyDate": 1674552327.020665,
+                                                                                                                "modifyDate": 1678683658.383075,
                                                                                                                 "deletedAt": null,
                                                                                                                 "importedBy": [
                                                                                                                     {
-                                                                                                                        "apiName": "cICD-ContinuousIntegrationAndContinuousDelivery",
-                                                                                                                        "name": "CICD - Change Management",
+                                                                                                                        "apiName": "continuousDelivery",
+                                                                                                                        "name": "Continuous Delivery",
                                                                                                                         "version": "1.0.0"
                                                                                                                     }
                                                                                                                 ],
@@ -544,21 +544,21 @@
                                                                                                             "selectedPlaybooksWithoutRecord": [],
                                                                                                             "selectedPlaybooksWithRecord": [
                                                                                                                 {
-                                                                                                                    "@id": "\/api\/3\/workflows\/2a7701aa-eba3-415a-b125-7908114e7d5a",
+                                                                                                                    "@id": "\/api\/3\/workflows\/8aebb84d-ef60-4617-a4c5-fbc8a656588c",
                                                                                                                     "@type": "Workflow",
                                                                                                                     "name": "Push Change to Source Control",
                                                                                                                     "description": "Push (Export) specified change request content into the GitHub content repository",
-                                                                                                                    "uuid": "2a7701aa-eba3-415a-b125-7908114e7d5a",
-                                                                                                                    "id": 468,
+                                                                                                                    "uuid": "8aebb84d-ef60-4617-a4c5-fbc8a656588c",
+                                                                                                                    "id": 536,
                                                                                                                     "icon": "icon icon-file-upload"
                                                                                                                 },
                                                                                                                 {
-                                                                                                                    "@id": "\/api\/3\/workflows\/8731fb31-4fb5-4f03-80f5-e8920740a492",
+                                                                                                                    "@id": "\/api\/3\/workflows\/d224f026-ff87-43ac-964a-83815f3b8e82",
                                                                                                                     "@type": "Workflow",
                                                                                                                     "name": "Create Pull Request",
                                                                                                                     "description": "Create the pull request",
-                                                                                                                    "uuid": "8731fb31-4fb5-4f03-80f5-e8920740a492",
-                                                                                                                    "id": 463,
+                                                                                                                    "uuid": "d224f026-ff87-43ac-964a-83815f3b8e82",
+                                                                                                                    "id": 558,
                                                                                                                     "icon": "fa fa-comments-o"
                                                                                                                 }
                                                                                                             ],

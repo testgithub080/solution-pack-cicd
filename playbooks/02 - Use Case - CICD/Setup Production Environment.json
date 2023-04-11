@@ -13,142 +13,153 @@
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/91c2353c-af5a-4c31-89a1-f7a9f8a00ee4",
+    "triggerStep": "\/api\/3\/workflow_steps\/584dd289-4e13-40da-b15a-ca6a56a1ea1b",
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Update Status to Completed",
+            "name": "Are Repo Created Manually",
             "description": null,
             "arguments": {
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "thread": false,
-                    "content": "<p>Completed Source Control Setup<\/p>",
-                    "records": "",
-                    "parentstepid": "\/api\/3\/workflow_steps\/beef8dfb-3f25-40f3-90fb-48a0fcfc0b2d"
-                },
-                "resource": {
-                    "status": "\/api\/3\/picklists\/eb7e156f-f599-4cf6-a12b-5484c1bc414d"
-                },
-                "operation": "Append",
-                "collection": "{{vars.input.records[0]['@id']}}",
-                "__recommend": [],
-                "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
-                "step_variables": []
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/8c82ec7d-e365-4fb3-8d2f-48697b053767",
+                        "condition": "{{ vars.steps.Initial_Repository_Configuration.are_repo_created_manually }}",
+                        "step_name": "Push Initial Content"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/d544a264-f9dc-497e-8192-c25a054773a7",
+                        "step_name": "Push Initial Production Environment Content"
+                    }
+                ]
             },
             "status": null,
-            "top": "1380",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "top": "840",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
-            "uuid": "1a7913e1-4471-4c64-9ff4-0cb5d0017939"
+            "uuid": "53651c89-497f-4c3f-b5be-b8cdb7a218ae"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Add GitHub Username",
+            "name": "Are Repositories Created",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/d502b796-57ad-444d-a31f-e80acfcc0d20",
+                        "condition": "{{ (vars.steps.Initial_Repository_Configuration.is_status_failed is defined) and (vars.steps.Initial_Repository_Configuration.is_status_failed) }}",
+                        "step_name": "Repository Not Created"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/53651c89-497f-4c3f-b5be-b8cdb7a218ae",
+                        "step_name": "Are Repo Created Manually"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "570",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "05b188e0-fb57-42b0-9f8d-5fe07ed309ef"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Initial Release",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "release_number": "1.0",
+                    "release_description": "Initial Commit"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/b8b2aa0f-d011-4317-9d09-4eb71bca0fad"
+            },
+            "status": null,
+            "top": "1245",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "1d22ec01-6c1c-4ed8-b45b-ec432c3a168d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Find Apply Latest Content Record",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "title",
+                            "value": "Apply Latest Content",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ],
+                    "__selectFields": [
+                        "id"
+                    ]
+                },
+                "module": "change_management?$limit=30",
+                "checkboxFields": true,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1515",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "f829b232-e1d4-4dce-934d-f855a9020bce"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Initial Repository Configuration",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "ignore_errors": false,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/db8dc26a-7a55-430f-b49e-9f5f177377dc"
+            },
+            "status": null,
+            "top": "435",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "6ab664ae-9d87-4caf-8b46-e80428fb9a3f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Map GitHub Username",
             "description": null,
             "arguments": {
                 "arguments": [],
                 "apply_async": false,
                 "step_variables": [],
                 "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/ee57abec-dcec-4256-a5b9-196909039bba"
+                "workflowReference": "\/api\/3\/workflows\/d539f6cc-69ca-44ec-a622-e233aa51970a"
             },
             "status": null,
             "top": "300",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
-            "uuid": "233482ca-d542-45e4-8007-b28eb2d1d9b3"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Setup Export Template",
-            "description": null,
-            "arguments": {
-                "arguments": [],
-                "apply_async": false,
-                "step_variables": [],
-                "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/8b597275-ec12-4e3e-810f-008a3c9d662a"
-            },
-            "status": null,
-            "top": "705",
-            "left": "475",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "24934266-09fb-4188-ad1c-ff98d9c8b37d"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Update Status as Pending",
-            "description": null,
-            "arguments": {
-                "resource": {
-                    "status": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293"
-                },
-                "operation": "Append",
-                "collection": "{{vars.input.records[0]['@id']}}",
-                "__recommend": [],
-                "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
-                "step_variables": []
-            },
-            "status": null,
-            "top": "840",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "group": null,
-            "uuid": "439c4a39-2837-4043-94fc-5810ffd64dd3"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Repository Not Created",
-            "description": null,
-            "arguments": {
-                "type": "InputBased",
-                "input": {
-                    "schema": {
-                        "title": "Failed: Repositories Creation",
-                        "description": "Failed to create repositories for the task ***{{vars.input.records[0].title}}***.\nFor additional details, please check the playbook execution logs.",
-                        "inputVariables": []
-                    }
-                },
-                "record": "{{ vars.input.records[0][\"@id\"] }}",
-                "agent_id": null,
-                "resources": "change_management",
-                "owner_detail": {
-                    "isAssigned": false
-                },
-                "isRecordLinked": true,
-                "step_variables": [],
-                "response_mapping": {
-                    "options": [
-                        {
-                            "option": "Ok",
-                            "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/439c4a39-2837-4043-94fc-5810ffd64dd3"
-                        }
-                    ],
-                    "duplicateOption": false
-                },
-                "email_notification": {
-                    "enabled": false,
-                    "smtpParameters": []
-                },
-                "inline_channel_list": [],
-                "external_channel_list": [],
-                "unauthenticated_input": false
-            },
-            "status": null,
-            "top": "705",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
-            "group": null,
-            "uuid": "6ca1815f-8ce4-4dfa-860a-a986be05bda3"
+            "uuid": "fbd034e4-70a9-4f1c-9183-80307e86be13"
         },
         {
             "@type": "WorkflowStep",
@@ -176,12 +187,12 @@
                         {
                             "option": "Push",
                             "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/ca3b12c9-49f1-4065-b941-fd107f53f5b5"
+                            "step_iri": "\/api\/3\/workflow_steps\/d544a264-f9dc-497e-8192-c25a054773a7"
                         },
                         {
                             "option": "Skip",
                             "primary": false,
-                            "step_iri": "\/api\/3\/workflow_steps\/f0dca710-330a-4d23-9128-415adb3dc997"
+                            "step_iri": "\/api\/3\/workflow_steps\/bf190166-7cb2-4634-a9d8-62670f45e3d4"
                         }
                     ],
                     "duplicateOption": false
@@ -199,14 +210,221 @@
             "left": "680",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
-            "uuid": "848b19d6-425d-47e5-89c8-955769fe6d86"
+            "uuid": "8c82ec7d-e365-4fb3-8d2f-48697b053767"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Push Initial Production Environment Content",
+            "description": null,
+            "arguments": {
+                "arguments": [],
+                "apply_async": false,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/50d8f3e9-11e6-4331-892a-dbddaefbbd3b"
+            },
+            "status": null,
+            "top": "1110",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "d544a264-f9dc-497e-8192-c25a054773a7"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Repository Not Created",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Failed: Repositories Creation",
+                        "description": "Failed to create repositories for the task ***{{vars.input.records[0].title}}***.\nFor additional details, please check the playbook execution logs.",
+                        "inputVariables": []
+                    }
+                },
+                "record": "{{ vars.input.records[0][\"@id\"] }}",
+                "agent_id": null,
+                "resources": "change_management",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": true,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Ok",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/fca3735e-d239-4ea4-bf3b-86251880478d"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "d502b796-57ad-444d-a31f-e80acfcc0d20"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Latest Deployed Date",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.steps.Find_Apply_Latest_Content_Record}}",
+                    "__bulk": true,
+                    "parallel": false,
+                    "condition": "",
+                    "batch_size": 100
+                },
+                "resource": {
+                    "lastBuildDeployedOn": "{{arrow.utcnow().int_timestamp}}"
+                },
+                "operation": "Append",
+                "collection": "{{vars.item['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1650",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "8e4ffe3b-c21b-49ff-a15a-fdd58c88236c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Status as Completed",
+            "description": null,
+            "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>Completed Source Control Setup<\/p>",
+                    "records": "",
+                    "parentstepid": "\/api\/3\/workflow_steps\/beef8dfb-3f25-40f3-90fb-48a0fcfc0b2d"
+                },
+                "resource": {
+                    "status": "\/api\/3\/picklists\/eb7e156f-f599-4cf6-a12b-5484c1bc414d"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1120",
+            "left": "680",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "bf190166-7cb2-4634-a9d8-62670f45e3d4"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Status as In Progress",
+            "description": null,
+            "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>Initiating Source Control Setup<\/p>",
+                    "records": ""
+                },
+                "resource": {
+                    "status": "\/api\/3\/picklists\/7f0263bf-29ab-4453-aefe-41d20f0fe9c3"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "22540ea2-766a-454d-b896-2fb3db416d13"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Status as Pending",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "status": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "fca3735e-d239-4ea4-bf3b-86251880478d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Status to Completed",
+            "description": null,
+            "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>Completed Source Control Setup<\/p>",
+                    "records": "",
+                    "parentstepid": "\/api\/3\/workflow_steps\/beef8dfb-3f25-40f3-90fb-48a0fcfc0b2d"
+                },
+                "resource": {
+                    "status": "\/api\/3\/picklists\/eb7e156f-f599-4cf6-a12b-5484c1bc414d"
+                },
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1380",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "a978bcfd-6826-4644-98ac-9cd5f0151d69"
         },
         {
             "@type": "WorkflowStep",
             "name": "Start",
             "description": null,
             "arguments": {
-                "route": "bc86a613-b7de-4dab-acd3-b04e4447ba47",
+                "route": "8c260437-7ba8-4c11-bead-abd9dba13e25",
                 "title": "Setup Prod Environment",
                 "resources": [
                     "change_management"
@@ -259,398 +477,168 @@
                 "singleRecordExecution": true
             },
             "status": null,
-            "top": "30",
+            "top": "20",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
             "group": null,
-            "uuid": "91c2353c-af5a-4c31-89a1-f7a9f8a00ee4"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Update Status as In Progress",
-            "description": null,
-            "arguments": {
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "thread": false,
-                    "content": "<p>Initiating Source Control Setup<\/p>",
-                    "records": ""
-                },
-                "resource": {
-                    "status": "\/api\/3\/picklists\/7f0263bf-29ab-4453-aefe-41d20f0fe9c3"
-                },
-                "operation": "Append",
-                "collection": "{{vars.input.records[0]['@id']}}",
-                "__recommend": [],
-                "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
-                "step_variables": []
-            },
-            "status": null,
-            "top": "165",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "group": null,
-            "uuid": "beef8dfb-3f25-40f3-90fb-48a0fcfc0b2d"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Are Repo Created Manually",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/848b19d6-425d-47e5-89c8-955769fe6d86",
-                        "condition": "{{ vars.steps.Initial_Repository_Configuration.are_repo_created_manually }}",
-                        "step_name": "Push Initial Content"
-                    },
-                    {
-                        "option": "No",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/ca3b12c9-49f1-4065-b941-fd107f53f5b5",
-                        "step_name": "Push Initial Production Environment Content"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "840",
-            "left": "475",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "group": null,
-            "uuid": "c03cbfdb-2f84-4c24-8b7e-22b98eb7755a"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Push Initial Production Environment Content",
-            "description": null,
-            "arguments": {
-                "arguments": [],
-                "apply_async": false,
-                "step_variables": [],
-                "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/3e88019a-cc3b-42dd-9ffb-af7104d4cab2"
-            },
-            "status": null,
-            "top": "1110",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "ca3b12c9-49f1-4065-b941-fd107f53f5b5"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Initial Repository Configuration",
-            "description": null,
-            "arguments": {
-                "arguments": [],
-                "apply_async": false,
-                "ignore_errors": false,
-                "step_variables": [],
-                "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/6bace12f-6629-4e0e-9c7f-3eef3e3ad1fe"
-            },
-            "status": null,
-            "top": "435",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "d2d0671f-3254-4e8a-b62b-030e9d2d964a"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Update Latest Deployed Date",
-            "description": null,
-            "arguments": {
-                "for_each": {
-                    "item": "{{vars.steps.Find_Apply_Latest_Content_Record}}",
-                    "__bulk": true,
-                    "parallel": false,
-                    "condition": "",
-                    "batch_size": 100
-                },
-                "resource": {
-                    "lastBuildDeployedOn": "{{arrow.utcnow().int_timestamp}}"
-                },
-                "operation": "Append",
-                "collection": "{{vars.item['@id']}}",
-                "__recommend": [],
-                "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
-                "step_variables": []
-            },
-            "status": null,
-            "top": "1650",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "group": null,
-            "uuid": "e026a147-6448-42c1-aa94-0f93a6400001"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Are Repositories Created",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/6ca1815f-8ce4-4dfa-860a-a986be05bda3",
-                        "condition": "{{ (vars.steps.Initial_Repository_Configuration.is_status_failed is defined) and (vars.steps.Initial_Repository_Configuration.is_status_failed) }}",
-                        "step_name": "Repository Not Created"
-                    },
-                    {
-                        "option": "No",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/24934266-09fb-4188-ad1c-ff98d9c8b37d",
-                        "step_name": "Setup Export Template"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "570",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "group": null,
-            "uuid": "e6435469-efe9-4fbd-90a4-e3dc314a4c79"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Update Status as Completed",
-            "description": null,
-            "arguments": {
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "thread": false,
-                    "content": "<p>Completed Source Control Setup<\/p>",
-                    "records": "",
-                    "parentstepid": "\/api\/3\/workflow_steps\/beef8dfb-3f25-40f3-90fb-48a0fcfc0b2d"
-                },
-                "resource": {
-                    "status": "\/api\/3\/picklists\/eb7e156f-f599-4cf6-a12b-5484c1bc414d"
-                },
-                "operation": "Append",
-                "collection": "{{vars.input.records[0]['@id']}}",
-                "__recommend": [],
-                "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
-                "step_variables": []
-            },
-            "status": null,
-            "top": "1120",
-            "left": "680",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "group": null,
-            "uuid": "f0dca710-330a-4d23-9128-415adb3dc997"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Create Initial Release",
-            "description": null,
-            "arguments": {
-                "arguments": {
-                    "release_number": "1.0",
-                    "release_description": "Initial Commit"
-                },
-                "apply_async": false,
-                "step_variables": [],
-                "pass_parent_env": false,
-                "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/c3ac0685-154b-4d53-a25c-85871311bf5d"
-            },
-            "status": null,
-            "top": "1245",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "f4b9a762-e579-4800-9956-794fce40fe28"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Find Apply Latest Content Record",
-            "description": null,
-            "arguments": {
-                "query": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": [
-                        {
-                            "type": "primitive",
-                            "field": "title",
-                            "value": "Apply Latest Content",
-                            "operator": "eq",
-                            "_operator": "eq"
-                        }
-                    ],
-                    "__selectFields": [
-                        "id"
-                    ]
-                },
-                "module": "change_management?$limit=30",
-                "checkboxFields": true,
-                "step_variables": []
-            },
-            "status": null,
-            "top": "1515",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
-            "group": null,
-            "uuid": "ff3b5bec-dee9-474b-8003-5d27865b78af"
+            "uuid": "584dd289-4e13-40da-b15a-ca6a56a1ea1b"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Repository Not Created -> Update Status as Pending",
-            "targetStep": "\/api\/3\/workflow_steps\/439c4a39-2837-4043-94fc-5810ffd64dd3",
-            "sourceStep": "\/api\/3\/workflow_steps\/6ca1815f-8ce4-4dfa-860a-a986be05bda3",
-            "label": "Ok",
-            "isExecuted": false,
-            "uuid": "b45c271c-889a-4ddf-abac-fed512941b03"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Initial Repository Configuration -> Has Repository Created",
-            "targetStep": "\/api\/3\/workflow_steps\/e6435469-efe9-4fbd-90a4-e3dc314a4c79",
-            "sourceStep": "\/api\/3\/workflow_steps\/d2d0671f-3254-4e8a-b62b-030e9d2d964a",
+            "name": "Add GitHub Username -> Initial Repository Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/6ab664ae-9d87-4caf-8b46-e80428fb9a3f",
+            "sourceStep": "\/api\/3\/workflow_steps\/fbd034e4-70a9-4f1c-9183-80307e86be13",
             "label": null,
             "isExecuted": false,
-            "uuid": "c9a88ee3-19f6-4371-9765-2959644d259a"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Update Status as In Progress",
-            "targetStep": "\/api\/3\/workflow_steps\/beef8dfb-3f25-40f3-90fb-48a0fcfc0b2d",
-            "sourceStep": "\/api\/3\/workflow_steps\/91c2353c-af5a-4c31-89a1-f7a9f8a00ee4",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "e08636a1-f815-4d3c-9c8e-39d32e7009f8"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Has Repository Created -> Repository Not Created",
-            "targetStep": "\/api\/3\/workflow_steps\/6ca1815f-8ce4-4dfa-860a-a986be05bda3",
-            "sourceStep": "\/api\/3\/workflow_steps\/e6435469-efe9-4fbd-90a4-e3dc314a4c79",
-            "label": "Yes",
-            "isExecuted": false,
-            "uuid": "f4542de8-893a-4237-ac0c-28898d0ba179"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Setup Export Template -> Are Repo Created Manually",
-            "targetStep": "\/api\/3\/workflow_steps\/c03cbfdb-2f84-4c24-8b7e-22b98eb7755a",
-            "sourceStep": "\/api\/3\/workflow_steps\/24934266-09fb-4188-ad1c-ff98d9c8b37d",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "852e6cbf-0976-46f2-9935-32c0f16766cb"
+            "group": null,
+            "uuid": "5de09293-5037-4152-9d03-7d4e8057ffdc"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Are Repo Created Manually -> Push Initial Content",
-            "targetStep": "\/api\/3\/workflow_steps\/848b19d6-425d-47e5-89c8-955769fe6d86",
-            "sourceStep": "\/api\/3\/workflow_steps\/c03cbfdb-2f84-4c24-8b7e-22b98eb7755a",
+            "targetStep": "\/api\/3\/workflow_steps\/8c82ec7d-e365-4fb3-8d2f-48697b053767",
+            "sourceStep": "\/api\/3\/workflow_steps\/53651c89-497f-4c3f-b5be-b8cdb7a218ae",
             "label": "Yes",
             "isExecuted": false,
-            "uuid": "3b05639d-65dd-4109-bc77-eb4adfe4962c"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Push Initial Content -> Push Initial Production Environment Content",
-            "targetStep": "\/api\/3\/workflow_steps\/ca3b12c9-49f1-4065-b941-fd107f53f5b5",
-            "sourceStep": "\/api\/3\/workflow_steps\/848b19d6-425d-47e5-89c8-955769fe6d86",
-            "label": "Push",
-            "isExecuted": false,
-            "uuid": "4ede5dc3-e32b-445d-bda7-836084757eff"
+            "group": null,
+            "uuid": "0bd4b994-ce5b-44af-9ebf-e9b47bd305a5"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Are Repo Created Manually -> Push Initial Production Environment Content",
-            "targetStep": "\/api\/3\/workflow_steps\/ca3b12c9-49f1-4065-b941-fd107f53f5b5",
-            "sourceStep": "\/api\/3\/workflow_steps\/c03cbfdb-2f84-4c24-8b7e-22b98eb7755a",
+            "targetStep": "\/api\/3\/workflow_steps\/d544a264-f9dc-497e-8192-c25a054773a7",
+            "sourceStep": "\/api\/3\/workflow_steps\/53651c89-497f-4c3f-b5be-b8cdb7a218ae",
             "label": "No",
             "isExecuted": false,
-            "uuid": "e36d237c-b699-42f7-8f19-0d0c6255a14a"
+            "group": null,
+            "uuid": "8fe61456-3b33-446e-a583-36aafde4b7bb"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Push Initial Content -> Update Status as Complete",
-            "targetStep": "\/api\/3\/workflow_steps\/f0dca710-330a-4d23-9128-415adb3dc997",
-            "sourceStep": "\/api\/3\/workflow_steps\/848b19d6-425d-47e5-89c8-955769fe6d86",
-            "label": "Skip",
+            "name": "Are Repositories Created -> Are Repo Created Manually",
+            "targetStep": "\/api\/3\/workflow_steps\/53651c89-497f-4c3f-b5be-b8cdb7a218ae",
+            "sourceStep": "\/api\/3\/workflow_steps\/05b188e0-fb57-42b0-9f8d-5fe07ed309ef",
+            "label": "No",
             "isExecuted": false,
-            "uuid": "1513e91e-6b01-4c37-8aa3-b7eca84d100f"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Find Apply Latest Content Record -> Update Latest Deployed Date",
-            "targetStep": "\/api\/3\/workflow_steps\/e026a147-6448-42c1-aa94-0f93a6400001",
-            "sourceStep": "\/api\/3\/workflow_steps\/ff3b5bec-dee9-474b-8003-5d27865b78af",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "10cbeeb3-b45e-4d71-b8f4-a2fe353dc715"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Push Initial Production Environment Content -> Create Initial Release",
-            "targetStep": "\/api\/3\/workflow_steps\/f4b9a762-e579-4800-9956-794fce40fe28",
-            "sourceStep": "\/api\/3\/workflow_steps\/ca3b12c9-49f1-4065-b941-fd107f53f5b5",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "a96b829c-8818-4fad-8653-109214c7f8b5"
+            "group": null,
+            "uuid": "bce2d14f-b7a3-412f-ac19-d4f69e252d16"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Create Initial Release -> Update Status to Completed",
-            "targetStep": "\/api\/3\/workflow_steps\/1a7913e1-4471-4c64-9ff4-0cb5d0017939",
-            "sourceStep": "\/api\/3\/workflow_steps\/f4b9a762-e579-4800-9956-794fce40fe28",
+            "targetStep": "\/api\/3\/workflow_steps\/a978bcfd-6826-4644-98ac-9cd5f0151d69",
+            "sourceStep": "\/api\/3\/workflow_steps\/1d22ec01-6c1c-4ed8-b45b-ec432c3a168d",
             "label": null,
             "isExecuted": false,
-            "uuid": "f77e43b6-f1eb-4e79-b2ed-4e36b6596e94"
+            "group": null,
+            "uuid": "5a01b44d-d2f1-4cb2-84fc-6fdd7c8c7c51"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Update Status to Completed -> Find Apply Latest Content Record",
-            "targetStep": "\/api\/3\/workflow_steps\/ff3b5bec-dee9-474b-8003-5d27865b78af",
-            "sourceStep": "\/api\/3\/workflow_steps\/1a7913e1-4471-4c64-9ff4-0cb5d0017939",
+            "name": "Find Apply Latest Content Record -> Update Latest Deployed Date",
+            "targetStep": "\/api\/3\/workflow_steps\/8e4ffe3b-c21b-49ff-a15a-fdd58c88236c",
+            "sourceStep": "\/api\/3\/workflow_steps\/f829b232-e1d4-4dce-934d-f855a9020bce",
             "label": null,
             "isExecuted": false,
-            "uuid": "5db41166-b6bb-49a9-b52a-f2d447bd3ad9"
+            "group": null,
+            "uuid": "eeab2e7b-1a25-42a7-8e0c-74bb937dd2d6"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Has Repository Created -> Repository Not Created",
+            "targetStep": "\/api\/3\/workflow_steps\/d502b796-57ad-444d-a31f-e80acfcc0d20",
+            "sourceStep": "\/api\/3\/workflow_steps\/05b188e0-fb57-42b0-9f8d-5fe07ed309ef",
+            "label": "Yes",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "0391a6ef-eb2a-424c-9dbe-eecdfb27917c"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Initial Repository Configuration -> Has Repository Created",
+            "targetStep": "\/api\/3\/workflow_steps\/05b188e0-fb57-42b0-9f8d-5fe07ed309ef",
+            "sourceStep": "\/api\/3\/workflow_steps\/6ab664ae-9d87-4caf-8b46-e80428fb9a3f",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "28230225-e51f-4a60-bff3-c06025a13393"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Push Initial Content -> Push Initial Production Environment Content",
+            "targetStep": "\/api\/3\/workflow_steps\/d544a264-f9dc-497e-8192-c25a054773a7",
+            "sourceStep": "\/api\/3\/workflow_steps\/8c82ec7d-e365-4fb3-8d2f-48697b053767",
+            "label": "Push",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "423611d2-7371-44fb-98a4-52254f8e53f6"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Push Initial Content -> Update Status as Complete",
+            "targetStep": "\/api\/3\/workflow_steps\/bf190166-7cb2-4634-a9d8-62670f45e3d4",
+            "sourceStep": "\/api\/3\/workflow_steps\/8c82ec7d-e365-4fb3-8d2f-48697b053767",
+            "label": "Skip",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "d5cc0db8-e746-423a-93aa-a7abf6cb856a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Push Initial Production Environment Content -> Create Initial Release",
+            "targetStep": "\/api\/3\/workflow_steps\/1d22ec01-6c1c-4ed8-b45b-ec432c3a168d",
+            "sourceStep": "\/api\/3\/workflow_steps\/d544a264-f9dc-497e-8192-c25a054773a7",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "2d7de257-156b-48b7-891c-7fe5de936fbd"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Repository Not Created -> Update Status as Pending",
+            "targetStep": "\/api\/3\/workflow_steps\/fca3735e-d239-4ea4-bf3b-86251880478d",
+            "sourceStep": "\/api\/3\/workflow_steps\/d502b796-57ad-444d-a31f-e80acfcc0d20",
+            "label": "Ok",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "a51a8d0a-7867-430b-9b03-0a8f33e5521d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Update Status as In Progress",
+            "targetStep": "\/api\/3\/workflow_steps\/22540ea2-766a-454d-b896-2fb3db416d13",
+            "sourceStep": "\/api\/3\/workflow_steps\/584dd289-4e13-40da-b15a-ca6a56a1ea1b",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "f84ff46e-b5f9-40a8-b797-d63d5ce7033b"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Update Status as In Progress -> Add GitHub Username",
-            "targetStep": "\/api\/3\/workflow_steps\/233482ca-d542-45e4-8007-b28eb2d1d9b3",
-            "sourceStep": "\/api\/3\/workflow_steps\/beef8dfb-3f25-40f3-90fb-48a0fcfc0b2d",
+            "targetStep": "\/api\/3\/workflow_steps\/fbd034e4-70a9-4f1c-9183-80307e86be13",
+            "sourceStep": "\/api\/3\/workflow_steps\/22540ea2-766a-454d-b896-2fb3db416d13",
             "label": null,
             "isExecuted": false,
-            "uuid": "677ff192-6bea-413f-81e3-216d63a4e263"
+            "group": null,
+            "uuid": "cffdf8ee-ea30-41a0-9e13-02c185f386a3"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Add GitHub Username -> Initial Repository Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/d2d0671f-3254-4e8a-b62b-030e9d2d964a",
-            "sourceStep": "\/api\/3\/workflow_steps\/233482ca-d542-45e4-8007-b28eb2d1d9b3",
+            "name": "Update Status to Completed -> Find Apply Latest Content Record",
+            "targetStep": "\/api\/3\/workflow_steps\/f829b232-e1d4-4dce-934d-f855a9020bce",
+            "sourceStep": "\/api\/3\/workflow_steps\/a978bcfd-6826-4644-98ac-9cd5f0151d69",
             "label": null,
             "isExecuted": false,
-            "uuid": "5a327c65-d3b1-4202-9ebe-290893c9d2c3"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Are Repositories Created -> Setup Export Template",
-            "targetStep": "\/api\/3\/workflow_steps\/24934266-09fb-4188-ad1c-ff98d9c8b37d",
-            "sourceStep": "\/api\/3\/workflow_steps\/e6435469-efe9-4fbd-90a4-e3dc314a4c79",
-            "label": "No",
-            "isExecuted": false,
-            "uuid": "9976b15e-b2b6-4a29-8f59-d5bf0fe2879e"
+            "group": null,
+            "uuid": "2c6a2674-72bd-406e-83f6-da58f0d4704e"
         }
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "8e709eb0-7c8b-434d-928f-e26eda75f2b1",
+    "uuid": "76c36ff5-351a-494a-8aec-7bdaa1a10140",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

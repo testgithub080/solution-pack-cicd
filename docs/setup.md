@@ -1,3 +1,6 @@
+| [Home](../README.md) |
+|----------------------|
+
 # Installation
 
 1. To install this solution pack, click **Content Hub** > **Discover**.
@@ -12,11 +15,13 @@
 
 The **Continuous Delivery** solution pack depends on the following solution packs that are installed automatically &ndash; if not already installed.
 
-| Solution Pack Name | Version | Purpose                                |
-|:-------------------|:--------|:---------------------------------------|
-| SOAR Framework     | v2.0.0  | Required for Incident Response modules |
+| Name           | Type          | Version | Purpose                                          |
+|:---------------|:--------------|:--------|:-------------------------------------------------|
+| SOAR Framework | Solution Pack | v2.0.0  | Required for Incident Response modules           |
+| GitHub         | Connector     | v1.1.0  | Required for GitHub operations                   |
+| CICD Utils     | Connector     | v1.0.0  | Required for performing CICD specific operations |
 
-Following are some prerequisites to using this solution pack:
+Following are some prerequisites for using this solution pack:
 
 >Development and Production environments must have the same license type.
 >
@@ -39,7 +44,7 @@ Following are some prerequisites to using this solution pack:
 4. **GitHub Repositories**: FortiSOAR's **Continuous Delivery** creates repositories for you during the setup process. Alternatively, you may prefer to map existing repositories with this solution pack.
 
     For mapping repositories with content changes on the FortiSOAR instance, there must be the following three repositories:
-    1. **Content repository**: Production content, dev content, staging and test changes reside on the *same* repository. To avoid accidental merges and conflicts, it is recommended that this branch be protected by using pull requests to merge developmental changes
+    1. **Production Content Repository**: Production content, dev content, staging and test changes reside on the *same* repository. To avoid accidental merges and conflicts, it is recommended that this branch be protected by using pull requests to merge developmental changes
 
     2. **Production Settings Repository**: Production settings containing system views (e.g. Navigation Menu structure), application configuration, environment variables, account configuration, LDAP, SSO, and RADIUS configuration of a production environment are saved to this repository. Development environment must not have access to this repository as it uses production configurations and information.
 
@@ -53,13 +58,13 @@ This section details the required configurations for optimal performance of the 
 
 - A source control connector for tracking and managing changes to code:
 
-    - To configure and use the GitHub connector to track and manage changes through GitHub, refer to [Configuring GitHub](https://docs.fortinet.com/document/fortisoar/1.0.0/github/344/github-v1-0-0#Configuration_parameters).
+    - To configure and use the GitHub connector to track and manage changes through GitHub, refer to [Configuring GitHub](https://docs.fortinet.com/fortisoar/connectors/github).
 
 >**NOTE**: FortiSOAR users directly interacting with GitHub must be appropriately mapped with corresponding usernames in their GitHub connector configurations.
 
 ## Setup Continuous Delivery on FortiSOAR
 
-After installation of **Continuous Delivery** solution pack, run the configuration wizard to ready your FortiSOAR environment for (CI/CD). This wizard helps you connect your FortiSOAR development and production environments to a source control.
+After installation of **Continuous Delivery** solution pack, run the configuration wizard to ready your FortiSOAR environment for CICD. This wizard helps you connect your FortiSOAR development and production environments to a source control.
 
 1. Log in to FortiSOAR and [after installation](#installation), click the button **Configure** from the lower-left of the screen.
 
@@ -86,6 +91,7 @@ After installation of **Continuous Delivery** solution pack, run the configurati
 ## Setup Production Environment
 
 You can setup GitHub as a source control management through playbooks, automatically, or by pre-creating repositories on GitHub and linking them to FortiSOAR Continuous Delivery solution pack.
+
 To setup GitHub as a source control and creating repositories using playbooks:
 
 1. Select **Continuous Delivery** from the FortiSOAR menu.
@@ -110,11 +116,11 @@ To setup GitHub as a source control and creating repositories using playbooks:
 
     5. Click the button Create Repositories to let the playbooks automatically create the repo (repository) and the specified branch in each repo.
 
-        1. Click the button I have the repositories if you have already created the repositories, with the exact same names as specified in the earlier step, on GitHub.
+        1. Click the button **I have the repositories** if you have already created the repositories, with the exact same names as specified in the earlier step, on GitHub.
 
-        2. Click the button Confirm, after creating the repositories, for FortiSOAR to check if the specified repositories exist.
+        2. Click the button **Confirm**, after creating the repositories, for FortiSOAR to check if the specified repositories exist.
 
-    6. Click the button Push to push the content from FortiSOAR to the specified branch of the repository mentioned in Production Content.
+    6. Click the button **Push** to push the content from FortiSOAR to the specified branch of the repository mentioned in Production Content.
     Pushing overwrites the contents of the repository mentioned in Production Content. You can click the button Skip to push the contents later.
 
 ## Setup a Staging Environment
@@ -149,6 +155,27 @@ Once you have setup source control for production environment, move over to the 
 
 4. Enter the GitHub username with which to map the username you used to log in to FortiSOAR.
 
+5. Enter the GitHub Source Control details:
+
+    ![Source Control Details Modal](./res/dev-source-control-details.png)
+
+    1. Enter the Organization’s name as created on GitHub.
+
+    2. Enter the repository names to be created under the specified organization. To accept the auto-populated suggested name, leave the fields as-is.
+
+    3. Enter the **Base Branch Name** to be created under the specified repositories. To accept the auto-populated suggested name, leave the field as-is.
+
+    4. Click **Setup** to proceed.
+
+    5. Click the button **Create Repositories** to let the playbooks automatically create the repo (repository) and the specified branch in each repo.
+
+        1. Click the button **I have the repositories** if you have already created the repositories, with the exact same names as specified in the earlier step, on GitHub.
+
+        2. Click the button **Confirm**, after creating the repositories, for FortiSOAR to check if the specified repositories exist.
+
+    6. Click the button **Push** to push the content from FortiSOAR to the specified branch of the repository mentioned in Development Content.
+    Pushing overwrites the contents of the repository mentioned in Development Content. You can click the button **Skip** to push the contents later.
+
 ## Working with Source Control and Continuous Delivery - Best Practices
 
 Apart from best practices around source control like branching and merging strategies, committing code frequently with clear commit messages, automating the build process, and using a deployment pipeline for consistent and reliable releases; following pointers help avoid common pitfalls.
@@ -163,10 +190,10 @@ Apart from best practices around source control like branching and merging strat
 
 3. When mapping existing repos during Continuous Delivery's **Setup Source Control** process, ensure *Issues* & *Merge Commit* option are enabled for these existing repos. 
 
-    |Under GitHub repo settings, enable following options|
-    |:-|
-    |![Enable issues under features section](./res/repo-settings-enable-issues.png)|
-    |![Enable merge commits under pull requests section](./res/repo-settings-enable-merge-commits.png)|
+    | Under GitHub repo settings, enable following options                                              |
+    |:--------------------------------------------------------------------------------------------------|
+    | ![Enable issues under features section](./res/repo-settings-enable-issues.png)                    |
+    | ![Enable merge commits under pull requests section](./res/repo-settings-enable-merge-commits.png) |
 
 4. Users and their tokens must have sufficient privileges for following actions:
 

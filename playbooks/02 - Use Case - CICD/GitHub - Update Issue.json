@@ -20,7 +20,7 @@
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/7ab71592-e0d5-45c0-bc9e-1d4cb4c0f0d6",
+    "triggerStep": "\/api\/3\/workflow_steps\/4d6580ba-14ff-4454-addd-0d792262b93c",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -32,14 +32,14 @@
                 "step_variables": [],
                 "pass_parent_env": false,
                 "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
+                "workflowReference": "\/api\/3\/workflows\/dd654cd4-923f-4c20-837c-279669c2fa82"
             },
             "status": null,
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
-            "uuid": "65d0dae0-b63e-4313-be2d-be0cede8e268"
+            "uuid": "9f586b5e-973f-411d-b460-a07900522d64"
         },
         {
             "@type": "WorkflowStep",
@@ -57,7 +57,7 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
             "group": null,
-            "uuid": "7ab71592-e0d5-45c0-bc9e-1d4cb4c0f0d6"
+            "uuid": "4d6580ba-14ff-4454-addd-0d792262b93c"
         },
         {
             "@type": "WorkflowStep",
@@ -91,32 +91,34 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
-            "uuid": "e6c52e29-5933-4e95-acf6-b4aa6b72620a"
+            "uuid": "77e1bef9-50ee-4fed-a705-6ca08c36ff0b"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Check GitHub Connector Configuration -> Update Issue",
-            "targetStep": "\/api\/3\/workflow_steps\/e6c52e29-5933-4e95-acf6-b4aa6b72620a",
-            "sourceStep": "\/api\/3\/workflow_steps\/65d0dae0-b63e-4313-be2d-be0cede8e268",
+            "targetStep": "\/api\/3\/workflow_steps\/77e1bef9-50ee-4fed-a705-6ca08c36ff0b",
+            "sourceStep": "\/api\/3\/workflow_steps\/9f586b5e-973f-411d-b460-a07900522d64",
             "label": null,
             "isExecuted": false,
-            "uuid": "861bea32-2d61-4d22-853c-0753fca8ed0f"
+            "group": null,
+            "uuid": "02302aaa-d4ee-40cb-80cd-21c1ee25effd"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Check GitHub Connector Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/65d0dae0-b63e-4313-be2d-be0cede8e268",
-            "sourceStep": "\/api\/3\/workflow_steps\/7ab71592-e0d5-45c0-bc9e-1d4cb4c0f0d6",
+            "targetStep": "\/api\/3\/workflow_steps\/9f586b5e-973f-411d-b460-a07900522d64",
+            "sourceStep": "\/api\/3\/workflow_steps\/4d6580ba-14ff-4454-addd-0d792262b93c",
             "label": null,
             "isExecuted": false,
-            "uuid": "f8f8e7ea-0ed5-4a77-b973-cb01d72a9f1d"
+            "group": null,
+            "uuid": "c24f0ddd-6533-4192-aa4a-a57ae0aa0b98"
         }
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "57bfd9b5-7df7-4eef-bcb2-c71977cd7f0e",
+    "uuid": "d1c67744-b330-4d01-b7a5-fb9920244488",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

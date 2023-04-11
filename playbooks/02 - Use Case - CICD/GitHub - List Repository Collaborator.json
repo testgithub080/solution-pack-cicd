@@ -1,44 +1,43 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "GitHub - Add Reviewers for a Pull Request",
+    "name": "GitHub - List Repository Collaborator",
     "aliasName": null,
     "tag": null,
-    "description": "Adds reviews for the specified pull request on GitHub based on the repository name, repository owner, pull request number, and other input parameters you have specified",
+    "description": "List repository collaborators",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
     "parameters": [
         "org_name",
-        "repo_name",
-        "pull_number",
-        "reviewers"
+        "repo_name"
     ],
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/cd9e3907-3660-4a2a-a010-bc1dafd773ef",
+    "triggerStep": "\/api\/3\/workflow_steps\/4b91f4d9-5f38-4e72-bf10-6acb8ed21cfe",
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Add Reviewers",
+            "name": "Add Repository Collaborator",
             "description": null,
             "arguments": {
                 "name": "GitHub",
                 "config": "{{vars.steps.Check_GitHub_Connector_Configuration.config_id}}",
                 "params": {
                     "org": "{{vars.input.params['org_name']}}",
+                    "page": "",
                     "repo": "{{vars.input.params['repo_name']}}",
+                    "per_page": "",
                     "repo_type": "Organization",
-                    "reviewers": "{{vars.input.params.reviewers}}",
-                    "pull_number": "{{vars.input.params['pull_number']}}",
-                    "team_reviewers": ""
+                    "permission": "Push",
+                    "affiliation": "All"
                 },
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "github",
-                "operation": "add_reviewers",
-                "operationTitle": "Add Reviewers for a Pull Request",
+                "operation": "list_repository_collaborator",
+                "operationTitle": "List Repository Collaborator",
                 "pickFromTenant": false,
                 "step_variables": []
             },
@@ -47,7 +46,7 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
-            "uuid": "3a6eb4c6-8334-4b00-b725-b21a24652388"
+            "uuid": "6e6c0177-2576-4f68-a13f-f6ef44abb625"
         },
         {
             "@type": "WorkflowStep",
@@ -66,7 +65,7 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
-            "uuid": "a13d6d42-c7fb-4029-b9f4-4c579010ff36"
+            "uuid": "8bcc8d8f-7c2b-4114-bd64-90e4d612069b"
         },
         {
             "@type": "WorkflowStep",
@@ -84,34 +83,34 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
             "group": null,
-            "uuid": "cd9e3907-3660-4a2a-a010-bc1dafd773ef"
+            "uuid": "4b91f4d9-5f38-4e72-bf10-6acb8ed21cfe"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Check GitHub Connector Configuration -> Add Reviewers",
-            "targetStep": "\/api\/3\/workflow_steps\/3a6eb4c6-8334-4b00-b725-b21a24652388",
-            "sourceStep": "\/api\/3\/workflow_steps\/a13d6d42-c7fb-4029-b9f4-4c579010ff36",
+            "name": "Check GitHub Connector Configuration -> Push Changes",
+            "targetStep": "\/api\/3\/workflow_steps\/6e6c0177-2576-4f68-a13f-f6ef44abb625",
+            "sourceStep": "\/api\/3\/workflow_steps\/8bcc8d8f-7c2b-4114-bd64-90e4d612069b",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "6d233244-b05f-4a73-bc42-ad493b6ad227"
+            "uuid": "f67a384e-d2a5-4259-bb12-9a2aa5ca2d21"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Check GitHub Connector Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/a13d6d42-c7fb-4029-b9f4-4c579010ff36",
-            "sourceStep": "\/api\/3\/workflow_steps\/cd9e3907-3660-4a2a-a010-bc1dafd773ef",
+            "targetStep": "\/api\/3\/workflow_steps\/8bcc8d8f-7c2b-4114-bd64-90e4d612069b",
+            "sourceStep": "\/api\/3\/workflow_steps\/4b91f4d9-5f38-4e72-bf10-6acb8ed21cfe",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "4e21a6c9-d899-44a9-9d7b-e6fa66ca8d60"
+            "uuid": "23659699-0f7d-4330-bd7f-90176e5d7690"
         }
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "866ec422-0704-420c-a57a-f35cae432087",
+    "uuid": "f1131cb4-74d0-4ffe-8c1a-bf4c7cab3f0c",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

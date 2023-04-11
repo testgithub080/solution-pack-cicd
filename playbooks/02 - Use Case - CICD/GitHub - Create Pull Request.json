@@ -20,7 +20,7 @@
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/a07d539b-5a2c-492c-978d-cf7cd1328a39",
+    "triggerStep": "\/api\/3\/workflow_steps\/d973e030-e04a-4861-8c1b-1db7a225a307",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -32,32 +32,14 @@
                 "step_variables": [],
                 "pass_parent_env": false,
                 "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/e16308c2-cd2e-49ee-808c-f59463fa7b42"
+                "workflowReference": "\/api\/3\/workflows\/dd654cd4-923f-4c20-837c-279669c2fa82"
             },
             "status": null,
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
-            "uuid": "338df300-1f0a-4e5f-980a-cb53c281cfed"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Start",
-            "description": null,
-            "arguments": {
-                "step_variables": {
-                    "input": {
-                        "params": []
-                    }
-                }
-            },
-            "status": null,
-            "top": "30",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "group": null,
-            "uuid": "a07d539b-5a2c-492c-978d-cf7cd1328a39"
+            "uuid": "415c3dae-790d-4e56-bd7e-d487571b147d"
         },
         {
             "@type": "WorkflowStep",
@@ -90,32 +72,52 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
-            "uuid": "c00b0f81-8734-49fe-a120-970fef2c7286"
+            "uuid": "2efeb7ed-4ff3-4a37-8c88-12fcd5d7f921"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "d973e030-e04a-4861-8c1b-1db7a225a307"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Check GitHub Connector Configuration -> Create Pull Request",
-            "targetStep": "\/api\/3\/workflow_steps\/c00b0f81-8734-49fe-a120-970fef2c7286",
-            "sourceStep": "\/api\/3\/workflow_steps\/338df300-1f0a-4e5f-980a-cb53c281cfed",
+            "targetStep": "\/api\/3\/workflow_steps\/2efeb7ed-4ff3-4a37-8c88-12fcd5d7f921",
+            "sourceStep": "\/api\/3\/workflow_steps\/415c3dae-790d-4e56-bd7e-d487571b147d",
             "label": null,
             "isExecuted": false,
-            "uuid": "176af7d0-0624-4eb8-9627-268375cf8c81"
+            "group": null,
+            "uuid": "1f1bbc20-ec8d-4cd1-a9fa-cbc5bbd376ca"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Check GitHub Connector Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/338df300-1f0a-4e5f-980a-cb53c281cfed",
-            "sourceStep": "\/api\/3\/workflow_steps\/a07d539b-5a2c-492c-978d-cf7cd1328a39",
+            "targetStep": "\/api\/3\/workflow_steps\/415c3dae-790d-4e56-bd7e-d487571b147d",
+            "sourceStep": "\/api\/3\/workflow_steps\/d973e030-e04a-4861-8c1b-1db7a225a307",
             "label": null,
             "isExecuted": false,
-            "uuid": "9776c823-ff4b-4347-9c36-f64ae03f25fd"
+            "group": null,
+            "uuid": "0b80100a-3542-40db-8111-951135ac1fd0"
         }
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "368b358e-4584-4b5b-9ed2-c59f5d7ff940",
+    "uuid": "ec3a01d7-6d9a-40e0-b7fc-47cbdf763844",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

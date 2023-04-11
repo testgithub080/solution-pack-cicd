@@ -4,9 +4,8 @@
     "@type": "Role",
     "description": "Essentially the root user, use carefully",
     "name": "Full App Permissions",
-    "modulePermissions": {
-        "39": {
-            "@id": "\/api\/3\/module_permissions\/dd0df725-4d7b-477a-b027-051ec8edbf10",
+    "modulePermissions": [
+        {
             "@type": "ModulePermission",
             "canCreate": true,
             "canExecute": true,
@@ -14,9 +13,8 @@
             "canUpdate": true,
             "canDelete": false,
             "fieldPermissions": [],
-            "module": "change_management",
-            "uuid": "dd0df725-4d7b-477a-b027-051ec8edbf10"
+            "module": "change_management"
         }
-    },
+    ],
     "uuid": "21d7a7c6-9d68-438f-b732-e8950c5f745b"
 }

@@ -1,0 +1,121 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Add GitHub Repository Collaborator",
+    "aliasName": null,
+    "tag": null,
+    "description": "Add GitHub repository collaborator for specified repository",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "repo_name",
+        "org_name",
+        "git_username"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/399d9223-9cd9-4cd5-a27e-74e719765a3e",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Add Repository Collaborator",
+            "description": null,
+            "arguments": {
+                "when": "{{(vars.is_collaborator_added | length == 0)}}",
+                "arguments": {
+                    "org_name": "{{vars.org_name}}",
+                    "username": "{{vars.git_username}}",
+                    "repo_name": "{{vars.repo_name}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/24ce1642-3e71-43dd-b351-0c0673b36562"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "edbc96db-15d9-4d5a-9f8d-2a2ea9bb6fa1"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "List Repository Collaborator",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "org_name": "{{vars.org_name}}",
+                    "repo_name": "{{vars.repo_name}}"
+                },
+                "apply_async": false,
+                "step_variables": {
+                    "is_collaborator_added": "{{(vars.steps.List_Repository_Collaborator.data | json_query(\"[? login=='\"+vars.git_username+\"']\"))}}"
+                },
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/f1131cb4-74d0-4ffe-8c1a-bf4c7cab3f0c"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "ecca7235-9350-47de-a11c-a4fafdf54ddb"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "399d9223-9cd9-4cd5-a27e-74e719765a3e"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "List Repository Collaborator -> Add Repository Collaborator",
+            "targetStep": "\/api\/3\/workflow_steps\/edbc96db-15d9-4d5a-9f8d-2a2ea9bb6fa1",
+            "sourceStep": "\/api\/3\/workflow_steps\/ecca7235-9350-47de-a11c-a4fafdf54ddb",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "cf6b7b55-35df-49c5-b668-50abfc4c4410"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> List Repository Collaborator",
+            "targetStep": "\/api\/3\/workflow_steps\/ecca7235-9350-47de-a11c-a4fafdf54ddb",
+            "sourceStep": "\/api\/3\/workflow_steps\/399d9223-9cd9-4cd5-a27e-74e719765a3e",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "6f6adeec-8b06-41bc-a39a-cd4103aa36ff"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "a7087e20-c07a-4f79-80e2-751bd693875f",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Subroutine",
+        "CICD"
+    ]
+}

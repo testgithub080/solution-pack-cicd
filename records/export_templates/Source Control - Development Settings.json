@@ -1,0 +1,86 @@
+[
+  {
+    "@type": "ExportTemplate",
+    "name": "Source Control - Development Settings",
+    "lastExportDate": null,
+    "options": {
+      "roles": [],
+      "rules": [],
+      "teams": [],
+      "views": [
+        {
+          "value": "app",
+          "appendNavigation": [
+            "Dashboard",
+            "Queue & Shift Management",
+            "Incident Response",
+            "Automation",
+            "Resources",
+            "Reports",
+            "Widget Library",
+            "Content Hub",
+            "Help",
+            "User Community"
+          ]
+        }
+      ],
+      "actors": [],
+      "modules": [],
+      "reports": [],
+      "widgets": [],
+      "connectors": [],
+      "dashboards": [],
+      "recordSets": [
+        {
+          "name": "Export Templates",
+          "type": "export_templates",
+          "query": {
+            "sort": [],
+            "limit": 1,
+            "logic": "AND",
+            "filters": [
+              {
+                "type": "primitive",
+                "field": "name",
+                "value": "Source Control - Development Settings",
+                "operator": "eq",
+                "_operator": "eq"
+              }
+            ],
+            "__selectFields": [
+              "uuid"
+            ]
+          },
+          "include": true,
+          "whenExists": "replace",
+          "moduleNotExists": true,
+          "includeCorrelations": false
+        }
+      ],
+      "appSettings": [
+        "systemSettings",
+        "LDAP",
+        "RADIUS",
+        "TOKEN",
+        "HA",
+        "sso",
+        "syslog",
+        "proxy"
+      ],
+      "ruleChannels": [],
+      "picklistNames": [],
+      "viewTemplates": [],
+      "playbookBlocks": [],
+      "globalVariables": [],
+      "playbookCollections": []
+    },
+    "type": "Export Wizard",
+    "solutionPack": null,
+    "uuid": "334b8d11-6cba-487d-82f5-d8ef4bbe2121",
+    "id": 4,
+    "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1681112575.372253,
+    "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1681112586.182357
+  }
+]
