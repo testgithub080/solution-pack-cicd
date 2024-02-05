@@ -13,7 +13,7 @@
         "connector_config_id"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/d80a4515-4d8f-4f7d-b5d3-3ed3571fc705",
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/601f718e-64a7-4e5f-a022-dac1423b613f",
     "steps": [
@@ -657,7 +657,7 @@
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "072f6f7c-9598-46a6-a37a-118bdc30c143",
+    "uuid": "db8dc26a-7a55-430f-b49e-9f5f177377dc",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

@@ -11,7 +11,7 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/d80a4515-4d8f-4f7d-b5d3-3ed3571fc705",
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/6af4157c-8441-423e-8907-09e72fcf7941",
     "steps": [
@@ -203,7 +203,7 @@
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "45d7bca5-ad89-4b09-9774-f980eba090ff",
+    "uuid": "dd654cd4-923f-4c20-837c-279669c2fa82",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

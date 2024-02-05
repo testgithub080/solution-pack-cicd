@@ -13,7 +13,7 @@
         "playbook_name"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/d80a4515-4d8f-4f7d-b5d3-3ed3571fc705",
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/e356955d-7eb7-40d0-b176-99d4e88128f0",
     "steps": [
@@ -154,7 +154,7 @@
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "66a6e0b3-d4bb-411a-b0d3-cf11c90fdbee",
+    "uuid": "2bf34362-0466-4590-9ce5-845ce08860bc",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

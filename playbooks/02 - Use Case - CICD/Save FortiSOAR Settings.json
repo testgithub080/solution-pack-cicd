@@ -13,7 +13,7 @@
         "cicd_config"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/d80a4515-4d8f-4f7d-b5d3-3ed3571fc705",
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/81ba31e6-3c9a-4f87-8cf7-2be72de45b77",
     "steps": [

@@ -14,7 +14,7 @@
         "issue_no"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/d80a4515-4d8f-4f7d-b5d3-3ed3571fc705",
+    "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/312b2c33-62d4-482f-943b-479670a2df81",
     "steps": [
@@ -342,7 +342,7 @@
     ],
     "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "686277cc-bef9-4aa9-9da6-7b882fddb4b6",
+    "uuid": "848d43cf-809c-49fe-a5fe-d6039546c3b6",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,
