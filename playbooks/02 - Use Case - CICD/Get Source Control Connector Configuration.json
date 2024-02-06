@@ -49,7 +49,7 @@
                     {
                         "option": "Yes",
                         "step_iri": "\/api\/3\/workflow_steps\/38dd5b2a-6b7e-4cf9-b4f4-3ec961cf5b80",
-                        "condition": "{{ {{ vars.current_user_source_control_connector_config_id | length > 0 }} }}",
+                        "condition": "{{ vars.current_user_source_control_connector_config_id | length > 0 }}",
                         "step_name": "Return Output"
                     },
                     {

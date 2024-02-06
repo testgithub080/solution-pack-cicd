@@ -22,7 +22,7 @@
             "arguments": {
                 "arguments": {
                     "connector_config_id": "{{vars.steps.Check_Source_Control_Connector_Configuration['config_id']}}",
-                    "add_reviewers_for_pr_params": "{\n\"org_name\" : \"{{vars.cicdConfig.organizationName}}\",\n\"repo_name\": \"{{vars.repo_name}}\",\n\"pull_number\": \"{{vars.steps.Create_Pull_Request.data.number}}\",\n\"reviewers\": \"{{vars.steps.Specify_PR_Title_and_Comments.input.reviewersName}}\"\n}"
+                    "add_reviewers_for_pr_params": "{\"org_name\" : \"{{vars.cicdConfig.organizationName}}\",\"repo_name\": \"{{vars.repo_name}}\",\"pull_number\": \"{{vars.steps.Create_Pull_Request.data.number}}\",\"reviewers\": \"{{vars.steps.Specify_PR_Title_and_Comments.input.reviewersName}}\"}"
                 },
                 "apply_async": false,
                 "step_variables": [],
@@ -102,7 +102,7 @@
             "arguments": {
                 "arguments": {
                     "connector_config_id": "{{vars.steps.Check_Source_Control_Connector_Configuration['config_id']}}",
-                    "add_issue_comment_params": "{\n\"org_name\" : \"{{vars.cicdConfig.organizationName}}\",\n\"repo_name\": \"{{vars.repo_name}}\",\n\"cr_number\": \"{{vars.issue_no}}\",\n\"commit_message\": \"PR Title: {{vars.steps.Specify_PR_Title_and_Comments.input.title}}\"\n}"
+                    "add_issue_comment_params": "{\"org_name\" : \"{{vars.cicdConfig.organizationName}}\",\"repo_name\": \"{{vars.repo_name}}\",\"cr_number\": \"{{vars.issue_no}}\",\"commit_message\": \"PR Title: {{vars.steps.Specify_PR_Title_and_Comments.input.title}}\"}"
                 },
                 "apply_async": false,
                 "step_variables": [],
@@ -123,7 +123,7 @@
             "description": null,
             "arguments": {
                 "arguments": {
-                    "create_pr_params": "{\n\"org_name\" : \"{{vars.cicdConfig.organizationName}}\",\n\"repo_name\": \"{{vars.repo_name}}\",\n\"pr_title\": \"{{vars.steps.Specify_PR_Title_and_Comments.input.title}}\",\n\"base_branch\": \"{{vars.cicdConfig.baseBranch}}\",\n\"head_repo\": \"{{vars.new_branch}}\",\n\"pr_comments\": \"This is a fix for Issue #{{vars.issue_no}}\"\n}",
+                    "create_pr_params": "{\"org_name\" : \"{{vars.cicdConfig.organizationName}}\",\"repo_name\": \"{{vars.repo_name}}\",\"pr_title\": \"{{vars.steps.Specify_PR_Title_and_Comments.input.title}}\",\"base_branch\": \"{{vars.cicdConfig.baseBranch}}\",\"head_repo\": \"{{vars.new_branch}}\",\"pr_comments\": \"This is a fix for Issue #{{vars.issue_no}}\"}",
                     "connector_config_id": "{{vars.steps.Check_Source_Control_Connector_Configuration['config_id']}}"
                 },
                 "apply_async": false,
@@ -176,7 +176,7 @@
                     {
                         "option": "No",
                         "step_iri": "\/api\/3\/workflow_steps\/8dbb12d9-f30d-4b05-a97b-05588322c01c",
-                        "condition": "{{ vars.steps.Create_Pull_Request['Error message'] is defined }}",
+                        "condition": "{{ vars.steps.Create_Pull_Request['data']['Error message'] is defined }}",
                         "step_name": "Populate Error Message"
                     },
                     {
@@ -185,7 +185,8 @@
                         "step_iri": "\/api\/3\/workflow_steps\/06d5b496-aaeb-491c-8e49-956d728bbec8",
                         "step_name": "Add PR Reviewers"
                     }
-                ]
+                ],
+                "step_variables": []
             },
             "status": null,
             "top": "1110",

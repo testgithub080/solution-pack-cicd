@@ -160,7 +160,7 @@
                 "operation": "query_cyops_resource",
                 "operationTitle": "FSR: Find Record",
                 "step_variables": {
-                    "cicd_config": "{%set temp = {}%}{%set result = {}%}{% for i in vars.steps.Get_Source_Control_Workflows %}{% set result = {}%}\n{% for tag in i[\"data\"][0][\"recordTags\"] %}\n    {% if '-' in tag %}\n      {% set m = result.update({\"tag\": tag.split(\"-\")[-1]})%}\n    {% endif %}\n{% endfor %}\n{% set a = temp.update({result[\"tag\"]: {\"name\": i[\"data\"][0][\"name\"],\"@id\": i[\"data\"][0][\"@id\"]}}) %}{% endfor %}\n{% set dummy = result.update({\"source_control_playbooks\": temp})%}\n{{result}}",
+                    "cicd_config": "{%set temp = {}%}{%set result = {}%}{% for i in vars.steps.Get_Source_Control_Workflows %}{% set result = {}%}{% for tag in i[\"data\"][0][\"recordTags\"] %}{% if '-' in tag %}{% set m = result.update({\"tag\": tag.split(\"-\")[-1]})%}{% endif %}\n{% endfor %}{% set a = temp.update({result[\"tag\"]: {\"name\": i[\"data\"][0][\"name\"],\"@id\": i[\"data\"][0][\"@id\"]}}) %}{% endfor %}{% set dummy = result.update({\"source_control_playbooks\": temp})%}{{result}}",
                     "activeWorkflows": "{{vars.result.data|json_query(\"[][\\\"@id\\\"][]\")}}"
                 }
             },
