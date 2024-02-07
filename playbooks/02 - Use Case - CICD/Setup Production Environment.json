@@ -82,7 +82,7 @@
                 "workflowReference": "\/api\/3\/workflows\/45d7bca5-ad89-4b09-9774-f980eba090ff"
             },
             "status": null,
-            "top": "160",
+            "top": "440",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -177,7 +177,7 @@
                 "workflowReference": "\/api\/3\/workflows\/379bdc09-5dfe-41cd-bd81-741a28ccbfc3"
             },
             "status": null,
-            "top": "435",
+            "top": "300",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -384,7 +384,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "300",
+            "top": "160",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -550,13 +550,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Check Source Control Connector Configuration -> Set Status as In Progress",
-            "targetStep": "\/api\/3\/workflow_steps\/52ca8e42-4704-4b06-8901-63c083cfc007",
+            "name": "Check Source Control Connector Configuration -> Initial Repository Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/1820deef-7102-4d06-94fe-a183c4a33c67",
             "sourceStep": "\/api\/3\/workflow_steps\/b60fae65-d8fb-4bc7-9798-92a9be3dcfb1",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "55ddc25d-050d-4a9c-be72-70be4067d682"
+            "uuid": "507353c9-a1ac-4aa7-85f2-c66ced21453d"
         },
         {
             "@type": "WorkflowRoute",
@@ -600,13 +600,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Map Source Control Username -> Initial Repository Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/1820deef-7102-4d06-94fe-a183c4a33c67",
+            "name": "Map Source Control Username -> Check Source Control Connector Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/b60fae65-d8fb-4bc7-9798-92a9be3dcfb1",
             "sourceStep": "\/api\/3\/workflow_steps\/5b1f5049-732b-4894-8542-369ede0ab465",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "ea4a2f8a-b088-4e00-89e9-600e29860f1a"
+            "uuid": "ddba5e29-4889-4e96-aa7e-4dca82bd749d"
         },
         {
             "@type": "WorkflowRoute",
@@ -660,13 +660,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Check Source Control Connector Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/b60fae65-d8fb-4bc7-9798-92a9be3dcfb1",
+            "name": "Start -> Set Status as In Progress",
+            "targetStep": "\/api\/3\/workflow_steps\/52ca8e42-4704-4b06-8901-63c083cfc007",
             "sourceStep": "\/api\/3\/workflow_steps\/4b469313-7f5e-4829-be90-820574f2b016",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "84418404-2e39-4645-8274-2220121ca66c"
+            "uuid": "320979d4-c3d0-4dc7-8080-5313157a2ddf"
         },
         {
             "@type": "WorkflowRoute",

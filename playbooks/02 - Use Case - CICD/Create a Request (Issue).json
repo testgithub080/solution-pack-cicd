@@ -57,7 +57,7 @@
             "arguments": {
                 "arguments": {
                     "connector_config_id": "{{vars.cicd_env[\"source_control\"][\"uuid\"]}}",
-                    "create_branch_params": "{\n\"org_name\": \"{{vars.cicd_config.organizationName}}\",\n\"repo_name\": \"{{vars.cicd_config.contentRepoName}}\",\n\"new_branch\": \"CR-{{vars.steps.Create_Issue.data.number | string}}\",\n\"branch_name\": \"{{vars.cicd_config.baseBranch}}\",\n\"base_branch_or_sha\": \"Branch Name\"\n}"
+                    "create_branch_params": "{\"org_name\": \"{{vars.cicd_config.organizationName}}\",\"repo_name\": \"{{vars.cicd_config.contentRepoName}}\",\"new_branch\": \"CR-{{vars.steps.Create_Issue.data.number | string}}\",\"branch_name\": \"{{vars.cicd_config.baseBranch}}\",\"base_branch_or_sha\": \"Branch Name\"}"
                 },
                 "apply_async": false,
                 "ignore_errors": true,
@@ -80,7 +80,7 @@
             "arguments": {
                 "arguments": {
                     "connector_config_id": "{{vars.cicd_env[\"source_control\"][\"uuid\"]}}",
-                    "create_issue_params": "{\n\"org_name\": \"{{vars.cicd_config.organizationName}}\",\n\"repo_name\": \"{{vars.cicd_config.contentRepoName}}\",\n\"issue_title\": \"{{vars.input.params.summary}}\",\n\"issue_content\": \"{{vars.input.params.description}}\",\n\"issue_assignee\": \"{{[vars.assigneeUsername]}}\"\n}"
+                    "create_issue_params": "{\"org_name\": \"{{vars.cicd_config.organizationName}}\",\"repo_name\": \"{{vars.cicd_config.contentRepoName}}\",\"issue_title\": \"{{vars.input.params.summary}}\",\"issue_content\": \"{{vars.input.params.description}}\",\"issue_assignee\": \"{{[vars.assigneeUsername]}}\"}"
                 },
                 "apply_async": false,
                 "step_variables": [],
@@ -105,7 +105,7 @@
                     "body": "",
                     "method": "GET"
                 },
-                "version": "3.2.3",
+                "version": "3.2.6",
                 "connector": "cyops_utilities",
                 "operation": "make_cyops_request",
                 "operationTitle": "FSR: Make FortiSOAR API Call",
