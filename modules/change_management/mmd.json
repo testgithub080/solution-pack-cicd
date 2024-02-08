@@ -1,6 +1,5 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/e1593c62-8eae-4801-ae4f-56ee930525b1",
     "@type": "StagingModelMetadata",
     "type": "change_management",
     "parentType": null,
@@ -730,7 +729,8 @@
         "delete_primary_data_after": 60
     },
     "archivalFilters": [],
-    "uuid": "e1593c62-8eae-4801-ae4f-56ee930525b1",
+    "replicationFilters": [],
+    "enableReplication": true,
     "displayName": "{{ title }}",
     "descriptions": {
         "singular": "Change Management",
