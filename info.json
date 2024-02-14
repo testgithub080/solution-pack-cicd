@@ -122,6 +122,14 @@
             {
                 "apiName": "recordCard",
                 "name": "Record Card"
+            },
+            {
+                "apiName": "playbookExecutionWizard",
+                "name": "Playbook Execution Wizard"
+            },
+            {
+                "apiName": "playbookButtons",
+                "name": "Playbook Buttons"
             }
         ],
         "recordSets": [
