@@ -1,4 +1,5 @@
 {
+    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Merge Pull Request",
@@ -31,7 +32,7 @@
                 "workflowReference": "{{vars.cicd_env[\"source_control_playbooks\"][\"AddPullRequestReview\"][\"@id\"]}}"
             },
             "status": null,
-            "top": "1140",
+            "top": "1220",
             "left": "540",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -49,10 +50,10 @@
                 "step_variables": [],
                 "pass_parent_env": false,
                 "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/66a6e0b3-d4bb-411a-b0d3-cf11c90fdbee"
+                "workflowReference": "\/api\/3\/workflows\/2bf34362-0466-4590-9ce5-845ce08860bc"
             },
             "status": null,
-            "top": "340",
+            "top": "420",
             "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -68,10 +69,10 @@
                 "step_variables": [],
                 "pass_parent_env": false,
                 "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/45d7bca5-ad89-4b09-9774-f980eba090ff"
+                "workflowReference": "\/api\/3\/workflows\/dd654cd4-923f-4c20-837c-279669c2fa82"
             },
             "status": null,
-            "top": "140",
+            "top": "220",
             "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -87,7 +88,7 @@
                 "source_control_type": "{{(globalVars.cicd_config | toDict)[\"source_control_web_url\"] }}"
             },
             "status": null,
-            "top": "240",
+            "top": "320",
             "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -109,7 +110,7 @@
                 "workflowReference": "{{vars.cicd_env[\"source_control_playbooks\"][\"DeleteBranch\"][\"@id\"]}}"
             },
             "status": null,
-            "top": "1260",
+            "top": "1340",
             "left": "920",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -136,11 +137,40 @@
                 ]
             },
             "status": null,
-            "top": "700",
+            "top": "780",
             "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
             "uuid": "1511cd33-7e15-4a27-8fd1-7993b4988eee"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Find Related Task",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "name",
+                            "value": "{{vars.input.records[0].uuid}}",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ]
+                },
+                "module": "tasks?$limit=30",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "120",
+            "left": "320",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "f2c59af5-9ff6-41c7-93ad-05dbf5113be7"
         },
         {
             "@type": "WorkflowStep",
@@ -158,7 +188,7 @@
                 "workflowReference": "{{vars.cicd_env[\"source_control_playbooks\"][\"ListPullRequestReviews\"][\"@id\"]}}"
             },
             "status": null,
-            "top": "700",
+            "top": "780",
             "left": "720",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -185,7 +215,7 @@
                 ]
             },
             "status": null,
-            "top": "460",
+            "top": "540",
             "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
@@ -212,7 +242,7 @@
                 ]
             },
             "status": null,
-            "top": "820",
+            "top": "900",
             "left": "720",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
@@ -234,7 +264,7 @@
                 "workflowReference": "{{vars.cicd_env[\"source_control_playbooks\"][\"MergePullRequest\"][\"@id\"]}}"
             },
             "status": null,
-            "top": "1140",
+            "top": "1220",
             "left": "920",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -253,7 +283,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1260",
+            "top": "1340",
             "left": "40",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -265,7 +295,7 @@
             "description": null,
             "arguments": [],
             "status": null,
-            "top": "960",
+            "top": "1040",
             "left": "920",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -284,13 +314,15 @@
                         "inputVariables": []
                     }
                 },
-                "record": "",
+                "record": "{{vars.steps.Find_Related_Task[0]['@id']}}",
                 "agent_id": null,
-                "resources": "change_requests",
+                "resources": "tasks",
+                "is_approval": false,
                 "owner_detail": {
-                    "isAssigned": false
+                    "isAssigned": false,
+                    "emailRecipients": ""
                 },
-                "isRecordLinked": false,
+                "isRecordLinked": true,
                 "step_variables": [],
                 "response_mapping": {
                     "options": [
@@ -300,18 +332,24 @@
                             "step_iri": "\/api\/3\/workflow_steps\/6beb7d0f-e4b2-4e66-aa77-1bbc1cae29d4"
                         }
                     ],
-                    "duplicateOption": false
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
                 },
                 "email_notification": {
                     "enabled": false,
                     "smtpParameters": []
                 },
+                "customEmailExternal": false,
                 "inline_channel_list": [],
                 "external_channel_list": [],
-                "unauthenticated_input": false
+                "unauthenticated_input": false,
+                "external_email_subject": null,
+                "internal_email_subject": "A FortiSOAR playbook is requesting your input",
+                "custom_email_body_external": null,
+                "external_email_attachments": null
             },
             "status": null,
-            "top": "1260",
+            "top": "1340",
             "left": "540",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
@@ -330,13 +368,15 @@
                         "inputVariables": []
                     }
                 },
-                "record": "",
+                "record": "{{vars.steps.Find_Related_Task[0]['@id']}}",
                 "agent_id": null,
-                "resources": "change_management",
+                "resources": "tasks",
+                "is_approval": false,
                 "owner_detail": {
-                    "isAssigned": false
+                    "isAssigned": false,
+                    "emailRecipients": ""
                 },
-                "isRecordLinked": false,
+                "isRecordLinked": true,
                 "step_variables": [],
                 "response_mapping": {
                     "options": [
@@ -346,18 +386,24 @@
                             "step_iri": "\/api\/3\/workflow_steps\/6beb7d0f-e4b2-4e66-aa77-1bbc1cae29d4"
                         }
                     ],
-                    "duplicateOption": false
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
                 },
                 "email_notification": {
                     "enabled": false,
                     "smtpParameters": []
                 },
+                "customEmailExternal": false,
                 "inline_channel_list": [],
                 "external_channel_list": [],
-                "unauthenticated_input": false
+                "unauthenticated_input": false,
+                "external_email_subject": null,
+                "internal_email_subject": "A FortiSOAR playbook is requesting your input",
+                "custom_email_body_external": null,
+                "external_email_attachments": null
             },
             "status": null,
-            "top": "820",
+            "top": "900",
             "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
@@ -376,13 +422,15 @@
                         "inputVariables": []
                     }
                 },
-                "record": "",
+                "record": "{{vars.steps.Find_Related_Task[0]['@id']}}",
                 "agent_id": null,
-                "resources": "change_requests",
+                "resources": "tasks",
+                "is_approval": false,
                 "owner_detail": {
-                    "isAssigned": false
+                    "isAssigned": false,
+                    "emailRecipients": ""
                 },
-                "isRecordLinked": false,
+                "isRecordLinked": true,
                 "step_variables": [],
                 "response_mapping": {
                     "options": [
@@ -396,18 +444,24 @@
                             "step_iri": "\/api\/3\/workflow_steps\/6beb7d0f-e4b2-4e66-aa77-1bbc1cae29d4"
                         }
                     ],
-                    "duplicateOption": false
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
                 },
                 "email_notification": {
                     "enabled": false,
                     "smtpParameters": []
                 },
+                "customEmailExternal": false,
                 "inline_channel_list": [],
                 "external_channel_list": [],
-                "unauthenticated_input": false
+                "unauthenticated_input": false,
+                "external_email_subject": null,
+                "internal_email_subject": "A FortiSOAR playbook is requesting your input",
+                "custom_email_body_external": null,
+                "external_email_attachments": null
             },
             "status": null,
-            "top": "960",
+            "top": "1040",
             "left": "540",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
@@ -425,7 +479,7 @@
                 "pull_number": "{{(vars.input.records[0].pullRequest.split(\"' target='_blank'\")[0]).split(\"\/\")[-1]}}"
             },
             "status": null,
-            "top": "580",
+            "top": "660",
             "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -574,6 +628,16 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Find Related Task -> Check Source Control Connector Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/09582d16-0a7f-4aa8-aec4-72a9795141bd",
+            "sourceStep": "\/api\/3\/workflow_steps\/f2c59af5-9ff6-41c7-93ad-05dbf5113be7",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "2b0926c7-a807-4bd0-ac7a-9541ecece5e7"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Get Pull Requests Reviews -> Is Pull Request Approved",
             "targetStep": "\/api\/3\/workflow_steps\/0ee694df-f1be-411d-a0cb-1d5239d9e2d3",
             "sourceStep": "\/api\/3\/workflow_steps\/1ba3d0f3-6f3d-49a5-b308-522f5e211925",
@@ -694,13 +758,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Check Source Control Connector Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/09582d16-0a7f-4aa8-aec4-72a9795141bd",
+            "name": "Start -> Find Related Task",
+            "targetStep": "\/api\/3\/workflow_steps\/f2c59af5-9ff6-41c7-93ad-05dbf5113be7",
             "sourceStep": "\/api\/3\/workflow_steps\/f4a19dea-e300-4787-85f7-61ee6335a9db",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "894ca07d-a620-4dea-a9b1-3e43b537b373"
+            "uuid": "1e343d26-0210-4302-89c3-c2a050be9e8a"
         }
     ],
     "groups": [],

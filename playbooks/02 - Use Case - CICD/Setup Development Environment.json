@@ -1,4 +1,5 @@
 {
+    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Setup Development Environment",
@@ -25,7 +26,7 @@
                 "step_variables": [],
                 "pass_parent_env": false,
                 "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/45d7bca5-ad89-4b09-9774-f980eba090ff"
+                "workflowReference": "\/api\/3\/workflows\/dd654cd4-923f-4c20-837c-279669c2fa82"
             },
             "status": null,
             "top": "165",
@@ -319,7 +320,7 @@
                 "apply_async": false,
                 "step_variables": [],
                 "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/379bdc09-5dfe-41cd-bd81-741a28ccbfc3"
+                "workflowReference": "\/api\/3\/workflows\/d539f6cc-69ca-44ec-a622-e233aa51970a"
             },
             "status": null,
             "top": "705",

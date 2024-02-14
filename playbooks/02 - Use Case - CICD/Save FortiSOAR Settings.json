@@ -1,4 +1,5 @@
 {
+    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Save FortiSOAR Settings",
@@ -27,7 +28,7 @@
                 "step_variables": [],
                 "pass_parent_env": false,
                 "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/45d7bca5-ad89-4b09-9774-f980eba090ff"
+                "workflowReference": "\/api\/3\/workflows\/dd654cd4-923f-4c20-837c-279669c2fa82"
             },
             "status": null,
             "top": "165",
@@ -140,9 +141,7 @@
             "@type": "WorkflowStep",
             "name": "NO OP",
             "description": null,
-            "arguments": {
-                "Cancel": "dsds"
-            },
+            "arguments": [],
             "status": null,
             "top": "1169",
             "left": "509",
@@ -182,13 +181,15 @@
                         "inputVariables": []
                     }
                 },
-                "record": "",
+                "record": "{{vars.input.records[0]['@id']}}",
                 "agent_id": null,
                 "resources": "change_management",
+                "is_approval": false,
                 "owner_detail": {
-                    "isAssigned": false
+                    "isAssigned": false,
+                    "emailRecipients": ""
                 },
-                "isRecordLinked": false,
+                "isRecordLinked": true,
                 "step_variables": [],
                 "response_mapping": {
                     "options": [
@@ -198,15 +199,21 @@
                             "step_iri": "\/api\/3\/workflow_steps\/9f2eee64-c5d9-4285-9792-d8edb4df4bb2"
                         }
                     ],
-                    "duplicateOption": false
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
                 },
                 "email_notification": {
                     "enabled": false,
                     "smtpParameters": []
                 },
+                "customEmailExternal": false,
                 "inline_channel_list": [],
                 "external_channel_list": [],
-                "unauthenticated_input": false
+                "unauthenticated_input": false,
+                "external_email_subject": null,
+                "internal_email_subject": "A FortiSOAR playbook is requesting your input",
+                "custom_email_body_external": null,
+                "external_email_attachments": null
             },
             "status": null,
             "top": "435",
@@ -233,7 +240,8 @@
                 "resources": "change_management",
                 "is_approval": false,
                 "owner_detail": {
-                    "isAssigned": false
+                    "isAssigned": false,
+                    "emailRecipients": ""
                 },
                 "isRecordLinked": true,
                 "step_variables": [],
@@ -252,9 +260,14 @@
                     "enabled": false,
                     "smtpParameters": []
                 },
+                "customEmailExternal": false,
                 "inline_channel_list": [],
                 "external_channel_list": [],
-                "unauthenticated_input": false
+                "unauthenticated_input": false,
+                "external_email_subject": null,
+                "internal_email_subject": "A FortiSOAR playbook is requesting your input",
+                "custom_email_body_external": null,
+                "external_email_attachments": null
             },
             "status": null,
             "top": "1245",
@@ -282,7 +295,7 @@
                 "step_variables": [],
                 "pass_parent_env": false,
                 "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/b470bc95-ef65-454a-97e8-dfb3f667de02"
+                "workflowReference": "\/api\/3\/workflows\/8413a393-367b-4501-9196-ffbb027f0a3b"
             },
             "status": null,
             "top": "1140",
@@ -623,7 +636,7 @@
             "name": "Playbook Is Active -> No Operation",
             "targetStep": "\/api\/3\/workflow_steps\/9f2eee64-c5d9-4285-9792-d8edb4df4bb2",
             "sourceStep": "\/api\/3\/workflow_steps\/30fec647-67ec-4ec6-8388-b5e386f756e6",
-            "label": null,
+            "label": "Ok",
             "isExecuted": false,
             "group": null,
             "uuid": "f3eb64a6-aea8-4550-b938-848b0a631f5e"
