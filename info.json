@@ -26,11 +26,10 @@
         "widgets": [
             {
                 "name": "cicdConfiguration",
-                "label": "CICD Configuration",
-                "version": "1.0.0",
+                "label": "CICD Configuration Wizard",
+                "version": "1.1.0",
                 "autoLaunch": true,
-                "buttonLabel": "Configure",
-                "autoLaunchTriggered": true
+                "buttonLabel": "Configure"
             }
         ]
     },
