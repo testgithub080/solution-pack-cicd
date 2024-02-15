@@ -21,10 +21,10 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
-                "current_user_source_control_connector_config_id": "{% if vars.request['currentUser'] is defined %}{{(vars.steps.Get_Source_Control_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.request['currentUser'] | fromIRI).sourceControlUsername+\"'].config_id\"))[0]}}{% else %}{{(vars.steps.Get_Source_Control_Connector_Configurations.data.configuration | json_query(\"[?config.username=='\"+(vars.currentUser | fromIRI).sourceControlUsername+\"'].config_id\"))[0]}}{% endif %}"
+                "current_user_source_control_connector_config_id": "{% for connector_config in vars.steps.Get_Source_Control_Connector_Configurations.data.configuration %}{% if vars.logged_in_user_sc_name==connector_config.config.username %}{{connector_config.config_id}}{% break %}{% endif %}{% endfor %}"
             },
             "status": null,
-            "top": "435",
+            "top": "440",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -44,7 +44,9 @@
                 "connector": "cyops_utilities",
                 "operation": "make_cyops_request",
                 "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": []
+                "step_variables": {
+                    "logged_in_user_sc_name": "{{((vars.currentUser or vars.request['currentUser'] ) | fromIRI).sourceControlUsername}}"
+                }
             },
             "status": null,
             "top": "165",
@@ -90,7 +92,7 @@
                     {
                         "option": "Yes",
                         "step_iri": "\/api\/3\/workflow_steps\/2c4669a5-feca-4025-98f9-190c4ac2020c",
-                        "condition": "{{ (((vars.currentUser | fromIRI).sourceControlUsername) or ((vars.request['currentUser'] | fromIRI).sourceControlUsername))==(vars.steps.Get_Source_Control_Connector_Configurations.data.configuration[0].name) }}",
+                        "condition": "{{ vars.logged_in_user_sc_name != None }}",
                         "step_name": "Configuration"
                     },
                     {
@@ -115,7 +117,7 @@
             "description": null,
             "arguments": {
                 "params": {
-                    "msg": "{% if (vars.currentUser | fromIRI).sourceControlUsername != (vars.request['currentUser'] | fromIRI).sourceControlUsername %}{{\"Logged in FortiSOAR User is not Mapped with Source Control Username\"}}{% else %}{{vars.cicd_env[\"source_control\"][\"label\"]}} connector is not configured for the logged in User.{% endif %}"
+                    "msg": "{% if vars.logged_in_user_sc_name == None %}{{\"Logged in FortiSOAR User is not Mapped with Source Control Username\"}}{% else %}{{vars.cicd_env[\"source_control\"][\"label\"]}} connector is not configured for the logged in User.{% endif %}"
                 },
                 "version": "3.2.6",
                 "connector": "cyops_utilities",
