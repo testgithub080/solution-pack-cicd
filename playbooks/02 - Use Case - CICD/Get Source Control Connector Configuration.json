@@ -90,7 +90,7 @@
                     {
                         "option": "Yes",
                         "step_iri": "\/api\/3\/workflow_steps\/2c4669a5-feca-4025-98f9-190c4ac2020c",
-                        "condition": "{{ (vars.currentUser | fromIRI).sourceControlUsername == (vars.request['currentUser'] | fromIRI).sourceControlUsername }}",
+                        "condition": "{{ (((vars.currentUser | fromIRI).sourceControlUsername) or ((vars.request['currentUser'] | fromIRI).sourceControlUsername))==(vars.steps.Get_Source_Control_Connector_Configurations.data.configuration[0].name) }}",
                         "step_name": "Configuration"
                     },
                     {
