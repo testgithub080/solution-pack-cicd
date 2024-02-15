@@ -433,6 +433,7 @@
                 "resources": [
                     "change_management"
                 ],
+                "__triggerLimit": true,
                 "inputVariables": [],
                 "step_variables": {
                     "input": {
@@ -440,6 +441,7 @@
                         "records": "{{vars.input.records}}"
                     }
                 },
+                "triggerOnSource": true,
                 "displayConditions": {
                     "change_management": {
                         "sort": [],
@@ -450,8 +452,8 @@
                                 "type": "array",
                                 "field": "title",
                                 "value": [
-                                    "Save Dev Settings",
-                                    "Save Production Settings"
+                                    "Save Production Settings",
+                                    "Save Development Settings"
                                 ],
                                 "module": "title",
                                 "display": "",
@@ -483,6 +485,11 @@
                 },
                 "executeButtonText": "Execute",
                 "noRecordExecution": false,
+                "showToasterMessage": {
+                    "visible": false,
+                    "messageVisible": true
+                },
+                "triggerOnReplicate": false,
                 "singleRecordExecution": true
             },
             "status": null,
