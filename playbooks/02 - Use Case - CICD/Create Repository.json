@@ -26,9 +26,7 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
-                "cicd_env": "{{globalVars.cicd_env}}",
-                "repo_data": "[]",
-                "source_control_web_url": "{{(globalVars.cicd_config | toDict)[\"source_control_web_url\"] }}"
+                "cicd_env": "{{globalVars.cicd_env}}"
             },
             "status": null,
             "top": "165",

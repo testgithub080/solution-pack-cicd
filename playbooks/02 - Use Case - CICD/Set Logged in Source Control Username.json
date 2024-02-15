@@ -21,7 +21,7 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
-                "fsr_user_uuid": "{{(vars.currentUser | fromIRI).uuid}}",
+                "fsr_user_uuid": "{{(vars.currentUser | fromIRI).uuid or (vars.request['currentUser'] | fromIRI).uuid}}",
                 "source_control_username": "{{vars.steps.Get_Usernames.input.sourceControlUsername}}"
             },
             "status": null,

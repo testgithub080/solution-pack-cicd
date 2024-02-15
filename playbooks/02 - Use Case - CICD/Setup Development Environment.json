@@ -29,7 +29,7 @@
                 "workflowReference": "\/api\/3\/workflows\/dd654cd4-923f-4c20-837c-279669c2fa82"
             },
             "status": null,
-            "top": "165",
+            "top": "705",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -51,8 +51,8 @@
                 "workflowReference": "{{vars.cicd_env[\"source_control_playbooks\"][\"CloneRepository\"][\"@id\"]}}"
             },
             "status": null,
-            "top": "1480",
-            "left": "480",
+            "top": "1650",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "8d4b5b51-08ba-43a7-814c-66b65cfd69bf"
@@ -62,11 +62,10 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
-                "cicd_env": "{{globalVars.cicd_env}}",
-                "source_control_url": "{{(globalVars.cicd_config | toDict)[\"source_control_web_url\"] }}"
+                "cicd_env": "{{globalVars.cicd_env}}"
             },
             "status": null,
-            "top": "300",
+            "top": "165",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -91,7 +90,7 @@
             },
             "status": null,
             "top": "1240",
-            "left": "20",
+            "left": "540",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "747f53dd-ba2f-4e8f-85b9-79f1ee762909"
@@ -123,8 +122,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1960",
-            "left": "480",
+            "top": "2190",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
             "uuid": "762289c3-2ae5-445f-bd09-8262327e4d24"
@@ -141,6 +140,20 @@
                         "description": "Provide the following repository configuration inputs",
                         "inputVariables": [
                             {
+                                "name": "sourceControlWebURL",
+                                "type": "string",
+                                "label": "Source Control Web URL",
+                                "tooltip": "Specify the web URL of the selected source control. For example, if you selected GitHub then specify https:\/\/github.com",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": false,
+                                "_expanded": false,
+                                "defaultValue": null,
+                                "_previousName": "",
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false
+                            },
+                            {
                                 "name": "orgName",
                                 "type": "string",
                                 "label": "Organization Name",
@@ -148,7 +161,7 @@
                                 "dataType": "text",
                                 "formType": "text",
                                 "required": true,
-                                "_expanded": true,
+                                "_expanded": false,
                                 "_nameTouched": true,
                                 "defaultValue": null,
                                 "_previousName": "organizationName",
@@ -163,7 +176,7 @@
                                 "dataType": "text",
                                 "formType": "text",
                                 "required": true,
-                                "_expanded": true,
+                                "_expanded": false,
                                 "defaultValue": "fortisoar-prod-content",
                                 "_previousName": "",
                                 "jinjaExpressionView": true,
@@ -177,7 +190,7 @@
                                 "dataType": "text",
                                 "formType": "text",
                                 "required": true,
-                                "_expanded": true,
+                                "_expanded": false,
                                 "defaultValue": "fortisoar-dev-settings",
                                 "_previousName": "",
                                 "jinjaExpressionView": true,
@@ -191,7 +204,7 @@
                                 "dataType": "text",
                                 "formType": "text",
                                 "required": true,
-                                "_expanded": true,
+                                "_expanded": false,
                                 "defaultValue": "main",
                                 "_previousName": "",
                                 "jinjaExpressionView": true,
@@ -205,7 +218,8 @@
                 "resources": "change_management",
                 "is_approval": false,
                 "owner_detail": {
-                    "isAssigned": false
+                    "isAssigned": false,
+                    "emailRecipients": ""
                 },
                 "isRecordLinked": true,
                 "step_variables": [],
@@ -224,13 +238,18 @@
                     "enabled": false,
                     "smtpParameters": []
                 },
+                "customEmailExternal": false,
                 "inline_channel_list": [],
                 "external_channel_list": [],
-                "unauthenticated_input": false
+                "unauthenticated_input": false,
+                "external_email_subject": null,
+                "internal_email_subject": "A FortiSOAR playbook is requesting your input",
+                "custom_email_body_external": null,
+                "external_email_attachments": null
             },
             "status": null,
-            "top": "980",
-            "left": "20",
+            "top": "960",
+            "left": "540",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "908ec37d-cb1f-4c45-955a-11324893b0d3"
@@ -254,7 +273,7 @@
                 }
             },
             "status": null,
-            "top": "570",
+            "top": "435",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
@@ -305,8 +324,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1600",
-            "left": "480",
+            "top": "1785",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "2ed5ac1b-7bbe-4353-a2e3-dad9dd3de464"
@@ -323,7 +342,7 @@
                 "workflowReference": "\/api\/3\/workflows\/d539f6cc-69ca-44ec-a622-e233aa51970a"
             },
             "status": null,
-            "top": "705",
+            "top": "570",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -340,8 +359,8 @@
                 "dev_settings_repo": "{{vars.cicd_config.developmentSettings.split('\/')[-1] or vars.steps.Get_Repositories_Details.input.developmentSettingsRepositoryName}}"
             },
             "status": null,
-            "top": "1240",
-            "left": "480",
+            "top": "1380",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "6df36f21-d838-4e86-987b-c6c18d4b7281"
@@ -370,8 +389,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2080",
-            "left": "480",
+            "top": "2325",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "a20d0c91-0db4-4716-acb2-5ef1fb5f501a"
@@ -382,13 +401,13 @@
             "description": null,
             "arguments": {
                 "base_branch": "{{vars.steps.Get_Repositories_Details.input.baseBranchName}}",
-                "content_repo_url": "{{vars.source_control_url}}\/{{vars.steps.Get_Repositories_Details.input.orgName}}\/{{vars.steps.Get_Repositories_Details.input.contentRepositoryName}}",
-                "dev_settings_url": "{{vars.source_control_url}}\/{{vars.steps.Get_Repositories_Details.input.orgName}}\/{{vars.steps.Get_Repositories_Details.input.developmentSettingsRepositoryName}}",
+                "content_repo_url": "{{vars.steps.Get_Repositories_Details.input.sourceControlWebURL}}\/{{vars.steps.Get_Repositories_Details.input.orgName}}\/{{vars.steps.Get_Repositories_Details.input.contentRepositoryName}}",
+                "dev_settings_url": "{{vars.steps.Get_Repositories_Details.input.sourceControlWebURL}}\/{{vars.steps.Get_Repositories_Details.input.orgName}}\/{{vars.steps.Get_Repositories_Details.input.developmentSettingsRepositoryName}}",
                 "organization_name": "{{vars.steps.Get_Repositories_Details.input.orgName}}"
             },
             "status": null,
-            "top": "1120",
-            "left": "20",
+            "top": "1100",
+            "left": "540",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "f8146597-a026-47dd-8c57-2cec35cc752b"
@@ -409,8 +428,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1840",
-            "left": "480",
+            "top": "2055",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "bd53e719-1993-4ebf-b7d4-439aa0d16ef5"
@@ -439,7 +458,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "435",
+            "top": "300",
             "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -534,8 +553,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1360",
-            "left": "480",
+            "top": "1515",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "a15139eb-490e-4198-9c80-997d454e56c6"
@@ -566,8 +585,8 @@
                 }
             },
             "status": null,
-            "top": "1720",
-            "left": "480",
+            "top": "1920",
+            "left": "218",
             "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dbf",
             "group": null,
             "uuid": "892ed89d-53eb-42a3-8228-fa7f2d1b124a"
@@ -576,13 +595,13 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Check Source Control Connector Configuration -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/8c92404f-c1d4-4491-9901-6d539f85a60d",
+            "name": "Check Source Control Connector Configuration -> Has CICD Config Global Variable Exist",
+            "targetStep": "\/api\/3\/workflow_steps\/41b959ae-15eb-4786-9849-2da4f0ea5a5a",
             "sourceStep": "\/api\/3\/workflow_steps\/ff9d7102-e5eb-422f-a0fd-f1fde6ce92a1",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "de8169da-02c7-47a2-b02d-fac0302cce7a"
+            "uuid": "7cafd6b7-af9e-49f8-b478-ac15a359603c"
         },
         {
             "@type": "WorkflowRoute",
@@ -686,13 +705,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Map Source Control Username -> Has CICD Config Global Variable Exist",
-            "targetStep": "\/api\/3\/workflow_steps\/41b959ae-15eb-4786-9849-2da4f0ea5a5a",
+            "name": "Map Source Control Username -> Check Source Control Connector Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/ff9d7102-e5eb-422f-a0fd-f1fde6ce92a1",
             "sourceStep": "\/api\/3\/workflow_steps\/c743714d-a718-4aef-9e2e-f98d86501c21",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "9608d900-6411-492d-a17d-d79dbe98e2ef"
+            "uuid": "c0e62354-bc6b-4a82-a726-4282235ad511"
         },
         {
             "@type": "WorkflowRoute",
@@ -716,13 +735,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Check Source Control Connector Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/ff9d7102-e5eb-422f-a0fd-f1fde6ce92a1",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/8c92404f-c1d4-4491-9901-6d539f85a60d",
             "sourceStep": "\/api\/3\/workflow_steps\/ac61e885-f89b-4ca1-9484-ae4e32fd3b76",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "17703a2d-7648-473a-af48-954076fb7cc1"
+            "uuid": "b20b8b1a-89db-48c4-93ff-6b570f3529b6"
         },
         {
             "@type": "WorkflowRoute",
