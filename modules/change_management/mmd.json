@@ -6,10 +6,10 @@
     "tableName": "change_management",
     "ownable": false,
     "userOwnable": false,
-    "queueable": false,
+    "queueable": true,
     "trackable": true,
-    "taggable": false,
-    "peerReplicable": false,
+    "taggable": true,
+    "peerReplicable": true,
     "defaultSort": [],
     "uniqueConstraint": [
         {
