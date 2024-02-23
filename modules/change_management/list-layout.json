@@ -373,8 +373,30 @@
                                                                                                             },
                                                                                                             "showButton": true,
                                                                                                             "showExecutionProgress": true,
-                                                                                                            "widgetName": "playbookExecutionWizard",
-                                                                                                            "widgetVersion": "1.0.0"
+                                                                                                            "widgetName": "Playbook Execution Wizard",
+                                                                                                            "widgetVersion": "1.0.0",
+                                                                                                            "showButtonWithoutRecord": true,
+                                                                                                            "showButtonWithRecord": true,
+                                                                                                            "selectedExecutionWizardPlaybooks": [
+                                                                                                                {
+                                                                                                                    "@id": "\/api\/3\/workflows\/be1b4a01-38fe-4899-b933-fe44460d2f7e",
+                                                                                                                    "@type": "Workflow",
+                                                                                                                    "name": "Close Change Request",
+                                                                                                                    "description": "Closed the change Request and and Delete the specified change request branch",
+                                                                                                                    "uuid": "be1b4a01-38fe-4899-b933-fe44460d2f7e",
+                                                                                                                    "id": 473,
+                                                                                                                    "icon": "fa fa-check"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "@id": "\/api\/3\/workflows\/8de2d719-a90d-4b5e-ad2b-5ef0564fbb05",
+                                                                                                                    "@type": "Workflow",
+                                                                                                                    "name": "Merge Pull Request",
+                                                                                                                    "description": "Marge the specified Pull Request if Pull Request is Approved.",
+                                                                                                                    "uuid": "8de2d719-a90d-4b5e-ad2b-5ef0564fbb05",
+                                                                                                                    "id": 483,
+                                                                                                                    "icon": "fa fa-code-fork"
+                                                                                                                }
+                                                                                                            ]
                                                                                                         }
                                                                                                     }
                                                                                                 ],
@@ -402,8 +424,8 @@
                                                 "visible": true
                                             },
                                             "icon": "fa fa-server",
-                                            "show": false,
-                                            "visible": false,
+                                            "show": true,
+                                            "visible": true,
                                             "conditionalVisibility": true,
                                             "filter": {
                                                 "sort": [],
@@ -433,7 +455,7 @@
                                             "active": 0,
                                             "icon": "fa fa-code",
                                             "show": false,
-                                            "visible": false,
+                                            "visible": true,
                                             "widget": {
                                                 "type": "rows",
                                                 "config": {
@@ -633,8 +655,30 @@
                                                                                                             },
                                                                                                             "showButton": true,
                                                                                                             "showExecutionProgress": true,
-                                                                                                            "widgetName": "playbookExecutionWizard",
-                                                                                                            "widgetVersion": "1.0.0"
+                                                                                                            "widgetName": "Playbook Execution Wizard",
+                                                                                                            "widgetVersion": "1.0.0",
+                                                                                                            "showButtonWithoutRecord": false,
+                                                                                                            "showButtonWithRecord": true,
+                                                                                                            "selectedExecutionWizardPlaybooks": [
+                                                                                                                {
+                                                                                                                    "@id": "\/api\/3\/workflows\/d224f026-ff87-43ac-964a-83815f3b8e82",
+                                                                                                                    "@type": "Workflow",
+                                                                                                                    "name": "Create Pull Request",
+                                                                                                                    "description": "Create the pull request",
+                                                                                                                    "uuid": "d224f026-ff87-43ac-964a-83815f3b8e82",
+                                                                                                                    "id": 475,
+                                                                                                                    "icon": "fa fa-comments-o"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "@id": "\/api\/3\/workflows\/8aebb84d-ef60-4617-a4c5-fbc8a656588c",
+                                                                                                                    "@type": "Workflow",
+                                                                                                                    "name": "Push Change to Source Control",
+                                                                                                                    "description": "Push (Export) specified change request content into the Source Control content repository",
+                                                                                                                    "uuid": "8aebb84d-ef60-4617-a4c5-fbc8a656588c",
+                                                                                                                    "id": 485,
+                                                                                                                    "icon": "icon icon-file-upload"
+                                                                                                                }
+                                                                                                            ]
                                                                                                         }
                                                                                                     }
                                                                                                 ],
