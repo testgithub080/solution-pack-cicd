@@ -104,6 +104,10 @@
             {
                 "name": "GitHub",
                 "apiName": "github"
+            },
+            {
+                "name": "GitLab",
+                "apiName": "gitlab"
             }
         ],
         "widgets": [
