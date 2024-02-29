@@ -139,12 +139,15 @@
             "name": "Start",
             "description": null,
             "arguments": {
+                "__triggerLimit": true,
                 "step_variables": {
                     "input": {
                         "params": []
                     },
-                    "logged_in_user": "{{(vars.currentUser | fromIRI).firstname}} {{(vars.currentUser | fromIRI).lastname}}"
-                }
+                    "logged_in_user": "{{((vars.currentUser | fromIRI).firstname) or ((vars.request.currentUser | fromIRI).firstname)}} {{((vars.currentUser | fromIRI).lastname) or ((vars.request.currentUser | fromIRI).lastname)}}"
+                },
+                "triggerOnSource": true,
+                "triggerOnReplicate": false
             },
             "status": null,
             "top": "30",
