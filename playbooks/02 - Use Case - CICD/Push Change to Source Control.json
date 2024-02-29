@@ -33,7 +33,7 @@
                 "workflowReference": "\/api\/3\/workflows\/2bf34362-0466-4590-9ce5-845ce08860bc"
             },
             "status": null,
-            "top": "440",
+            "top": "435",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -67,10 +67,11 @@
                 "repo_name": "{{vars.cicd_config[\"contentRepoName\"]}}",
                 "new_branch": "CR-{{(vars.input.records[0].cRNo.split(\"target='_blank'>\")[-1]).split(\"<\/a>\")[0]}}",
                 "repo_owner": "{{vars.input.records[0].assigneeUsername}}",
+                "base_branch": "{{vars.input.records[0].baseBranch}}",
                 "cicd_config": "{{globalVars.cicd_config | toDict}}",
                 "export_file_name": "FortiSOAR Export-{{arrow.utcnow().int_timestamp}}",
                 "current_timestamp": "{{arrow.get((arrow.utcnow().int_timestamp  | int | abs)).format('YYYYMMDDHHmm')}}",
-                "source_control_type": "{{(globalVars.cicd_config | toDict)[\"source_control_web_url\"] }}",
+                "source_control_type": "{{(globalVars.cicd_env| toDict).source_control.baseURL}}",
                 "export_template_name": "{% if vars.cicd_config[\"contentRepoName\"] in vars.input.records[0].repo_url %}Source Control - Production Content{% elif vars.cicd_config[\"devSettingsRepoName\"] in vars.input.records[0].repo_url %}Source Control - Development Settings{% else %}Source Control - Production Settings{% endif %}"
             },
             "status": null,
@@ -130,7 +131,7 @@
                 ]
             },
             "status": null,
-            "top": "580",
+            "top": "570",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
