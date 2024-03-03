@@ -1,5 +1,4 @@
 {
-    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Pull Latest Content from Source Control",
@@ -22,8 +21,8 @@
             "description": null,
             "arguments": [],
             "status": null,
-            "top": "1200",
-            "left": "980",
+            "top": "1100",
+            "left": "1000",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "720c2c06-94e9-4666-9cba-3e4e4e67e88f"
@@ -34,11 +33,40 @@
             "description": null,
             "arguments": [],
             "status": null,
-            "top": "1100",
-            "left": "800",
+            "top": "1160",
+            "left": "660",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "c5889ca2-6cbb-439b-8e3d-0ffed3972b8f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Add Comment Playbook Is Active",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "people": [],
+                    "content": "<h5>Warning: Playbook is Active or Awaiting State<\/h5>\n<hr>\n<p>{{vars.input.records[0].title}} operation is in Active\/Awaiting state. Please wait while the previous operation is completed.<\/p>",
+                    "__replace": "",
+                    "isImportant": false,
+                    "peopleUpdated": false,
+                    "changeManagement": "{{vars.input.records[0]['@id']}}"
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "460",
+            "left": "1220",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "a23ccc91-bd8e-434a-a9ee-61eeddc4e2cb"
         },
         {
             "@type": "WorkflowStep",
@@ -103,10 +131,11 @@
                     {
                         "option": "In Progress",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/9eb760c5-7d33-478f-aee8-4b3d3c08b0ac",
-                        "step_name": "Playbook Is Active"
+                        "step_iri": "\/api\/3\/workflow_steps\/a23ccc91-bd8e-434a-a9ee-61eeddc4e2cb",
+                        "step_name": "Add Comment Playbook Is Active"
                     }
-                ]
+                ],
+                "step_variables": []
             },
             "status": null,
             "top": "260",
@@ -246,9 +275,9 @@
                 "conditions": [
                     {
                         "option": "Failed",
-                        "step_iri": "\/api\/3\/workflow_steps\/792aafe7-bfd5-46a6-b3dd-e6b8d820e672",
+                        "step_iri": "\/api\/3\/workflow_steps\/43dbcd99-cb8e-47a8-84b0-7373c64230b8",
                         "condition": "{{ vars.steps.Get_Source_Control_Details.status==\"failed\" or vars.steps.Get_Source_Control_Details.data['hydra:member'] | length == 0 }}",
-                        "step_name": "Source Control is not Config"
+                        "step_name": "Source Control is not Configured"
                     },
                     {
                         "option": "Success",
@@ -256,7 +285,8 @@
                         "step_iri": "\/api\/3\/workflow_steps\/94153c82-1139-4ca1-9f22-7933dc708cfc",
                         "step_name": "Is Prod or Dev Env"
                     }
-                ]
+                ],
+                "step_variables": []
             },
             "status": null,
             "top": "600",
@@ -318,100 +348,15 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "No Operation",
-            "description": null,
-            "arguments": {
-                "params": [],
-                "version": "3.2.3",
-                "connector": "cyops_utilities",
-                "operation": "no_op",
-                "operationTitle": "Utils: No Operation",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "480",
-            "left": "1180",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "96c293a4-1bde-4439-bd18-658277e56a00"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "No Source Control",
-            "description": null,
-            "arguments": [],
-            "status": null,
-            "top": "1380",
-            "left": "1200",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "d787166e-bf22-490e-b236-f339a8d300e3"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "No User Confirmation",
             "description": null,
             "arguments": [],
             "status": null,
             "top": "1380",
-            "left": "480",
+            "left": "460",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "697bee6f-0ae5-4909-b131-13ff078007f5"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Playbook Is Active",
-            "description": null,
-            "arguments": {
-                "type": "InputBased",
-                "input": {
-                    "schema": {
-                        "title": "Warning: Playbook is Active or Awaiting State",
-                        "description": "{{vars.input.records[0].title}} operation is in Active\/Awaiting state.\nPlease wait while the previous operation is completed.",
-                        "inputVariables": []
-                    }
-                },
-                "record": "{{vars.input.records[0]['@id']}}",
-                "agent_id": null,
-                "resources": "change_management",
-                "is_approval": false,
-                "owner_detail": {
-                    "isAssigned": false,
-                    "emailRecipients": ""
-                },
-                "isRecordLinked": true,
-                "step_variables": [],
-                "response_mapping": {
-                    "options": [
-                        {
-                            "option": "Ok",
-                            "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/96c293a4-1bde-4439-bd18-658277e56a00"
-                        }
-                    ],
-                    "duplicateOption": false,
-                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
-                },
-                "email_notification": {
-                    "enabled": false,
-                    "smtpParameters": []
-                },
-                "customEmailExternal": false,
-                "inline_channel_list": [],
-                "external_channel_list": [],
-                "unauthenticated_input": false,
-                "external_email_subject": null,
-                "internal_email_subject": "A FortiSOAR playbook is requesting your input",
-                "custom_email_body_external": null,
-                "external_email_attachments": null
-            },
-            "status": null,
-            "top": "360",
-            "left": "1180",
-            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
-            "group": null,
-            "uuid": "9eb760c5-7d33-478f-aee8-4b3d3c08b0ac"
         },
         {
             "@type": "WorkflowStep",
@@ -487,7 +432,7 @@
             },
             "status": null,
             "top": "960",
-            "left": "800",
+            "left": "820",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "cdebd176-5fcd-4475-9b77-67ad0e3ddf5f"
@@ -573,49 +518,32 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Source Control is not Config",
+            "name": "Source Control is not Configured",
             "description": null,
             "arguments": {
-                "type": "InputBased",
-                "input": {
-                    "schema": {
-                        "title": "Failed: Source Control Is Not Configured",
-                        "description": "Source Control for the task \"{{vars.input.records[0].title}}\" Is Not Configured",
-                        "inputVariables": []
-                    }
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "people": [],
+                    "content": "<h5>Failed: Source Control Is Not Configured<\/h5>\n<hr>\n<p>Source Control for the task \"{{vars.input.records[0].title}}\" Is Not Configured<\/p>",
+                    "__replace": "",
+                    "isImportant": false,
+                    "peopleUpdated": false,
+                    "changeManagement": "{{vars.input.records[0]['@id']}}"
                 },
-                "record": "{{ vars.input.records[0][\"@id\"] }}",
-                "agent_id": null,
-                "resources": "change_management",
-                "owner_detail": {
-                    "isAssigned": false
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
                 },
-                "isRecordLinked": true,
-                "step_variables": [],
-                "response_mapping": {
-                    "options": [
-                        {
-                            "option": "Ok",
-                            "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/d787166e-bf22-490e-b236-f339a8d300e3"
-                        }
-                    ],
-                    "duplicateOption": false
-                },
-                "email_notification": {
-                    "enabled": false,
-                    "smtpParameters": []
-                },
-                "inline_channel_list": [],
-                "external_channel_list": [],
-                "unauthenticated_input": false
+                "step_variables": []
             },
             "status": null,
-            "top": "700",
-            "left": "980",
-            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "top": "720",
+            "left": "1020",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
-            "uuid": "792aafe7-bfd5-46a6-b3dd-e6b8d820e672"
+            "uuid": "43dbcd99-cb8e-47a8-84b0-7373c64230b8"
         },
         {
             "@type": "WorkflowStep",
@@ -716,7 +644,7 @@
             },
             "status": null,
             "top": "1260",
-            "left": "480",
+            "left": "460",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
             "uuid": "3fb0fbb3-cb7f-4847-b498-bfcea32e59db"
@@ -760,6 +688,14 @@
             "name": "Update Status as In Progress",
             "description": null,
             "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>Initiating Pull Latest Content from Source Control Task<\/p>",
+                    "records": "{{vars.input.records[0]['@id']}}"
+                },
                 "resource": {
                     "status": "\/api\/3\/picklists\/7f0263bf-29ab-4453-aefe-41d20f0fe9c3"
                 },
@@ -767,7 +703,9 @@
                 "collection": "{{vars.input.records[0]['@id']}}",
                 "__recommend": [],
                 "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
                 "step_variables": []
             },
             "status": null,
@@ -789,12 +727,14 @@
                 "collection": "{{vars.input.records[0]['@id']}}",
                 "__recommend": [],
                 "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
                 "step_variables": []
             },
             "status": null,
             "top": "1380",
-            "left": "820",
+            "left": "1300",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "9ddd19a2-5a0f-4186-a7d5-81f0462795d5"
@@ -855,6 +795,16 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Add Comment Playbook Is Active -> Update Status to Pending",
+            "targetStep": "\/api\/3\/workflow_steps\/9ddd19a2-5a0f-4186-a7d5-81f0462795d5",
+            "sourceStep": "\/api\/3\/workflow_steps\/a23ccc91-bd8e-434a-a9ee-61eeddc4e2cb",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "b618665f-4492-4cca-826c-99b4c872d41a"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Apply Latest Changes -> Clone Repository",
             "targetStep": "\/api\/3\/workflow_steps\/d2a8a56c-dee8-44c3-8d20-e3a84533b1c8",
             "sourceStep": "\/api\/3\/workflow_steps\/e8ab9285-8666-4949-8d31-ab6aaff91ffb",
@@ -875,13 +825,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Check Status -> Playbook Is Active",
-            "targetStep": "\/api\/3\/workflow_steps\/9eb760c5-7d33-478f-aee8-4b3d3c08b0ac",
+            "name": "Check Status -> Add Comment Playbook Is Active",
+            "targetStep": "\/api\/3\/workflow_steps\/a23ccc91-bd8e-434a-a9ee-61eeddc4e2cb",
             "sourceStep": "\/api\/3\/workflow_steps\/845c3ed3-b29d-4af1-8d2f-f9c5e98bcfc0",
             "label": "In Progress",
             "isExecuted": false,
             "group": null,
-            "uuid": "3e968054-cf27-4076-b9a7-8bdf0e8fab2e"
+            "uuid": "49c009fe-0c6b-4e47-ac2c-99cf34b5e912"
         },
         {
             "@type": "WorkflowRoute",
@@ -965,13 +915,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Has Source Control Configure -> Source Control is not Config",
-            "targetStep": "\/api\/3\/workflow_steps\/792aafe7-bfd5-46a6-b3dd-e6b8d820e672",
+            "name": "Has Source Control Configure -> Source Control is not Configured",
+            "targetStep": "\/api\/3\/workflow_steps\/43dbcd99-cb8e-47a8-84b0-7373c64230b8",
             "sourceStep": "\/api\/3\/workflow_steps\/7196870f-c012-4ec4-a913-0f7ed5db3a50",
             "label": "Failed",
             "isExecuted": false,
             "group": null,
-            "uuid": "f77abbc6-2eb5-4a7d-8844-f4dfb7c21afe"
+            "uuid": "be9af9f2-648d-4aff-a708-3279d6d9626d"
         },
         {
             "@type": "WorkflowRoute",
@@ -1002,26 +952,6 @@
             "isExecuted": false,
             "group": null,
             "uuid": "e41f8e21-63d8-4e0d-8c31-73aa7bcf5a19"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "No Source Control -> Update Status to Pending",
-            "targetStep": "\/api\/3\/workflow_steps\/9ddd19a2-5a0f-4186-a7d5-81f0462795d5",
-            "sourceStep": "\/api\/3\/workflow_steps\/d787166e-bf22-490e-b236-f339a8d300e3",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "510d1ab3-0361-4df3-a511-6cd3dea8764f"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Playbook Is Active -> No Operation",
-            "targetStep": "\/api\/3\/workflow_steps\/96c293a4-1bde-4439-bd18-658277e56a00",
-            "sourceStep": "\/api\/3\/workflow_steps\/9eb760c5-7d33-478f-aee8-4b3d3c08b0ac",
-            "label": "Ok",
-            "isExecuted": false,
-            "group": null,
-            "uuid": "dd8e1bf3-837a-46fe-9f30-587d4d740da4"
         },
         {
             "@type": "WorkflowRoute",
@@ -1065,13 +995,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Source Control is not Config -> No Source Control",
-            "targetStep": "\/api\/3\/workflow_steps\/d787166e-bf22-490e-b236-f339a8d300e3",
-            "sourceStep": "\/api\/3\/workflow_steps\/792aafe7-bfd5-46a6-b3dd-e6b8d820e672",
-            "label": "Ok",
+            "name": "Source Control is not Configured -> Update Status to Pending",
+            "targetStep": "\/api\/3\/workflow_steps\/9ddd19a2-5a0f-4186-a7d5-81f0462795d5",
+            "sourceStep": "\/api\/3\/workflow_steps\/43dbcd99-cb8e-47a8-84b0-7373c64230b8",
+            "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "91a5e9ba-839f-4705-b967-0023b7833ffa"
+            "uuid": "d32034ef-1104-49a0-9174-bf67495ab6e2"
         },
         {
             "@type": "WorkflowRoute",

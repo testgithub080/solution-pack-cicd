@@ -1,5 +1,4 @@
 {
-    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Create a Request (Issue)",
@@ -57,7 +56,7 @@
             "description": null,
             "arguments": {
                 "arguments": {
-                    "connector_config_id": "{{vars.cicd_env[\"source_control\"][\"uuid\"]}}",
+                    "connector_config_id": "{{vars.steps.Check_Source_Control_Connector_Configuration['config_id']}}",
                     "create_branch_params": "{\"org_name\": \"{{vars.cicd_config.organizationName}}\",\"repo_name\": \"{{vars.cicd_config.contentRepoName}}\",\"new_branch\": \"CR-{{vars.steps.Create_Issue.data.number | string}}\",\"branch_name\": \"{{vars.cicd_config.baseBranch}}\",\"base_branch_or_sha\": \"Branch Name\"}"
                 },
                 "apply_async": false,
@@ -80,7 +79,7 @@
             "description": null,
             "arguments": {
                 "arguments": {
-                    "connector_config_id": "{{vars.cicd_env[\"source_control\"][\"uuid\"]}}",
+                    "connector_config_id": "{{vars.steps.Check_Source_Control_Connector_Configuration['config_id']}}",
                     "create_issue_params": "{\"org_name\": \"{{vars.cicd_config.organizationName}}\",\"repo_name\": \"{{vars.cicd_config.contentRepoName}}\",\"issue_title\": \"{{vars.steps.Get_Change_Request_Details.input.summary}}\/{{uuid()}}\",\"issue_content\": \"{{vars.steps.Get_Change_Request_Details.input.description}}\",\"issue_assignee\": \"{{[vars.assigneeUsername]}}\"}"
                 },
                 "apply_async": false,
