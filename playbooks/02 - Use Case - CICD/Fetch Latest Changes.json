@@ -1,5 +1,4 @@
 {
-    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Fetch Latest Changes",
@@ -21,6 +20,14 @@
             "name": "Check Source Control Connector Configuration",
             "description": null,
             "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>Initiating Fetch Latest Changes Task<\/p>",
+                    "records": "{{vars.input.records[0]['@id']}}"
+                },
                 "arguments": [],
                 "apply_async": false,
                 "step_variables": [],
@@ -44,7 +51,16 @@
                 "params": {
                     "value": "{% for issue in vars.steps.Fetch_Closed_Issues.data %}\nIssue#[{{issue.number}}]({{issue.html_url}})  {{issue.title}}\n**Description**: \n{{issue.body}}\n* * *\n{% endfor %}"
                 },
-                "version": "3.2.3",
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>{% for issue in vars.steps.Fetch_Closed_Issues.data %} Issue#[{{issue.number}}]({{issue.html_url}}) {{issue.title}} **Description**: {{issue.body}}<\/p>\n<hr>\n<p>{% endfor %}<\/p>",
+                    "records": "{{vars.input.records[0]['@id']}}",
+                    "parentstepid": "\/api\/3\/workflow_steps\/18e6cd9d-0268-46be-8db0-c32520770b0b"
+                },
+                "version": "3.2.6",
                 "connector": "cyops_utilities",
                 "operation": "format_richtext",
                 "operationTitle": "Utils: Format as RichText (Markdown)",
@@ -71,6 +87,35 @@
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "046279a8-a619-427d-bec4-b1cab544dcec"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Issue Comment",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "people": [],
+                    "content": "<p>Completed Fetch Latest Changes<\/p>",
+                    "__replace": "",
+                    "isImportant": false,
+                    "peopleUpdated": false,
+                    "changeManagement": "{{vars.input.records[0]['@id']}}"
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "bc74f014-ba04-46ed-8ff8-0bbe98248d1f"
         },
         {
             "@type": "WorkflowStep",
@@ -142,6 +187,15 @@
             "name": "Update Issue Details",
             "description": null,
             "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>{% if (vars.steps.Fetch_Closed_Issues.data | length)==0%}No new issues resolved since the last applied change{%else%}<\/p>\n<p>Following issues were resolved since the last applied change<\/p>\n<hr>\n<p>{{vars.steps.Compute_Issues.data['formatted_string']}} {%endif%}<\/p>",
+                    "records": "{{vars.input.records[0]['@id']}}",
+                    "parentstepid": "\/api\/3\/workflow_steps\/c5e79765-8eef-480f-8c07-51ac4b155406"
+                },
                 "resource": {
                     "issues": "<p>{% if (vars.steps.Fetch_Closed_Issues.data | length)==0%}No new issues resolved since the last applied change{%else%}<\/p>\n<p>Following issues were resolved since the last applied change<\/p>\n                                                                              \n\n* * *\n\n\n{{vars.steps.Compute_Issues.data['formatted_string']}}\n{%endif%}"
                 },
@@ -149,7 +203,9 @@
                 "collection": "{{vars.input.records[0]['@id']}}",
                 "__recommend": [],
                 "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
                 "step_variables": []
             },
             "status": null,
@@ -210,6 +266,16 @@
             "isExecuted": false,
             "group": null,
             "uuid": "3781d8dd-d989-44f2-b0f1-69f7ec3af573"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Issue Details -> Create Issue Comment",
+            "targetStep": "\/api\/3\/workflow_steps\/bc74f014-ba04-46ed-8ff8-0bbe98248d1f",
+            "sourceStep": "\/api\/3\/workflow_steps\/7ec0e165-5414-49d2-b96c-66abdc3b4397",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "51316476-c6aa-4bf3-b501-487fda0234e1"
         }
     ],
     "groups": [],

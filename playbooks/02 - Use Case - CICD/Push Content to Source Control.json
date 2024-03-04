@@ -1,5 +1,4 @@
 {
-    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Push Content to Source Control",
@@ -18,13 +17,43 @@
         "branch_name",
         "commit_message",
         "base_branch",
-        "connector_config_id"
+        "connector_config_id",
+        "related_task_iri"
     ],
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/ab29d297-bfa6-4c3e-9272-85c0abe16028",
     "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Add Changes to Remote Repo Comment",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tasks": "{{vars.input.params['related_task_iri']}}",
+                    "people": [],
+                    "content": "<p>Applied new changes to \"{{vars.steps.Clone_Repository.data.path}}\" remote repository<\/p>",
+                    "__replace": "",
+                    "isImportant": false,
+                    "peopleUpdated": false
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "b4ea0af6-9027-4514-959a-ebc95571c077"
+        },
         {
             "@type": "WorkflowStep",
             "name": "Apply Changes to Remote Repository",
@@ -52,6 +81,15 @@
             "name": "Clone Repository",
             "description": null,
             "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>{{vars.repo_name}} repository is cloned at the {{vars.steps.Clone_Repository.data.path}} location<\/p>",
+                    "records": "{{vars.input.params['related_task_iri']}}",
+                    "parentstepid": "\/api\/3\/workflow_steps\/ab29d297-bfa6-4c3e-9272-85c0abe16028"
+                },
                 "arguments": {
                     "clone_repo_params": "{\n\"org_name\": \"{{vars.org_name}}\",\n\"repo_name\": \"{{vars.repo_name}}\",\n\"repo_type\": \"Organization\",\n\"branch_name\": \"{{vars.base_branch}}\",\n\"clone_as_zip\": false\n}",
                     "connector_config_id": "{{vars.input.params['connector_config_id']}}"
@@ -148,8 +186,8 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Pushed \"{{vars.input.params['export_template_name']}}\" content to \"{{vars.input.params['repo_name']}}\" repository.<\/p>",
-                    "records": "",
+                    "content": "<p>Pushed Export Template \"{{vars.input.params['export_template_name']}}\" content to \"{{vars.input.params['repo_name']}}\" repository.<\/p>",
+                    "records": "{{vars.input.params['related_task_iri']}}",
                     "parentstepid": "\/api\/3\/workflow_steps\/36fa8cb9-06c3-45fa-90a5-daab9f2edd1e"
                 },
                 "arguments": {
@@ -163,7 +201,7 @@
                 "workflowReference": "{{vars.cicd_env[\"source_control_playbooks\"][\"PushChanges\"][\"@id\"]}}"
             },
             "status": null,
-            "top": "840",
+            "top": "975",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -199,13 +237,23 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Apply Changes to Remote Repository -> Push Export Config into Source Control",
+            "name": "Add Changes to Remote Repo Comment -> Push Export Config into Source Control",
             "targetStep": "\/api\/3\/workflow_steps\/2879dce2-7f88-4d54-93e2-ebbf68ff525f",
+            "sourceStep": "\/api\/3\/workflow_steps\/b4ea0af6-9027-4514-959a-ebc95571c077",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "fd789905-66ca-4e49-bb5c-8551bce9e5c6"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Apply Changes to Remote Repository -> Add Changes to Remote Repo Comment",
+            "targetStep": "\/api\/3\/workflow_steps\/b4ea0af6-9027-4514-959a-ebc95571c077",
             "sourceStep": "\/api\/3\/workflow_steps\/ecc258a2-8616-4f2e-be77-9e73aa418d88",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "9f993443-9758-4e9b-a8e1-7f4c19e15a5b"
+            "uuid": "e413fc24-2650-48da-b090-daa6b6e98aa7"
         },
         {
             "@type": "WorkflowRoute",

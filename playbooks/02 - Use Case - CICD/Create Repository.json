@@ -1,5 +1,4 @@
 {
-    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Create Repository",
@@ -68,7 +67,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>{% if vars.steps.Create_Repository['Error message'] is defined %}{{vars.input.params['repo_name']}} creation failed.{% else %}Created Repository <a href=\"{{vars.source_control_web_url}}\/{{vars.input.params['organization_name']}}\/{{vars.input.params['repo_name']}}\" target=\"_blank\" rel=\"noopener\">{{vars.input.params['repo_name']}}<\/a> with the base branch {{vars.input.params['base_branch']}}{% endif %}<\/p>",
+                    "content": "<p>{% if vars.steps.Create_Repository['Error message'] is defined %}{{vars.input.params['repo_name']}} creation failed.{% else %}Created Repository <a href=\"{{vars.cicd_env.source_control.baseURL}}\/{{vars.input.params['organization_name']}}\/{{vars.input.params['repo_name']}}\" target=\"_blank\" rel=\"noopener\">{{vars.input.params['repo_name']}}<\/a> with the base branch {{vars.input.params['base_branch']}}{% endif %}<\/p>",
                     "records": ""
                 },
                 "arguments": {

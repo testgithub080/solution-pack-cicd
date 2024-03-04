@@ -1,5 +1,4 @@
 {
-    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Setup Production Environment",
@@ -83,7 +82,7 @@
                 "workflowReference": "\/api\/3\/workflows\/dd654cd4-923f-4c20-837c-279669c2fa82"
             },
             "status": null,
-            "top": "440",
+            "top": "435",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -95,7 +94,7 @@
             "description": null,
             "arguments": {
                 "arguments": {
-                    "release_number": "1.0",
+                    "release_number": "1.0.0",
                     "connector_config_id": "{{vars.steps.Check_Source_Control_Connector_Configuration['config_id']}}",
                     "release_description": "Initial Commit"
                 },
@@ -229,8 +228,8 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "975",
-            "left": "825",
+            "top": "1060",
+            "left": "480",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "802ae6bb-1ca5-4350-be29-0b748f404e6c"
@@ -296,7 +295,7 @@
             },
             "status": null,
             "top": "840",
-            "left": "475",
+            "left": "500",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "f27247ac-4c24-4e7e-a3d3-8543d0d0ca55"
@@ -340,8 +339,8 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Completed Source Control Setup<\/p>",
-                    "records": "",
+                    "content": "<p>Source Control Setup Completed<\/p>",
+                    "records": "{{vars.input.records[0]['@id']}}",
                     "parentstepid": "\/api\/3\/workflow_steps\/beef8dfb-3f25-40f3-90fb-48a0fcfc0b2d"
                 },
                 "resource": {
@@ -351,12 +350,14 @@
                 "collection": "{{vars.input.records[0]['@id']}}",
                 "__recommend": [],
                 "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
                 "step_variables": []
             },
             "status": null,
-            "top": "1110",
-            "left": "835",
+            "top": "1180",
+            "left": "480",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "b235c883-47c7-4e0c-8679-d70ccee83b67"
@@ -385,7 +386,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "160",
+            "top": "165",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -407,8 +408,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "975",
-            "left": "475",
+            "top": "960",
+            "left": "500",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "9226fc8e-7de0-40b6-9f6f-fe8860f58a8e"
@@ -423,8 +424,8 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Completed Source Control Setup<\/p>",
-                    "records": "",
+                    "content": "<p>Source Control Setup Completed<\/p>",
+                    "records": "{{vars.input.records[0]['@id']}}",
                     "parentstepid": "\/api\/3\/workflow_steps\/beef8dfb-3f25-40f3-90fb-48a0fcfc0b2d"
                 },
                 "resource": {
@@ -434,7 +435,9 @@
                 "collection": "{{vars.input.records[0]['@id']}}",
                 "__recommend": [],
                 "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
                 "step_variables": []
             },
             "status": null,
