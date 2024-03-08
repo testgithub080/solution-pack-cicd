@@ -1,4 +1,5 @@
 {
+    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Pull Latest Content from Source Control",
@@ -222,6 +223,35 @@
         },
         {
             "@type": "WorkflowStep",
+            "name": "Find Apply Latest Changes Record",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "title",
+                            "value": "Apply Latest Content",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ]
+                },
+                "module": "change_management?$limit=30",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1340",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "b0caaefc-675c-41d8-b924-7c18f923dc3c"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Get Source Control Details",
             "description": null,
             "arguments": {
@@ -292,7 +322,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1460",
+            "top": "1580",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
@@ -630,7 +660,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Update Status",
+            "name": "Update Deployed Date",
             "description": null,
             "arguments": {
                 "message": {
@@ -639,13 +669,43 @@
                     "tenant": "",
                     "thread": false,
                     "content": "<p>Applying the latest content from the {{vars.repo_name}} repository<\/p>",
-                    "records": "{{vars.input.records[0]['@id']}}",
+                    "records": "{{vars.steps.Find_Apply_Latest_Changes_Record | json_query(\"[*][\\\"@id\\\"][]\")}}",
                     "parentstepid": "\/api\/3\/workflow_steps\/a5c3262e-440b-4950-82bc-ad5f39e9bb93"
                 },
+                "for_each": {
+                    "item": "{{vars.steps.Find_Apply_Latest_Changes_Record}}",
+                    "__bulk": true,
+                    "parallel": false,
+                    "condition": "",
+                    "batch_size": 100
+                },
                 "resource": {
-                    "issues": "No new issues since the last applied change.",
-                    "status": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293",
                     "lastBuildDeployedOn": "{%if vars.repo_name == vars.cicd_config.content.split('\/')[-1] %}{{arrow.utcnow().int_timestamp}}{%else%}{{vars.input.records[0].lastBuildDeployedOn}}{%endif%}"
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.item['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/change_management",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1820",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "e343e5e7-c917-4e1a-bd82-53a3d2859c50"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Status",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "status": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293"
                 },
                 "_showJson": false,
                 "operation": "Append",
@@ -658,11 +718,11 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1340",
+            "top": "1460",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
-            "uuid": "e343e5e7-c917-4e1a-bd82-53a3d2859c50"
+            "uuid": "edbc6631-e44d-4bb6-a07d-d057aa5d0834"
         },
         {
             "@type": "WorkflowStep",
@@ -746,7 +806,7 @@
                 }
             },
             "status": null,
-            "top": "1580",
+            "top": "1700",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dbf",
             "group": null,
@@ -816,13 +876,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Clone Repository -> Update Status",
-            "targetStep": "\/api\/3\/workflow_steps\/e343e5e7-c917-4e1a-bd82-53a3d2859c50",
+            "name": "Clone Repository -> Find Apply Latest Changes Record",
+            "targetStep": "\/api\/3\/workflow_steps\/b0caaefc-675c-41d8-b924-7c18f923dc3c",
             "sourceStep": "\/api\/3\/workflow_steps\/d2a8a56c-dee8-44c3-8d20-e3a84533b1c8",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "fea40a2d-8244-4f59-ba01-2ce90252a7b1"
+            "uuid": "fd5d24ee-49b2-4e5d-b645-7d688942b171"
         },
         {
             "@type": "WorkflowRoute",
@@ -846,6 +906,16 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Copy of Update Status -> Import FortiSOAR Template",
+            "targetStep": "\/api\/3\/workflow_steps\/4b66de3f-03f2-4cfa-bfbc-00453548e2a4",
+            "sourceStep": "\/api\/3\/workflow_steps\/edbc6631-e44d-4bb6-a07d-d057aa5d0834",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "98283a77-5f1a-4180-82e2-71d6e4c83524"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Dummy Step1 -> Update Status to Pending",
             "targetStep": "\/api\/3\/workflow_steps\/9ddd19a2-5a0f-4186-a7d5-81f0462795d5",
             "sourceStep": "\/api\/3\/workflow_steps\/697bee6f-0ae5-4909-b131-13ff078007f5",
@@ -853,6 +923,16 @@
             "isExecuted": false,
             "group": null,
             "uuid": "69c74687-6f8f-4b15-b322-cac831f680c5"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Find Apply Latest Changes Record -> Copy of Update Status",
+            "targetStep": "\/api\/3\/workflow_steps\/edbc6631-e44d-4bb6-a07d-d057aa5d0834",
+            "sourceStep": "\/api\/3\/workflow_steps\/b0caaefc-675c-41d8-b924-7c18f923dc3c",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "32d8462c-e069-42b7-b3d3-92029d74d1fa"
         },
         {
             "@type": "WorkflowRoute",
@@ -1006,13 +1086,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Update Status -> Import FortiSOAR Template",
-            "targetStep": "\/api\/3\/workflow_steps\/4b66de3f-03f2-4cfa-bfbc-00453548e2a4",
-            "sourceStep": "\/api\/3\/workflow_steps\/e343e5e7-c917-4e1a-bd82-53a3d2859c50",
+            "name": "Wait for Publish -> Update Status",
+            "targetStep": "\/api\/3\/workflow_steps\/e343e5e7-c917-4e1a-bd82-53a3d2859c50",
+            "sourceStep": "\/api\/3\/workflow_steps\/2f0328bd-2b74-427e-b2e8-099ab6f4edbf",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "70444b8d-c83f-4a39-827f-ec5544e7f4ce"
+            "uuid": "f5b1815b-e5ba-42fe-85bd-8b0763ea69cb"
         }
     ],
     "groups": [],
