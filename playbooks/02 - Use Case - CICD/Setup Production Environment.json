@@ -36,8 +36,8 @@
                 ]
             },
             "status": null,
-            "top": "840",
-            "left": "125",
+            "top": "1240",
+            "left": "140",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
             "uuid": "937d86a2-067a-4fe4-b9b8-af3b06c52d5c"
@@ -63,7 +63,7 @@
                 ]
             },
             "status": null,
-            "top": "705",
+            "top": "1120",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
@@ -105,8 +105,8 @@
                 "workflowReference": "\/api\/3\/workflows\/b8b2aa0f-d011-4317-9d09-4eb71bca0fad"
             },
             "status": null,
-            "top": "1245",
-            "left": "125",
+            "top": "1660",
+            "left": "140",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "7f17ed28-be33-462e-a21b-6ff7e680dcaa"
@@ -138,11 +138,46 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1515",
-            "left": "125",
+            "top": "1920",
+            "left": "140",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
             "uuid": "47a0647e-b677-4c0f-8704-5532d82339d1"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get CICD Environment",
+            "description": null,
+            "arguments": {
+                "cicd_env": "{% set cicdEnv = (globalVars.cicd_env | toDict) %}{% set _ = cicdEnv.source_control.update({\"baseURL\": vars.steps.Get_Source_Control_Server_URL.data['server_url'] | trim(\"\/\")}) %}{{cicdEnv}}"
+            },
+            "status": null,
+            "top": "700",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "fe92f242-fe62-41d1-a335-ec629aab9a7e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Source Control Server URL",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "connector_config_id": "{{vars.steps.Check_Source_Control_Connector_Configuration['config_id']}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "{{(globalVars.cicd_env | toDict)[\"source_control_playbooks\"][\"GetServerURL\"][\"@id\"]}}"
+            },
+            "status": null,
+            "top": "560",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "0e7a9129-086a-4266-967f-29e4a54f1851"
         },
         {
             "@type": "WorkflowStep",
@@ -159,7 +194,7 @@
                 "workflowReference": "\/api\/3\/workflows\/db8dc26a-7a55-430f-b49e-9f5f177377dc"
             },
             "status": null,
-            "top": "570",
+            "top": "980",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -228,7 +263,7 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "1060",
+            "top": "1460",
             "left": "480",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
@@ -248,8 +283,8 @@
                 "workflowReference": "\/api\/3\/workflows\/50d8f3e9-11e6-4331-892a-dbddaefbbd3b"
             },
             "status": null,
-            "top": "1110",
-            "left": "125",
+            "top": "1520",
+            "left": "140",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "d6c587f3-0deb-4a19-962b-e02198bbc5f4"
@@ -294,7 +329,7 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "840",
+            "top": "1240",
             "left": "500",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
@@ -323,8 +358,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1650",
-            "left": "125",
+            "top": "2060",
+            "left": "140",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "6c3739a0-2ca6-4fe3-aabe-46767249fd2c"
@@ -356,7 +391,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1180",
+            "top": "1580",
             "left": "480",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -408,7 +443,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "960",
+            "top": "1360",
             "left": "500",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -441,8 +476,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1380",
-            "left": "125",
+            "top": "1780",
+            "left": "140",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "0851ef82-833b-41ce-8746-484ff725db7a"
@@ -519,6 +554,28 @@
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
             "group": null,
             "uuid": "4b469313-7f5e-4829-be90-820574f2b016"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update CICD Env Global Variable",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "macro": "cicd_env",
+                    "value": "{{vars.cicd_env | toJSON}}"
+                },
+                "version": "3.2.6",
+                "connector": "cyops_utilities",
+                "operation": "updatemacro",
+                "operationTitle": "FSR: Create\/Update Global Variables",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "840",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "2e4917e0-6373-4cab-a88f-97df48135bd0"
         }
     ],
     "routes": [
@@ -554,13 +611,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Check Source Control Connector Configuration -> Initial Repository Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/1820deef-7102-4d06-94fe-a183c4a33c67",
+            "name": "Check Source Control Connector Configuration -> Get Source Control Server URL",
+            "targetStep": "\/api\/3\/workflow_steps\/0e7a9129-086a-4266-967f-29e4a54f1851",
             "sourceStep": "\/api\/3\/workflow_steps\/b60fae65-d8fb-4bc7-9798-92a9be3dcfb1",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "507353c9-a1ac-4aa7-85f2-c66ced21453d"
+            "uuid": "e70229e5-b2a0-4506-ad7c-449499ddda5e"
         },
         {
             "@type": "WorkflowRoute",
@@ -581,6 +638,26 @@
             "isExecuted": false,
             "group": null,
             "uuid": "c97fea67-299c-4c6a-a0b9-3adddfeb9c47"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get CICD Environment -> Update CICD Env Global Variable",
+            "targetStep": "\/api\/3\/workflow_steps\/2e4917e0-6373-4cab-a88f-97df48135bd0",
+            "sourceStep": "\/api\/3\/workflow_steps\/fe92f242-fe62-41d1-a335-ec629aab9a7e",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "b6b99151-34ff-4761-b4e7-06caa509d379"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Source Control Server URL -> Get CICD Environment",
+            "targetStep": "\/api\/3\/workflow_steps\/fe92f242-fe62-41d1-a335-ec629aab9a7e",
+            "sourceStep": "\/api\/3\/workflow_steps\/0e7a9129-086a-4266-967f-29e4a54f1851",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "24f45d1a-41e4-41a5-87d6-6dfbae122109"
         },
         {
             "@type": "WorkflowRoute",
@@ -671,6 +748,16 @@
             "isExecuted": false,
             "group": null,
             "uuid": "320979d4-c3d0-4dc7-8080-5313157a2ddf"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update CICD Env Global Variable -> Initial Repository Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/1820deef-7102-4d06-94fe-a183c4a33c67",
+            "sourceStep": "\/api\/3\/workflow_steps\/2e4917e0-6373-4cab-a88f-97df48135bd0",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "8bd1230a-6caa-4d2d-a611-b3f4d03df031"
         },
         {
             "@type": "WorkflowRoute",
