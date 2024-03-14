@@ -1,21 +1,34 @@
 {
-    "CHANGE_MANAGEMENT": {
+    "PEOPLE": {
         "MODULE_DETAILS": {
-            "SINGULAR_NAME": "Change Management",
-            "PLURAL_NAME": "Change Management"
+            "SINGULAR_NAME": "Person",
+            "PLURAL_NAME": "People"
         },
         "FIELDS": {
-            "ISSUES": "Issues",
-            "LASTBUILDDEPLOYEDON": "Last Build Deployed On",
-            "COMMENTS": "Comments",
+            "FIRSTNAME": "First Name",
+            "SOURCECONTROLUSERNAME": "Source Control Username",
+            "LASTNAME": "Last Name",
             "TITLE": "Title",
+            "DEPARTMENT": "Dept",
+            "EMAIL": "Email",
             "DESCRIPTION": "Description",
-            "RESULTS": "Results",
-            "STATUS": "Status",
+            "PHONEFAX": "Fax",
+            "PHONEHOME": "Home",
+            "PHONEMOBILE": "Mobile",
+            "PHONEWORK": "Work Phone",
+            "COMPANYID": "Company",
             "TYPE": "Type",
-            "ENVIRONMENT": "Environment",
-            "SEQUENCE": "Sequence",
-            "RECORDICON": "Record Icon"
+            "TASKS": "Tasks",
+            "ATTACHMENTS": "Attachments",
+            "COMMENTS": "Comments",
+            "ALERTS": "Alerts",
+            "UUID": "UUID",
+            "INCIDENTS": "Incidents",
+            "FSRQUEUES": "Queues",
+            "INDICATORS": "Indicators",
+            "SHIFTS": "Shifts",
+            "CSACTIVE": "Active",
+            "ACCESSTYPE": "Access Type"
         }
     }
 }

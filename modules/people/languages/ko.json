@@ -1,21 +1,34 @@
 {
-    "CHANGE_MANAGEMENT": {
+    "PEOPLE": {
         "MODULE_DETAILS": {
-            "SINGULAR_NAME": "변경 관리",
-            "PLURAL_NAME": "변경 관리"
+            "SINGULAR_NAME": "개인",
+            "PLURAL_NAME": "사람들"
         },
         "FIELDS": {
-            "ISSUES": "이슈",
-            "LASTBUILDDEPLOYEDON": "최종 빌드 배포 일자",
-            "COMMENTS": "코멘트",
-            "TITLE": "제목",
+            "FIRSTNAME": "이름",
+            "SOURCECONTROLUSERNAME": "소스 제어 사용자 이름",
+            "LASTNAME": "성",
+            "TITLE": "직위",
+            "DEPARTMENT": "부서",
+            "EMAIL": "이메일",
             "DESCRIPTION": "설명",
-            "RESULTS": "결과",
-            "STATUS": "상태",
+            "PHONEFAX": "팩스",
+            "PHONEHOME": "집",
+            "PHONEMOBILE": "휴대전화",
+            "PHONEWORK": "직장 전화",
+            "COMPANYID": "회사",
             "TYPE": "유형",
-            "ENVIRONMENT": "환경",
-            "SEQUENCE": "순서",
-            "RECORDICON": "기록 아이콘"
+            "TASKS": "작업",
+            "ATTACHMENTS": "첨부 파일",
+            "COMMENTS": "코멘트",
+            "ALERTS": "알림",
+            "UUID": "UUID",
+            "INCIDENTS": "사건",
+            "FSRQUEUES": "큐",
+            "INDICATORS": "지표",
+            "SHIFTS": "근무 시간",
+            "CSACTIVE": "활성",
+            "ACCESSTYPE": "액세스 유형"
         }
-    }
+    }    
 }
