@@ -1,34 +1,21 @@
 {
-    "PEOPLE": {
+    "CHANGE_MANAGEMENT": {
         "MODULE_DETAILS": {
-            "SINGULAR_NAME": "Personne",
-            "PLURAL_NAME": "Personnes"
+            "SINGULAR_NAME": "Gestion du changement",
+            "PLURAL_NAME": "Gestion du changement"
         },
         "FIELDS": {
-            "FIRSTNAME": "Prénom",
-            "SOURCECONTROLUSERNAME": "Nom d'utilisateur du contrôle source",
-            "LASTNAME": "Nom de famille",
-            "TITLE": "Titre",
-            "DEPARTMENT": "Département",
-            "EMAIL": "Email",
-            "DESCRIPTION": "Description",
-            "PHONEFAX": "Fax",
-            "PHONEHOME": "Domicile",
-            "PHONEMOBILE": "Mobile",
-            "PHONEWORK": "Téléphone professionnel",
-            "COMPANYID": "Société",
-            "TYPE": "Type",
-            "TASKS": "Tâches",
-            "ATTACHMENTS": "Pièces jointes",
+            "ISSUES": "Problèmes",
+            "LASTBUILDDEPLOYEDON": "Dernière version déployée le",
             "COMMENTS": "Commentaires",
-            "ALERTS": "Alertes",
-            "UUID": "UUID",
-            "INCIDENTS": "Incidents",
-            "FSRQUEUES": "Files d'attente",
-            "INDICATORS": "Indicateurs",
-            "SHIFTS": "Équipes",
-            "CSACTIVE": "Actif",
-            "ACCESSTYPE": "Type d'accès"
+            "TITLE": "Titre",
+            "DESCRIPTION": "Description",
+            "RESULTS": "Résultats",
+            "STATUS": "Statut",
+            "TYPE": "Type",
+            "ENVIRONMENT": "Environnement",
+            "SEQUENCE": "Séquence",
+            "RECORDICON": "Icône d'enregistrement"
         }
-    }    
+    }
 }
