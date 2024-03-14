@@ -253,8 +253,8 @@
                 "operation": "make_cyops_request",
                 "operationTitle": "FSR: Make FortiSOAR API Call",
                 "step_variables": {
-                    "user_list": "{% set user_list = [] %}{% for user in vars.steps.Get_Users.data['hydra:member'] %}{% if user['sourceControlUsername'] != None %}{% set _=user_list.append(user.firstname + \" \"+ user.lastname) %}{% endif %}{% endfor %}{{user_list}}",
-                    "USER_MAPPING": "{% set user_mapping = {} %}{% for user in vars.steps.Get_Users.data['hydra:member'] %}{% if user['sourceControlUsername'] != None %}{% set _=user_mapping.update({user.firstname + \" \"+ user.lastname : user.sourceControlUsername }) %}{% endif %}{% endfor %}{{user_mapping}}"
+                    "user_list": "{% set user_list = [] %}{% for user in vars.steps.Get_Users.data['hydra:member'] %}{% if user['sourceControlUsername'] != None %}{% set _=user_list.append(user.firstname + \" \"+ (user.lastname or \"\")) %}{% endif %}{% endfor %}{{user_list}}",
+                    "USER_MAPPING": "{% set user_mapping = {} %}{% for user in vars.steps.Get_Users.data['hydra:member'] %}{% if user['sourceControlUsername'] != None %}{% set _=user_mapping.update({user.firstname + \" \"+ (user.lastname or \"\") : user.sourceControlUsername }) %}{% endif %}{% endfor %}{{user_mapping}}"
                 }
             },
             "status": null,

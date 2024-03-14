@@ -18,7 +18,8 @@
         "commit_message",
         "base_branch",
         "connector_config_id",
-        "related_task_iri"
+        "related_task_iri",
+        "commit_description"
     ],
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/4c58fed3-9e16-451a-9528-0be2b71acda4",
@@ -95,7 +96,9 @@
                     "connector_config_id": "{{vars.input.params['connector_config_id']}}"
                 },
                 "apply_async": false,
-                "step_variables": [],
+                "step_variables": {
+                    "ignore_keys": "[\n  {\n    \"file_path\": \"\/info.json\",\n    \"operations\": [\n      {\n        \"key_path\": \"contents.globalVariables\",\n        \"key_type\": \"list\",\n        \"key_to_compare\": \"name\",\n        \"values_to_remove\": [\n          \"Default_Email\",\n          \"Server_fqhn\"\n        ]\n      },\n      {\n        \"key_path\": \"\",\n        \"key_type\": \"dict\",\n        \"keys_to_remove\": [\n          \"exported_from\",\n          \"date\"\n        ]\n      }\n    ]\n  },\n  {\n    \"file_path\": \"\/playbooks\/globalVariables.json\",\n    \"operations\": [\n      {\n        \"key_path\": \"\",\n        \"key_type\": \"list\",\n        \"key_to_compare\": \"name\",\n        \"values_to_remove\": [\n          \"Default_Email\",\n          \"Server_fqhn\"\n        ]\n      }\n    ]\n  },\n  {\n    \"file_path\": \"\/records\/export_templates\/Source Control - Production Content.json\",\n    \"operations\": [\n      {\n        \"key_path\": \"\",\n        \"key_type\": \"dict\",\n        \"keys_to_remove\": [\n          \"modifyDate\",\n          \"modifyUser\",\n          \"id\",\n          \"lastExportDate\"\n        ]\n      }\n    ]\n  },\n  {\n    \"file_path\": \"\/records\/export_templates\/Source Control - Development Settings.json\",\n    \"operations\": [\n      {\n        \"key_path\": \"\",\n        \"key_type\": \"dict\",\n        \"keys_to_remove\": [\n          \"modifyDate\",\n          \"modifyUser\",\n          \"id\",\n          \"lastExportDate\"\n        ]\n      }\n    ]\n  },\n  {\n    \"file_path\": \"\/records\/export_templates\/Source Control - Production Settings.json\",\n    \"operations\": [\n      {\n        \"key_path\": \"\",\n        \"key_type\": \"dict\",\n        \"keys_to_remove\": [\n          \"modifyDate\",\n          \"modifyUser\",\n          \"id\",\n          \"lastExportDate\"\n        ]\n      }\n    ]\n  }\n]"
+                },
                 "pass_parent_env": false,
                 "pass_input_record": true,
                 "workflowReference": "{{vars.cicd_env[\"source_control_playbooks\"][\"CloneRepository\"][\"@id\"]}}"
@@ -120,6 +123,7 @@
                 "branch_name": "{{vars.input.params['branch_name']}}",
                 "commit_message": "{{vars.input.params['commit_message']}}",
                 "export_file_name": "{{vars.input.params['export_file_name']}}",
+                "commit_description": "{{vars.input.params['commit_description']}}",
                 "export_template_name": "{{vars.input.params['export_template_name']}}"
             },
             "status": null,
@@ -159,6 +163,7 @@
             "arguments": {
                 "name": "CICD Utils",
                 "params": {
+                    "ignore_keys": "{% if vars.export_template_name == \"Source Control - Production Content\"%}{{vars.ignore_keys}}{% endif %}",
                     "export_file_name": "{{vars.export_file_name}}",
                     "export_template_name": "{{vars.export_template_name}}"
                 },
@@ -192,7 +197,7 @@
                 },
                 "arguments": {
                     "connector_config_id": "{{vars.input.params['connector_config_id']}}",
-                    "push_changes_params": "{\n\"org_name\": \"{{vars.org_name}}\",\n\"repo_name\": \"{{vars.repo_name}}\",\n\"repo_type\": \"Organization\",\n\"branch_name\": \"{{vars.branch_name}}\",\n\"cloned_repo_path\":\"{{vars.steps.Clone_Repository.data.path}}\",\n\"commit_message\": \"{{vars.commit_message}}\"\n}"
+                    "push_changes_params": "{\n\"org_name\": \"{{vars.org_name}}\",\n\"repo_name\": \"{{vars.repo_name}}\",\n\"repo_type\": \"Organization\",\n\"branch_name\": \"{{vars.branch_name}}\",\n\"cloned_repo_path\":\"{{vars.steps.Clone_Repository.data.path}}\",\n\"commit_message\": \"{{vars.commit_message}}\", \"commit_description\": \"{{vars.commit_description}}\" }"
                 },
                 "apply_async": false,
                 "step_variables": [],
