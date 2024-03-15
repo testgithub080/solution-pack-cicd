@@ -337,12 +337,13 @@
                         "step_name": "Repository Details"
                     },
                     {
-                        "option": "Yes",
+                        "option": "No",
                         "default": true,
                         "step_iri": "\/api\/3\/workflow_steps\/908ec37d-cb1f-4c45-955a-11324893b0d3",
-                        "step_name": "Get Repositories Detail"
+                        "step_name": "Get Repositories Details"
                     }
-                ]
+                ],
+                "step_variables": []
             },
             "status": null,
             "top": "1245",
@@ -787,7 +788,7 @@
             "name": "Has CICD Config Global Variable Exist -> Get Repositories Detail",
             "targetStep": "\/api\/3\/workflow_steps\/908ec37d-cb1f-4c45-955a-11324893b0d3",
             "sourceStep": "\/api\/3\/workflow_steps\/41b959ae-15eb-4786-9849-2da4f0ea5a5a",
-            "label": "Yes",
+            "label": "No",
             "isExecuted": false,
             "group": null,
             "uuid": "1aaac5f2-5d6e-4f54-9af9-826b0edd32b8"

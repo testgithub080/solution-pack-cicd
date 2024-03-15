@@ -22,12 +22,12 @@
             "arguments": {
                 "resource": {
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tasks": "{{vars.steps.Find_Related_Task[0]['@id']}}",
                     "people": [],
                     "content": "<h5>Warning: Playbook is Active or Awaiting State<\/h5>\n<hr>\n<p>\"Push Change to Source Control\" operation is in Active\/Awaiting state. Please wait while the previous operation is completed.<\/p>",
                     "__replace": "",
                     "isImportant": false,
-                    "peopleUpdated": false,
-                    "changeManagement": "{{vars.steps.Find_Related_Task[0]['@id']}}"
+                    "peopleUpdated": false
                 },
                 "operation": "Overwrite",
                 "collection": "\/api\/3\/comments",
@@ -38,7 +38,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "700",
+            "top": "900",
             "left": "100",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
@@ -67,8 +67,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1120",
-            "left": "480",
+            "top": "1110",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
             "uuid": "eec3b0cf-92b8-4e65-9a14-9ba7dbbdaa2f"
@@ -244,6 +244,7 @@
                     "commit_message": "{{vars.steps.Specify_Commit_Message.input.commitMessage}}",
                     "export_file_name": "{{vars.export_file_name}}",
                     "related_task_iri": "{{vars.steps.Find_Related_Task[0]['@id']}}",
+                    "commit_description": "{{vars.steps.Specify_Commit_Message.input.commitDescription}}",
                     "connector_config_id": "{{vars.steps.Check_Source_Control_Connector_Configuration['config_id']}}",
                     "export_template_name": "{{vars.export_template_name}}"
                 },
@@ -254,8 +255,8 @@
                 "workflowReference": "\/api\/3\/workflows\/8413a393-367b-4501-9196-ffbb027f0a3b"
             },
             "status": null,
-            "top": "975",
-            "left": "475",
+            "top": "980",
+            "left": "480",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "cf2f32bf-453f-42d0-b6f8-9434ee1a2493"
@@ -268,20 +269,56 @@
                 "type": "InputBased",
                 "input": {
                     "schema": {
-                        "title": "Specify Commit Message",
-                        "description": "Please specify the commit message for the [Change Request - {{vars.issue_no}}]({{vars.source_control_type}}\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}}) which you want to push into the **\"{{vars.repo_name}}\"** Source Control Repository under the branch **\"{{vars.new_branch}}\"**",
+                        "title": "Specify Commit Details",
+                        "description": "Please specify the commit details for the [Change Request - {{vars.issue_no}}]({{vars.source_control_type}}\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}}) which you want to push into the **\"{{vars.repo_name}}\"** Source Control Repository under the branch **\"{{vars.new_branch}}\"**",
                         "inputVariables": [
                             {
                                 "name": "commitMessage",
                                 "type": "string",
-                                "label": "Commit Message",
+                                "label": "Summary",
+                                "title": "Text Field",
+                                "usable": true,
                                 "tooltip": "",
                                 "dataType": "text",
                                 "formType": "text",
                                 "required": true,
                                 "_expanded": true,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "searchable": true,
+                                "templateUrl": "app\/components\/form\/fields\/input.html",
+                                "_nameTouched": true,
                                 "defaultValue": null,
-                                "_previousName": "commitMessa",
+                                "_previousName": "commit_message",
+                                "playbookField": true,
+                                "lengthConstraint": true,
+                                "allowedEncryption": true,
+                                "allowedGridColumn": true,
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "commitDescription",
+                                "type": "string",
+                                "label": "Description",
+                                "title": "Text Area",
+                                "usable": false,
+                                "tooltip": "",
+                                "dataType": "text",
+                                "formType": "textarea",
+                                "required": false,
+                                "_expanded": true,
+                                "mmdUpdate": false,
+                                "collection": false,
+                                "searchable": false,
+                                "templateUrl": "app\/components\/form\/fields\/json.html",
+                                "_nameTouched": true,
+                                "defaultValue": null,
+                                "_previousName": "commit_description",
+                                "playbookField": true,
+                                "lengthConstraint": false,
+                                "allowedEncryption": true,
+                                "allowedGridColumn": false,
                                 "jinjaExpressionView": true,
                                 "useRecordFieldDefault": false
                             }

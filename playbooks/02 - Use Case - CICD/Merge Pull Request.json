@@ -277,7 +277,8 @@
                         "condition": "{{ vars.steps.Get_Pull_Requests_Reviews.data | length > 0 and vars.steps.Get_Pull_Requests_Reviews.data[-1].state == \"APPROVED\" }}",
                         "step_name": "Placeholder"
                     }
-                ]
+                ],
+                "step_variables": []
             },
             "status": null,
             "top": "1260",
