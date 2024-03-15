@@ -22,12 +22,12 @@
             "arguments": {
                 "resource": {
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tasks": "{{vars.steps.Find_Related_Task[0]['@id']}}",
                     "people": [],
                     "content": "<h5>Warning: Playbook is Active or Awaiting State<\/h5>\n<hr>\n<p>\"Push Change to Source Control\" operation is in Active\/Awaiting state. Please wait while the previous operation is completed.<\/p>",
                     "__replace": "",
                     "isImportant": false,
-                    "peopleUpdated": false,
-                    "changeManagement": "{{vars.steps.Find_Related_Task[0]['@id']}}"
+                    "peopleUpdated": false
                 },
                 "operation": "Overwrite",
                 "collection": "\/api\/3\/comments",
