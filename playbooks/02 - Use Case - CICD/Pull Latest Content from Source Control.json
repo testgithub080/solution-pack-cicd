@@ -440,7 +440,7 @@
             },
             "status": null,
             "top": "960",
-            "left": "820",
+            "left": "840",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "cdebd176-5fcd-4475-9b77-67ad0e3ddf5f"
@@ -773,7 +773,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1380",
+            "top": "1360",
             "left": "1300",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -832,16 +832,6 @@
             "isExecuted": false,
             "group": null,
             "uuid": "82cb2958-7b23-49ff-bcbd-66398bf59e03"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Add Comment Playbook Is Active -> Update Status to Pending",
-            "targetStep": "\/api\/3\/workflow_steps\/9ddd19a2-5a0f-4186-a7d5-81f0462795d5",
-            "sourceStep": "\/api\/3\/workflow_steps\/a23ccc91-bd8e-434a-a9ee-61eeddc4e2cb",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "b618665f-4492-4cca-826c-99b4c872d41a"
         },
         {
             "@type": "WorkflowRoute",

@@ -41,7 +41,7 @@
             },
             "status": null,
             "top": "435",
-            "left": "825",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
             "uuid": "7229addc-ef6a-4bad-9db6-935ecb294616"
@@ -70,7 +70,7 @@
             },
             "status": null,
             "top": "1245",
-            "left": "475",
+            "left": "290",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
             "uuid": "7862c709-5533-4a1f-8d63-669191997046"
@@ -89,7 +89,7 @@
             },
             "status": null,
             "top": "165",
-            "left": "650",
+            "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "e9a925c9-91a9-4ff8-a181-a3817db6e846"
@@ -117,7 +117,7 @@
             },
             "status": null,
             "top": "300",
-            "left": "650",
+            "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
             "uuid": "acc9de15-77e7-4cbf-9286-d5837fae7103"
@@ -198,18 +198,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "NO OP",
-            "description": null,
-            "arguments": [],
-            "status": null,
-            "top": "1110",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "25e0bfb4-d8af-405f-ab75-f5deb1a39591"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Push Content",
             "description": null,
             "arguments": {
@@ -242,7 +230,7 @@
             },
             "status": null,
             "top": "1110",
-            "left": "475",
+            "left": "290",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "f274ebb0-2ef4-47e7-8a90-ac524793f416"
@@ -270,8 +258,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "840",
-            "left": "650",
+            "top": "975",
+            "left": "660",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
             "uuid": "5b88ad2b-3d04-45bc-a8e0-e1a3a40cdc4d"
@@ -349,7 +337,7 @@
                         },
                         {
                             "option": "Cancel",
-                            "step_iri": "\/api\/3\/workflow_steps\/25e0bfb4-d8af-405f-ab75-f5deb1a39591"
+                            "step_iri": "\/api\/3\/workflow_steps\/c2b2452e-59f6-43f8-8b09-cc3348bdb26f"
                         }
                     ],
                     "duplicateOption": false,
@@ -446,7 +434,7 @@
             },
             "status": null,
             "top": "30",
-            "left": "650",
+            "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
             "group": null,
             "uuid": "81ba31e6-3c9a-4f87-8cf7-2be72de45b77"
@@ -479,7 +467,7 @@
             },
             "status": null,
             "top": "1380",
-            "left": "475",
+            "left": "290",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "ffba855a-852c-4064-99b0-e4728bd108d0"
@@ -532,24 +520,14 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "960",
-            "left": "840",
+            "top": "1110",
+            "left": "650",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "c2b2452e-59f6-43f8-8b09-cc3348bdb26f"
         }
     ],
     "routes": [
-        {
-            "@type": "WorkflowRoute",
-            "name": "Add Comment Playbook Is Active -> Update Status to Pending",
-            "targetStep": "\/api\/3\/workflow_steps\/c2b2452e-59f6-43f8-8b09-cc3348bdb26f",
-            "sourceStep": "\/api\/3\/workflow_steps\/7229addc-ef6a-4bad-9db6-935ecb294616",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "bbacbd35-0c06-4695-bcf7-185ec3d1052a"
-        },
         {
             "@type": "WorkflowRoute",
             "name": "Add Push Changes Comment -> Update Result",
@@ -652,16 +630,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Specify Commit Message -> NO OP",
-            "targetStep": "\/api\/3\/workflow_steps\/25e0bfb4-d8af-405f-ab75-f5deb1a39591",
-            "sourceStep": "\/api\/3\/workflow_steps\/4b20f3d7-69d8-4fb2-b91d-dfd82906db7f",
-            "label": "Cancel",
-            "isExecuted": false,
-            "group": null,
-            "uuid": "57ff4e11-624e-47de-818e-94af6e9d3bc6"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Specify Commit Message -> Push Content",
             "targetStep": "\/api\/3\/workflow_steps\/f274ebb0-2ef4-47e7-8a90-ac524793f416",
             "sourceStep": "\/api\/3\/workflow_steps\/4b20f3d7-69d8-4fb2-b91d-dfd82906db7f",
@@ -669,6 +637,16 @@
             "isExecuted": false,
             "group": null,
             "uuid": "da532239-9aaa-41d8-9675-200aeec96f25"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Specify Commit Message -> Update Status to Pending",
+            "targetStep": "\/api\/3\/workflow_steps\/c2b2452e-59f6-43f8-8b09-cc3348bdb26f",
+            "sourceStep": "\/api\/3\/workflow_steps\/4b20f3d7-69d8-4fb2-b91d-dfd82906db7f",
+            "label": "Cancel",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "ab942448-f863-4cf7-8f8a-d9d7e9a515d5"
         },
         {
             "@type": "WorkflowRoute",

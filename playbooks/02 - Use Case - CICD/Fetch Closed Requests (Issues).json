@@ -50,8 +50,8 @@
                 "arguments": [],
                 "apply_async": false,
                 "step_variables": [],
-                "pass_parent_env": false,
-                "pass_input_record": true,
+                "pass_parent_env": true,
+                "pass_input_record": false,
                 "workflowReference": "\/api\/3\/workflows\/dd654cd4-923f-4c20-837c-279669c2fa82"
             },
             "status": null,
@@ -116,44 +116,6 @@
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
             "uuid": "c66e0195-90a1-4212-b17e-79de54c6bce6"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Find PRs for Issues",
-            "description": null,
-            "arguments": {
-                "issuePRs": "{% set _tempDict = {} %}{% for pr in vars.latest_pull_request %}{% if pr.body != None and \"Issue #\" in pr.body %}{% set issue = pr.body.split(\"Issue #\")[-1].split(\" \")[0] %}{% set _temp = _tempDict.update({issue: {\"title\": pr.title,\"html_url\": pr.html_url,\"state\": pr.state,\"reviewers\": pr.reviewer_names}}) %}{% endif %}{% endfor %}{{ _tempDict }}"
-            },
-            "status": null,
-            "top": "165",
-            "left": "650",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "abc9152c-8eb2-4748-8eea-506397d27e60"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Get All Pull Requests",
-            "description": null,
-            "arguments": {
-                "arguments": {
-                    "list_pr_params": "{\"org_name\": \"{{vars.cicd_config.organizationName}}\",\n\"repo_name\": \"{{vars.cicd_config.contentRepoName}}\",\n\"state\": \"all\"\n}",
-                    "connector_config_id": "{{vars.steps.Check_Source_Control_Connector_Configuration['config_id']}}"
-                },
-                "apply_async": false,
-                "step_variables": {
-                    "latest_pull_request": "{% set lpr = [] %}{% for pr in vars.steps.Get_All_Pull_Requests.data %}{% if pr.state==\"opened\" %}{% set _ =lpr.append(pr) %}{% endif %}{% endfor %}{% if lpr | length == 0 %}{% set _ = lpr.append(vars.steps.Get_All_Pull_Requests.data[0]) %}{% endif %}{{lpr}}"
-                },
-                "pass_parent_env": false,
-                "pass_input_record": true,
-                "workflowReference": "{{vars.cicd_env[\"source_control_playbooks\"][\"ListPullRequest\"][\"@id\"]}}"
-            },
-            "status": null,
-            "top": "30",
-            "left": "650",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "245a7c11-174a-417d-9b57-7ae202f5791e"
         },
         {
             "@type": "WorkflowStep",
@@ -374,16 +336,6 @@
             "isExecuted": false,
             "group": null,
             "uuid": "be0a9739-6ed6-41d9-8e00-b8a71f182671"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Get Open Pull Requests -> Find PRs for Issues",
-            "targetStep": "\/api\/3\/workflow_steps\/abc9152c-8eb2-4748-8eea-506397d27e60",
-            "sourceStep": "\/api\/3\/workflow_steps\/245a7c11-174a-417d-9b57-7ae202f5791e",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "ebdd9320-4301-47f3-8e96-85b48506b805"
         },
         {
             "@type": "WorkflowRoute",
