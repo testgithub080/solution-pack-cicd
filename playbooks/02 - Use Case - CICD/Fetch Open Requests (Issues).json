@@ -50,8 +50,8 @@
                 "arguments": [],
                 "apply_async": false,
                 "step_variables": [],
-                "pass_parent_env": false,
-                "pass_input_record": true,
+                "pass_parent_env": true,
+                "pass_input_record": false,
                 "workflowReference": "\/api\/3\/workflows\/dd654cd4-923f-4c20-837c-279669c2fa82"
             },
             "status": null,
