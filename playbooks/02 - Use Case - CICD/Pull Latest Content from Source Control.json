@@ -310,8 +310,8 @@
             "arguments": {
                 "name": "CICD Utils",
                 "params": {
-                    "filename": "{{vars.steps.Clone_Repository.data.path}}",
-                    "file_path": "{{vars.steps.Clone_Repository.data.path.split('\/')[-1]}}"
+                    "filename": "{{vars.steps.Clone_Repository.data.path.split('\/')[-1]}}",
+                    "file_path": "{{vars.steps.Clone_Repository.data.path}}"
                 },
                 "version": "1.1.0",
                 "connector": "cicd-utils",
