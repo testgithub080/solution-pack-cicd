@@ -473,7 +473,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Initiating Task: Save FortiSOAR {{vars.export_file_name.split(\"-\")[-1]}}<\/p>",
+                    "content": "<p>Initiating Task: Save FortiSOAR {% if vars.input.records[0].title == \"Save Production Settings\" %}{{\"Source Control - Production Settings\"}}{% else %}{{\"Source Control - Development Settings\"}}{% endif %}<\/p>",
                     "records": "{{vars.input.records[0]['@id']}}"
                 },
                 "resource": {
