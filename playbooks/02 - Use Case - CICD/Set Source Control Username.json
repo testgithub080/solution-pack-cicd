@@ -562,7 +562,7 @@
                 "input": {
                     "schema": {
                         "title": "Repositories are not present",
-                        "description": "Create the repositories before Map the  Source Control Username {{vars.source_control_username}} to FortiSOAR Username ",
+                        "description": "Create the repositories before mapping the Source Control Username {{vars.source_control_username}} to FortiSOAR Username ",
                         "inputVariables": []
                     }
                 },
