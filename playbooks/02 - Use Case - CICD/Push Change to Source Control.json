@@ -4,7 +4,7 @@
     "name": "Push Change to Source Control",
     "aliasName": null,
     "tag": null,
-    "description": "Push (Export) specified change request content into the Source Control content repository",
+    "description": "Push specified change request content into the Source Control content repository",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -38,8 +38,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "900",
-            "left": "100",
+            "top": "705",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
             "uuid": "3ff98075-1670-4564-a922-2e646e8cd037"
@@ -53,7 +53,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tasks": "{{vars.steps.Find_Related_Task[0]['@id']}}",
                     "people": [],
-                    "content": "<h5>Push (Export) Change Request Details<\/h5>\n<hr>\n<p><a href=\"{{vars.source_control_type}}\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}}\" target=\"_blank\" rel=\"noopener\">\"Change Request - {{vars.issue_no}} |<\/a> {{vars.input.records[0].summary}}\" is successfully pushed into the Source Control <a href=\"{{vars.source_control_type}}\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}\" target=\"_blank\" rel=\"noopener\"> {{vars.source_control_type}}\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}<\/a> Repository.<\/p>",
+                    "content": "<h5>Push Change Request Details<\/h5>\n<hr>\n<p><a href=\"{{vars.source_control_type}}\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}}\" target=\"_blank\" rel=\"noopener\">\"Change Request - {{vars.issue_no}} |<\/a> {{vars.input.records[0].summary}}\" is successfully pushed into the Source Control <a href=\"{{vars.source_control_type}}\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}\" target=\"_blank\" rel=\"noopener\"> {{vars.source_control_type}}\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/tree\/{{vars.new_branch}}<\/a> repository<\/p>",
                     "__replace": "",
                     "isImportant": false,
                     "peopleUpdated": false
@@ -163,7 +163,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Initiating Push Change to Source Control Task<\/p>",
+                    "content": "<p>Initiating Task: Push changes to Source Control<\/p>",
                     "records": "{{vars.steps.Find_Related_Task[0]['@id']}}"
                 },
                 "step_variables": []
@@ -214,11 +214,11 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Push Change to Source Control Task Completed<\/p>",
+                    "content": "<p>Completed Task: Push changes to Source Control<\/p>",
                     "records": "{{vars.steps.Find_Related_Task[0]['@id']}}",
                     "parentstepid": "\/api\/3\/workflow_steps\/db6ef86c-df20-4e80-a1d6-27fd7eecaf42"
                 },
-                "version": "3.2.6",
+                "version": "3.3.0",
                 "connector": "cyops_utilities",
                 "operation": "no_op",
                 "operationTitle": "Utils: No Operation",
@@ -226,7 +226,7 @@
             },
             "status": null,
             "top": "1245",
-            "left": "300",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "08027c16-ab47-4837-91ea-af29a3e0314f"
@@ -255,8 +255,8 @@
                 "workflowReference": "\/api\/3\/workflows\/8413a393-367b-4501-9196-ffbb027f0a3b"
             },
             "status": null,
-            "top": "980",
-            "left": "480",
+            "top": "975",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "cf2f32bf-453f-42d0-b6f8-9434ee1a2493"
@@ -270,7 +270,7 @@
                 "input": {
                     "schema": {
                         "title": "Specify Commit Details",
-                        "description": "Please specify the commit details for the [Change Request - {{vars.issue_no}}]({{vars.source_control_type}}\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}}) which you want to push into the **\"{{vars.repo_name}}\"** Source Control Repository under the branch **\"{{vars.new_branch}}\"**",
+                        "description": "Specify the commit information for [Change Request - {{vars.issue_no}}]({{vars.source_control_type}}\/{{vars.cicd_config.organizationName}}\/{{vars.repo_name}}\/issues\/{{vars.issue_no}}) to push it to the **\"{{vars.repo_name}}\"** repository within the **\"{{vars.new_branch}}\"** branch",
                         "inputVariables": [
                             {
                                 "name": "commitMessage",
@@ -376,6 +376,7 @@
                 "resources": [
                     "change_management"
                 ],
+                "__triggerLimit": true,
                 "inputVariables": [],
                 "step_variables": {
                     "input": {
@@ -384,6 +385,7 @@
                     }
                 },
                 "_promptexpanded": true,
+                "triggerOnSource": true,
                 "displayConditions": {
                     "alerts": {
                         "sort": [],
@@ -448,6 +450,11 @@
                 },
                 "executeButtonText": "Execute",
                 "noRecordExecution": false,
+                "showToasterMessage": {
+                    "visible": false,
+                    "messageVisible": true
+                },
+                "triggerOnReplicate": false,
                 "singleRecordExecution": true
             },
             "status": null,
@@ -459,16 +466,6 @@
         }
     ],
     "routes": [
-        {
-            "@type": "WorkflowRoute",
-            "name": "Add Comment Playbook Is Active -> No Operation",
-            "targetStep": "\/api\/3\/workflow_steps\/08027c16-ab47-4837-91ea-af29a3e0314f",
-            "sourceStep": "\/api\/3\/workflow_steps\/3ff98075-1670-4564-a922-2e646e8cd037",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "af205be0-6e97-4711-8db6-4cf66200ebd6"
-        },
         {
             "@type": "WorkflowRoute",
             "name": "Add Comment Push Change Request Details -> No Operation",

@@ -4,7 +4,7 @@
     "name": "Save FortiSOAR Settings",
     "aliasName": null,
     "tag": null,
-    "description": "Backup connector configurations, SSO settings, user configurations, etc, into Source Control",
+    "description": "Push connector configurations, SSO settings, user configurations, etc, into Source Control",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -54,7 +54,7 @@
                 "resource": {
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "people": [],
-                    "content": "<p>\"{{vars.export_template_name}}\" is successfully saved (exported) into the <a rel=\"noopener\" target=\"_blank\" href=\"{{vars.source_control_type}}\/{{vars.org_name}}\/{{vars.repo_name}}\">{{vars.source_control_type}}\/{{vars.org_name}}\/{{vars.repo_name}}<\/a>&nbsp;Repository.<\/p>",
+                    "content": "<p>\"{{vars.export_template_name}}\" is successfully saved (exported) into the <a href=\"{{vars.source_control_type}}\/{{vars.org_name}}\/{{vars.repo_name}}\" target=\"_blank\" rel=\"noopener\">{{vars.source_control_type}}\/{{vars.org_name}}\/{{vars.repo_name}}<\/a> repository.<\/p>",
                     "__replace": "",
                     "isImportant": false,
                     "peopleUpdated": false,
@@ -201,15 +201,6 @@
             "name": "Push Content",
             "description": null,
             "arguments": {
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "thread": false,
-                    "content": "<h5>Push (Export) Change Request Details<\/h5>\n<hr>\n<p>\"{{vars.export_file_name}}\" is successfully pushed (exported) into the <a href=\"{{vars.source_control_type}}\/{{vars.org_name}}\/{{vars.repo_name}}\">{{vars.source_control_type}}\/{{vars.org_name}}\/{{vars.repo_name}}<\/a> Repository.<\/p>",
-                    "records": "{{vars.input.records[0]['@id']}}",
-                    "parentstepid": "\/api\/3\/workflow_steps\/dfc0dbd2-46d2-4e21-8d06-4ab4dcf466fb"
-                },
                 "arguments": {
                     "org_name": "{{vars.org_name}}",
                     "repo_name": "{{vars.repo_name}}",
@@ -243,7 +234,7 @@
                 "resource": {
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "people": [],
-                    "content": "<h5>Failed: Source Control Is Not Configured<\/h5>\n<hr>\n<p>Source Control for the task \"{{vars.input.records[0].title}}\" Is Not Configured<\/p>",
+                    "content": "<h5>Failed: Source Control Is Not Configured<\/h5>\n<hr>\n<p>The Source Control is not configured for the \"{{vars.input.records[0].title}}\"<\/p>",
                     "__replace": "",
                     "isImportant": false,
                     "peopleUpdated": false,
@@ -273,7 +264,7 @@
                 "input": {
                     "schema": {
                         "title": "Specify Commit Details",
-                        "description": "Please specify the commit details for the{{vars.export_file_name.split(\"-\")[-1]}} which you want to push into the **\"{{vars.repo_name}}\"** Source Control Repository under the branch **\"{{vars.base_branch}}\"**",
+                        "description": "Specify the commit details to push to \"{{vars.repo_name}}\" repository within the \"{{vars.base_branch}}\" branch",
                         "inputVariables": [
                             {
                                 "name": "commitMessage",
@@ -449,7 +440,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Completed Save FortiSOAR Settings Task<\/p>",
+                    "content": "<p>Completed Task: Save FortiSOAR Settings<\/p>",
                     "records": "{{vars.input.records[0]['@id']}}",
                     "parentstepid": "\/api\/3\/workflow_steps\/f274ebb0-2ef4-47e7-8a90-ac524793f416"
                 },
@@ -482,7 +473,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Initiating Save FortiSOAR Settings Task<\/p>",
+                    "content": "<p>Initiating Task: Save FortiSOAR {{vars.export_file_name.split(\"-\")[-1]}}<\/p>",
                     "records": "{{vars.input.records[0]['@id']}}"
                 },
                 "resource": {
@@ -509,6 +500,15 @@
             "name": "Update Status to Pending",
             "description": null,
             "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>Task save FortiSOAR {{vars.export_file_name.split(\"-\")[-1]}} to the \"{{vars.repo_name}}\" repository has been aborted<\/p>",
+                    "records": "{{vars.input.records[0]['@id']}}",
+                    "parentstepid": "\/api\/3\/workflow_steps\/dfc0dbd2-46d2-4e21-8d06-4ab4dcf466fb"
+                },
                 "resource": {
                     "status": "\/api\/3\/picklists\/cc6dc0fe-4a49-44e7-af30-8a0fbeacd293"
                 },
@@ -516,7 +516,9 @@
                 "collection": "{{vars.input.records[0]['@id']}}",
                 "__recommend": [],
                 "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
                 "step_variables": []
             },
             "status": null,

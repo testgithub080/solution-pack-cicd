@@ -62,14 +62,6 @@
             "name": "Create Repository",
             "description": null,
             "arguments": {
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "thread": false,
-                    "content": "<p>{% if vars.steps.Create_Repository['Error message'] is defined %}{{vars.input.params['repo_name']}} creation failed.{% else %}Created Repository <a href=\"{{vars.cicd_env.source_control.baseURL}}\/{{vars.input.params['organization_name']}}\/{{vars.input.params['repo_name']}}\" target=\"_blank\" rel=\"noopener\">{{vars.input.params['repo_name']}}<\/a> with the base branch {{vars.input.params['base_branch']}}{% endif %}<\/p>",
-                    "records": ""
-                },
                 "arguments": {
                     "create_repo_params": "{\"repo_name\": \"{{vars.input.params['repo_name']}}\",\n\"org_name\": \"{{vars.input.params['organization_name']}}\"}",
                     "connector_config_id": "{{vars.input.params['connector_config_id']}}"

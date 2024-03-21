@@ -4,7 +4,7 @@
     "name": "Setup Development Environment",
     "aliasName": null,
     "tag": null,
-    "description": "Setup the FortiSOAR Prod Content, FortiSOAR Dev Settings source control repositories",
+    "description": "Setting up the development environment involves mapping source control username with FortiSOAR user, cloning the initial production content repository, and importing it into FortiSOAR.",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -174,7 +174,7 @@
                 "type": "InputBased",
                 "input": {
                     "schema": {
-                        "title": "Provide Repository Configuration Details",
+                        "title": "Repository Configuration Details",
                         "description": "Provide the following repository configuration inputs",
                         "inputVariables": [
                             {
@@ -464,13 +464,16 @@
             "description": null,
             "arguments": {
                 "resource": {
-                    "status": "\/api\/3\/picklists\/eb7e156f-f599-4cf6-a12b-5484c1bc414d"
+                    "status": "\/api\/3\/picklists\/eb7e156f-f599-4cf6-a12b-5484c1bc414d",
+                    "recordIcon": "<p>Completed Tasks: Setup Development Environment<\/p>"
                 },
                 "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",
                 "__recommend": [],
                 "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
                 "step_variables": []
             },
             "status": null,
@@ -490,7 +493,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Initiating Source Control Setup<\/p>",
+                    "content": "<p><strong>Initiating Tasks:<\/strong> Setup Development Environment<\/p>",
                     "records": "{{vars.input.records[0]['@id']}}"
                 },
                 "resource": {
@@ -500,7 +503,9 @@
                 "collection": "{{vars.input.records[0]['@id']}}",
                 "__recommend": [],
                 "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
                 "step_variables": []
             },
             "status": null,
@@ -606,12 +611,12 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p class=\"mp-tile-description muted-80\"><strong>- Identified source control repositories names as follows: <\/strong><\/p>\n<ul class=\"font-size-13 muted-80\">\n<li><em>Production Content: <\/em><a href=\"{{vars.cicd_env.source_control.baseURL}}\/{{vars.org_name}}\/{{vars.content_repo}}\" target=\"_blank\" rel=\"noopener\">{{vars.content_repo}}<\/a><\/li>\n<li><em>Development Settings: <\/em><a href=\"{{vars.cicd_env.source_control.baseURL}}\/{{vars.org_name}}\/{{vars.dev_settings_repo}}\" target=\"_blank\" rel=\"noopener\">{{vars.dev_settings_repo}}<\/a><\/li>\n<\/ul>",
+                    "content": "<p class=\"mp-tile-description muted-80\"><strong>- Identified source control repositories names as follows: <\/strong><\/p>\n<ul class=\"font-size-13 muted-80\">\n<li><em>Production Content: <\/em><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.cicd_env.source_control.baseURL}}\/{{vars.org_name}}\/{{vars.content_repo}}\">{{vars.content_repo}}<\/a><\/li>\n<li><em>Development Settings: <\/em><a rel=\"noopener\" target=\"_blank\" href=\"{{vars.cicd_env.source_control.baseURL}}\/{{vars.org_name}}\/{{vars.dev_settings_repo}}\">{{vars.dev_settings_repo}}<\/a><\/li>\n<\/ul>",
                     "records": "{{vars.input.records[0]['@id']}}",
                     "parentstepid": "\/api\/3\/workflow_steps\/b18cb44c-0425-4a09-9438-7f0f455a4c24"
                 },
                 "resource": {
-                    "results": "<p class=\"mp-tile-description muted-80\"><strong>- Identified source control repositories names as follows: <\/strong><\/p>\n<ul class=\"font-size-13 muted-80\">\n<li><em>Production Content: <\/em><a href=\"{{vars.cicd_env.source_control.baseURL}}\/{{vars.org_name}}\/{{vars.content_repo}}\" target=\"_blank\" rel=\"noopener\">{{vars.cicd_env.source_control.baseURL}}\/{{vars.org_name}}\/{{vars.content_repo}}<\/a><\/li>\n<li><em>Development Settings: <\/em><a href=\"{{vars.cicd_env.source_control.baseURL}}\/{{vars.org_name}}\/{{vars.dev_settings_repo}}\" target=\"_blank\" rel=\"noopener\">{{vars.cicd_env.source_control.baseURL}}\/{{vars.org_name}}\/{{vars.dev_settings_repo}}<\/a><\/li>\n<\/ul>"
+                    "results": "<p class=\"mp-tile-description muted-80\"><strong>Identified source control repository names as follows:&nbsp;<\/strong><\/p>\n<ul class=\"font-size-13 muted-80\">\n<li><em>Production Content: <\/em><a href=\"{{vars.cicd_env.source_control.baseURL}}\/{{vars.org_name}}\/{{vars.content_repo}}\" target=\"_blank\" rel=\"noopener\">{{vars.cicd_env.source_control.baseURL}}\/{{vars.org_name}}\/{{vars.content_repo}}<\/a><\/li>\n<li><em>Development Settings: <\/em><a href=\"{{vars.cicd_env.source_control.baseURL}}\/{{vars.org_name}}\/{{vars.dev_settings_repo}}\" target=\"_blank\" rel=\"noopener\">{{vars.cicd_env.source_control.baseURL}}\/{{vars.org_name}}\/{{vars.dev_settings_repo}}<\/a><\/li>\n<\/ul>"
                 },
                 "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",
