@@ -4,7 +4,7 @@
     "name": "Create Pull Request",
     "aliasName": null,
     "tag": null,
-    "description": "Create the pull request",
+    "description": "Create the pull request for review and assign reviewers",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -53,7 +53,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tasks": "{{vars.steps.Find_Related_Task[0]['@id']}}",
                     "people": [],
-                    "content": "<h5>Warning: Pull Request Creation Failed<\/h5>\n<hr>\n<p>{% if \"Validation Failed\" in vars.steps.Create_Pull_Request['Error message'] %}\"**Validation Failed**: No commits between {{vars.cicdConfig.baseBranch}} and CR-{{vars.issue_no}}\"{% else %}Pull Request is not created successfully, check playbook logs for more details{% endif %}<\/p>",
+                    "content": "<h5>Pull Request Creation Failed<\/h5>\n<hr>\n<p>{% if \"Validation Failed\" in vars.steps.Create_Pull_Request['Error message'] %}\"**Validation Failed**: No commits between {{vars.cicdConfig.baseBranch}} and CR-{{vars.issue_no}}\"{% else %} Pull Request is not created successfully, check playbook logs for more details{% endif %}<\/p>",
                     "__replace": "",
                     "isImportant": false,
                     "peopleUpdated": false
@@ -82,7 +82,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tasks": "{{vars.steps.Find_Related_Task[0]['@id']}}",
                     "people": [],
-                    "content": "<h5>Pull Request Details<\/h5>\n<hr>\n<ul>\n<li>Pull Request <a href=\"{{vars.steps.Create_Pull_Request.data['html_url']}}\" target=\"_blank\" rel=\"noopener\">{{vars.steps.Create_Pull_Request.data.title}}<\/a> is successfully created.<\/li>\n<li>Add {{vars.steps.Add_PR_Reviewers.data.requested_reviewers[0].login}} as reviewer<\/li>\n<\/ul>",
+                    "content": "<h5>Pull Request Details<\/h5>\n<hr>\n<ul>\n<li>Pull Request <a href=\"{{vars.steps.Create_Pull_Request.data['html_url']}}\" target=\"_blank\" rel=\"noopener\">{{vars.steps.Create_Pull_Request.data.title}}<\/a> is successfully created<\/li>\n<li>Assigned \"{{vars.steps.Add_PR_Reviewers.data.requested_reviewers[0].login}}\" as reviewer<\/li>\n<\/ul>",
                     "__replace": "",
                     "isImportant": false,
                     "peopleUpdated": false
@@ -252,7 +252,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Initiating Create Pull Request Task<\/p>",
+                    "content": "<p>Initiating Task: Create Pull Request<\/p>",
                     "records": "{{vars.steps.Find_Related_Task[0]['@id']}}"
                 },
                 "step_variables": []
@@ -331,11 +331,11 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Completed Create Pull Request Task<\/p>",
+                    "content": "<p>Completed Task: Create Pull Request<\/p>",
                     "records": "{{vars.steps.Find_Related_Task[0]['@id']}}",
                     "parentstepid": "\/api\/3\/workflow_steps\/874c90df-4e7f-4bde-ae2f-f62361b6a6cc"
                 },
-                "version": "3.2.6",
+                "version": "3.3.0",
                 "connector": "cyops_utilities",
                 "operation": "no_op",
                 "operationTitle": "Utils: No Operation",
@@ -356,7 +356,7 @@
                 "type": "InputBased",
                 "input": {
                     "schema": {
-                        "title": "Pull Request Title and Comments",
+                        "title": "Pull Request Details",
                         "description": "Provide the following details for the Pull Request",
                         "inputVariables": [
                             {
@@ -510,7 +510,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "a84d9b8f-6160-40b9-80f9-99b69a8780c2"
+            "uuid": "d79f09ad-0c04-4155-99bd-d43561060f51"
         },
         {
             "@type": "WorkflowRoute",

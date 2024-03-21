@@ -117,8 +117,8 @@
                     "tags": [],
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
-                    "thread": true,
-                    "content": "<p class=\"mp-tile-description muted-80\">\"FortiSOAR Production Environment Content\" is successfully pushed (exported) into the <a href=\"{{vars.source_control_type}}\/{{vars.org_name}}\/{{vars.repo_name}}\" target=\"_blank\" rel=\"noopener\">{{vars.source_control_type}}\/{{vars.org_name}}\/{{vars.repo_name}}<\/a> Repository.<\/p>",
+                    "thread": false,
+                    "content": "<p class=\"mp-tile-description muted-80\">Successfully pushed \"FortiSOAR Production Environment Content\" into the&nbsp;<a href=\"{{vars.source_control_type}}\/{{vars.org_name}}\/{{vars.repo_name}}\" target=\"_blank\" rel=\"noopener\">{{vars.source_control_type}}\/{{vars.org_name}}\/{{vars.repo_name}}<\/a> repository<\/p>",
                     "records": "{{vars.input.records[0]['@id']}}"
                 },
                 "resource": [],
@@ -126,7 +126,9 @@
                 "collection": "{{vars.input.records[0]['@id']}}",
                 "__recommend": [],
                 "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
                 "step_variables": []
             },
             "status": null,

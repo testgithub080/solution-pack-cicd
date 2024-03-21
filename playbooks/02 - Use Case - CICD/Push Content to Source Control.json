@@ -33,12 +33,13 @@
             "arguments": {
                 "resource": {
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tasks": "{{vars.input.params['related_task_iri']}}",
+                    "tasks": "{% if \"change_request\" not in vars.input.records[0]['@id'] %}{{vars.input.params['related_task_iri']}}{% endif %}",
                     "people": [],
                     "content": "<p>Applied new changes to \"{{vars.steps.Clone_Repository.data.path}}\" remote repository<\/p>",
                     "__replace": "",
                     "isImportant": false,
-                    "peopleUpdated": false
+                    "peopleUpdated": false,
+                    "changeManagement": "{% if \"change_request\" not in vars.input.records[0]['@id'] %}{{vars.input.records[0]['@id']}}{% endif %}"
                 },
                 "operation": "Overwrite",
                 "collection": "\/api\/3\/comments",
@@ -87,7 +88,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>{{vars.repo_name}} repository is cloned at the {{vars.steps.Clone_Repository.data.path}} location<\/p>",
+                    "content": "<p>Repository \"{{vars.repo_name}}\"&nbsp; is cloned at \"{{vars.steps.Clone_Repository.data.path}}\"<\/p>",
                     "records": "{{vars.input.params['related_task_iri']}}",
                     "parentstepid": "\/api\/3\/workflow_steps\/ab29d297-bfa6-4c3e-9272-85c0abe16028"
                 },
@@ -186,15 +187,6 @@
             "name": "Push Export Config into Source Control",
             "description": null,
             "arguments": {
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "thread": false,
-                    "content": "<p>Pushed Export Template \"{{vars.input.params['export_template_name']}}\" content to \"{{vars.input.params['repo_name']}}\" repository.<\/p>",
-                    "records": "{{vars.input.params['related_task_iri']}}",
-                    "parentstepid": "\/api\/3\/workflow_steps\/36fa8cb9-06c3-45fa-90a5-daab9f2edd1e"
-                },
                 "arguments": {
                     "connector_config_id": "{{vars.input.params['connector_config_id']}}",
                     "push_changes_params": "{\n\"org_name\": \"{{vars.org_name}}\",\n\"repo_name\": \"{{vars.repo_name}}\",\n\"repo_type\": \"Organization\",\n\"branch_name\": \"{{vars.branch_name}}\",\n\"cloned_repo_path\":\"{{vars.steps.Clone_Repository.data.path}}\",\n\"commit_message\": \"{{vars.commit_message}}\", \"commit_description\": \"{{vars.commit_description}}\" }"
@@ -222,14 +214,17 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Pushing \"{{vars.input.params['export_template_name']}}\" content to \"{{vars.input.params['repo_name']}}\" repository.<\/p>",
+                    "content": "<p>Pushing \"{{vars.input.params['export_template_name']}}\" content to \"{{vars.input.params['repo_name']}}\" repository<\/p>",
                     "records": "{{vars.input.records[0]['@id']}}"
                 },
+                "__triggerLimit": true,
                 "step_variables": {
                     "input": {
                         "params": []
                     }
-                }
+                },
+                "triggerOnSource": true,
+                "triggerOnReplicate": false
             },
             "status": null,
             "top": "30",

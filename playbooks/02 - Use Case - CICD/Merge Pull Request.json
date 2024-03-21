@@ -4,7 +4,7 @@
     "name": "Merge Pull Request",
     "aliasName": null,
     "tag": null,
-    "description": "Merge the specified Pull Request if Pull Request is Approved.",
+    "description": "Merge the specified pull request upon approval",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -197,7 +197,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Initiating Merge Pull Request Task<\/p>",
+                    "content": "<p>Initiating Task: Approve and Merge Pull Request<\/p>",
                     "records": "{{vars.steps.Find_Related_Task[0]['@id']}}"
                 },
                 "step_variables": []
@@ -320,11 +320,11 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Completed Merge Pull Request Task<\/p>",
+                    "content": "<p>Completed Task: Approve and Merge Pull Request&nbsp;<\/p>",
                     "records": "{{vars.steps.Find_Related_Task[0]['@id']}}",
                     "parentstepid": "\/api\/3\/workflow_steps\/f2c59af5-9ff6-41c7-93ad-05dbf5113be7"
                 },
-                "version": "3.2.6",
+                "version": "3.3.0",
                 "connector": "cyops_utilities",
                 "operation": "no_op",
                 "operationTitle": "Utils: No Operation",
@@ -386,8 +386,8 @@
                 "type": "InputBased",
                 "input": {
                     "schema": {
-                        "title": "Warning: Pull Request Merged Details",
-                        "description": "Pull Request {{vars.input.records[0].pullRequest}} is not approved.\nTo approve and merge click on \"Approve and Merge\" button or click on \"Abort\" button to approve manually and again perform the merge operation.\n",
+                        "title": "Pull Request Details",
+                        "description": "Pull Request {{vars.input.records[0].pullRequest}} is not approved.\n\nTo approve and merge, click \"Approve and Merge.\" Or, choose \"Abort\" to manually approve before merging again.",
                         "inputVariables": []
                     }
                 },
@@ -445,7 +445,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tasks": "{{vars.steps.Find_Related_Task[0]['@id']}}",
                     "people": [],
-                    "content": "<h5>Pull Request Merged Details<\/h5>\n<hr>\n<p>Pull Request {{vars.steps.Refine_Issue_Table.json_issue[0].pullRequest}} successfully merged.<\/p>",
+                    "content": "<p>Pull Request {{vars.steps.Refine_Issue_Table.json_issue[0].pullRequest}} successfully merged.<\/p>",
                     "__replace": "",
                     "isImportant": false,
                     "peopleUpdated": false

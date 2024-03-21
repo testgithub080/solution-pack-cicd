@@ -56,7 +56,7 @@
                 "resource": {
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "people": [],
-                    "content": "<p>A new release &nbsp;<a href=\"{{vars.steps.Create_Release.data['html_url']}}\" target=\"_blank\" rel=\"noopener\">{{vars.steps.Create_Release.data.name}}<\/a> is successfully created for the <a href=\"{{vars.source_control_web_url}}\/{{vars.cicd_config.content.split('\/')[-2]}}\/{{vars.cicd_config.content.split('\/')[-1]}}\" target=\"_blank\" rel=\"noopener\">{{vars.source_control_web_url}}\/{{vars.cicd_config.content.split('\/')[-2]}}\/{{vars.cicd_config.content.split('\/')[-1]}}<\/a> Repository.<\/p>",
+                    "content": "<p>A new release &nbsp;<a href=\"{{vars.steps.Create_Release.data['html_url']}}\" target=\"_blank\" rel=\"noopener\">{{vars.steps.Create_Release.data.name}}<\/a> is successfully created for the <a href=\"{{vars.source_control_web_url}}\/{{vars.cicd_config.content.split('\/')[-2]}}\/{{vars.cicd_config.content.split('\/')[-1]}}\" target=\"_blank\" rel=\"noopener\">{{vars.source_control_web_url}}\/{{vars.cicd_config.content.split('\/')[-2]}}\/{{vars.cicd_config.content.split('\/')[-1]}}<\/a> repository<\/p>",
                     "__replace": "",
                     "isImportant": false,
                     "peopleUpdated": false,

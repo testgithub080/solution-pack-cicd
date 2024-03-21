@@ -4,7 +4,7 @@
     "name": "Setup Production Environment",
     "aliasName": null,
     "tag": null,
-    "description": "Execute Setup Production Environment Task on specified record",
+    "description": "Setting up the production environment involves mapping source control username with FortiSOAR users, configuring repositories, and initiating the first release.",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -49,7 +49,7 @@
             "arguments": {
                 "conditions": [
                     {
-                        "option": "Yes",
+                        "option": "Not Created",
                         "step_iri": "\/api\/3\/workflow_steps\/f27247ac-4c24-4e7e-a3d3-8543d0d0ca55",
                         "condition": "{{ (vars.steps.Initial_Repository_Configuration.is_status_failed is defined) and (vars.steps.Initial_Repository_Configuration.is_status_failed) }}",
                         "step_name": "Repository Not Created"
@@ -59,8 +59,15 @@
                         "default": true,
                         "step_iri": "\/api\/3\/workflow_steps\/937d86a2-067a-4fe4-b9b8-af3b06c52d5c",
                         "step_name": "Are Repo Created Manually"
+                    },
+                    {
+                        "option": "Aborted",
+                        "step_iri": "\/api\/3\/workflow_steps\/9226fc8e-7de0-40b6-9f6f-fe8860f58a8e",
+                        "condition": "{{ vars.steps.Initial_Repository_Configuration.abort_repo_creation }}",
+                        "step_name": "Set Status as Pending"
                     }
-                ]
+                ],
+                "step_variables": []
             },
             "status": null,
             "top": "1120",
@@ -227,15 +234,17 @@
                 "input": {
                     "schema": {
                         "title": "Warning: Push Initial Content",
-                        "description": "Do you want to push the current content from this server to the \"Production Content\" repository \"main\" branch?\n\n\n**Note**: Pushing the current content will overwrite the previous production content.",
+                        "description": "Do you want to push the current content from this server to the \"Production Content\" repository's \"main\" branch?\n\n\n**Note**: Pushing the current content will overwrite the previous production content.",
                         "inputVariables": []
                     }
                 },
                 "record": "{{ vars.input.records[0][\"@id\"] }}",
                 "agent_id": null,
                 "resources": "change_management",
+                "is_approval": false,
                 "owner_detail": {
-                    "isAssigned": false
+                    "isAssigned": false,
+                    "emailRecipients": ""
                 },
                 "isRecordLinked": true,
                 "step_variables": [],
@@ -252,15 +261,21 @@
                             "step_iri": "\/api\/3\/workflow_steps\/b235c883-47c7-4e0c-8679-d70ccee83b67"
                         }
                     ],
-                    "duplicateOption": false
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
                 },
                 "email_notification": {
                     "enabled": false,
                     "smtpParameters": []
                 },
+                "customEmailExternal": false,
                 "inline_channel_list": [],
                 "external_channel_list": [],
-                "unauthenticated_input": false
+                "unauthenticated_input": false,
+                "external_email_subject": null,
+                "internal_email_subject": "A FortiSOAR playbook is requesting your input",
+                "custom_email_body_external": null,
+                "external_email_attachments": null
             },
             "status": null,
             "top": "1460",
@@ -329,8 +344,8 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "1240",
-            "left": "500",
+            "top": "1220",
+            "left": "700",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "f27247ac-4c24-4e7e-a3d3-8543d0d0ca55"
@@ -340,6 +355,15 @@
             "name": "Set Latest Deployed Date",
             "description": null,
             "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>Completed Task: Setup Production Environment<\/p>",
+                    "records": "{{vars.input.records[0]['@id']}}",
+                    "parentstepid": "\/api\/3\/workflow_steps\/0851ef82-833b-41ce-8746-484ff725db7a"
+                },
                 "for_each": {
                     "item": "{{vars.steps.Find_Apply_Latest_Content_Record}}",
                     "__bulk": true,
@@ -354,7 +378,9 @@
                 "collection": "{{vars.item['@id']}}",
                 "__recommend": [],
                 "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
                 "step_variables": []
             },
             "status": null,
@@ -374,7 +400,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Source Control Setup Completed<\/p>",
+                    "content": "<p>Completed Task: Setup Production Environment<\/p>",
                     "records": "{{vars.input.records[0]['@id']}}",
                     "parentstepid": "\/api\/3\/workflow_steps\/beef8dfb-3f25-40f3-90fb-48a0fcfc0b2d"
                 },
@@ -407,7 +433,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Initiating Source Control Setup<\/p>",
+                    "content": "<p>Initiating Task: Setup Production Environment<\/p>",
                     "records": "{{vars.input.records[0]['@id']}}"
                 },
                 "resource": {
@@ -417,7 +443,9 @@
                 "collection": "{{vars.input.records[0]['@id']}}",
                 "__recommend": [],
                 "collectionType": "\/api\/3\/change_management",
-                "fieldOperation": [],
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
                 "step_variables": []
             },
             "status": null,
@@ -454,15 +482,6 @@
             "name": "Set Status to Completed",
             "description": null,
             "arguments": {
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "thread": false,
-                    "content": "<p>Source Control Setup Completed<\/p>",
-                    "records": "{{vars.input.records[0]['@id']}}",
-                    "parentstepid": "\/api\/3\/workflow_steps\/beef8dfb-3f25-40f3-90fb-48a0fcfc0b2d"
-                },
                 "resource": {
                     "status": "\/api\/3\/picklists\/eb7e156f-f599-4cf6-a12b-5484c1bc414d"
                 },
@@ -488,7 +507,7 @@
             "description": null,
             "arguments": {
                 "route": "546f47b9-f962-4468-b8b0-153142096bf8",
-                "title": "Setup Prod Environment",
+                "title": "",
                 "resources": [
                     "change_management"
                 ],
@@ -611,6 +630,16 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Are Repositories Created -> Set Status as Pending",
+            "targetStep": "\/api\/3\/workflow_steps\/9226fc8e-7de0-40b6-9f6f-fe8860f58a8e",
+            "sourceStep": "\/api\/3\/workflow_steps\/6248dd56-7b4d-45b4-9997-854e46309bd9",
+            "label": "Aborted",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "5ee3b24a-0057-4338-8fbf-99d5433db64c"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Check Source Control Connector Configuration -> Get Source Control Server URL",
             "targetStep": "\/api\/3\/workflow_steps\/0e7a9129-086a-4266-967f-29e4a54f1851",
             "sourceStep": "\/api\/3\/workflow_steps\/b60fae65-d8fb-4bc7-9798-92a9be3dcfb1",
@@ -664,7 +693,7 @@
             "name": "Has Repository Created -> Repository Not Created",
             "targetStep": "\/api\/3\/workflow_steps\/f27247ac-4c24-4e7e-a3d3-8543d0d0ca55",
             "sourceStep": "\/api\/3\/workflow_steps\/6248dd56-7b4d-45b4-9997-854e46309bd9",
-            "label": "Yes",
+            "label": "Not Created",
             "isExecuted": false,
             "group": null,
             "uuid": "93cb1953-1cdb-479a-9f67-99468ecfe21b"

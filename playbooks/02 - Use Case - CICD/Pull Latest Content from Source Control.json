@@ -4,7 +4,7 @@
     "name": "Pull Latest Content from Source Control",
     "aliasName": null,
     "tag": null,
-    "description": "Pull latest content from Source Control and apply it on production environment or development environment",
+    "description": "Pull latest content from Source Control repository and apply it within the FortiSOAR environment",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -19,7 +19,17 @@
             "@type": "WorkflowStep",
             "name": "Abort Further Setup Steps for Dev",
             "description": null,
-            "arguments": [],
+            "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>The task of applying the latest content from the {{vars.repo_name}} repository has been aborted<\/p>",
+                    "records": "{{vars.input.records[0]['@id']}}",
+                    "parentstepid": "\/api\/3\/workflow_steps\/3fed066c-a883-49a8-81bc-8be588136f89"
+                }
+            },
             "status": null,
             "top": "1100",
             "left": "1000",
@@ -31,7 +41,17 @@
             "@type": "WorkflowStep",
             "name": "Abort Further Setup Steps for Prod",
             "description": null,
-            "arguments": [],
+            "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>The task of applying the latest content from the {{vars.repo_name}} repository has been aborted<\/p>",
+                    "records": "{{vars.input.records[0]['@id']}}",
+                    "parentstepid": "\/api\/3\/workflow_steps\/3fed066c-a883-49a8-81bc-8be588136f89"
+                }
+            },
             "status": null,
             "top": "1160",
             "left": "660",
@@ -120,15 +140,6 @@
             "name": "Clone Repository",
             "description": null,
             "arguments": {
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "thread": false,
-                    "content": "<p>{{vars.repo_name}} repository is cloned at the {{vars.steps.Clone_Repository.data.path}} location&nbsp;<\/p>",
-                    "records": "{{vars.input.records[0]['@id']}}",
-                    "parentstepid": "\/api\/3\/workflow_steps\/8ab39c8c-8aeb-4aa1-b4aa-db172a382ba3"
-                },
                 "arguments": {
                     "clone_repo_params": "{\n\"org_name\": \"{{vars.org_name}}\",\n\"repo_name\": \"{{vars.repo_name}}\",\n\"branch_name\": \"{{vars.base_branch_name}}\",\n\"clone_as_zip\": true,\n\"repo_type\": \"Organization\"\n}",
                     "connector_config_id": "{{vars.steps.Check_Source_Control_Connector_Configuration['config_id']}}"
@@ -170,8 +181,8 @@
                 "type": "InputBased",
                 "input": {
                     "schema": {
-                        "title": "Warning",
-                        "description": "This task will apply the latest content from the {{vars.repo_name}} repository and may require publishing in case of edits to the module schema. The server will be unavailable for all users during the publishing process.",
+                        "title": "Confirmation",
+                        "description": "This task will apply the latest content from the {{vars.repo_name}} repository and may require publishing in case of edits to the module schema. The server will be unavailable for all users during the publishing process. Do you want to continue?",
                         "inputVariables": []
                     }
                 },
@@ -219,6 +230,35 @@
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
             "group": null,
             "uuid": "2360e578-052b-4f1a-9b3b-d9ccc0999936"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Comment",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "people": [],
+                    "content": "<p>Completed Task: Apply Latest Content<\/p>",
+                    "__replace": "",
+                    "isImportant": false,
+                    "peopleUpdated": false,
+                    "changeManagement": "{{vars.input.records[0]['@id']}}"
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1940",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "f183e6b1-7bc4-4fa1-bbe5-c78d383d64b0"
         },
         {
             "@type": "WorkflowStep",
@@ -375,7 +415,7 @@
                 "input": {
                     "schema": {
                         "title": "Apply Latest Content",
-                        "description": "Select the repository you want to apply the changes from.",
+                        "description": "Select the repository you want to apply the changes from",
                         "inputVariables": [
                             {
                                 "name": "selectRepositoryType",
@@ -401,6 +441,7 @@
                                 "playbookField": true,
                                 "lengthConstraint": true,
                                 "allowedGridColumn": false,
+                                "jinjaExpressionView": true,
                                 "useRecordFieldDefault": false
                             }
                         ]
@@ -409,8 +450,10 @@
                 "record": "{{ vars.input.records[0][\"@id\"] }}",
                 "agent_id": null,
                 "resources": "change_management",
+                "is_approval": false,
                 "owner_detail": {
-                    "isAssigned": false
+                    "isAssigned": false,
+                    "emailRecipients": ""
                 },
                 "isRecordLinked": true,
                 "step_variables": {
@@ -428,15 +471,21 @@
                             "step_iri": "\/api\/3\/workflow_steps\/720c2c06-94e9-4666-9cba-3e4e4e67e88f"
                         }
                     ],
-                    "duplicateOption": false
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
                 },
                 "email_notification": {
                     "enabled": false,
                     "smtpParameters": []
                 },
+                "customEmailExternal": false,
                 "inline_channel_list": [],
                 "external_channel_list": [],
-                "unauthenticated_input": false
+                "unauthenticated_input": false,
+                "external_email_subject": null,
+                "internal_email_subject": "A FortiSOAR playbook is requesting your input",
+                "custom_email_body_external": null,
+                "external_email_attachments": null
             },
             "status": null,
             "top": "960",
@@ -454,7 +503,7 @@
                 "input": {
                     "schema": {
                         "title": "Apply Latest Content",
-                        "description": "Select the repository you want to apply the changes from.",
+                        "description": "Select the repository you want to apply the changes from",
                         "inputVariables": [
                             {
                                 "name": "selectRepositoryType",
@@ -480,6 +529,7 @@
                                 "playbookField": true,
                                 "lengthConstraint": true,
                                 "allowedGridColumn": false,
+                                "jinjaExpressionView": true,
                                 "useRecordFieldDefault": false
                             }
                         ]
@@ -488,8 +538,10 @@
                 "record": "{{ vars.input.records[0][\"@id\"] }}",
                 "agent_id": null,
                 "resources": "change_management",
+                "is_approval": false,
                 "owner_detail": {
-                    "isAssigned": false
+                    "isAssigned": false,
+                    "emailRecipients": ""
                 },
                 "isRecordLinked": true,
                 "step_variables": {
@@ -507,15 +559,21 @@
                             "step_iri": "\/api\/3\/workflow_steps\/c5889ca2-6cbb-439b-8e3d-0ffed3972b8f"
                         }
                     ],
-                    "duplicateOption": false
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
                 },
                 "email_notification": {
                     "enabled": false,
                     "smtpParameters": []
                 },
+                "customEmailExternal": false,
                 "inline_channel_list": [],
                 "external_channel_list": [],
-                "unauthenticated_input": false
+                "unauthenticated_input": false,
+                "external_email_subject": null,
+                "internal_email_subject": "A FortiSOAR playbook is requesting your input",
+                "custom_email_body_external": null,
+                "external_email_attachments": null
             },
             "status": null,
             "top": "840",
@@ -636,7 +694,7 @@
                 "resource": {
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "people": [],
-                    "content": "<p>Terminated applying the latest content from the {{vars.repo_name}} repository task<\/p>",
+                    "content": "<p>The task of applying the latest content from the {{vars.repo_name}} repository has been aborted<\/p>",
                     "__replace": "",
                     "isImportant": false,
                     "peopleUpdated": false,
@@ -733,7 +791,7 @@
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "tenant": "",
                     "thread": false,
-                    "content": "<p>Initiating Pull Latest Content from Source Control Task<\/p>",
+                    "content": "<p>Initiating Task: Apply Latest Content<\/p>",
                     "records": "{{vars.input.records[0]['@id']}}"
                 },
                 "resource": {
@@ -1062,6 +1120,16 @@
             "isExecuted": false,
             "group": null,
             "uuid": "5ad7030c-005e-4d8c-9f5a-baba0b720c33"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Deployed Date -> Create Comment",
+            "targetStep": "\/api\/3\/workflow_steps\/f183e6b1-7bc4-4fa1-bbe5-c78d383d64b0",
+            "sourceStep": "\/api\/3\/workflow_steps\/e343e5e7-c917-4e1a-bd82-53a3d2859c50",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "c38028f2-fdeb-4627-ba88-89a8a36eb3dd"
         },
         {
             "@type": "WorkflowRoute",
